@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Настройка Laravel 8 на Android &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Настройка Laravel 8 на Android</h1>
+
+<p>В этой статье я собираюсь показать вам, как вы можете установить Laravel 8 на свой телефон на операционной системе Android. Чтобы получить максимальную пользу от этого руководства, вы должны обладать некоторыми знаниями PHP и знать, что такое Laravel. Но если вы этого не знаете, не волнуйтесь — я объясню вам основы, чтобы вы могли начать.</p>
+
+<h2>Что такое Laravel?</h2>
+
+<p>Laravel — это фреймворк для веб-приложений с выразительным, элегантным синтаксисом. Он построен на PHP, что означает, что Laravel — это PHP, но это упрощает работу с ним.</p>
+
+<p>Он поставляется с множеством пакетов для различных функций, таких как аутентификация, поэтому нам не нужно писать аутентификацию самостоятельно. Чтобы узнать больше о возможностях Laravel, вы можете посетить сайт <a href="https://laravel.com/" target="_blank" rel="noreferrer noopener">laravel.com</a>.</p>
+
+<h2>Почему я написал это руководство</h2>
+
+<p>Я создал это руководство, потому что хочу, чтобы люди, интересующиеся программированием, у которых нет ноутбука или ПК, могли создавать вещи на своих телефонах. Мой последний пост о freeCodeCamp дал мне понять, что люди заинтересованы в том, чтобы узнать, как работает техника, поэтому я делаю больше подобных руководств.</p>
+
+<p>В этом руководстве я собираюсь показать вам, как вы можете установить <strong>composer.php</strong> и использовать его для настройки Laravel 8 на вашем телефоне ???. Меня зовут Прешес Оладеле, и в этом месяце мне почти 19 ?. Я из Нигерии, и я проведу вас через этот процесс. И если вам интересно, откуда я так много знаю об этом, то это потому, что у меня также нет ноутбука, поэтому я исследую всё с помощью своего телефона ?.</p>
+
+<h2>Требования</h2>
+
+<p>Чтобы пройти это руководство, вам понадобится телефон на базе Android с версией V6.0+.</p>
+
+<h2>Настройка</h2>
+
+<p>Нам нужно перейти в <strong><em>Play Store</em></strong> и скачать <strong><em>Termux</em></strong>:</p>
+
+<div>
+<figure><img src="images/android-laravel-001.png" alt="" class="img-fluid"></figure></div>
+
+<p>Termux — это система на базе Linux, которую мы можем использовать на наших телефонах. Это так же просто, как использовать обычный Linux — вы можете установить что угодно, хоть Kali, хоть Ubuntu, хоть что угодно. Но в этом уроке мы будем использовать его для установки Laravel 8 на наш мобильный телефон.</p>
+
+<h2>Скачиваем компоузер (composer)</h2>
+
+<p>Прежде чем загрузить <em>composer</em>, нам нужно открыть наше приложение Termux и ввести эту команду:</p>
+
+<pre><code class="language-bash">termux-setup-storage</code></pre>
+
+<p>Он запросит разрешения на хранение, поэтому нажмите кнопку «Принять» (<strong>Accept</strong>). После этого перейдите на сайт <a href="https://getcomposer.org/download/" target="_blank" rel="noreferrer noopener">https://getcomposer.org/download/</a>.</p>
+
+<div>
+<figure><img src="images/android-laravel-002.png" alt="" class="img-fluid"></figure></div>
+
+<p>Там нам нужно все забрать. Но перед этим нам нужно установить PHP, чтобы мы могли использовать его в нашем приложении. Для этого в Termux введите следующую команду:</p>
+
+<pre><code class="language-bash">apt install php</code></pre>
+
+<p>Нажмите ввод. Вы должны увидеть следующее:</p>
+
+<div>
+<figure><img src="images/android-laravel-003.png" alt="" class="img-fluid"></figure></div>
+
+<p>После этого перейдите на страницу composer и заберите код. Нам нужно сделать это, потому что Termux работает на базе Linux. Если бы это была Windows, там была бы простая кнопка для загрузки <strong>composer.exe</strong>.</p>
+
+<p>Скопируйте весь код и перейдите в Termux, где вы сможете вставить его. Затем нажмите <strong>enter</strong>.</p>
+
+<p>Когда <strong>composer</strong> будет установлен, вы должны увидеть что-то вроде этого:</p>
+
+<div>
+<figure><img src="images/android-laravel-004.png" alt="" class="img-fluid"></figure></div>
+
+<h2>Установка Laravel 8</h2>
+
+<p>Прежде чем устанавливать Laravel 8, давайте проверим, есть ли у нас файл <strong>composer.phar</strong>. В вашем Termux введите эту команду:</p>
+
+<pre><code class="language-bash">ls</code></pre>
+
+<p>Нажмите <strong>Enter</strong>. Вы увидите доступные файлы.</p>
+
+<div>
+<figure><img src="images/android-laravel-005.png" alt="" class="img-fluid"></figure></div>
+
+<p>Вы можете увидеть файл <strong>composer.phar</strong> и папку <strong>storage</strong>. Папка <strong>storage</strong> предоставляет доступ к вашему файловому менеджеру. Вспомните команду termux-setup-storage, которую вы написали ранее.</p>
+
+<p>Теперь давайте установим Laravel 8. Для этого мы можем либо создать проект, либо просто установить его глобально. Но это немного долгий процесс при глобальной установке на телефон, потому что вам нужно установить путь и так далее, и это может быть довольно запутанным. Поэтому в этом руководстве мы создадим проект.</p>
+
+<p>В Termux введите следующее:</p>
+
+<pre><code class="language-bash">php composer.phar create-project laravel/laravel myapp</code></pre>
+
+<p><code>myapp</code> — это просто имя проекта — вы можете изменить его на любое другое. Затем нажмите <strong>Enter</strong> и ждите, пока произойдет волшебство.</p>
+
+<p>Когда вы увидите следующее, это означает, что Laravel был установлен:</p>
+
+<div>
+	<figure><img src="images/android-laravel-006.png" alt="" class="img-fluid"></figure>
+</div>
+
+<p>Теперь, чтобы протестировать его, вы можете войти в <code>myapp</code>, набрав:</p>
+
+<pre><code class="language-bash">cd myapp</code></pre>
+
+<p>Затем вы можете запустить сервер Laravel с помощью:</p>
+
+<pre><code class="language-bash">php artisan serve</code></pre>
+
+<p>Вуаля — разработка началась.</p>
+
+<div>
+<figure><img src="images/android-laravel-007.png" alt="" class="img-fluid"></figure></div>
+
+<p>Теперь вы можете открыть <strong><em>http://127.0.0.1:8000</em></strong> в браузере и увидеть, что Laravel запущен:</p>
+
+<div>
+<figure><img src="images/android-laravel-008.png" alt="" class="img-fluid"></figure></div>
+
+<p>Также не забудьте сделать следующее, чтобы приложение Termux не закрывалось принудительно, когда вы работаете над кодом:</p>
+
+<div>
+<figure><img src="images/android-laravel-009.png" alt="" class="img-fluid"></figure></div>
+
+<p>Вот и все! Спасибо, что дочитали. Надеюсь, вы узнали что-то новое из этого руководства. Теперь вы должны быть в состоянии установить Laravel на свой телефон Android и начать использовать его для создания приложений.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 25 февраля 2022 в 14:45</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

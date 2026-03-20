@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>MySQL для начинающих &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->    
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">MySQL для начинающих</h1>
+
+<p>В этом материале мы разберем основы работы с базами данных MySQL для начинающих. Рассмотрим как создавать базу данных MySQL, как соединяться с Базой Данных и как вставлять в неё данные через PHP. Материал будет состоять из нескольких частей и в дальнейшем мы рассмотрим подробнее каждый блок — MySQLi, PDO, RedBean. А сегодня мы рассмотрим информацию, которая нам даст понимание как подступиться к этой теме.</p>
+
+<h2>Создание БД</h2>
+
+<p>Этот шаг необходим, если у вас нет базы данных MySQL. Если вы являетесь пользователем какого либо хостинга, то вы можете легко создать новую Базу данных (далее — БД) через Панель управления.</p>
+
+<p>Некоторые моменты я буду демонстрировать с использованием Панели управления моего старого хостинга. Даже если вы используете другие хостинговые компании, то, как правило, все шаги будут очень похожими и довольно стандартными:</p>
+
+<p>1. Найдите меню «MySQL» или «Базы данных MySQL» или раздел «Базы данных».</p>
+
+<div>
+<figure><img src="images/php-mysql-01.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>2. Заполните необходимые поля и нажмите «Создать» или «Добавить», как на картинке ниже.</p>
+
+<div>
+<figure><img src="images/php-mysql-02.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>База данных создана. Однако имейте в виду, что это пустая база данных, и вам нужно будет заполнить нужные поля, прежде чем вы сможете управлять БД. </p>
+
+<p>Также вам нужно запомнить необходимую информацию — имя базы данных, логин пользователя и пароль. Эта информация будет использоваться позднее.</p>
+
+<p>Как правило одни хостинги создают пользователя автоматически при создании БД, а в других нужно создать пользователя самому. В первом случае логин пользователя и имя БД скорее всего совпадают.</p>
+
+<p>Существует два метода подключения к базе данных MySQL с помощью PHP: <strong>MySQLi</strong> и <strong>PDO</strong>. О них подробнее мы поговорим в следующих материалах, а ниже немного их обсудим.</p>
+
+<h2>Ошибки и проверка подключения</h2>
+
+<p>Чтобы проверить, успешно ли соединение, получите доступ к вашему домену следующим образом: <strong>yourdomain/databaseconnect.php</strong>. Если вы называете PHP-файл каким-то другим именем, убедитесь, что он изменен соответствующим образом.</p>
+
+<p>Вы увидите «Подключено успешно» (<strong>Connected</strong>&nbsp;<strong>successfully</strong>) или варианты этого сообщения, если все работает без проблем.</p>
+
+<p>Теперь, если соединение не было успешным, вы увидите другое сообщение. Сообщения об ошибках выглядят несколько иначе для MySQLi и PDO.</p>
+
+<h3>Incorrect Password Error</h3>
+
+<p>Incorrect Password Error или «Ошибка пароля».</p>
+
+<p>Эта ошибка возникает, если мы меняем пароль или какие-либо учетные данные в коде PHP (но не меняем их в реальной базе данных).</p>
+
+<p>Если вы видите сообщение «Доступ запрещен» (<strong>Access denied</strong>) или «Не удалось подключиться к базе данных» (<strong>Could not connect to database</strong>), сопровождаемый «(с использованием пароля: ДА)» в конце (<strong>using password: YES</strong>), то первое, что необходимо сделать — это проверить сведения о базе данных. Возможно, здесь есть опечатка или отсутствует какая-то деталь.</p>
+
+<h3>Cannot Connect to MySQL Server</h3>
+
+<p>Cannot Connect to MySQL Server или «Не могу подключиться к серверу MySQL».</p>
+
+<p>Если вы получаете «<strong>Can’t connect to MySQL server on ‘server’ (110)</strong>» в MySQLi, это означает, что скрипт не получил ответа от сервера. Это происходит, когда мы устанавливаем «server» вместо «localhost» в качестве имени <code>$servername</code>, и это имя не распознается.</p>
+
+<p>Сообщение об ошибке в PDO будет выглядеть как «<strong>Connection failed: SQLSTATE[Hy000] [2002]</strong>«, за которым следует более подробная информация о том, что хост My SQL не был найден. Но способ устранения неполадок такой же, как и выше.</p>
+
+<p>И, конечно же, всегда важно помнить одно золотое правило поиска и устранения неисправностей: проверять журнал ошибок вашего сайта.</p>
+
+<p>Журнал можно найти в той же папке, где запущен скрипт. Например, если мы запускаем скрипт в <strong>public_html</strong>, то находим <strong>error_log</strong> в той же папке.</p>
+
+<p>В любом случае — проконсультируйтесь со своим хостинг-провайдером, если что-то пошло не так.</p>
+
+<p>На данном этапе мы узнали самые базовые знания о том, как подключить PHP-скрипт к базе данных MySQL, используя MySQLi и PHP Data Objects (PDO).</p>
+
+<p>Эта информация полезна тем, кто только начинает веб-разработку. Подключение к базе данных — это первый, самый важный шаг при работе с более сложными скриптами и конфигурациями.</p>
+
+<p>Напишите в комментариях ниже, если вы столкнулись с какой-либо проблемой, следуя этому руководству. А мы переходим к тому, как вставлять данные в базу данных MySQL через PHP.</p>
+
+<h2>Вставка данных</h2>
+
+<p>Рассмотрим как вставлять (INSERT) данные в базу данных MySQL в PHP используя два метода — MySQLi и PDO.</p>
+
+<p>Как и в начале материал, надеюсь, что вы не потеряли доступ к панели управления хостингом.</p>
+
+<h3>Создание таблицы</h3>
+
+<p>Сначала мы должны создать таблицу для ваших данных. Если вы уже создали ее, прокрутите вниз, чтобы перейти к следующему разделу. Создание таблицы — это простой процесс, который вы можете сделать с помощью <strong>phpMyAdmin</strong>, который расположен в панели управления вашего хостинга.</p>
+
+<p>Почти на любом хостинге можно увидеть маленький значок phpMyAdmin.</p>
+
+<div>
+<figure><img src="images/php-mysql-06.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>После входа на страницу phpMyAdmin вы должны увидеть что-то похожее на это:</p>
+
+<div>
+<figure><img src="images/php-mysql-07.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Мы создадим таблицу под названием <strong>Students</strong> для нашей базы данных <strong>u104357129_name</strong>. Вы можете создать новую таблицу, нажав на кнопку «Create Table» (рус. — создать таблицу), расположенную внизу страницы.</p>
+
+<p>После этого вы будете перенаправлены на новую страницу, где сможете ввести всю необходимую для вашей таблицы информацию:</p>
+
+<div>
+<figure><img src="images/php-mysql-08.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Поскольку это простая настройка, для получения дополнительной информации о структуре таблицы / базы данных и о том, какие настройки вы можете использовать с столбцами, обратитесь к <a rel="noreferrer noopener" href="https://www.phpmyadmin.net/docs/" target="_blank">официальной документации phpMyAdmin</a>.</p>
+
+<p>А пока вот несколько объяснений используемых нами столбцов:</p>
+
+<ul>
+<li><strong>Name</strong> (имя) — имя вашей колонки. Оно будет отображаться в верхней части таблицы.</li>
+<li><strong>Type</strong> (тип) — тип данных. Вы можете задать <code>int</code>, <code>varchar</code>, <code>string</code> и многое другое. Например, мы выбрали <code>varchar</code>, потому что нам нужно ввести имя строкового типа (который использует буквы, а не цифры).</li>
+<li><strong>Length/Values</strong> (длина/значение) — используется для задания максимальной длины, которую может иметь запись в этой колонке.</li>
+<li><strong>Index</strong>. Для поля «ID» мы использовали индекс «<strong>Primary</strong>«. При создании таблицы рекомендуется иметь один столбец ID. Он используется для пересчета записей таблицы и необходим при настройке отношений с таблицами. Мы также отметили «A_I», что означает «<strong>Auto Increment</strong>«. При этом будут автоматически создаваться к записи  — 1, 2, 3, 4…</li>
+</ul>
+
+<p>Нажмите «Сохранить» (<strong>Save</strong>), и ваша таблица будет создана.</p>
+
+<p>Есть два метода, которые вы можете использовать для ВСТАВКИ (INSERT) данных в вашу базу данных MySQL. Метод PHP MySQLi и метод объекта данных PHP или PDO (PHP Data Object). О двух разных методах мы поговорим ниже.</p>
+
+<h2>PDO</h2>
+
+<p><strong>PDO</strong> обозначает PHP Data Object (объект данных PHP). В отличие от MySQLi, PDO ориентирована только на объект и поддерживает ряд различных типов баз данных, использующих PHP, таких как MySQL, MSSQL, Informix и PostgreSQL.</p>
+
+<div class="attention-red"><strong>Внимание</strong>! Оригинальные функции mysql_ устарели и не должны использоваться, так как они небезопасны и больше не поддерживаются и не разрабатываются.</div>
+
+<p>Одна из наиболее важных функций, которые оба варианта поддерживают, — это <strong>подготовленные операторы</strong> (англ. — prepared statements), которые ускоряют время, необходимое MySQL для выполнения одного и того же запроса несколько раз. Это также используется для предотвращения SQL-инъекции при внесении изменений в базу данных.</p>
+
+<p>Какой бы метод вы ни использовали, вам потребуется правильная информация, чтобы вы могли подключиться к созданной вами базе данных MySQL. Здесь вам пригодятся ранее сохраненные данные к MySQL.</p>
+
+<p>Вам также потребуется правильное <strong>имя сервера</strong> или <strong>имя хоста</strong> для конфигурации. В большинстве хостингов, используется <strong>localhost</strong> в качестве имени хоста своего сервера MySQL если вы загрузили свой PHP-скрипт на тот же сервер, где и база данных.</p>
+
+<p>Напротив, если вы подключаетесь к базе данных из удаленного места (например, со своего компьютера), вам придется использовать IP-адрес сервера MySQL. Для получения дополнительной информации обратитесь к своему хостинг-провайдеру, чтобы он мог предоставить вам правильную информацию о том, что использовать в качестве имени хоста.</p>
+
+<p>Итак. Включите драйвер PDO_MYSQL в файле <strong><em>php.ini</em></strong> для подключения к базе данных MySQL в PHP через PDO.</p>
+
+<p>Создайте экземпляр класса PDO для установления соединения с базой данных MySQL.</p>
+
+<p>Используйте конструктор PDO или метод <code>setAttribute()</code> для установки стратегии обработки ошибок.</p>
+
+<h2>MySQLi</h2>
+
+<p><strong>MySQLi</strong> расшифровывается как MySQL Improved. Это эксклюзивное расширение MySQL, которое добавляет новые функции в интерфейс базы данных MySQL. MySQLi является как процедурным, так и объектно-ориентированным, причем первый является атрибутом, унаследованным от более старой версии MySQL.</p>
+
+<p>Оригинальный MySQL разбивает задачу на линейные, пошаговые процедуры, что затрудняет модификацию, так как код нужно редактировать сверху. Между тем, MySQLi видит данные как набор взаимозаменяемых объектов с функциями, что позволяет пользователям легко добавлять или удалять данные.</p>
+
+<h2>RedBeanPHP</h2>
+
+<p>RedBeanPHP — это ORM (англ. — Object-Relational Mapping или объектно-реляционное отображение) библиотека и технология, которая делает более простым процесс взаимодействия с реляционной базой данных, сохранение объектов в нее и извлечение.</p>
+
+<p><a class="btn btn-primary btn-lg" href="https://redbeanphp.com/" target="_blank" rel="noreferrer noopener">Официальный сайт</a></p>
+
+<p>Данная технология позволяет преобразовывать несовместимые типы моделей в Объектно-Ориентированном Программировании (ООП), в частности, между хранилищем данных и объектами программирования, т.е. RedBeanPHP ORM сама заботится о преобразовании данных между двумя несовместимыми состояниями.</p>
+
+<p>Для работы с RedBeanPHP требуется версия PHP не ниже <strong>5.3.4</strong>.</p>
+
+<p>Основные моменты про данную библиотеку:</p>
+
+<ul>
+<li>использует драйвер PDO,</li>
+<li>защищает от SQL- инъекций,</li>
+<li>работает с MySQL, MariaDB, PostgreSQL, SQLite, CUBRID.</li>
+</ul>
+
+<p>Как мы сказали выше — технология ORM обеспечивает способы задания связи объектов и Реляционной Системой Управления Базой Данных (РСУБД) и бывает в виде двух моделей — <strong>Data Mapper</strong> и <strong>Active Record</strong>. RedBeanPHP&nbsp;работает по первой модели в которой объект записи называется <em>бином</em>, т.е. одна запись в таблице Базы Данных и есть один бин, а один бин по сути — это один массив.</p>
+
+<div class="attention-red"><strong>Важно знать</strong>!
+	<ol>
+		<li>Автор рекомендует использовать для установки <strong>phar</strong>-архив, поскольку он содержит основные плагины и прост в обращении.</li>
+		<li>Автор отказывается предоставлять возможность установить RedBeanPHP через Composer начиная с версии 4.0, но более ранние версии через Composer установить возможно.</li>
+	</ol>
+</div>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 5 февраля 2023 в 11:39</span><br>Теги: MySQL
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

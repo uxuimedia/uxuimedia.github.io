@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Создание сайта на Go и Svelte.js &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Создание сайта на Go и Svelte.js</h1>
+
+<p>Иногда нам необходимо использовать динамические или одиночные страницы на наших сайтах. Для этого мы можем использовать инструменты «реактивного» программирования на JavaScript (или фреймворки).</p>
+
+<p>В этой статье я расскажу вам, как использовать Svelte.js на нашем сервере, написанном на Go для создания нашего веб-сайта. Для этого примера я выбрал пакет <code>gofiber</code> в качестве пакета веб-сервера. Начнем!</p>
+
+<h2>Создание базового веб-сервера Gofiber</h2>
+
+<p>Структура проекта на стороне Go будет выглядеть следующим образом.</p>
+
+<figure><img src="images/struktura-proekta-go.png" alt="" class="img-fluid"></figure>
+
+<p>Сначала нам нужно инициализировать файл <strong>go.mod</strong>.</p>
+
+<p>В качестве второго шага мы можем создать файл <strong>main.go</strong> следующим образом:</p>
+
+<pre><code class="language-go">package main
+
+import (
+    "github.com/gofiber/fiber/v2"
+)
+
+func main() {
+    app := fiber.New()
+    app.Static("/public","./public")
+    app.Get("/", mainPage)
+    app.Listen(":3000")
+}
+
+func mainPage(c *fiber.Ctx) error {
+    //This function will be see different soon
+    return c.SendString("Hellö")
+}</code></pre>
+
+<p>После создания проекта <em><strong>Svelte</strong></em> мы изменим часть <em><strong>Go</strong></em>.</p>
+
+<p>Создадим простой проект <strong><em>Svelte</em></strong> на основе этого проекта <strong><em>Go</em></strong>.</p>
+
+<h2>Создание базового проекта Svelte</h2>
+
+<p>Таким образом:</p>
+
+<pre><code class="language-bash">npx degit sveltejs/template . --force</code></pre>
+
+<p>Мы используем флаг <code>--force</code>, потому что папка проекта не пуста.</p>
+
+<p>После:</p>
+
+<pre><code class="language-bash">npm install</code></pre>
+
+<p>для установки всех зависимостей.</p>
+
+<p>Для проверки мы можем выполнить команду <code>npm run dev</code>.</p>
+
+<p>Если все работает, мы можем перейти к следующему шагу.</p>
+
+<p>Итак, мы заполнили папку <strong>*public</strong> некоторыми файлами.</p>
+
+<p>Для использования <strong>Svelte</strong> с <strong>Go</strong> нам нужно изменить некоторые настройки на стороне <strong>Svelte</strong>.</p>
+
+<h3>Шаг 1.</h3>
+
+<p><strong>rollup.config.js</strong></p>
+
+<pre><code class="language-javascript">...
+svelte({
+            compilerOptions: {
+                // enable run-time checks when not in production
+                dev: !production,
+                customElement: true,
+            }
+        }),
+...</code></pre>
+
+<p>Мы должны добавить строку <code>customElement: true</code>.</p>
+
+<p>Это дополнение поможет отделить элемент от базового проекта. </p>
+
+<p>Таким образом, мы можем добавить компонент, используя имя элемента, например <code>&lt;App/&gt;</code>, в наши шаблоны Go.</p>
+
+<h3>Шаг 2.</h3>
+
+<p>Мы можем использовать изменения на стороне <strong>Svelte</strong> без перезапуска приложения <strong>Go</strong>.</p>
+
+<p>Для этого нужно закомментировать одну строку в файле <strong>rollup.config.js</strong>.</p>
+
+<pre><code class="language-bash">// In dev mode, call `npm run start` once
+        // the bundle has been generated
+        //!production &amp;&amp; serve()</code></pre>
+
+<p><code>!production &amp;&amp; serve()</code> должны быть закомментированы.</p>
+
+<h3>Шаг 3.</h3>
+
+<p>Редактируем файл <strong>./src/main.js</strong>.</p>
+
+<p>Этот файл будет выглядеть так, как показано ниже.</p>
+
+<pre><code class="language-go">import App from './App.svelte';</code></pre>
+
+<p>Мы будем использовать только строку <code>import</code>.</p>
+
+<p>В этом коде мы импортировали компонент под именем <code>App</code>, но это название не имеет значения. Прежде всего, мы укажем тег компонента из его файла.</p>
+
+<h3>Шаг 4.</h3>
+
+<p>Редактируем <strong>./src/App.svelte</strong>:</p>
+
+<pre><code class="language-javascript">&lt;script&gt;
+    // It can be empty for this example
+&lt;/script&gt;
+&lt;svelte:options tag="my-app"/&gt;
+&lt;p&gt;My App&lt;/p&gt;
+&lt;style&gt;
+    /* It can be empty :) */
+&lt;/style&gt;</code></pre>
+
+<p>С помощью этих процессов мы можем использовать <strong>компонент App</strong> (<strong>App component</strong>) в качестве тега <code>&lt;my-app/&gt;</code>.</p>
+
+<p>Мы закончили работу со стороной <strong>Svelte.js</strong>. Теперь мы можем перейти на сторону <strong>Golang</strong>.</p>
+
+<p>Прежде всего, мы определим движок рендеринга шаблонов.</p>
+
+<p>Отредактируем файл <strong>main.go</strong>, как показано ниже.</p>
+
+<pre><code class="language-go">package main
+
+import (
+    "github.com/gofiber/fiber/v2"
+    "github.com/gofiber/template/html"
+)
+
+func main() {
+
+    //template render engine
+    engine := html.New("./templates", ".html")
+
+    app := fiber.New(fiber.Config{
+        Views: engine, //set as render engine
+    })
+    app.Static("/public", "./public")
+    app.Get("/", mainPage)
+    app.Listen(":3000")
+}</code></pre>
+
+<p>Не забудьте выполнить команду <code>go mod tidy</code> 🙂</p>
+
+<p>Теперь мы изменим функцию главной страницы, как показано ниже.</p>
+
+<pre><code class="language-go">func mainPage(c *fiber.Ctx) error {
+    return c.Render("mainpage", nil)
+}</code></pre>
+
+<p>и изменяем <strong>./templates/mainpage.html</strong> следующим образом.</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+    &lt;link rel='stylesheet' href='/public/global.css'&gt;
+    &lt;script defer src='/public/build/bundle.js'&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;my-app/&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p>Мы можем назвать компонент <code>App</code> как <code>my-app</code>.</p>
+
+<h2>Последний этап</h2>
+
+<p><strong>Метод 1.</strong></p>
+
+<p>Мы можем запустить приложение с помощью этих команд.</p>
+
+<p><code>npm run build</code> собирает собранный js-файл.</p>
+
+<p><code>go run .</code> запускает веб-сервер.</p>
+
+<p><strong>Метод 2.</strong></p>
+
+<p>Мы можем запустить приложение с помощью этой команды:</p>
+
+<pre><code>npm run dev &amp; go run .</code></pre>
+
+<p>Таким образом, если мы перезагрузим веб-страницу, вы сможете увидеть изменения, не перезапуская приложение <strong>Go</strong>. Но это может быть полезно только для изменений на стороне Svelte.</p>
+
+<h2>Советы</h2>
+
+<p>Мы можем запустить сервер простым способом, создав <strong>makefile</strong>.</p>
+
+<p>Создайте <strong>makefile</strong> в директории проекта. Таким образом:</p>
+
+<pre><code class="language-bash">run:
+    npm run dev &amp; go run .
+build:
+    npm run build</code></pre>
+
+<p>и в терминале выполните команды <code>make run</code> или <code>make build</code>.</p>
+
+<p><a href="https://github.com/ksckaan1/go-and-svelte-template" target="_blank" rel="noreferrer noopener">Репозиторий проекта</a> на GitHub.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 21 августа 2024 в 23:32</span><br>Теги: Go
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

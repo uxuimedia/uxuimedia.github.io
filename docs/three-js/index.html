@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Библиотека JavaScript three.js для рисования 3D &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Библиотека JavaScript three.js для рисования 3D</h1>
+
+<p>Цель статьи — дать краткое введение в three.js. Мы начнем с создания сцены с вращающимся кубом. Внизу страницы приведен рабочий пример на случай, если вы застрянете и вам понадобится помощь.</p>
+
+<h2>Установка</h2>
+
+<p>Простая в использовании, легкая, кросс-браузерная 3D-библиотека JavaScript общего назначения для рисования и отображения 3D-объектов. Текущие сборки включают только WebGL рендерер, но WebGPU (экспериментальный), SVG и CSS3D рендереры также доступны в примерах.</p>
+
+<p>Вы можете установить three.js с помощью <a href="https://www.npmjs.com/" target="_blank" rel="noreferrer noopener nofollow">npm</a> и современных инструментов сборки или быстро начать работу, используя только статический хостинг или CDN. Для большинства пользователей лучшим выбором будет установка из npm.</p>
+
+<div>
+	<figure><img height="768" src="images/three-js.png" alt="JavaScript three.js" class="img-fluid">
+		<figcaption>JavaScript three.js</figcaption>
+	</figure>
+</div>
+
+<p>Что бы вы ни выбрали, будьте последовательны и импортируйте все файлы из одной и той же версии библиотеки. Смешивание файлов из разных источников может привести к включению дублирующегося кода или даже к неожиданной ошибке в работе приложения.</p>
+
+<p>Все способы установки three.js зависят от модулей ES, которые позволяют включать в конечный проект только те части библиотеки, которые необходимы.</p>
+
+<h3>Установка с помощью npm</h3>
+
+<p>Чтобы установить модуль npm <strong>three</strong> (<a href="https://www.npmjs.com/package/three" target="_blank" rel="noreferrer noopener nofollow">ссылка</a>), откройте окно терминала в папке вашего проекта и выполните команду:</p>
+
+<pre><code class="language-bash">npm install three</code></pre>
+
+<p>Пакет будет загружен и установлен. Затем вы будете готовы импортировать его в свой код:</p>
+
+<pre><code class="language-javascript">// Option 1: Import the entire three.js core library.
+import * as THREE from 'three';
+const scene = new THREE.Scene();
+
+// Option 2: Import just the parts you need.
+import { Scene } from 'three';
+const scene = new Scene();
+</code></pre>
+
+<p>При установке с помощью npm вы почти всегда будете использовать какой-либо инструмент для объединения всех пакетов, необходимых вашему проекту, в один файл JavaScript. Хотя любой современный JavaScript bundler может быть использован с <strong>three.js</strong>, наиболее популярным выбором является <a href="https://webpack.js.org/" target="_blank" rel="noreferrer noopener nofollow">webpack</a>.</p>
+
+<p>Не все функции доступны непосредственно через модули <strong>three</strong> (это называется «голым импортом»). Другие популярные части библиотеки — такие как элементы управления, загрузчики и эффекты постобработки — должны быть импортированы из подпапки <em><strong>examples/jsm</strong></em>. Чтобы узнать больше, посмотрите раздел «Примеры» ниже.</p>
+
+<h3>Установка с использованием CDN или статического хостинга</h3>
+
+<p>Библиотеку three.js можно использовать без какой-либо системы сборки, загружая файлы на собственный веб-сервер или используя существующую CDN. Поскольку библиотека полагается на модули ES, любой скрипт, который ссылается на нее, должен использовать <code>type="module"</code>, как показано ниже. Также необходимо определить <code>Import Map</code> (карту импорта), который разрешает голый спецификатор модуля three.</p>
+
+<pre><code class="language-javascript">&lt;script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"&gt;&lt;/script&gt;
+&lt;script type="importmap"&gt;
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@&lt;version&gt;/build/three.module.js"
+    }
+  }
+&lt;/script&gt;
+
+&lt;script type="module"&gt;
+  import * as THREE from 'three';
+  const scene = new THREE.Scene();
+&lt;/script&gt;</code></pre>
+
+<p>Поскольку карты импорта пока поддерживаются не всеми браузерами, необходимо добавить полифилл <strong><em>es-module-shims.js</em></strong>.</p>
+
+<h3>Примеры</h3>
+
+<p>Ядро <strong>three.js</strong> сосредоточено на самых важных компонентах 3D-движка. Многие другие полезные компоненты — такие как элементы управления, загрузчики и эффекты постобработки — находятся в каталоге <strong><em>examples/jsm</em></strong>.</p>
+
+<p>Они называются «примерами», потому что, хотя вы можете использовать их готовыми, они также могут быть изменены и модифицированы. Эти компоненты всегда синхронизируются с основной библиотекой, в то время как аналогичные пакеты сторонних разработчиков на <strong><em>npm</em></strong> поддерживаются разными людьми и могут быть неактуальными.</p>
+
+<p>Примеры не нужно устанавливать отдельно, но их нужно импортировать отдельно. Если three.js был установлен с помощью <code>npm</code>, вы можете загрузить компонент <code>OrbitControls</code> с помощью:</p>
+
+<pre><code class="language-javascript">import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+const controls = new OrbitControls( camera, renderer.domElement );</code></pre>
+
+<p>Если three.js был установлен из CDN, используйте ту же CDN для установки других компонентов:</p>
+
+<pre><code class="language-javascript">&lt;script type="module"&gt;
+  import { OrbitControls } from 'https://unpkg.com/three@&lt;version&gt;/examples/jsm/controls/OrbitControls.js';
+  const controls = new OrbitControls( camera, renderer.domElement );
+&lt;/script&gt;</code></pre>
+
+<p>Важно, чтобы все файлы использовали одну и ту же версию. Не импортируйте разные примеры из разных версий и не используйте примеры из версии, отличной от версии самой библиотеки three.js.</p>
+
+<h3>Совместимость</h3>
+
+<h4>Импорт CommonJS</h4>
+
+<p>Хотя большинство современных JavaScript-компонентов теперь поддерживают модули ES по умолчанию, некоторые старые инструменты сборки могут этого не делать. В таких случаях вы можете настроить бандлер на понимание ES-модулей: Например, для <strong>Browserify</strong> нужен только плагин <strong>babelify</strong>.</p>
+
+<h4>Node.js</h4>
+
+<p>Поскольку three.js создан для веб, он зависит от API браузера и DOM, которые не всегда существуют в Node.js. Некоторые из этих проблем могут быть решены с помощью фиксов, таких как <a href="https://github.com/stackgl/headless-gl" target="_blank" rel="noreferrer noopener nofollow">headless-gl</a>, или заменой таких компонентов, как TextureLoader, на собственные альтернативы. Другие DOM API могут быть глубоко переплетены с кодом, который их использует, и их будет сложнее обойти. Мы приветствуем простые и удобные для обслуживания запросы на улучшение поддержки Node.js, но рекомендуем сначала создать заявку для обсуждения ваших улучшений.</p>
+
+<p>Обязательно добавьте <code>{ "type": "module" }</code> в ваш <strong>package.json</strong>, чтобы включить модули ES6 в ваш проект node.</p>
+
+<h2>Проверка совместимости с WebGL</h2>
+
+<p>Несмотря на то, что эта проблема становится все менее актуальной, некоторые устройства или браузеры все еще могут не поддерживать WebGL. Следующий метод позволяет проверить, поддерживается ли он, и вывести пользователю сообщение, если нет.</p>
+
+<p>Добавьте</p>
+
+<pre><code class="language-bash">https://github.com/mrdoob/three.js/blob/master/examples/jsm/capabilities/WebGL.js</code></pre>
+
+<p>в свой JavaScript и выполните следующее, прежде чем пытаться что-либо отобразить:</p>
+
+<pre><code class="language-javascript">if ( WebGL.isWebGLAvailable() ) {
+
+	// Initiate function or other initializations here
+	animate();
+
+} else {
+
+	const warning = WebGL.getWebGLErrorMessage();
+	document.getElementById( 'container' ).appendChild( warning );
+
+}</code></pre>
+
+<h2>Создание сцены</h2>
+
+<p>Прежде чем использовать файл <strong>three.js</strong>, его нужно где-то отобразить. Сохраните следующий HTML в файл на своем компьютере вместе с копией файла three.js в каталоге <strong>js/</strong> и откройте его в браузере.</p>
+
+<p><a href="https://github.com/mrdoob/three.js/" target="_blank" rel="noreferrer noopener nofollow">Скачать three.js</a></p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;My first three.js app&lt;/title&gt;
+		&lt;style&gt;
+			body { margin: 0; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;script src="js/three.js"&gt;&lt;/script&gt;
+		&lt;script&gt;
+			// Our Javascript will go here.
+		&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p>Вот и все. Весь приведенный ниже код помещается в пустой тег &lt;script&gt;.</p>
+
+<p>Чтобы иметь возможность отображать что-либо с помощью three.js, нам нужны три вещи: сцена (scene), камера (camera) и рендерер (renderer), чтобы мы могли отображать сцену с помощью камеры.</p>
+
+<pre><code class="language-javascript">const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );</code></pre>
+
+<p>Давайте немного объясним, что здесь происходит. Сейчас мы настроили сцену, камеру и рендерер.</p>
+
+<p>В three.js есть несколько различных камер. Пока что будем использовать <code>PerspectiveCamera</code>.</p>
+
+<p>Первый атрибут — это поле зрения <code>field of view</code> (FOV). FOV — это площадь сцены, которая видна на дисплее в любой момент времени. Значение выражается в градусах.</p>
+
+<p>Второй — соотношение сторон <code>aspect ratio</code>. Почти всегда нужно использовать ширину элемента, деленную на высоту, иначе вы получите тот же результат, что и при воспроизведении старых фильмов на широкоэкранном телевизоре — изображение будет выглядеть сжатым.</p>
+
+<p>Следующие два атрибута — ближняя (<code>near</code>) и дальняя (<code>far</code>) плоскость обрезания. Это означает, что объекты, расположенные дальше от камеры, чем значение <code>far</code>, или ближе, чем <code>near</code>, не будут отображаться. Сейчас вам не нужно беспокоиться об этом, но вы можете захотеть использовать другие значения в своих приложениях для повышения производительности.</p>
+
+<p>Далее следует рендерер. Именно здесь происходит волшебство. В дополнение к <strong>WebGLRenderer</strong>, который мы используем здесь, three.js поставляется с несколькими другими, часто используемыми как запасные варианты для пользователей со старыми браузерами или для тех, у кого по каким-то причинам нет поддержки WebGL.</p>
+
+<p>Помимо создания экземпляра рендерера, нам также необходимо задать размер, в котором мы хотим, чтобы он отображал наше приложение. Хорошо использовать ширину и высоту области, которую мы хотим заполнить нашим приложением — в данном случае это ширина и высота окна браузера. Для приложений, требующих высокой производительности, вы также можете задать <code>setSize</code> меньшие значения, например <code>window.innerWidth/2</code> и <code>window.innerHeight/2</code>, которые заставят приложение рендериться в четверть размера.</p>
+
+<p>Если вы хотите сохранить размер вашего приложения, но отобразить его с меньшим разрешением, вы можете сделать это, вызвав <code>setSize</code> с <code>false</code> в качестве <code>updateStyle</code> (третий аргумент). Например:</p>
+
+<pre><code class="language-javascript">setSize(window.innerWidth/2, window.innerHeight/2, false)</code></pre>
+
+<p>отрисует ваше приложение с половинным разрешением, учитывая, что ваш <code>&lt;canvas&gt;</code> имеет 100% ширину и высоту.</p>
+
+<p>И последнее, но не менее важное, мы добавляем элемент <code>renderer</code> в наш HTML-документ. Это элемент </p>
+
+<p><em><strong>«Это все хорошо, но где же обещанный кубик?»</strong></em></p>
+
+<p>Давайте добавим его сейчас.</p>
+
+<pre><code class="language-javascript">const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+
+camera.position.z = 5;</code></pre>
+
+<p>Для создания куба нам понадобится <code>BoxGeometry</code>. Это объект, который содержит все точки (вершины <code>vertices</code>) и заливку (грани <code>faces</code>) куба. Мы рассмотрим это подробнее в будущем.</p>
+
+<p>В дополнение к геометрии нам нужен материал, чтобы окрасить ее. Three.js поставляется с несколькими материалами, но мы пока будем придерживаться <code>MeshBasicMaterial</code>. Все материалы принимают объект свойств, которые будут к ним применяться. Чтобы все было очень просто, мы предоставим только атрибут цвета <code>0x00ff00</code>, то есть зеленый. Это работает так же, как цвета работают в CSS или Photoshop (шестнадцатеричные цвета <code>hex colors</code>).</p>
+
+<p>Третье, что нам нужно, — это сетка <code>Mesh</code>. Сетка — это объект, который берет геометрию и применяет к ней материал, который мы затем можем вставить в нашу сцену и свободно перемещать по ней.</p>
+
+<p>По умолчанию, когда мы вызываем <code>scene.add()</code>, объект, который мы добавляем, будет добавлен в координаты <code>(0,0,0)</code>. Это приведет к тому, что камера и куб окажутся внутри друг друга. Чтобы избежать этого, мы просто немного выдвинем камеру.</p>
+
+<h3>Рендеринг (визуализация) сцены</h3>
+
+<p>Если вы скопируете код сверху в HTML-файл, который мы создали ранее, вы ничего не увидите. Это потому, что мы еще ничего не отобразили. Для этого нам нужен так называемый цикл рендеринга или анимации (<code>render or animate loop</code>).</p>
+
+<pre><code class="language-javascript">function animate() {
+	requestAnimationFrame( animate );
+	renderer.render( scene, camera );
+}
+animate();</code></pre>
+
+<p>Это создаст цикл, который заставляет рендерер рисовать сцену при каждом обновлении экрана (на обычном экране это означает 60 раз в секунду). Если вы новичок в написании игр в браузере, вы можете сказать: «Почему бы нам просто не создать <code>setInterval</code>?».</p>
+
+<p>Дело в том, что мы могли бы, но <code>requestAnimationFrame</code> имеет ряд преимуществ. Возможно, самое важное из них заключается в том, что он приостанавливается, когда пользователь переходит на другую вкладку браузера, а значит, не тратит драгоценную вычислительную мощность и заряд батареи.</p>
+
+<h3>Анимация куба</h3>
+
+<p>Если вы вставите весь приведенный выше код в файл, который вы создали перед началом нашей работы, вы должны увидеть зеленый квадрат. Давайте сделаем все это немного интереснее, повернув его.</p>
+
+<p>Добавьте следующий код прямо над вызовом <code>renderer.render</code> в вашей функции <code>animate</code>:</p>
+
+<p>Этот цикл будет выполняться каждый кадр (обычно 60 раз в секунду) и придаст кубу красивую анимацию вращения. В принципе, все, что вы хотите передвинуть или изменить во время работы приложения, должно пройти через цикл <code>animate</code>. Конечно, вы можете вызывать оттуда другие функции, чтобы в итоге не получить функцию <code>animate</code>, состоящую из сотен строк.</p>
+
+<h3>Результат</h3>
+
+<p>Поздравляем! Вы завершили работу над своим первым приложением <strong>three.js</strong>. Оно простое, но нужно с чего-то начинать.</p>
+
+<p>Полный код доступен ниже и в виде редактируемого <a href="https://jsfiddle.net/fxurzeb4/" target="_blank" rel="noreferrer noopener nofollow"><strong>живого примера</strong></a>. Поиграйте с ним, чтобы лучше понять, как он работает.</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;My first three.js app&lt;/title&gt;
+		&lt;style&gt;
+			body { margin: 0; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;script src="js/three.js"&gt;&lt;/script&gt;
+		&lt;script&gt;
+			const scene = new THREE.Scene();
+			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+			const renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+			const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			const cube = new THREE.Mesh( geometry, material );
+			scene.add( cube );
+
+			camera.position.z = 5;
+
+			function animate() {
+				requestAnimationFrame( animate );
+
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+		&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<h2>Как запускать вещи локально</h2>
+
+<p>Если вы используете только процедурные геометрии и не загружаете никаких текстур, веб-страницы должны работать прямо из файловой системы, просто дважды щелкните на HTML-файле в файловом менеджере, и он появится в браузере (вы увидите <strong><em>file:///yourFile.html</em></strong> в адресной строке).</p>
+
+<h2>Контент, загружаемый из внешних файлов</h2>
+
+<p>Если вы загружаете модели или текстуры из внешних файлов, из-за ограничений безопасности политики одного и того же источника в браузерах загрузка из файловой системы завершится ошибкой с исключением безопасности.</p>
+
+<p>Чтобы решить эту проблему, запустите файлы с локального веб-сервера. Это позволяет вам получить доступ к вашей странице как:</p>
+
+<pre><code class="language-bash">http://localhost/yourFile.html</code></pre>
+
+<p>Хотя можно также изменить настройки безопасности браузера вместо запуска локального сервера, мы не рекомендуем использовать такой подход. Такое решение может открыть ваше устройство для уязвимостей, если тот же браузер используется для обычного веб-серфинга. Использование локального сервера является стандартной практикой в веб-разработке, и ниже мы объясним, как установить и использовать локальный сервер.</p>
+
+<h2>Запуск локального сервера</h2>
+
+<p>Многие языки программирования имеют встроенные простые HTTP-серверы. Они не так полнофункциональны, как рабочие серверы, такие как <a href="https://www.apache.org/" target="_blank" rel="noreferrer noopener">Apache</a> или <a href="https://nginx.org/" target="_blank" rel="noreferrer noopener">NGINX</a>, однако их должно быть достаточно для тестирования вашего приложения three.js.</p>
+
+<h3>Плагины для популярных редакторов кода</h3>
+
+<p>Некоторые редакторы кода имеют плагины, которые по запросу создают простой сервер.</p>
+
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=yandeu.five-server" target="_blank" rel="noreferrer noopener nofollow">Five Server</a> для Visual Studio Code.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" rel="noreferrer noopener nofollow">Live Server</a> для Visual Studio Code.</li>
+<li>Live Server для Atom.</li>
+</ul>
+
+<h3>Servez</h3>
+
+<p><a href="https://greggman.github.io/servez" target="_blank" rel="noreferrer noopener nofollow">Servez</a> — это простой сервер с графическим интерфейсом.</p>
+
+<h3>Node.js five-server</h3>
+
+<p>Сервер разработки с возможностью перезагрузки в реальном времени. Для установки:</p>
+
+<pre><code class="language-bash"># Remove live-server (if you have it)
+npm -g rm live-server
+
+# Install five-server
+npm -g i five-server
+
+# Update five-server (from time to time)
+npm -g i five-server@latest</code></pre>
+
+<p>Для запуска (из локальной директории):</p>
+
+<pre><code class="language-bash">five-server . -p 8000</code></pre>
+
+<h3>Node.js http-server</h3>
+
+<p>В Node.js есть простой пакет HTTP-сервера. Чтобы установить:</p>
+
+<pre><code class="language-bash">npm install http-server -g</code></pre>
+
+<p>Для запуска (из локальной директории):</p>
+
+<pre><code class="language-bash">http-server . -p 8000</code></pre>
+
+<h3>Сервер Python</h3>
+
+<p>Если у вас установлен <a href="http://python.org/" target="_blank" rel="noreferrer noopener nofollow">Python</a>, достаточно запустить его из командной строки (из рабочего каталога):</p>
+
+<pre><code class="language-bash">//Python 2.x
+python -m SimpleHTTPServer
+
+//Python 3.x
+python -m http.server</code></pre>
+
+<p>Это позволит обслуживать файлы из текущей директории на localhost под портом 8000, т.е. в адресной строке вводим:</p>
+
+<pre><code class="language-bash">http://localhost:8000/</code></pre>
+
+<h3>Сервер Ruby</h3>
+
+<p>Если у вас установлен Ruby, вы можете получить тот же результат, запустив эту программу:</p>
+
+<pre><code class="language-bash">ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port =&gt; 8000, :DocumentRoot =&gt; Dir.pwd); trap('INT') { s.shutdown }; s.start"</code></pre>
+
+<h3>PHP-сервер</h3>
+
+<p>PHP также имеет встроенный веб-сервер, начиная с версии php 5.4.0:</p>
+
+<pre><code class="language-bash">php -S localhost:8000</code></pre>
+
+<h3>Lighttpd</h3>
+
+<p>Lighttpd — это очень легкий веб-сервер общего назначения. Здесь мы рассмотрим его установку на OSX с помощью HomeBrew. В отличие от других серверов, обсуждаемых выше, lighttpd — это полноценный сервер, готовый к работе.</p>
+
+<p>1. Установка через homebrew</p>
+
+<pre><code class="language-bash">brew install lighttpd</code></pre>
+
+<p>2. Создайте конфигурационный файл lighttpd.conf в каталоге, где вы хотите запустить свой веб-сервер. Образец можно найти <a href="http://redmine.lighttpd.net/projects/lighttpd/wiki/TutorialConfiguration" target="_blank" rel="noreferrer noopener nofollow">здесь</a>.</p>
+
+<p>3. В файле <strong>conf</strong> измените <code>server.document-root</code> на каталог, из которого вы хотите обслуживать файлы.</p>
+
+<p>4. Начните с:</p>
+
+<pre><code class="language-bash">lighttpd -f lighttpd.conf</code></pre>
+
+<p>5. Перейдите по адресу <strong><em>http://localhost:3000/</em></strong>, и он будет обслуживать статические файлы из выбранной вами директории.</p>
+
+<h3>IIS</h3>
+
+<p>Если вы используете Microsoft IIS в качестве веб-сервера, пожалуйста, добавьте настройки типа MIME относительно расширения <strong>.fbx</strong> перед загрузкой.</p>
+
+<pre><cod class="language-bash"e>File name extension: fbx        MIME Type: text/plain</code></pre>
+
+<p>По умолчанию IIS блокирует загрузку файлов .fbx, .obj. Вам необходимо настроить IIS так, чтобы эти файлы можно было загружать.</p>
+
+<p>Другие простые альтернативы можно обсудить на Stack Overflow <a href="http://stackoverflow.com/q/12905426/24874" target="_blank" rel="noreferrer noopener nofollow">здесь</a>.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 29 марта 2022 в 13:32</span><br>Теги: JavaScript
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

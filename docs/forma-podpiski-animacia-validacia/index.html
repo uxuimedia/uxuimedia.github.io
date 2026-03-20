@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Анимированная форма подписки с валидацией &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Анимированная форма подписки с валидацией</h1>
+
+<p>Создадим красивую анимированную форму подписки на новости для сайта с валидацией, используя HTML CSS и JavaScript.</p>
+
+<h2>Что делаем</h2>
+
+<p>Эта форма подписки по электронной почте имеет небольшой эффект анимации с проверкой. Я использовал jQuery для создания функции валидации, все остальные остались в чистом JS.</p>
+
+<figure><video controls src="images/email-subscription-form.mp4"></video></figure>
+
+<p>Перед тем, как поделиться исходным кодом, давайте поговорим о том, как можно создать форму. Как вы уже знаете, для создания этой формы подписки по электронной почте я использовал HTML, CSS, JavaScript и jQuery.</p>
+
+<p>jQuery используется только для валидации электронной почты, которую можно сделать на чистом javascript, если есть время. Ниже мы пройдемся по всем частям отдельно.</p>
+
+<h2>HTML</h2>
+
+<p>Сначала обсудим часть HTML. Я создал <code>div</code> и поместил в него форму. </p>
+
+<p>Перед <code>input</code> я разместил кнопку <code>button</code> для подписки, а затем разместил поле <code>input</code> для ввода электронной почты с кнопкой для отправки. После этого я создал div для поздравления после отправки электронного письма:</p>
+
+<pre><code class="language-html">&lt;div class="main"&gt;
+        &lt;form id="singular-form"&gt;
+            &lt;button class="shown" type="button" id="subs"&gt;Subscribe&lt;/button&gt;
+            &lt;div id="email-input"&gt;
+                &lt;input type="text" placeholder="E-mail" id="email"&gt;
+                &lt;button type="button" class="addbut1" disabled="disabled"&gt;Add Me&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div id="success"&gt;Congrats!&lt;/div&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;</code>
+</pre>
+
+<p>Далее я привязал CSS, JS, jQuery и ссылку на шрифт внутри HTML. Я использовал шрифт Google для создания привлекательного интерфейса.</p>
+
+<h2>CSS</h2>
+
+<p>Сначала мы делаем стили для всего <code>body</code> — <code>display: flex;</code> и <code>height: 100vh;</code>. Высота <code>100vh</code> используется для полной высоты экрана.</p>
+
+<p>По сути, значение <code>100vh</code> — это 100% высота области просмотра (viewport). Я использовал функцию <code>cubic-bezier()</code>, определяющую кубическую кривую Безье. Осталось поработать с цветом, шрифтом и переходами.</p>
+
+<h2>JavaScript</h2>
+
+<p>JavaScript выполняет основную работу. В основном я использовал функцию JS Constants. Константы имеют блочную область видимости, как и переменные, определенные с помощью оператора <code>let</code>. </p>
+
+<p>Значение константы не может быть изменено путем переназначения и не может быть объявлено повторно. После этого получаем все значения сущностей HTML-документа с помощью селектора запросов (<strong>query selector</strong>).</p>
+
+<p>Также мы добавляем много условий, например, если кнопка нажата, появится поле электронной почты с анимацией задержки 0,6 секунды и т.п.</p>
+
+<p>Также есть функция для обнаружения клавиши ввода, если вы нажмете клавишу ввода после ввода адреса электронной почты, она будет работать как кнопка отправки. Остальные функции показывают, скрывают контент и создают эффект анимации.</p>
+
+<h2>jQuery</h2>
+
+<p>Мы использовали jQuery для реализации валидации формы. Сначала создаем шаблон электронной почты с объявлением допустимых условий. Например: 4 символа перед @, должна иметь @, после @ требуется минимум 3 символа, далее точка, и затем минимум 2 символа. Паттерн выглядит так:</p>
+
+<pre><code class="language-javascript">var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;</code></pre>
+
+<p>Добавляем также условие <code>if else</code> для проверки действительной электронной почты. Если адрес электронной почты недействителен, цвет текста станет красным, а кнопка отправки будет отключена, а если адрес электронной почты действителен, цвет текста будет зеленым, и можно будет нажать кнопку отправки.</p>
+
+<h2>Создание формы</h2>
+
+<p>Для создания этой программы нам необходимо создать 3 файла — для HTML, второй для CSS и третий для JavaScript.</p>
+
+<p>Первым делом создаем <strong>index.html</strong>:</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Форма подписки с валидацией&lt;/title&gt;
+&lt;link href="https://fonts.googleapis.com/css?family=Righteous&amp;display=swap" rel="stylesheet"&gt;
+      &lt;link rel="stylesheet" href="style.css"&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div class="main"&gt;
+        &lt;form id="singular-form"&gt;
+            &lt;button class="shown" type="button" id="subs"&gt;Subscribe&lt;/button&gt;
+            &lt;div id="email-input"&gt;
+                &lt;input type="text" placeholder="E-mail" id="email"&gt;
+                &lt;button type="button" class="addbut1" disabled="disabled"&gt;Add Me&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div id="success"&gt;Congrats!&lt;/div&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script  src="function.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code>
+</pre>
+
+<p>Теперь создайте файл CSS с именем «<em><strong>style.css</strong></em>» и поместите в него код ниже:</p>
+
+<pre><code class="language-css">* {
+    font-size: 2rem;
+    font-family: 'Righteous', cursive;
+    font-weight: bold;
+}
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: #333;
+}
+.main {
+    width: 19rem;
+    height: 5rem;
+    padding: 12px;
+    background-color: white;
+    text-align: center;
+    border-radius: 3rem;
+    overflow: hidden;
+    transition: width .6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.main&gt;#singular-form {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.main&gt;#singular-form button {
+    width: 9rem;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 3rem;
+    cursor: pointer;
+}
+.main&gt;#singular-form&gt;button#subs {
+    padding: 0;
+    width: 100%;
+    color: #fbb016;
+    background-color: transparent;
+    z-index: 3;
+}
+.main&gt;#singular-form&gt;#email-input {
+    z-index: 2;
+}
+.main&gt;#singular-form&gt;#email-input&gt;input {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    padding: 0 26% 0 3%;
+    opacity: 0;
+    transform: scale(0);
+    transition: all .6s ease .4s;
+}
+.main&gt;#singular-form&gt;#email-input&gt;button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background-color: #fbb016;
+    color: white;
+    opacity: 0;
+    transform: scale(0);
+    transition: all .6s ease .4s;
+}
+.main&gt;#singular-form&gt;#success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fbb016;
+    font-weight: bold;
+    z-index: 1;
+}
+.main&gt;#singular-form&gt;button#subs,
+.main&gt;#singular-form&gt;#email-input,
+.main&gt;#singular-form&gt;#success {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: scale(0);
+    opacity: 0;
+}
+.main&gt;#singular-form&gt;button#subs {
+    transition: all .6s ease;
+}
+.main&gt;#singular-form&gt;#email-input {
+    transform: scale(1);
+    opacity: 1;
+    transition: all .6s ease .4s;
+}
+
+.main&gt;#singular-form&gt;#success {
+    transition: all .2s ease .6s;
+}
+.main&gt;#singular-form&gt;button#subs.shown,
+.main&gt;#singular-form&gt;#email-input.shown,
+.main&gt;#singular-form&gt;#success.shown,
+.main&gt;#singular-form&gt;#email-input&gt;button.shown,
+.main&gt;#singular-form&gt;#email-input&gt;input.shown {
+    transform: scale(1);
+    opacity: 1;
+}</code>
+</pre>
+
+<p>Последний шаг — создайте файл JS с именем «<strong><em>function.js</em></strong>» и поместите в него следующий код:</p>
+
+<pre><code class="language-javascript">var validateEmail = function(elementValue) {
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(elementValue);
+}
+$('#email').keyup(function() {
+
+    var value = $(this).val();
+    var valid = validateEmail(value);
+
+    if (!valid) {
+        $(this).css('color', 'red');
+		$('.addbut1').prop('disabled', true);
+    } else {
+        $(this).css('color', '#2bb673');
+		$('.addbut1').prop('disabled', false);
+    }
+});
+
+const newsletter = {};
+
+newsletter.main = document.querySelector('.main');
+newsletter.form = document.querySelector('.main &gt; #singular-form');
+newsletter.subs = document.querySelector('.main &gt; #singular-form &gt; button#subs');
+newsletter.input = document.querySelector('.main&gt;#singular-form&gt;#email-input&gt;input');
+newsletter.submitButton = document.querySelector('.main &gt; #singular-form &gt; #email-input &gt; button');
+newsletter.successMessage = document.querySelector('.main &gt; #singular-form &gt; #success');
+
+newsletter.submitDelay = 1000;
+
+newsletter.clickHandler = (e) =&gt; {
+    switch (e.target) {
+        case newsletter.subs:
+            console.log('case subs');
+            newsletter.main.style.width = '37rem'
+            e.target.classList.remove('shown');
+            newsletter.input.classList.add('shown');
+            newsletter.submitButton.classList.add('shown');
+            newsletter.input.focus();
+            break;
+        case newsletter.submitButton:
+            newsletter.submitForm();
+            break;
+    }
+}
+newsletter.handleInputKeypress = (e) =&gt; {
+    if (e.keyCode === 13) {
+        e.preventDefault();
+        newsletter.submitForm();
+    }
+}
+newsletter.submitForm = () =&gt; {
+    newsletter.input.style.transition = 'all .6s ease';
+    newsletter.submitButton.style.transition = 'all .6s ease';
+    newsletter.input.classList.remove('shown');
+    newsletter.submitButton.classList.remove('shown');
+    newsletter.main.style.transition = 'all .6s cubic-bezier(0.47, 0.47, 0.27, 1.20) .4s';
+    newsletter.main.style.width = '';
+    newsletter.successMessage.classList.add('shown');
+    let submission = setTimeout(() =&gt; newsletter.form.submit(), newsletter.submitDelay);
+}
+
+newsletter.input.addEventListener('keypress', (e) =&gt; newsletter.handleInputKeypress(e));
+document.addEventListener('click', (e) =&gt; newsletter.clickHandler(e));</code></pre>
+
+<p>Теперь эти три файла можно загрузить на сервер и появится форма подписки с красивой анимацией и валидацией. Но, чтобы форма полноценно заработала — вам нужно использовать PHP для работы с формами.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 9 ноября 2020 в 18:01</span><br>Теги: CSS, HTML, JavaScript
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

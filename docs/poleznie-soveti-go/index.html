@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Полезные советы Go &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Полезные советы Go</h1>
+
+<p>Неважно, как долго вы программируете на любимом языке, вы все равно будете находить новые маленькие детали, которые вас будут приятно удивлять. В статье предлагаю 5 небольших советов в языке Go, которые я недавно узнал и о существовании которых не подозревал.</p>
+
+<h2>Заставьте компилятор подсчитывать элементы массива</h2>
+
+<p>В Go вы нечасто используете массивы. Вместо них вы используете срезы (слайсы, <strong>slices</strong>), но если вам надоело писать количество элементов в массиве самостоятельно, вы можете использовать<code> […]</code>, и компилятор посчитает их за вас:</p>
+
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    arr := [3]int{1, 2, 3}
+    sameArr := [...]int{1, 2, 3} // Use ... instead of 3
+
+    // Arrays are equivalent
+    fmt.Println(arr)
+    fmt.Println(sameArr)
+}</code></pre>
+
+<h2>Используйте <code>go run .</code> вместо <code>go run main.go</code></h2>
+
+<p>Всякий раз, когда я начинаю создавать прототипы в Go, мне нравится начинать с файла <strong>main.go</strong>:</p>
+
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    sayHello()
+}
+
+func sayHello() {
+    fmt.Println("Hello!")
+}</code></pre>
+
+<p>Но когда файл <strong>main.go</strong> становится большим, мне нравится разбивать мои структуры на отдельные файлы, используя один и тот же основной пакет. Однако если у меня есть следующие файлы…</p>
+
+<p><strong><em>main.go</em></strong></p>
+
+<pre><code class="language-go">package main
+
+func main() {
+    sayHello()
+}</code></pre>
+
+<p><strong><em>say_hello.go</em></strong></p>
+
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func sayHello() {
+    fmt.Println("Hello!")
+}</code></pre>
+
+<p>Набрав <code>go run main.go</code>, вы получите следующую ошибку:</p>
+
+<pre><code class="language-go"># command-line-arguments
+./main.go:4:2: undefined: sayHello</code></pre>
+
+<p>Чтобы решить эту проблему, воспользуйтесь командой <code>go run .</code>.</p>
+
+<h2>Используйте подчеркивание, чтобы сделать числа более читаемыми</h2>
+
+<p>Знаете ли вы, что с помощью подчеркивания можно сделать длинные числа более удобочитаемыми?</p>
+
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    number := 10000000
+    better := 10_000_000
+
+    fmt.Println(number == better)
+}</code></pre>
+
+<h2>В одном пакете можно иметь разные тестовые пакеты</h2>
+
+<p>В Go я думал, что в одной папке может быть только 1 пакет. Это не совсем так. Для пакета под названием <code>yourpackage</code> в том же каталоге может быть еще один пакет под названием <code>yourpackage_test</code>, в котором вы можете написать свои тесты.</p>
+
+<p>Зачем вам это нужно? Вы можете написать свои тесты, используя тот же пакет <code>yourpackage</code>, но при этом будут доступны и неэкспортированные функции. Написав тесты в <code>yourpackage_test</code>, вы убедитесь, что тестируете только открытое поведение.</p>
+
+<h2>Передача одного и того же аргумента несколько раз</h2>
+
+<p>При использовании функций форматирования строк меня всегда раздражало, что приходится повторять аргумент, который используется несколько раз:</p>
+
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    name := "Bob"
+    fmt.Printf("My name is %s. Yes, you heard that right: %s\n", name, name)
+}</code></pre>
+
+<p>Очевидно, есть более удобный способ. Вы можете передать его только один раз и использовать его порядок в <code>%s</code> с помощью <code>%[order]s</code>:</p>
+
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    name := "Bob"
+    fmt.Printf("My name is %[1]s. Yes, you heard that right: %[1]s\n", name)
+}</code></pre>
+
+<p>Совет найден в Твиттере Джона Эриксона:</p>
+
+<figure><img src="images/go-order.jpeg" alt="" class="img-fluid"></figure>
+
+<p>Надеюсь, сегодня вы узнали что-то новое. Если вам понравился перевод или у вас есть вопрос, пожалуйста, оставляйте комментарии.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 2 сентября 2024 в 16:45</span><br>Теги: Go
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

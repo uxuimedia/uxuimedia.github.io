@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Редактор Gutenberg с кастомными постами в WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Редактор Gutenberg с пользовательскими (кастомными) типами постов в WordPress</h1>
+
+<p>Рассмотрим как использовать редактор Gutenberg с пользовательскими типами постов WordPress. Мы поговорим обо всем достаточно подробно, хотя нужные нам параметры можно быстро определить в файле <strong>functions.php</strong> вашей темы. Как только нужный сниппет будет добавлен, вы сможете легко получить доступ к редактору Gutenberg в ваших пользовательских постах.</p>
+
+
+
+<h2><span id="Polzovatelskij_tip_posta_v_WordPress">Пользовательский тип поста в WordPress</span></h2>
+
+
+
+<p>Пользовательские типы записей также называют кастомными. На протяжении многих лет сообщество WordPress использовало WordPress <em>Custom Post Types</em> (далее иногда CPT) для расширения функциональности стандартной платформы WordPress. Учитывая популярность этой функции, она стала неотъемлемой частью WordPress с версии 5.x.</p>
+
+
+
+<p>Но прежде чем перейти дальше к деталям, давайте посмотрим на основы пользовательских типов постов WordPress и то, как они нам помогают.</p>
+
+
+<div>
+<figure><img src="images/gutenberg-wordpress.jpeg" alt="Пример блоков в редакторе Гутенберг" class="img-fluid"><figcaption>Пример блоков в редакторе Гутенберг</figcaption></figure></div>
+
+
+<p>Пользовательские типы позволяют настраивать CMS WordPress для создания дополнительных типов контента, чтобы помочь вам классифицировать содержимое. По умолчанию WordPress предлагает несколько типов:</p>
+
+
+
+<ul>
+<li>Посты (записи)</li>
+
+
+
+<li>Медиа</li>
+
+
+
+<li>Страницы</li>
+
+
+
+<li>Комментарии</li>
+</ul>
+
+
+
+<p>С помощью пользовательских типов постов вы можете выйти за рамки стандартных возможностей и создать свои собственные типы записей, чтобы максимально использовать возможности WordPress.</p>
+
+
+
+<p>Прежде чем создавать кастомные типы записей нам нужно проанализировать саму необходимость этого действия, действительно ли нам это нужно? По умолчанию WordPress предлагает основные типы постов и их достаточно для большинства сайтов, но пользователи, стремящиеся к индивидуальности, могут легко добавить дополнительные типы постов. Ниже поговорим о способах их добавления на WordPress сайт.</p>
+
+
+
+<h2><span id="Redaktor_Gutenberg">Редактор Гутенберг</span></h2>
+
+
+
+<p>Редактор Gutenberg включен по умолчанию только для статей и страниц, т.е. типов постов по умолчанию. Поскольку пользовательские типы постов WordPress используются практически повсеместно, недоступность редактора Gutenberg была предметом обсуждения в сообществе с версии WordPress 5.0.</p>
+
+
+
+<p>Если на вашем сервере установлена последняя версия WordPress 6.0, вы увидите последнюю версию Gutenberg, которая предоставляет вам возможность полноценного редактирования сайта или, как его еще называют, полносайтового редактирования. Gutenberg является блочным редактором по умолчанию в WordPress и заменил классический редактор WordPress.</p>
+
+
+
+<p>Пользователи, которые добавляют пользовательские типы постов на свои сайты WordPress, используя старую версию WordPress (4.9 или ниже), будут видеть старый Классический редактор при создании или редактировании CPT.</p>
+
+
+
+<p>Ниже я покажу как зарегистрировать или добавить пользовательский тип поста Gutenberg на сайте WordPress с помощью фрагмента кода (сниппета). Затем я покажу, как можно включить Gutenberg на сайте, использующем старую версию WordPress, и как добавить типы постов в ваш включенный редактор Gutenberg.</p>
+
+
+
+<h2><span id="Registracia_polzovatelskih_tipov_postov">Регистрация пользовательских типов постов</span></h2>
+
+
+
+<p>Давайте познакомимся с простыми шагами по регистрации пользовательского типа поста Gutenberg в WordPress.</p>
+
+
+
+<p>Получите доступ к файлам бэкенда вашего сайта через любой FTP-клиент.</p>
+
+
+
+<p>Перейдите в: <em><strong>public_html &gt; wp-content &gt; themes</strong></em>.</p>
+
+
+
+<p>Вы увидите все темы, установленные на вашем сайте WordPress, в папке <strong><em>themes</em></strong>.</p>
+
+
+
+<p>Найдите папку активированной темы и внутри нее найдите файл <strong>functions.php</strong>. Это один из основных файлов темы, где добавляется функционал.</p>
+
+
+<div>
+<figure><img src="images/gutenberg-wordpress-01.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Откройте файл <strong>function.php</strong> в текстовом редакторе и добавьте следующий код в нижней части файла.</p>
+
+
+
+<pre><code class="language-php">function cw_post_type() {
+
+   register_post_type( 'portfolio',
+       // WordPress CPT Options Start
+       array(
+           'labels' =&gt; array(
+               'name' =&gt; __( 'Portfolio' ),
+               'singular_name' =&gt; __( 'Portfolio' )
+           ),
+           'has_archive' =&gt; true,
+           'public' =&gt; true,
+           'rewrite' =&gt; array('slug' =&gt; 'portfolio'),
+           'excerpt', 'comments' )
+       )
+   );
+}
+
+add_action( 'init', 'cw_post_type' );</code></pre>
+
+
+
+<p>Вот наглядное представление того, куда нужно добавить код:</p>
+
+
+<div>
+<figure><img src="images/gutenberg-wordpress-02.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Сохраните изменения в файле<strong> function.php</strong> и повторно загрузите его на свой сайт.</p>
+
+
+
+<p>Теперь зайдите в админку WordPress и в левой строке меню вы увидите только что добавленный кастомный тип записи <em>Portfolio</em>.</p>
+
+
+<div>
+<figure><img src="images/gutenberg-wordpress-03.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Когда вы попытаетесь создать или отредактировать пользовательский тип записи, вы увидите блочный редактор по умолчанию (Gutenberg).</p>
+
+
+
+<p>Если вы используете старую версию WordPress, то вы увидите классический редактор.</p>
+
+
+<div>
+<figure><img src="images/gutenberg-wordpress-04.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<h2><span id="Dobavlenie_podderzki_Gutenberg">Добавление поддержки Gutenberg</span></h2>
+
+
+
+<p>Если вы используете последнюю версию WordPress, Gutenberg будет предустановлен на вашем сайте WordPress.</p>
+
+
+
+<p>Но если вы используете старую версию WordPress, вам необходимо включить редактор Gutenberg для пользовательских постов. Добавьте следующий код в сниппет, упомянутый в предыдущем разделе:</p>
+
+
+
+<pre><code class="language-php">'show_in_rest' =&gt; true,
+'supports' =&gt; array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )</code></pre>
+
+
+
+<p>Приведенный выше фрагмент кода устанавливает параметр <code>'show_in_rest'</code> в значение <code>'true'</code>. После этого шага редактор Гутенберг будет включаться при создании или редактировании добавленного конкретного пользовательского типа поста. В правом боковом меню при редактировании кастомной записи вы увидите такие опции, как заголовок, комментарии и авторы.</p>
+
+
+
+<p>Ниже привожу полный код для файла <em><strong>functions.php</strong></em>:</p>
+
+
+
+<pre><code class="language-php">function cw_post_type() {
+
+   register_post_type( 'portfolio',
+       // WordPress CPT Options Start
+       array(
+           'labels' =&gt; array(
+               'name' =&gt; __( 'Portfolio' ),
+               'singular_name' =&gt; __( 'Portfolio' )
+           ),
+           'has_archive' =&gt; true,
+           'public' =&gt; true,
+           'rewrite' =&gt; array('slug' =&gt; 'portfolio'),
+           'show_in_rest' =&gt; true,
+           'supports' =&gt; array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+       )
+   );
+}
+
+add_action( 'init', 'cw_post_type' );</code></pre>
+
+
+
+<div class="attention-blue"><strong>Примечание</strong>. Убедитесь, что код скопирован правильно и не содержит разрывов и не нужных пробелов, так как это может нарушить функциональность кода, и вы начнете получать ошибки.</div>
+
+
+
+<h2><span id="Vyvod_polzovatelskogo_tipa_zapisi">Вывод пользовательского типа записи</span></h2>
+
+
+
+<p>Мы поговорили о создании пользовательского типа записи, но теперь надо понять как он будет отображается на главной странице вашего сайта. Вкратце, нам нужно добавить PHP-файл с несколькими строками кода в каталог темы WordPress.</p>
+
+
+
+<p>Но вы можете подумать, — почему для кастомного типа записи нужно что-то еще добавлять, ведь обычно вы просто создаете новый пост, который начинает отображаться на фронтэнде вашего сайта?</p>
+
+
+
+<p>В реальности, нам нужно учитывать, что мы создаем отдельные типы записей, т.к. хотим выводить на сайте контент с определенными данными. Например, для портфолио мы хотим выводить ссылку на итоговый проект. При этом мы хотим, например, иметь на фронтенде отдельный шаблон для этих записей.</p>
+
+
+
+<p>Чтобы это реализовать — создайте файл шаблона в вашей активной теме с именем <strong><em>template-portfolio.php</em></strong> и вставьте следующий код для отображения пользовательского типа записи:</p>
+
+
+
+<pre><code class="language-php">&lt;?php /* Template Name: Portfolio */ $args = array( 'post_type' =&gt; 'portfolio',
+   'post_status' =&gt; 'publish',
+   'tax_query'   =&gt; array(
+       array(
+           'taxonomy' =&gt; 'testimonial_service',
+           'field'    =&gt; 'slug',
+
+       )
+   )
+);
+
+$portfolio = new WP_Query( $args );
+if( $portfolio-&gt;have_posts() ) :
+
+
+
+       while( $portfolio-&gt;have_posts() ) :
+           $portfolio-&gt;the_post();
+
+            printf( '%1$s - %2$s', get_the_title(), get_the_content() );
+
+       endwhile;
+       wp_reset_postdata();
+
+
+
+else :
+   esc_html_e( 'No Post Found');
+endif;</code></pre>
+
+
+
+<p>После добавления кода выберите шаблон по умолчанию ‘Portfolio’ для отображения содержимого пользовательского типа поста. Выполните следующие действия:</p>
+
+
+
+<ul>
+<li>Перейдите в панель управления WordPress.</li>
+
+
+
+<li>Нажмите <strong><em>Pages &gt; Add New</em></strong> (Страницы &gt; Добавить новую).</li>
+
+
+
+<li>Добавьте название вашей страницы.</li>
+</ul>
+
+
+
+<p>На правой боковой панели выберите шаблон по умолчанию ‘Portfolio’ в разделе Template (Шаблон).</p>
+
+
+
+<p>Зайдите на свой сайт, и вы увидите, что пользовательский тип поста отображается с названием ‘Portfolio’. Теперь вы можете получить доступ к содержимому CPT с фронта вашего сайта.</p>
+
+
+<div>
+<figure><img src="images/gutenberg-wordpress-05.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Если у вас остались вопросы — оставьте комментарий ниже и я обязательно отвечу на него.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 20 декабря 2022 в 19:21</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

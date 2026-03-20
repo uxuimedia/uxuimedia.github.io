@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Модули Go &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Модули Go</h1>
+
+<p>В предыдущей статье про <a href="/docs/ponimanie-paketov-go/">понимание пакетов</a> мы говорили о том, что такое пакет, о потенциальной структуре пакетов, о разбиении пакетов на несколько файлов, об экспорте методов и функций и т. д.</p>
+
+<p>Сегодня мы пойдем немного дальше и обсудим модули в языке программирования Go (Golang) и то, как они связывают пакеты воедино.</p>
+
+<p>Мы можем думать о модулях как о коллекциях пакетов, это означает, что модуль — это, по сути, просто папка, в которой находится один или несколько пакетов. Модуль может состоять из одного пакета, в этом случае имя модуля и пакета будет одинаковым. Достаточно разговоров, давайте посмотрим на примеры.</p>
+
+<figure><img src="images/go-modules-01.jpg" alt="" class="img-fluid"></figure>
+
+<p>Здесь у нас есть модуль калькулятора, который содержит несколько различных пакетов для обработки определенных операций и отображения результатов этих операций.</p>
+
+<p>У нас также есть странный файл <strong>go.mod</strong>. Если вы знакомы с <strong>JavaScript</strong>, вы можете сравнить его с файлом <strong><em>package.json</em></strong> в ваших проектах или <strong>Gemfile</strong> в ваших проектах на <strong>Ruby</strong>. По сути, он содержит информацию, которая описывает модуль — в данном случае модуль калькулятора — и перечисляет зависимости всех пакетов в этом модуле, это может выглядеть примерно так.</p>
+
+<figure><img src="images/go-modules-02.jpg" alt="" class="img-fluid"></figure>
+
+<h2>Как мы сюда попали?</h2>
+
+<p>Давайте напишем небольшой модуль, назовем его <strong>calculator</strong>, и будем использовать его в другой программе на Go. Если на вашей машине еще не установлен Go, перейдите <a href="https://go.dev/doc/install" target="_blank" rel="noreferrer noopener">сюда</a> и следуйте красиво написанным инструкциям. Данный материал я переведу в самое ближайшее время.</p>
+
+<p>Далее создайте новую директорию, в которой будет храниться ваш код, у меня это будет <code>Desktop/Playground/go</code>.</p>
+
+<figure><img src="images/go-modules-03.jpg" alt="" class="img-fluid"></figure>
+
+<p>Вы, вероятно, задаетесь вопросом о том, что такое <strong>go.mod</strong>. Если вы работаете на JavaScript, создание файла <strong>go.mod</strong> похоже на запуск <code>yarn init</code> или <code>npm init</code>, который вы просто выполняете в терминале.</p>
+
+<figure><img src="images/go-modules-04.jpg" alt="" class="img-fluid"></figure>
+
+<p>В идеале имя модуля должно быть местом в Интернете, где будет храниться ваш исходный код. Чтобы ваш пакет мог быть использован другими разработчиками, вам нужно указать инструментам Go, где его найти и загрузить (подробнее об этом мы поговорим позже).</p>
+
+<p>Далее создайте несколько пакетов в вашем модуле <strong>calculator</strong>.</p>
+
+<figure><img src="images/go-modules-05.jpg" alt="" class="img-fluid"></figure>
+
+<p>Давайте добавим несколько операций, создадим <strong>simple.go</strong> в директории <strong>/operations</strong>.</p>
+
+<figure><img src="images/go-modules-06.jpg" alt="" class="img-fluid"></figure>
+
+<p>Внутри файла <strong>simple.go</strong> поместите следующий код.</p>
+
+<figure><img src="images/go-modules-07.jpg" alt="" class="img-fluid"></figure>
+
+<p>Обратите внимание, что пространство имен нашего пакета соответствует директории, в которой находится этот файл, и что все функции начинаются с заглавных букв, если вы не знаете, почему, посмотрите <a href="/docs/ponimanie-paketov-go/">эту статью</a>.</p>
+
+<p>Давайте напишем код для отображения результатов, запустим его из каталога калькулятора.</p>
+
+<figure><img src="images/go-modules-08.jpg" alt="" class="img-fluid"></figure>
+
+<p>Внутри <strong>format.go</strong> добавим следующий код.</p>
+
+<figure><img src="images/go-modules-09.jpg" alt="" class="img-fluid"></figure>
+
+<p>Нам потребуется внести некоторые изменения в <strong>simple.go</strong>, давайте импортируем наш пакет форматирования и с его помощью добавим 2 новые функции в <strong>simple.go</strong>.</p>
+
+<figure><img src="images/go-modules-10.jpg" alt="" class="img-fluid"></figure>
+
+<p>Здесь мы добавили 2 новые функции, которые выводят шаги, используемые в операции — <code>AdditionWithSteps</code> и <code>MultiplicationWithSteps</code>, а также немного рефакторинга.</p>
+
+<p>Теперь давайте сделаем этот пакет доступным для использования в других программах на Go. Поместите его в репозиторий, который вы создали для своего проекта. Я использую <em>GitHub</em> для хранения своего проекта, и имя моего репозитория — <strong>calculator</strong>.</p>
+
+<figure><img src="images/go-modules-11.jpg" alt="" class="img-fluid"></figure>
+
+<p>Теперь я сделаю коммит и отправлю свой код на <em>Github</em>.</p>
+
+<figure><img src="images/go-modules-12.jpg" alt="" class="img-fluid"></figure>
+
+<p>Если все прошло успешно, при обновлении браузера страница репозитория должна выглядеть следующим образом.</p>
+
+<figure><img src="images/go-modules-13.jpg" alt="" class="img-fluid"></figure>
+
+<p>Теперь ваш пакет доступен всем, кто захочет его использовать! Если вы хотите, чтобы люди использовали ваш пакет, убедитесь, что ваш репозиторий не является приватным, иначе импорт может не состояться. Старайтесь избегать дефисов и других специальных символов при именовании модуля и репозитория. Каждый репозиторий должен содержать только один модуль, иначе вы столкнетесь с проблемами, когда начнете импортировать свой модуль для использования.</p>
+
+<p>Давайте напишем немного go-кода для использования нашего модуля и пакетов! В корневой директории вашего проекта создайте новый модуль, назовите его как угодно, я назову свой <code>simplego</code>, а внутри него — <strong>main.go</strong> для нашего кода.</p>
+
+<figure><img src="images/go-modules-14.jpg" alt="" class="img-fluid"></figure>
+
+<p>Внутри файла <strong>main.go</strong> в следующем коде мы импортируем пакет операций, который мы создали ранее в нашем модуле калькулятора.</p>
+
+<figure><img src="images/go-modules-15.jpg" alt="" class="img-fluid"></figure>
+
+<p>Если все прошло успешно, вы должны увидеть некоторые ошибки, похожие на ту, что приведена ниже. Это происходит потому, что у нас технически нет этого пакета, установленного локально для использования. Нам нужно сказать go, чтобы он его получил, я имею в виду, буквально сказать go, чтобы он его получил.</p>
+
+<figure><img src="images/go-modules-16.jpg" alt="Ошибка в нижней части экрана, показывающая, что пакет недоступен для нас локально" class="img-fluid"><figcaption>Ошибка в нижней части экрана, показывающая, что пакет недоступен для нас локально</figcaption></figure>
+
+<p>В терминале инициализируйте новый файл модуля go и сообщите go, чтобы он привел в порядок ваши зависимости. Запустите это в корне вашего модуля <code>simplego</code>, вы должны получить результат, приведенный в комментариях.</p>
+
+<figure><img src="images/go-modules-17.jpg" alt="" class="img-fluid"></figure>
+
+<p>Что только что произошло? Ну, с помощью чудесной магии go, всякий раз, когда мы запускаем <code>go mod tidy</code>, go просматривает все наши операторы импорта и загружает все недостающие пакеты/зависимости. Теперь наш файл <strong>go.mod</strong> должен выглядеть следующим образом.</p>
+
+<figure><img src="images/go-modules-18.jpg" alt="" class="img-fluid"></figure>
+
+<p>Теперь мы можем использовать <code>operations</code> в нашей программе, давайте добавим немного кода в файл <strong>main.go</strong>.</p>
+
+<figure><img src="images/go-modules-19.jpg" alt="" class="img-fluid"></figure>
+
+<p>Давайте запустим нашу программу, в терминале выполните следующую команду, и вы увидите, как в окне терминала будут выведены шаги операции <code>1+2+3+4+5</code>.</p>
+
+<figure><img src="images/go-modules-20.jpg" alt="" class="img-fluid"></figure>
+
+<p>Оно работает!</p>
+
+<h2>Резюме</h2>
+
+<p>К настоящему моменту мы:</p>
+
+<ul>
+<li>Написали небольшой модуль Go, который может выполнять некоторые арифметические действия и выводить результаты.</li>
+<li>Опубликовали пакет</li>
+<li>Импортировали наш опубликованный пакет в другую простую программу и использовали его</li>
+</ul>
+
+<p>В заключение хочу сказать, что в этой статье я не рассказал о некоторых вещах, например, о рекомендуемых рабочих процессах версионирования и публикации модулей и пакетов <strong>Go</strong>, однако для этого есть отличные ресурсы — <a href="https://golang.org/doc/modules/version-numbers" target="_blank" rel="noreferrer noopener nofollow">здесь</a> и <a href="https://golang.org/doc/modules/developing" target="_blank" rel="noreferrer noopener nofollow">здесь</a>.</p>
+
+<p><a href="https://github.com/Oluwadamilareolusakin/simplego" target="_blank" rel="noreferrer noopener nofollow">Здесь</a> вы найдете код <strong>simple.go</strong>.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 31 августа 2024 в 00:32</span><br>Теги: Go
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

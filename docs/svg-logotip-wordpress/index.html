@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>SVG в качестве логотипа в WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">SVG в качестве логотипа в WordPress</h1>
+
+<p>Популярность SVG растет, особенно с появлением отзывчивого, дружественного к мобильным устройствам дизайна.</p>
+
+
+
+<p>Все больше и больше создателей веб-сайтов используют SVG-файлы в своих проектах — они отлично подходят для небольших, простых изображений или графики, не содержащей слишком много сложных элементов, таких как логотипы, узоры или иконки.</p>
+
+
+
+<p>У WordPress непростые отношения с SVG — CMS не поддерживает этот тип файлов изначально, и на то есть веские причины. Несмотря на то, что WordPress не позволяет добавлять SVG в медиатеку, есть несколько способов, с помощью которых пользователи могут добавить поддержку этого формата файлов.</p>
+
+
+
+<p>В этой статье мы обсудим использование SVG в WordPress и узнаем, почему CMS не поддерживает их. Кроме того, представлены некоторые способы добавления поддержки SVG на сайт WordPress.</p>
+
+
+
+<h2><span id="Cto_takoe_SVG">Что такое SVG?</span></h2>
+
+
+
+<p>SVG расшифровывается как масштабируемая векторная графика (<strong>S</strong>calable <strong>V</strong>ector <strong>G</strong>raphic). В отличие от растровых изображений (таких как JPG или PNG, которые состоят из пикселей), SVG — это векторная графика, то есть они состоят из легко манипулируемых математических конструкций (формул), а не из пикселей.</p>
+
+
+
+<p>Хотя большинство людей считают, что SVG — это формат изображения, подобный JPG, PNG или аналогичным, на самом деле это язык разметки (XML), который используется для создания двумерной графики. Например, приведенный ниже код — это XML, используемый для создания красного круга.</p>
+
+
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;My first SVG&lt;/h1&gt;
+
+&lt;svg width="100" height="100"&gt;
+   &lt;circle cx="50" cy="50" r="40" fill="red" /&gt;
+&lt;/svg&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+
+<p>На момент написания статьи SVG использовали 15,2% сайтов. В связи с растущей популярностью SVG в веб-дизайне, ожидается, что число сайтов будет быстро расти и дальше.</p>
+
+
+
+<h2><span id="Preimusestva_ispolzovania_SVG">Преимущества использования SVG</span></h2>
+
+
+
+<p>В отличие от других форматов изображений, таких как PNG, JPG, GIF и т.д., SVG имеют ряд преимуществ для веб-дизайнера:</p>
+
+
+
+<ul>
+<li><strong>Качество изображения</strong>. Поскольку SVG являются векторами, их можно масштабировать, растягивать или сжимать без потери или ухудшения качества изображения, даже на retina экранах. Поскольку они сохраняют свое качество, SVG отлично подходят для адаптивного веб-дизайна. Для сравнения, растровые форматы изображений будут выглядеть размытыми или пиксельными, если масштабировать их больше, чем сам размер изображения.</li>
+<li><strong>Поддержка браузерами</strong>. Браузеры поддерживают SVG на хорошем уровне, и почти все браузеры умеют поддерживать этот формат. Это означает, что у большого процента посетителей вашего сайта не возникнет проблем с просмотром SVG на вашем сайте.</li>
+<li><strong>Готовность к анимации</strong>. Благодаря формату файла SVG можно легко анимировать с помощью CSS. Если вы хорошо разбираетесь в CSS, вы сможете создать привлекательный и запоминающийся анимированный элемент для вашего сайта.</li>
+<li><strong>Малый размер файла</strong>. Одним из наиболее важных аспектов веб-дизайна является скорость загрузки страницы и производительность сайта. SVG имеют гораздо меньший размер файла по сравнению с растровыми изображениями, поэтому они помогают сайту загружаться быстрее. Конечно, SVG нельзя использовать для замены всей графики на сайте, но экономия нескольких байт здесь и там при использовании графики небольшого размера в долгосрочной перспективе дает положительный эффект.</li>
+</ul>
+
+
+
+<p>Если SVG настолько хороши и полезны, то почему WordPress запрещает их использование?</p>
+
+
+
+<h2><span id="Pocemu_WordPress_ne_podderzivaet_SVG">Почему WordPress не поддерживает SVG?</span></h2>
+
+
+
+<p>Теоретически SVG кажется лучшим форматом изображений для использования на сайте, однако WordPress не поддерживает этот формат файлов по умолчанию. На самом деле на это есть веская причина.</p>
+
+
+
+<p>Запрет формата файлов SVG на самом деле является жизненно важной мерой безопасности, поскольку SVG могут быть небезопасными и подвергать риску весь сайт. Описанный выше SVG на самом деле не является форматом изображения, как думает большинство людей, а представляет собой формат документа (XML), который читается как код.</p>
+
+
+
+<p>Благодаря этому в SVG можно написать сценарий, включающий вредоносный код и другие уязвимости, или внедрить вредоносное ПО. Поскольку это может представлять огромную угрозу для веб-сайта, WordPress не поддерживает этот тип файлов в его исходном состоянии.</p>
+
+
+
+<p>К счастью, WordPress, являясь ведущей CMS в мире, предоставляет очень гибкое решение для своей пользовательской базы. Благодаря этому включение поддержки SVG — относительно быстрый и простой процесс, который можно осуществить несколькими способами.</p>
+
+
+
+<div class="attention-red"><strong>Внимание</strong>! При работе с SVGs важно использовать только оригинальную графику, которую вы создали сами, и не использовать случайную графику, найденную или скачанную из Интернета.</div>
+
+
+
+<h2><span id="Ispolzuem_SVG_v_kacestve_logotipa_v_WordPress">Используем SVG в качестве логотипа в WordPress</span></h2>
+
+
+
+<p>После создания SVG вам необходимо включить поддержку формата файла на вашем сайте WordPress. Это можно сделать двумя способами:</p>
+
+
+
+<ol>
+<li>Добавить код в файл functions.php</li>
+<li>Использовать плагин из репозитория WordPress</li>
+</ol>
+
+
+
+<h3><span id="Dobavlaem_kod_v_fajl_functionsphp">Добавляем код в файл functions.php</span></h3>
+
+
+
+<p>Если вы уверены в своих силах, добавление нескольких строк кода в файл <strong><em>functions.php</em></strong> — это быстрое и простое решение.</p>
+
+
+
+<p>Просто скопируйте приведенный ниже код и добавьте его в файл functions.php вашей дочерней темы.</p>
+
+
+
+<pre><code class="language-php">function cc_mime_types($mimes) {
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'cc_mime_types');</code></pre>
+
+
+
+<p>Как только вы сохраните отредактированный файл functions.php, вы скорее всего сможете добавить SVG в медиатеку WP.</p>
+
+
+
+<div class="attention-red"><strong>Внимание</strong>! Данный метод может не сработать, т.к. ядро WordPress постоянно обновляется и не все функции могут сработать как предполагается.</div>
+
+
+
+<h3><span id="Ispolzovanie_plagina_iz_repozitoria_WordPress">Использование плагина из репозитория WordPress</span></h3>
+
+
+
+<p>Если вы ищете простое решение для добавления SVG на сайт WordPress и не разбираетесь в программировании, обратите внимание на один из следующих плагинов:</p>
+
+
+
+<ul>
+<li><a href="https://wordpress.org/plugins/svg-support/" target="_blank" rel="noreferrer noopener">SVG Support</a></li>
+<li><a href="https://wordpress.org/plugins/safe-svg/" target="_blank" rel="noreferrer noopener">Safe SVG</a></li>
+</ul>
+
+
+
+<p>Оба вышеперечисленных плагина обеспечивают поддержку файлов SVG. Просто установите и активируйте выбранный плагин, и вы сможете начать использовать SVG без каких-либо проблем.</p>
+
+
+
+<h2><span id="Zaklucenie">Заключение</span></h2>
+
+
+
+<p>Несмотря на то, что у WordPress не самые лучшие отношения с SVG, обычному пользователю WordPress довольно легко включить поддержку этого формата файлов.</p>
+
+
+
+<p>Включив поддержку SVG на своем сайте WordPress, вы сможете создавать и использовать векторные изображения для своих логотипов, шаблонов и иконок, обеспечивая идеально пиксельное отображение активов вашего бренда.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 11 июня 2023 в 19:04</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

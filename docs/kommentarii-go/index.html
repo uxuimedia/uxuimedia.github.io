@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Комментарии &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Комментарии</h1>
+
+<p>Это четвертый урок нашего путешествия по изучению языка программирования Go (Golang) в котором мы поговорим про комментарии, зачем они нужны и как применять.</p>
+
+<h2>Строчные комментарии</h2>
+
+<p>Go игнорирует текст справа от <code>//</code>:</p>
+
+<pre><code class="language-go">// This entire line is ignored by the compiler.
+// fmt.Println("Does NOT print")
+fmt.Println("This gets printed!") // This part gets ignored</code></pre>
+
+<h2>Блочные комментарии</h2>
+
+<p>Все строки между <code>/*</code> и <code>*/</code> будут проигнорированы:</p>
+
+<pre><code class="language-go">/*
+This is ignored.
+This is also ignored.
+fmt.Println("This WON'T print!")
+*/</code></pre>
+
+<h2>Godoc</h2>
+
+<p>В Go есть инструмент для автоматической генерации документации из исходного кода Go: <a href="https://pkg.go.dev/golang.org/x/tools/cmd/godoc" target="_blank" rel="noreferrer noopener">Godoc</a>.</p>
+
+<p>Из сообщения в блоге, анонсировавшего его в 2011 году:</p>
+
+<div class="attention-blue">Godoc парсит исходный код Go, включая комментарии, и создает документацию в виде HTML или обычного текста.</div>
+
+<p>Посмотрите пример в формате HTML: <a href="https://godoc.org/archive/zip" target="_blank" rel="noreferrer noopener">zip — GoDoc</a>.</p>
+
+<p>Godoc следует некоторым простым <a href="https://github.com/golang/go/wiki/Comments" target="_blank" rel="noreferrer noopener">соглашениям</a>.</p>
+
+<h2>Комментарии к пакетам</h2>
+
+<p>Этот тип комментария должен присутствовать в одном из исходных файлов пакета:</p>
+
+<pre><code class="language-go">// Package sort provides primitives for sorting slices and user-defined
+// collections.
+package sort</code></pre>
+
+<h2>Комментарии к идентификаторам верхнего уровня</h2>
+
+<p>Это формат для описания функции верхнего уровня, <code>const</code>, <code>var</code> и т.д.:</p>
+
+<pre><code class="language-go">// enterOrbit causes Superman to fly into low Earth orbit, a position
+// that presents several possibilities for planet salvation.
+func enterOrbit() os.Error {
+  ...
+}</code></pre>
+
+<h2>Примеры кода в комментариях</h2>
+
+<p>Текст с отступами внутри комментария будет отображаться Godoc как предварительно отформатированный блок:</p>
+
+<pre><code class="language-go">// fight can be used on any enemy and returns whether Superman won.
+//
+// Examples:
+//
+//  fight("a random potato")
+//  fight(LexLuthor{})
+//
+func fight(enemy interface{}) bool {
+  ...
+}</code></pre>
+
+<h2>Комментарии к ошибкам (багам)</h2>
+
+<p>Godoc игнорирует большинство комментариев, которые не находятся прямо над элементом верхнего уровня. Исключение составляют комментарии к ошибкам (багам): они будут включены в документацию пакета в раздел «Ошибки» (<strong>англ. — Bugs</strong>):</p>
+
+<pre><code class="language-go">// BUG(name): The rule Title uses for word boundaries does not handle Unicode punctuation properly.</code></pre>
+
+<div class="attention-yellow">Текст в блоке со скобками — это имя пользователя, который может предоставить дополнительную информацию об ошибке.</div>
+
+<h2>Примечания об устаревании</h2>
+
+<p>Элементы, которые стали излишними или устаревшими, могут быть помечены в комментариях к документу параграфом, начинающимся с «Deprecated:», за которым следует информация об устаревании:</p>
+
+<pre><code class="language-go">// ModTime returns the modification time in UTC using the legacy
+// ModifiedDate and ModifiedTime fields.
+//
+// Deprecated: Use Modified instead.
+func (h *FileHeader) ModTime() time.Time {
+  return msDosTimeToTime(h.ModifiedDate, h.ModifiedTime)
+}</code></pre>
+
+<p>Мы изучили общую тему про комментарии, советую изучить документацию по ссылке выше, чтобы больше понимать про Godoc.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 5 сентября 2024 в 23:55</span><br>Теги: Go
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Получение размера окна с помощью чистого CSS &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Получение размера окна с помощью чистого CSS</h1>
+
+<p>Все мы знаем, что CSS раньше был самой интересной и неоднозначной частью веб-разработки. Однако в наши дни это стало еще интереснее.</p>
+
+<p>Вы не поверите, но теперь CSS может определять свойства, выполнять математические вычисления и даже напрямую получать размер окна. В этой статье мы расскажем вам, как это сделать.</p>
+
+<h2>Определение property</h2>
+
+<p>Правило <code>@property</code> — это новая функция в CSS, которая позволяет разработчикам создавать пользовательские свойства и задавать их типы, наследование и начальные значения. Используя эту функцию, мы можем считывать определенные значения и передавать их в пользовательские свойства.</p>
+
+<p>В приведенном ниже примере мы определяем два пользовательских свойства, <code>--w_raw</code> и <code>--h_raw</code>, представляющих ширину и высоту окна соответственно:</p>
+
+<pre><code class="language-css">@property --w_raw {
+  syntax: '&lt;length&gt;';
+  inherits: true;
+  initial-value: 100vw;
+}
+
+@property --h_raw {
+  syntax: '&lt;length&gt;';
+  inherits: true;
+  initial-value: 100vh;
+}</code></pre>
+
+<ul>
+<li><code>syntax: '&lt;length&gt;'</code> указывает, что тип свойства — длина.</li>
+<li><code>inherits: true</code> указывает, что свойство может быть унаследовано.</li>
+<li><code>initial-value</code> устанавливает начальное значение свойства в <code>100vw</code> и <code>100vh</code>, которые являются шириной и высотой области просмотра.</li>
+</ul>
+
+<h2>Удаление единиц</h2>
+
+<p>Теперь мы получили значения ширины и высоты окна, но они все еще содержат единицы. Как мы можем удалить единицы, чтобы получить чистые числовые значения? Это вопрос математики, поэтому нам нужно использовать математические инструменты в CSS: <code>atan2(y, x)</code> и <code>tan()</code>.</p>
+
+<ul>
+<li>Функция <code>atan2(y, x)</code> возвращает угол (в радианах) от оси <strong>x</strong> до точки <strong>(x, y)</strong>.</li>
+<li>Функция <code>tan()</code> вычисляет тангенс заданного угла.</li>
+</ul>
+
+<p>Комбинируя их, мы можем получить чистые числовые значения. Здесь мы передаем <code>var(--w_raw)</code> и <code>1px</code> в качестве параметров, чтобы вычислить угол ширины и затем преобразовать его в число. Таким образом, мы преобразуем ширину и высоту в безразмерные величины и сохраняем их в переменных <code>:root</code>.</p>
+
+<pre><code class="language-css">:root {
+  --w: tan(atan2(var(--w_raw), 1px));
+  --h: tan(atan2(var(--h_raw), 1px));
+}</code></pre>
+
+<h2>Отображение чисел</h2>
+
+<p>Теперь, когда числовые значения хранятся в CSS, как их отобразить? Это счетчик, который считает.</p>
+
+<pre><code class="language-css">body::before {
+  content: counter(w) 'x' counter(h);
+  counter-reset: h var(--h) w var(--w);
+}</code></pre>
+
+<p>Мы создаем псевдоэлемент <code>::before</code> в <code>body</code> для отображения содержимого CSS.</p>
+
+<ul>
+<li><code>counter-reset</code> инициализирует счетчики <code>h</code> и <code>w</code> и устанавливает их значения в <code>var(--h)</code> и <code>var(--w)</code>.</li>
+<li><code>content: counter(w) "x" counter(h);</code> отображает счетчик ширины и высоты в формате «ширина x высота».</li>
+</ul>
+
+<p>Теперь у вас есть индикатор размера окна, реализованный исключительно на CSS.</p>
+
+<p>Браузер будет обновлять значения <code>--w</code> и <code>--h</code> в реальном времени и отображать их на странице. Весь процесс полностью свободен от JavaScript.</p>
+
+<figure><img src="images/css-screen-demp.gif" alt="" class="img-fluid border shadow"></figure>
+
+<p class="h3"><a href="https://sergeiermilov.ru/tools/screen-size/" target="_blank">Демо</a></p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 3 октября 2024 в 17:38</span><br>Теги: CSS
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

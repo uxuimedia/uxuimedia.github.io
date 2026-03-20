@@ -1,0 +1,1396 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>WP-CLI &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container-fluid">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 col-lg-3">
+			<div class="content-blocks bg-light p-3">
+				<div>
+					<b>Содержание</b>
+				</div>
+				<div>
+					<span>1</span> <a href="#Vvedenie"><span>Введение</span></a>
+				</div>
+				<div>
+					<span>2</span> <a href="#Rekomenduemaa_ustanovka"><span>Рекомендуемая установка</span> </a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>2.1</span> <a href="#Obnovlenie_WP-CLI"><span>Обновление WP-CLI</span></a>
+						</div>
+						<div>
+							<span>2.2</span> <a href="#Tab_completions"><span>Tab completions</span></a>
+						</div>
+						<div>
+							<span>2.3</span> <a href="#Rabocij_process_DashAlfred"><span>Рабочий процесс Dash/Alfred</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>3</span> <a href="#Alternativnye_metody_ustanovki"><span>Альтернативные методы установки</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>3.1</span> <a href="#Ustanovka_WP-CLI_cerez_Git"><span>Установка WP-CLI через Git</span></a>
+						</div>
+						<div>
+							<span>3.2</span> <a href="#Ustanovka_nightly_cerez_Phar"><span>Установка nightly через Phar</span></a>
+						</div>
+						<div>
+							<span>3.3</span> <a href="#Ustanovka_cerez_Composer"><span>Установка через Composer</span></a>
+						</div>
+						<div>
+							<span>3.4</span> <a href="#Globalnaa_ustanovka_v_kacestve_proekta"><span>Глобальная установка в качестве проекта</span></a>
+						</div>
+						<div>
+							<span>3.5</span> <a href="#Ustanovka_cerez_Homebrew"><span>Установка через Homebrew</span></a>
+						</div>
+						<div>
+							<span>3.6</span> <a href="#Ustanovka_cerez_Docker"><span>Установка через Docker</span></a>
+						</div>
+						<div>
+							<span>3.7</span> <a href="#Ustanovka_na_Windows"><span>Установка на Windows</span></a>
+						</div>
+						<div>
+							<span>3.8</span> <a href="#Ustanovka_cerez_paket_deb"><span>Установка через пакет .deb</span></a>
+						</div>
+						<div>
+							<span>3.9</span> <a href="#Ustanovka_na_Fedora_30"><span>Установка на Fedora 30+</span></a>
+						</div>
+						<div>
+							<span>3.10</span> <a href="#Ustanovka_na_CentOS"><span>Установка на CentOS</span></a>
+						</div>
+						<div>
+							<span>3.11</span> <a href="#Ispolzovanie_polzovatelskogo_dvoicnogo_fajla_PHP"><span>Использование пользовательского двоичного файла PHP</span></a>
+						</div>
+						<div>
+							<span>3.12</span> <a href="#Ustanovka_na_MediaTemple"><span>Установка на MediaTemple</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>4</span> <a href="#Bystryj_start"><span>Быстрый старт</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>4.1</span> <a href="#Obsie_terminy"><span>Общие термины</span></a>
+						</div>
+						<div>
+							<span>4.2</span> <a href="#Skacivanie_i_ustanovka_WordPress_za_scitannye_sekundy"><span>Скачивание и установка WordPress за считанные секунды</span></a>
+						</div>
+						<div>
+							<span>4.3</span> <a href="#Obnovlenie_plaginov_do_poslednej_versii"><span>Обновление плагинов до последней версии</span></a>
+						</div>
+						<div>
+							<span>4.4</span> <a href="#Dobavlenie_polzovatela_v_kacestve_super-admina"><span>Добавление пользователя в качестве супер-админа</span></a>
+						</div>
+						<div>
+							<span>4.5</span> <a href="#Regeneracia_miniatur"><span>Регенерация миниатюр</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>5</span> <a href="#Kak_ispolzovat_WP-CLI"><span>Как использовать WP-CLI</span></a>
+				</div>
+				<div>
+					<span>6</span> <a href="#Sozdanie_polzovatelskogo_plagina"><span>Создание пользовательского плагина</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>6.1</span> <a href="#Sag_1_Podgotovka_fajlov_plagina_cerez_scaffold"><span>Шаг 1. Подготовка файлов плагина через scaffold</span></a>
+						</div>
+						<div>
+							<span>6.2</span> <a href="#Sag_2_Sozdanie_polzovatelskogo_tipa_zapisi"><span>Шаг 2. Создание пользовательского типа записи</span></a>
+						</div>
+						<div>
+							<span>6.3</span> <a href="#Sag_3_Napisanie_koda_vnutri_osnovnogo_fajla"><span>Шаг 3. Написание кода внутри основного файла</span></a>
+						</div>
+						<div>
+							<span>6.4</span> <a href="#Sag_4_Aktivacia_plagina"><span>Шаг 4. Активация плагина</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>7</span> <a href="#Ustanovka_WordPress"><span>Установка WordPress</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>7.1</span> <a href="#Sag_1_Skacivaem_WordPress"><span>Шаг 1. Скачиваем WordPress</span></a>
+						</div>
+						<div>
+							<span>7.2</span> <a href="#Sag_2_Sozdanie_generacia_fajla_konfiguracii"><span>Шаг 2. Создание (генерация) файла конфигурации</span></a>
+						</div>
+						<div>
+							<span>7.3</span> <a href="#Sag_3_Sozdanie_bazy_dannyh"><span>Шаг 3. Создание базы данных</span></a>
+						</div>
+						<div>
+							<span>7.4</span> <a href="#Sag_4_Ustanovka_WordPress"><span>Шаг 4. Установка WordPress</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>8</span> <a href="#Perevod_sajta_v_rezim_tehobsluzivania"><span>Перевод сайта в режим техобслуживания</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>8.1</span> <a href="#Sag_1_Proverka_sostoania"><span>Шаг 1. Проверка состояния</span></a>
+						</div>
+						<div>
+							<span>8.2</span> <a href="#Sag_2_Vklucenie_rezima_obsluzivania"><span>Шаг 2. Включение режима обслуживания</span></a>
+						</div>
+						<div>
+							<span>8.3</span> <a href="#Sag_3_Otklucenie_rezima_obsluzivania"><span>Шаг 3. Отключение режима обслуживания</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>9</span> <a href="#Zapusk_veb-servera"><span>Запуск веб-сервера</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>9.1</span> <a href="#Sag_1_Zapusk_veb-servera_s_ispolzovaniem_nastroek_po_umolcaniu"><span>Шаг 1. Запуск веб-сервера с использованием настроек по умолчанию</span></a>
+						</div>
+						<div>
+							<span>9.2</span> <a href="#Sag_2_Zapusk_veb-servera_s_ispolzovaniem_razlicnyh_nastroek"><span>Шаг 2. Запуск веб-сервера с использованием различных настроек</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">WP-CLI</h1>
+
+<p><strong>WP-CLI</strong> — это официальный инструмент командной строки для взаимодействия и управления вашими сайтами WordPress.</p>
+
+<h2><span id="Vvedenie">Введение</span></h2>
+
+<p>WP-CLI — это интерфейс командной строки для WordPress, используемый для выполнения задач администрирования и разработки программным способом. Страница проекта: <em>wp-cli.org</em>.</p>
+
+
+
+<p>Данное руководство — перевод официальной документации WordPress.org по данному инструменту. Нужна помощь? Пожалуйста, ознакомьтесь с <a href="http://wp-cli.org/#support" target="_blank" rel="noreferrer noopener nofollow">доступными вариантами поддержки</a>.</p>
+
+
+
+<p>Хотите помочь сделать WP-CLI лучше? Ознакомьтесь с <a href="https://make.wordpress.org/cli/handbook/contributing/" target="_blank" rel="noreferrer noopener nofollow">руководством по внесению вклада</a> для ознакомления или создайте свой <a href="https://make.wordpress.org/cli/good-first-issues/" target="_blank" rel="noreferrer noopener nofollow">первый pull request</a>.</p>
+
+
+
+<p>Руководство в процессе перевода, некоторые разделы могут быть не полными, что означает, что они в процессе работы.</p>
+
+
+
+<h2><span id="Rekomenduemaa_ustanovka">Рекомендуемая установка</span></h2>
+
+
+
+<p>Рассмотрим самые основные варианты установки WP-CLI.</p>
+
+
+
+<p>Рекомендуемая установка WP-CLI — скачать сборку Phar (архивы, похожие на Java JAR-файлы, подробнее см. в <a href="https://www.php.net/manual/ru/phar.using.intro.php" target="_blank" rel="noreferrer noopener">этой статье</a>), пометить ее как исполняемую и поместить в PATH.</p>
+
+
+
+<p>Сначала скачайте файл <a href="https://raw.github.com/wp-cli/builds/gh-pages/phar/wp-cli.phar" target="_blank" rel="noreferrer noopener nofollow">wp-cli.phar</a> с помощью <code>wget</code> или <code>curl</code>. Например:</p>
+
+
+
+<pre><code class="language-bash">curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar</code></pre>
+
+
+
+<p>Затем проверьте, работает ли оно:</p>
+
+
+
+<pre><code class="language-bash">php wp-cli.phar --info</code></pre>
+
+
+
+<p>Чтобы иметь возможность набирать просто <code>wp</code>, вместо <code>php wp-cli.phar</code>, вам нужно сделать файл исполняемым и переместить его куда-нибудь в PATH. Например:</p>
+
+
+
+<pre><code class="language-bash">chmod +x wp-cli.phar
+sudo mv wp-cli.phar /usr/local/bin/wp</code></pre>
+
+
+
+<p>Теперь попробуйте выполнить команду <code>wp --info</code>. Если WP-CLI установлен успешно, вы увидите вывод, подобный этому:</p>
+
+
+
+<pre><code class="language-bash">OS:  Linux 4.10.0-42-generic #46~16.04.1-Ubuntu SMP Mon Dec 4 15:57:59 UTC 2017 x86_64
+Shell:   /usr/bin/zsh
+PHP binary:    /usr/bin/php
+PHP version:     7.1.12-1+ubuntu16.04.1+deb.sury.org+1
+php.ini used:   /etc/php/7.1/cli/php.ini
+WP-CLI root dir:        /home/wp-cli/.wp-cli
+WP-CLI packages dir:    /home/wp-cli/.wp-cli/packages/
+WP-CLI global config:   /home/wp-cli/.wp-cli/config.yml
+WP-CLI project config:
+WP-CLI version: 1.5.0</code></pre>
+
+
+
+<p>Вуаля! Теперь вы официальный пользователь WP-CLI.</p>
+
+
+
+<p>Интересно, что делать дальше? Ознакомьтесь с руководством по быстрому запуску данного справочника для быстрого знакомства и некоторых примеров использования.</p>
+
+
+
+<h3><span id="Obnovlenie_WP-CLI">Обновление WP-CLI</span></h3>
+
+
+
+<p>Если вы установили WP-CLI рекомендуемым методом Phar, вы можете обновить его в любое время, запустив команду <code>wp cli update</code> (хотя если WP-CLI принадлежит <strong>root</strong>, это может быть <code>sudo wp cli update</code>). Если вы установили WP-CLI с помощью Composer или установки через Git, — смотрите ниже конкретные инструкции по обновлению, связанные с каждым методом.</p>
+
+
+
+<p>Когда вы запустите <code>wp cli update</code>, вам будет предложено подтвердить обновление. Вы увидите сообщение, похожее на следующее:</p>
+
+
+
+<pre><code class="language-bash">You have version 0.21.1. Would you like to update to 0.23.1? [y/n]</code></pre>
+
+
+
+<p>После согласия вы должны увидеть сообщение об успехе:</p>
+
+
+
+<pre><code class="language-bash">Success: Updated WP-CLI to 0.23.1</code></pre>
+
+
+
+<p>Если вы уже используете последнюю версию WP-CLI, вы увидите это сообщение:</p>
+
+
+
+<pre><code class="language-bash">WP-CLI is at the latest version.</code></pre>
+
+
+
+<p>Хотите жить на грани? Выполните команду <code>wp cli update --nightly</code>, чтобы использовать последнюю ночную сборку WP-CLI. Ночная сборка более или менее стабильна, чтобы вы могли использовать ее в своем локальном окружении, и всегда включает в себя все самое последнее и самое лучшее.</p>
+
+
+
+<p>Для получения дополнительной информации о <code>wp cli update</code>, включая флаги и опции, которые могут быть использованы, прочитайте полную <a href="https://developer.wordpress.org/cli/commands/cli/update/" target="_blank" rel="noreferrer noopener nofollow">страницу документации</a> по команде update.</p>
+
+
+
+<h3><span id="Tab_completions">Tab completions</span></h3>
+
+
+
+<h4><span id="Bash_Z-Shell">Bash &amp; Z-Shell</span></h4>
+
+
+
+<p>WP-CLI также идет со скриптом tab completion (скрипт заполнения через <strong>Tab</strong>) для Bash и Z-Shell.</p>
+
+
+
+<p>Просто скачайте <strong><em>wp-completion.bash</em></strong> и извлеките его из <code>~/.bash_profile</code>:</p>
+
+
+
+<pre><code class="language-bash">source /FULL/PATH/TO/wp-completion.bash</code></pre>
+
+
+
+<p>Чтобы это изменение вступило в силу в текущей активной оболочке, запустите <code>source ~/.bash_profile</code>.</p>
+
+
+
+<h4><span id="Oh_My_Zsh">Oh My Zsh</span></h4>
+
+
+
+<p>Если вы используете фреймворк <strong>Oh My Zsh</strong>, вы можете включить <a href="https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/wp-cli" target="_blank" rel="noreferrer noopener nofollow">встроенный плагин wp-cli</a>, добавив его в строку <code>plugins=(wp-cli git […])</code> в вашем файле <code>~/.zshrc</code>.</p>
+
+
+
+<div class="attention-blue"><strong>Примечание</strong>: плагин Oh My Zsh поставляется с включенным скриптом <em>bash completion</em>, поэтому нет необходимости иметь оба плагина.</div>
+
+
+
+<p>Чтобы это изменение вступило в силу в вашей активной оболочке, запустите <code>source ~/.zshrc</code> после.</p>
+
+
+
+<h3><span id="Rabocij_process_DashAlfred">Рабочий процесс Dash/Alfred</span></h3>
+
+
+
+<p>Если вы используете <em>Dash</em> и <em>Alfred</em>, вы можете добавить пользовательский рабочий процесс Alfred для поиска информации о командах WP-CLI.</p>
+
+
+
+<h4><span id="Nastrojka">Настройка</span></h4>
+
+
+
+<p>Откройте <em>Dash</em> и скачайте набор документов WP-CLI:</p>
+
+
+
+<p><strong><em>Dash -&gt; Preferences -&gt; Downloads -&gt; User Contributions -&gt; Search for WP-CLI</em></strong></p>
+
+
+
+<p>Все еще находясь в <em>Dash</em>, активируйте интеграцию <em>Alfred</em>:</p>
+
+
+
+<p><strong><em>Dash -&gt; Preferences -&gt; Integration -&gt; Alfred</em></strong></p>
+
+
+
+<h4><span id="Ispolzovanie">Использование</span></h4>
+
+
+
+<p>Откройте <em>Alfred</em> и попробуйте поискать определенную команду. Например, команда ниже покажет обзор команды <em>plugin</em> и ее подкоманд:</p>
+
+
+
+<pre><code class="language-bash">wp-cli plugin</code></pre>
+
+
+
+<h2><span id="Alternativnye_metody_ustanovki">Альтернативные методы установки</span></h2>
+
+
+
+<h3><span id="Ustanovka_WP-CLI_cerez_Git">Установка WP-CLI через Git</span></h3>
+
+
+
+<p>Если вы собираетесь работать над самим WP-CLI, обратитесь к блоку <strong>Setting up</strong> (Настройка) в разделе <strong>Pull Requests</strong> этого справочника.</p>
+
+
+
+<h3><span id="Ustanovka_nightly_cerez_Phar">Установка nightly через Phar</span></h3>
+
+
+
+<p><strong><em>Nightly</em></strong> — это самая современная версия WP-CLI, собранная прямо из ветки master.</p>
+
+
+
+<p>Просто следуйте обычным <a href="https://make.wordpress.org/#install" target="_blank" rel="noreferrer noopener nofollow">инструкциям по установке</a>, за исключением изменения URL-адреса файла <strong><em>phar</em></strong>:</p>
+
+
+
+<pre><code class="language-bash">https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar</code></pre>
+
+
+
+<h3><span id="Ustanovka_cerez_Composer">Установка через Composer</span></h3>
+
+
+
+<p><strong>Как часть проекта</strong></p>
+
+
+
+<p>Добавьте следующую строку в файл <strong><em>composer.json</em></strong> вашего проекта:</p>
+
+
+
+<pre><code class="language-json">"require" : {
+    "wp-cli/wp-cli-bundle": "*"
+}</code></pre>
+
+
+
+<p>Чтобы добавить любые дополнительные пакеты, предложенные в пакете <code>wp-cli-bundl</code>e, такие как <code>psy/psysh</code>, выполните команду:</p>
+
+
+
+<pre><code class="language-bash">composer require --dev $(composer suggests --by-package | awk '/wp-cli\/wp-cli-bundle/' RS= | grep -o -P '(?&lt;=- ).*(?=:)')</code></pre>
+
+
+
+<p>Опционально (если вы работаете на сервере или, например, на виртуальной машине локально) вы можете автоматизировать настройку команды и сделать ее доступной в <strong><em>path</em></strong> пользователя. Допустим, Composer установлен в <code>/var/www/vendor</code> (вы можете получить конфигурационную переменную <code>composer vendor-dir</code> для вашей машины с помощью <code>composer config --list | grep "[vendor-dir]"</code>), мы можем добавить следующие скрипты/команды в файл composer.json. Вторая и третья строки устанавливают <a href="https://github.com/wp-cli/wp-cli/blob/master/utils/wp-completion.bash" target="_blank" rel="noreferrer noopener nofollow">bash completion</a>, чтобы нам не приходилось запоминать все команды:</p>
+
+
+
+<pre><code class="language-bash">"scripts" : {
+    "post-install-cmd" : [
+        "[[ -f /usr/bin/wp ]] || sudo ln -s /var/www/vendor/wp-cli/wp-cli/bin/wp /usr/bin/wp",
+        "source /var/www/vendor/wp-cli/wp-cli/utils/wp-completion.bash",
+    "[[ -f ~/.bash_profile ]] || touch ~/.bash_profile",
+        "source ~/.bash_profile"
+    ]
+}</code></pre>
+
+
+
+<p>Вышеприведенный скрипт предполагает, что ваша текущая оболочка — <code>bash</code>, что может быть не у всех пользователей. Пример для vagrant box (добавлен в <code>scripts</code> — <code>block</code>):</p>
+
+
+
+<pre><code class="language-bash">cat /etc/passwd | grep $(whoami)
+vagrant:x:1000:1000::/home/vagrant:/bin/bash</code></pre>
+
+
+
+<p>Если у вас есть доступный и установленный <code>bash</code> для вашей ОС, вы можете переключаться динамически:</p>
+
+
+
+<pre><code class="language-bash">"scripts" : {
+    "post-update-cmd" : [
+        "/bin/bash -c \"[[ -f /usr/local/bin/wp ]] || sudo ln -s /var/www/vendor/wp-cli/wp-cli/bin/wp /usr/bin/wp\"",
+        "/bin/bash -c \"source /var/www/vendor/wp-cli/wp-cli/utils/wp-completion.bash\"",
+    "/bin/bash -c \"[[ -f ~/.bash_profile ]] || touch ~/.bash_profile\"",
+        "/bin/bash -c \"source ~/.bash_profile\""
+    ]
+}</code></pre>
+
+
+
+<p><strong>Как проект</strong></p>
+
+
+
+<p>Требуется установить <code>php</code> и <code>composer</code> (или <code>php composer.phar</code>) в качестве консольных команд.</p>
+
+
+
+<pre><code class="language-bash">composer create-project wp-cli/wp-cli-bundle --prefer-source</code></pre>
+
+
+
+<p>Затем запустите <code>wp-cli-bundle/vendor/wp-cli/wp-cli/bin/wp</code> или добавьте папку <code>wp-cli-bundle/vendor/wp-cli/wp-cli/bin</code> в <code>PATH</code> для глобальной команды <code>wp</code> (в Windows вместо нее используйте <code>wp-cli/bin/wp.bat</code>).</p>
+
+
+
+<p>Для обновления вам потребуется:</p>
+
+
+
+<pre><code class="language-bash">cd wp-cli-bundle
+git pull origin main
+composer install</code></pre>
+
+
+
+<p><strong>Глобальные требования</strong></p>
+
+
+
+<p>Если вы предпочитаете, чтобы инструменты PHP были установлены глобально через Composer и у вас в <code>PATH</code> есть что-то вроде <code>~/.composer/vendor/bin</code> (или <code>C:\Users\you\AppData\Roaming\Composer\vendor\bin</code> в Windows) , вы можете просто запустить:</p>
+
+
+
+<pre><code class="language-bash">composer global require wp-cli/wp-cli-bundle</code></pre>
+
+
+
+<p>Чтобы обновить все глобально, запустите <code>composer global update</code>.</p>
+
+
+
+<p><strong>Установка определенной версии</strong></p>
+
+
+
+<p>Если вы хотите установить определенную версию WP-CLI, то добавьте номера версий после пакетов</p>
+
+
+
+<pre><code class="language-bash">composer create-project wp-cli/wp-cli-bundle:2.1.0 --no-dev</code></pre>
+
+
+
+<p>Версия должна быть в <a href="https://getcomposer.org/doc/04-schema.md#version" target="_blank" rel="noreferrer noopener nofollow">формате</a>, понятном Composer, и может быть найдена на сайте <a href="https://packagist.org/packages/wp-cli/wp-cli" target="_blank" rel="noreferrer noopener nofollow">packagist.org</a>.</p>
+
+
+
+<p><strong>Установка новейшей версии</strong></p>
+
+
+
+<p>Если вы хотите установить новейшую версию, используйте <code>dev-main</code>:</p>
+
+
+
+<pre><code class="language-bash">composer create-project wp-cli/wp-cli-bundle:dev-main --no-dev</code></pre>
+
+
+
+<h3><span id="Globalnaa_ustanovka_v_kacestve_proekta">Глобальная установка в качестве проекта</span></h3>
+
+
+
+<p>Вы можете указать собственный путь установки WP-CLI, например, так:</p>
+
+
+
+<pre><code class="language-bash">composer create-project wp-cli/wp-cli-bundle /usr/share/wp-cli --no-dev</code></pre>
+
+
+
+<p>Затем просто сделайте симлинк на двоичный файл:</p>
+
+
+
+<pre><code class="language-bash">sudo ln -s /usr/share/wp-cli-bundle/vendor/wp-cli/wp-cli/bin /usr/bin/wp</code></pre>
+
+
+
+<h3><span id="Ustanovka_cerez_Homebrew">Установка через Homebrew</span></h3>
+
+
+
+<pre><code class="language-bash">brew install wp-cli</code></pre>
+
+
+
+<h3><span id="Ustanovka_cerez_Docker">Установка через Docker</span></h3>
+
+
+
+<p>Сообщество Docker поддерживает образы <a href="https://hub.docker.com/_/wordpress/" target="_blank" rel="noreferrer noopener nofollow">WordPress и WP-CLI</a>.</p>
+
+
+
+<p>Чтобы включить образ WP-CLI в свой собственный проект:</p>
+
+
+
+<pre><code class="language-bash">image: wordpress:cli</code></pre>
+
+
+
+<h3><span id="Ustanovka_na_Windows">Установка на Windows</span></h3>
+
+
+
+<p>Установите с помощью <strong>composer</strong>, как описано выше, или используйте следующий метод.</p>
+
+
+
+<p>Убедитесь, что <strong>php</strong> установлен и находится в вашем <strong><em>path</em></strong>, чтобы вы могли выполнить его глобально.</p>
+
+
+
+<p>Скачайте <a href="https://raw.github.com/wp-cli/builds/gh-pages/phar/wp-cli.phar" target="_blank" rel="noreferrer noopener nofollow">wp-cli.phar</a> вручную и сохраните его в папку, например, <code>c:\wp-cli</code>.</p>
+
+
+
+<p>Создайте файл <strong>wp.bat</strong> в папке <code>c:\wp-cli</code> со следующим содержимым:</p>
+
+
+
+<pre><code class="language-bash">@ECHO OFF
+php "c:/wp-cli/wp-cli.phar" %*</code></pre>
+
+
+
+<p>Добавьте <code>c:\wp-cli</code> в свой путь:</p>
+
+
+
+<pre><code class="language-bash">setx path "%path%;c:\wp-cli"</code></pre>
+
+
+
+<p>Теперь вы можете использовать WP-CLI из любого места командной строки Windows.</p>
+
+
+
+<h3><span id="Ustanovka_cerez_paket_deb">Установка через пакет .deb</span></h3>
+
+
+
+<p>В Debian или Ubuntu просто скачайте и откройте один из пакетов <strong>.deb</strong>:</p>
+
+
+
+<pre><code class="language-bash">https://github.com/wp-cli/builds/tree/gh-pages/deb</code></pre>
+
+
+
+<h3><span id="Ustanovka_na_Fedora_30">Установка на Fedora 30+</span></h3>
+
+
+
+<pre><code class="language-bash">su -c 'dnf install wp-cli'</code></pre>
+
+
+
+<h3><span id="Ustanovka_na_CentOS">Установка на CentOS</span></h3>
+
+
+
+<pre><code class="language-bash">su -c 'yum install wp-cli'</code></pre>
+
+
+
+<h3><span id="Ispolzovanie_polzovatelskogo_dvoicnogo_fajla_PHP">Использование пользовательского двоичного файла PHP</span></h3>
+
+
+
+<p>В некоторых случаях, например, при установке MAMP, вы можете не использовать бинарный файл PHP по умолчанию.</p>
+
+
+
+<p>Чтобы использовать последнюю версию PHP, предоставляемую MAMP, вам нужно изменить переменную окружения <code>PATH</code>, добавив следующее в <code>~/.bash_profile</code> или <code>~/.zsh_profile</code>:</p>
+
+
+
+<pre><code class="language-bash">PHP_VERSION=$(ls /Applications/MAMP/bin/php/ | sort -n | tail -1)
+export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH</code></pre>
+
+
+
+<p>Чтобы использовать определенную версию PHP, предоставляемую MAMP, вам нужно определить путь к исполняемому файлу версии PHP и изменить переменную окружения <code>PATH</code>, добавив следующее в <code>~/.bash_profile</code> или <code>~/.zsh_profile</code>:</p>
+
+
+
+<pre><code class="language-bash">export PATH=/Applications/MAMP/bin/php/php5.5.26/bin:$PATH</code></pre>
+
+
+
+<p>Обратите внимание, что в этом случае переменная <code>PHP_VERSION</code> не присваивается, потому что мы не ищем динамически последнюю версию PHP.</p>
+
+
+
+<p>После того, как вы добавили всё и сохранили файл, перезагрузите его с помощью:</p>
+
+
+
+<pre><code class="language-bash">source ~/.bash_profile</code></pre>
+
+
+
+<p>После этого запустите <code>wp --info</code>, чтобы убедиться, что изменения были применены правильно.</p>
+
+
+
+<p>Для установки WP-CLI на базе Composer и Git можно альтернативно установить переменную окружения <code>WP_CLI_PHP</code>, если вы по каким-то причинам не хотите изменять <code>PATH</code>.</p>
+
+
+
+<h3><span id="Ustanovka_na_MediaTemple">Установка на MediaTemple</span></h3>
+
+
+
+<p>См. ссылку:</p>
+
+
+
+<pre><code class="language-bash">http://razorfrog.com/installing-wp-cli-on-mediatemple-grid-server/</code></pre>
+
+
+
+<h2><span id="Bystryj_start">Быстрый старт</span></h2>
+
+
+
+<p>Поздравляем! Вы впервые установили WP-CLI и готовы усовершенствовать использование WordPress. Эта страница содержит краткое введение в WP-CLI с некоторыми примерами использования.</p>
+
+
+
+<p>WP-CLI — это интерфейс командной строки для WordPress. </p>
+
+
+
+<p>Цель проекта — предложить полную альтернативу административной панели WordPress (админке); для любого действия, которое вы захотите выполнить в админке WordPress, должна существовать эквивалентная команда WP-CLI.</p>
+
+
+
+<p>Например, поскольку вы можете установить плагин из админки WordPress, вы также можете установить плагин с помощью WP-CLI:</p>
+
+
+
+<pre><code class="language-bash">$ wp plugin install akismet
+Installing Akismet (3.1.8)
+Downloading install package from https://downloads.wordpress.org/plugin/akismet.3.1.8.zip...
+Unpacking the package...
+Installing the plugin...
+Plugin installed successfully.</code></pre>
+
+
+
+<p>И, поскольку вы также можете активировать плагины из админки WordPress, вы можете активировать плагин с помощью WP-CLI:</p>
+
+
+
+<pre><code class="language-bash">$ wp plugin activate akismet
+Success: Plugin 'akismet' activated.</code></pre>
+
+
+
+<div class="attention-green">Одно из ключевых различий между использованием админки WordPress и WP-CLI: для выполнения любого действия требуется гораздо меньше кликов.</div>
+
+
+
+<p>По мере знакомства с командной строкой вы заметите, что выполнение той или иной задачи с помощью WP-CLI обычно происходит гораздо быстрее, чем выполнение той же задачи через админку WordPress. Инвестирование времени в изучение того, как лучше использовать WP-CLI, приносит дивиденды в долгосрочной перспективе.</p>
+
+
+
+<h3><span id="Obsie_terminy">Общие термины</span></h3>
+
+
+
+<p>На протяжении всего использования WP-CLI вы будете слышать, как некоторые термины используются снова и снова.</p>
+
+
+
+<p>Например, команда — это атомарная единица функциональности WP-CLI. <code>wp plugin install</code> является одной из таких команд, как и <code>wp plugin activate</code>. Команды представляют собой имя (например, <em>‘plugin install’</em>) и обратный вызов, и регистрируются с помощью <code>WP_CLI::add_command()</code>.</p>
+
+
+
+<p>Синопсис определяет, какие позиционные и ассоциативные аргументы принимает команда. Давайте рассмотрим синопсис для команды <code>wp plugin install</code>:</p>
+
+
+
+<pre><code class="language-bash">$ wp plugin install
+usage: wp plugin install &lt;plugin|zip|url&gt;... [--version=&lt;version&gt;] [--force] [--activate] [--activate-network]</code></pre>
+
+
+
+<p>В этом примере … является принятым позиционным аргументом. На самом деле, <code>wp plugin install</code> принимает один и тот же позиционный аргумент (slug (строка идентификатор), ZIP или URL плагина для установки) несколько раз. <code>[--version=&lt;version&gt;]</code> — один из принятых ассоциативных аргументов. Он используется для обозначения версии устанавливаемого плагина. </p>
+
+
+
+<div class="attention-yellow"><strong>Обратите внимание</strong> на квадратные скобки вокруг определения аргумента; квадратные скобки означают, что аргумент необязателен.</div>
+
+
+
+<p>WP-CLI также имеет ряд глобальных аргументов, которые работают со всеми командами. Например, включение <code>--debug</code> означает, что выполнение вашей команды будет отображать все ошибки PHP и добавит дополнительную информацию в процесс начальной загрузки WP-CLI.</p>
+
+
+
+<p>Готовы погрузиться? Вот несколько распространенных примеров использования WP-CLI:</p>
+
+
+
+<h3><span id="Skacivanie_i_ustanovka_WordPress_za_scitannye_sekundy">Скачивание и установка WordPress за считанные секунды</span></h3>
+
+
+
+<p>1. Скачайте последнюю версию WordPress с помощью <code>wp core download</code>:</p>
+
+
+
+<pre><code class="language-bash">$ wp core download --path=wpclidemo.dev
+Creating directory '/srv/www/wpclidemo.dev/'.
+Downloading WordPress 4.6.1 (en_US)...
+Using cached file '/home/vagrant/.wp-cli/cache/core/wordpress-4.6.1-en_US.tar.gz'...
+Success: WordPress downloaded.</code></pre>
+
+
+
+<p>2. Создайте новый файл <strong>wp-config.php</strong> с помощью <code>wp config create</code>:</p>
+
+
+
+<pre><code class="language-bash">$ cd wpclidemo.dev
+$ wp config create --dbname=wpclidemo --dbuser=root --prompt=dbpass
+1/10 [--dbpass=&lt;dbpass&gt;]:
+Success: Generated 'wp-config.php' file.</code></pre>
+
+
+
+<p>3. Создайте базу данных на основе <strong>wp-config.php</strong> с помощью <code>wp db create</code>:</p>
+
+
+
+<pre><code class="language-bash">$ wp db create
+Success: Database created.</code></pre>
+
+
+
+<p>4. Установите WordPress с помощью <code>wp core install</code>:</p>
+
+
+
+<pre><code class="language-bash">$ wp core install --url=wpclidemo.dev --title="WP-CLI" --admin_user=wpcli --admin_password=wpcli --admin_email=info@wp-cli.org
+Success: WordPress installed successfully.</code></pre>
+
+
+
+<p>Вот и все!</p>
+
+
+
+<h3><span id="Obnovlenie_plaginov_do_poslednej_versii">Обновление плагинов до последней версии</span></h3>
+
+
+
+<p>Используйте <code>wp plugin update --all</code>, чтобы обновить все плагины до последней версии.</p>
+
+
+
+<pre><code class="language-bash">$ wp plugin update --all
+Enabling Maintenance mode...
+Downloading update from https://downloads.wordpress.org/plugin/akismet.3.1.11.zip...
+Unpacking the update...
+Installing the latest version...
+Removing the old version of the plugin...
+Plugin updated successfully.
+Downloading update from https://downloads.wordpress.org/plugin/nginx-champuru.3.2.0.zip...
+Unpacking the update...
+Installing the latest version...
+Removing the old version of the plugin...
+Plugin updated successfully.
+Disabling Maintenance mode...
+Success: Updated 2/2 plugins.
++------------------------+-------------+-------------+---------+
+| name                   | old_version | new_version | status  |
++------------------------+-------------+-------------+---------+
+| akismet                | 3.1.3       | 3.1.11      | Updated |
+| nginx-cache-controller | 3.1.1       | 3.2.0       | Updated |
++------------------------+-------------+-------------+---------+</code></pre>
+
+
+
+<h3><span id="Dobavlenie_polzovatela_v_kacestve_super-admina">Добавление пользователя в качестве супер-админа</span></h3>
+
+
+
+<p>На многосайтовом сайте используйте <code>wp super-admin add</code> для предоставления полномочий супер администратора существующему пользователю.</p>
+
+
+
+<pre><code class="language-bash">$ wp super-admin add wpcli
+Success: Granted super-admin capabilities.</code></pre>
+
+
+
+<h3><span id="Regeneracia_miniatur">Регенерация миниатюр</span></h3>
+
+
+
+<p>Если вы добавили или изменили размер изображения, зарегистрированного с помощью <code>add_image_size()</code>, вы можете использовать <code>wp media regenerate</code>, чтобы ваша тема отображала правильный размер изображения.</p>
+
+
+
+<pre><code class="language-bash">wp media regenerate --yes
+Found 1 image to regenerate.
+1/1 Regenerated thumbnails for "charlie-gpa" (ID 4).
+Success: Finished regenerating the image.</code></pre>
+
+
+
+<p>Интересно, что дальше? Просмотрите <a href="https://developer.wordpress.org/cli/commands/" target="_blank" rel="noreferrer noopener nofollow">все команды WP-CLI</a>, чтобы открыть для себя новый мир.</p>
+
+
+
+<h2><span id="Kak_ispolzovat_WP-CLI">Как использовать WP-CLI</span></h2>
+
+
+
+<p>Используя WP-CLI, вы можете выполнять определенные задачи с помощью командной строки вместо доступа к панели администратора WordPress. В следующих разделах мы рассмотрим шаг за шагом некоторые из этих задач.</p>
+
+
+
+<ul>
+<li>Как установить WordPress</li>
+
+
+
+<li>Как перевести сайт в режим обслуживания</li>
+
+
+
+<li>Как запустить веб-сервер</li>
+
+
+
+<li>Как создать пользовательский плагин</li>
+</ul>
+
+
+
+<h2><span id="Sozdanie_polzovatelskogo_plagina">Создание пользовательского плагина</span></h2>
+
+
+
+<p>Если вы хотите создавать свои плагины, в WP-CLI есть мощная команда <code>scaffold</code>, которая позволяет нам генерировать начальный код. В этом руководстве мы рассмотрим, как сгенерировать начальный код для обычного плагина.</p>
+
+
+
+<h3><span id="Sag_1_Podgotovka_fajlov_plagina_cerez_scaffold">Шаг 1. Подготовка файлов плагина через scaffold</span></h3>
+
+
+
+<p>Приведенная ниже команда использует несколько опций, позволяющих нам указать <strong>slug</strong> плагина, его название, описание, имя автора и <strong>uri</strong>, а также <strong>uri</strong> плагина. Вы можете заменить значения, переданные в опциях ниже, чтобы настроить плагин в соответствии с вашими потребностями.</p>
+
+
+
+<pre><code class="language-bash">$ wp scaffold plugin wpcli-demo-plugin --plugin_name="WP-CLI Demo Plugin" --plugin_description="This is a wp-cli demo plugin" --plugin_author=wp-cli --plugin_author_uri="https://wp-cli.org" --plugin_uri="https://plugins.wp-cli.org/demo-plugin"Success: Created plugin files.
+    Success: Created test files.</code></pre>
+
+
+
+<p>Приведенная выше команда создает новую папку <code>wpcli-demo-plugin</code> в каталоге plugins со следующей структурой файлов.</p>
+
+
+
+<pre><code class="language-bash">| - bin/
+| - tests/
+| - .gitignore
+| - .editorconfig
+| - .phpcs.xml.dist
+| - .travis.yml
+| - Gruntfile.js
+| - package.json
+| - phpunit.xml.dist
+| - readme.txt
+| - wpcli-demo-plugin.php</code></pre>
+
+
+
+<p>Если вы не используете флаг <code>-skip-tests</code>, всегда генерируются следующие файлы:</p>
+
+
+
+<ul>
+<li><strong>phpunit.xml.dist</strong> — это файл конфигурации для PHPUnit.</li>
+
+
+
+<li><strong>.travis.yml</strong> — это файл конфигурации для Travis CI. Используйте <code>--ci=&lt;provider&gt;</code>, чтобы выбрать другую службу.</li>
+
+
+
+<li><strong>bin/install-wp-tests.sh</strong> настраивает набор тестов WordPress и тестовую базу данных.</li>
+
+
+
+<li><strong>tests/bootstrap.php</strong> — это файл, который делает текущий плагин активным при запуске набора тестов.</li>
+
+
+
+<li><strong>tests/test-sample.php</strong> — это файл-пример, содержащий тестовые примеры.</li>
+
+
+
+<li><strong>.phpcs.xml.dist</strong> — это коллекция правил PHP_CodeSniffer.</li>
+</ul>
+
+
+
+<h3><span id="Sag_2_Sozdanie_polzovatelskogo_tipa_zapisi">Шаг 2. Создание пользовательского типа записи</span></h3>
+
+
+
+<p>Теперь мы можем снова использовать команду <code>scaffold</code>, чтобы добавить пользовательский тип поста внутри нашего нового плагина с помощью команды <code>wp scaffold post-type</code>.</p>
+
+
+
+<pre><code class="language-bash">$ wp scaffold post-type books --label=Book --textdomain=wpcli-demo-plugin --dashicon=dashicons-book-alt --plugin=wpcli-demo-plugin
+Success: Created '/wpcli-demo-plugin/post-types/books.php'.</code></pre>
+
+
+
+<h3><span id="Sag_3_Napisanie_koda_vnutri_osnovnogo_fajla">Шаг 3. Написание кода внутри основного файла</span></h3>
+
+
+
+<p>Основной файл плагина <strong>wpcli-demo-plugin.php</strong> является отправной точкой, которую мы можем использовать для написания логики нашего плагина.</p>
+
+
+
+<p>В главном файле плагина давайте теперь обратимся к новому типу поста, который мы только что создали.</p>
+
+
+
+<p>Откройте в вашем любимом текстовом редакторе файл <strong>wpcli-demo-plugin.php</strong> и под строкой <code>Your code starts here</code> (рус. — Ваш код начинается здесь) добавьте следующее:</p>
+
+
+
+<pre><code class="language-bash">\\Your code starts here.
+require('post-types/books.php');</code></pre>
+
+
+
+<h3><span id="Sag_4_Aktivacia_plagina">Шаг 4. Активация плагина</span></h3>
+
+
+
+<p>Теперь вы можете использовать две команды <strong>wp-cli</strong> для проверки списка плагинов и активации только что созданного плагина: <code>wp plugin list</code>&nbsp;и&nbsp;<code>wp plugin activate</code>.</p>
+
+
+
+<p>Первая команда выводит список всех установленных плагинов, а вторая активирует заданный плагин.</p>
+
+
+
+<pre><code class="language-bash">    $ wp plugin list
+    +-------------------+----------+-----------+---------+
+    | name              | status   | update    | version |
+    +-------------------+----------+-----------+---------+
+    | akismet           | inactive | available | 4.1.5   |
+    | hello             | inactive | none      | 1.7.2   |
+    | wpcli-demo-plugin | inactive | none      | 0.1.0   |
+    +-------------------+----------+-----------+---------+</code></pre>
+
+
+
+<p>Из списка выше мы видим, что наш плагин <strong>wpcli-demo-plugin</strong> неактивен. Давайте включим его с помощью второй команды.</p>
+
+
+
+<pre><code class="language-bash">    $ wp plugin activate wpcli-demo-plugin
+    Plugin 'wpcli-demo-plugin' activated.
+    Success: Activated 1 of 1 plugins.</code></pre>
+
+
+
+<p>Теперь наш плагин активен.</p>
+
+
+
+<p>Мы можем зайти в панель администратора WordPress и начать использовать наш пользовательский тип поста <strong>books</strong> (рус. — книги).</p>
+
+
+
+<h2><span id="Ustanovka_WordPress">Установка WordPress</span></h2>
+
+
+
+<p>Скачивание и установка WordPress с помощью WP-CLI не представляет собой ничего сложного. Нам потребуется четыре шага.</p>
+
+
+
+<p>Во-первых, нам нужно скачать WordPress с помощью команды <code>wp core download</code>.</p>
+
+
+
+<h3><span id="Sag_1_Skacivaem_WordPress">Шаг 1. Скачиваем WordPress</span></h3>
+
+
+
+<p>Синтаксис команды для загрузки WordPress следующий: <code>wp core download [--path=&lt;path&gt;] [--locale=&lt;locale&gt;] [--version=&lt;version&gt;] [--skip-content] [--force]</code>.</p>
+
+
+
+<p>Запускаем команду:</p>
+
+
+
+<pre><code class="language-bash">    $ wp core download --path=wpdemo.test --locale=it_IT
+    Creating directory '/wpdemo.test/'.
+    Downloading WordPress 5.4.1 (it_IT)...
+    md5 hash verified: 3fa03967b47cdfbf263462d451cdcdb8
+    Success: WordPress downloaded.</code></pre>
+
+
+
+<p>Приведенная выше команда создает папку <strong><em>wpdemo.test/</em></strong> в текущем рабочем каталоге и загружает последнюю версию WordPress.</p>
+
+
+
+<p>Вы можете заменить параметр <code>--path=wpdemo.test</code> на ваше желаемое имя папки и <code>--locale=it_IT</code> на желаемую локаль. Вы можете опустить параметр <code>--locale</code>, и тогда по умолчанию будет загружаться WordPress на американском английском языке с использованием локали <code>en_US</code>.</p>
+
+
+
+<h3><span id="Sag_2_Sozdanie_generacia_fajla_konfiguracii">Шаг 2. Создание (генерация) файла конфигурации</span></h3>
+
+
+
+<p>На этом шаге мы создадим файл конфигурации и настроим учетные данные базы данных для нашей установки.</p>
+
+
+
+<p>Основной синтаксис команды следующий: <code>wp config create --dbname=&lt;dbname&gt; --dbuser=&lt;dbuser&gt; [--dbpass=&lt;dbpass&gt;]</code>.</p>
+
+
+
+<pre><code class="language-bash">    $ wp config create --dbname=your_db_name_here --dbuser=your_db_user_here --prompt=dbpass
+    1/10 [--dbpass=&lt;dbpass&gt;]: type_your_password
+    Success: Generated 'wp-config.php' file.</code></pre>
+
+
+
+<p>Приведенная выше команда создает файл <strong>wp-config.php</strong> и добавляет в него переданные вами учетные данные базы данных.</p>
+
+
+
+<p>Обязательно замените <code>your_db_name_here</code> на имя, которое вы хотите присвоить базе данных, замените <code>your_db_user_here</code> на пользователя базы данных и введите пароль базы данных, когда появится следующий вопрос: <code>1/10 [--dbpass=]:</code></p>
+
+
+
+<h3><span id="Sag_3_Sozdanie_bazy_dannyh">Шаг 3. Создание базы данных</span></h3>
+
+
+
+<p>В этом шаге мы создадим базу данных на основе информации, которую мы передали в файл <strong>wp-config.php</strong> в шаге 2.</p>
+
+
+
+<pre><code class="language-bash">    $ wp db create
+    Success: Database created.</code></pre>
+
+
+
+<p>Теперь мы готовы перейти к последнему шагу — установке WordPress.</p>
+
+
+
+<h3><span id="Sag_4_Ustanovka_WordPress">Шаг 4. Установка WordPress</span></h3>
+
+
+
+<p>Чтобы теперь установить WordPress, нам нужно выполнить последнюю команду. </p>
+
+
+
+<pre><code class="language-bash">    $ wp core install --url=wpclidemo.dev --title="WP-CLI" --admin_user=wpcli --admin_password=wpcli --admin_email=info@wp-cli.org
+    Success: WordPress installed successfully.</code></pre>
+
+
+
+<p>Не забудьте заменить значения, переданные каждому из следующих параметров, своими данными:</p>
+
+
+
+<ul>
+<li><code>--url=wpclidemo.dev</code> замените wpclidemo.dev на url вашего сайта,</li>
+
+
+
+<li><code>--title="WP-CLI"</code> замените WP-CLI на имя, которое вы хотите присвоить сайту,</li>
+
+
+
+<li><code>--admin_user=wpcli</code> замените wpcli на имя пользователя, которое вы хотите назначить администратору сайта,</li>
+
+
+
+<li><code>--admin_password=wpcli</code> замените wpcli на пароль, который вы хотите использовать для доступа к панели администратора WordPress.</li>
+</ul>
+
+
+
+<p>Поздравляем! Вы успешно установили WordPress с помощью WP-CLI.</p>
+
+
+
+<h2><span id="Perevod_sajta_v_rezim_tehobsluzivania">Перевод сайта в режим техобслуживания</span></h2>
+
+
+
+<p>WP-CLI предлагает команду для включения, отключения режима технического обслуживания и проверки, включен ли режим обслуживания или нет.</p>
+
+
+
+<h3><span id="Sag_1_Proverka_sostoania">Шаг 1. Проверка состояния</span></h3>
+
+
+
+<pre><code class="language-bash">$ wp maintenance-mode status
+Maintenance mode is not active.</code></pre>
+
+
+
+<h3><span id="Sag_2_Vklucenie_rezima_obsluzivania">Шаг 2. Включение режима обслуживания</span></h3>
+
+
+
+<pre><code class="language-bash">$ wp maintenance-mode activate
+Enabling Maintenance mode...
+Success: Activated Maintenance mode.</code></pre>
+
+
+
+<h3><span id="Sag_3_Otklucenie_rezima_obsluzivania">Шаг 3. Отключение режима обслуживания</span></h3>
+
+
+
+<pre><code class="language-bash">$ wp maintenance-mode deactivate
+Disabling Maintenance mode...
+Success: Deactivated Maintenance mode.</code></pre>
+
+
+
+<h2><span id="Zapusk_veb-servera">Запуск веб-сервера</span></h2>
+
+
+
+<p>Вы можете использовать команду <code>wp server</code> для запуска встроенного веб-сервера PHP для конкретной установки WordPress. </p>
+
+
+
+<p>По умолчанию веб-сервер будет запускаться, используя <strong>localhost</strong> и порт по умолчанию <strong>8080</strong>, но вы можете изменить их с помощью опций <code>--host</code> и <code>--port</code>.</p>
+
+
+
+<h3><span id="Sag_1_Zapusk_veb-servera_s_ispolzovaniem_nastroek_po_umolcaniu">Шаг 1. Запуск веб-сервера с использованием настроек по умолчанию</span></h3>
+
+
+
+<pre><code class="language-bash">$ wp server
+PHP 7.2.24-0ubuntu0.18.04.4 Development Server started at Thu Jun  4 17:40:13 2020
+Listening on http://localhost:8080
+Document root is ../wpdemo.test
+Press Ctrl-C to quit.</code></pre>
+
+
+
+<p>Приведенная выше команда запускает сервер, используя настройки по умолчанию. Теперь мы можем открыть браузер и перейти по ссылке <em><strong>http://localhost:8080</strong></em> для доступа к установке WordPress.</p>
+
+
+
+<h3><span id="Sag_2_Zapusk_veb-servera_s_ispolzovaniem_razlicnyh_nastroek">Шаг 2. Запуск веб-сервера с использованием различных настроек</span></h3>
+
+
+
+<p>Если вы хотите указать другой номер порта или хост, вы можете передать их в следующих флагах: <code>--port</code> и <code>--host</code>.</p>
+
+
+
+<pre><code class="language-bash">$ wp server --port=9090 --host=192.168.0.4</code></pre>
+
+
+
+<p>Приведенная выше команда запустит веб-сервер и будет слушать запросы на <strong><em>http://192.168.0.4:9090</em></strong>. </p>
+
+
+
+<p>Вы можете открыть браузер и посетить страницу для доступа к вашей установке WordPress.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 30 мая 2022 в 05:00</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

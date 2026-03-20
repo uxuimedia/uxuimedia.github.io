@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Парсинг сайтов с помощью PHP &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Парсинг сайтов с помощью PHP</h1>
+
+<p>В этой статье мы подробно остановимся на парсинге веб-ресурсов с помощью языка программирования PHP.</p>
+
+<h2>Что такое парсинг</h2>
+
+<p>В этом руководстве мы разбираемся с таким понятием как Парсинг. Простыми словами — это совокупность методов поиска информации с последующим преобразованием ее в нужный формат или иной тип данных. Т.е., по сути, это автоматический сбор данных, их распределение и структурирование.</p>
+
+<p>Происходит от английского слова <strong><em>parse</em></strong> — разобрать, разбор.</p>
+
+<p>В большинстве случаев методы парсинга применяются в веб-разработке для получения HTML страниц, поиска данных в этих страницах и занесение этих данных в нужном формате в нужное нам место.</p>
+
+<p>Например, мы хотим на своем сайте отображать и поддерживать актуальные цены на определенный товар из нескольких интернет-магазинов. Методами парсинга мы находим товар в этих магазинах, находим цену на товар и актуализируем данные на своем сайте. Это всего лишь один из простых примеров.</p>
+
+<h2>Что такое JSON?</h2>
+
+<p>JSON означает JavaScript Object Notation (нотация объектов JavaScript). JSON — это стандартный облегченный формат обмена данными, который быстро и легко анализировать и генерировать.</p>
+
+<p>JSON, как и XML, является текстовым форматом, который легко пишется и понятен как людям, так и компьютерам, но в отличие от XML, структуры данных JSON занимают меньше полосы пропускания, чем их XML-версии. JSON основан на двух основных структурах:</p>
+
+<ul>
+<li>Объект (<strong>Object</strong>): Определяется как набор пар ключ/значение (т.е. <code>key:value</code>). Каждый объект начинается с левой фигурной скобки <code>{</code> и заканчивается правой фигурной скобкой <code>}</code>. Несколько пар ключ/значение разделены запятой <code>,</code>.</li>
+<li>Массив (<strong>Array</strong>): Определяется как упорядоченный список значений. Массив начинается с левой скобки <code>[</code> и заканчивается правой скобкой <code>]</code>. Значения разделены запятой <code>,</code>.</li>
+</ul>
+
+<p>В JSON ключами всегда являются строки, а значением может быть <strong>строка</strong>, <strong>число</strong>, <strong>true</strong> или <strong>false</strong>, <strong>null</strong> или даже объект или массив. Строки должны быть заключены в двойные кавычки <code>"</code> и могут содержать экранирующие символы, такие как <code>\n</code>, <code>\t</code> и <code>\</code>. JSON <strong>объект</strong> может выглядеть так:</p>
+
+<pre><code class="language-json">{
+    "book": {
+        "name": "Harry Potter and the Goblet of Fire",
+        "author": "J. K. Rowling",
+        "year": 2000,
+        "genre": "Fantasy Fiction",
+        "bestseller": true
+    }
+}</code></pre>
+
+<p>В то время как пример <strong>массива</strong> JSON будет выглядеть примерно так:</p>
+
+<pre><code class="language-json">{
+    "fruits": [
+        "Apple",
+        "Banana",
+        "Strawberry",
+        "Mango"
+    ]
+}</code></pre>
+
+<div class="attention-green">Формат обмена данными — это текстовый формат, который используется для обмена данными между различными платформами и операционными системами. JSON является наиболее популярным и легковесным форматом обмена данными для веб-приложений.</div>
+
+<p>Структуры данных JSON очень похожи на массивы PHP. PHP имеет встроенные функции для кодирования и декодирования данных JSON. Этими функциями являются <code>json_encode()</code> и <code>json_decode()</code> соответственно. Обе функции работают только с строковыми данными в кодировке UTF-8.</p>
+
+<h2>Проверка ресурса HTTP</h2>
+
+<p>При определенных обстоятельствах разработчику может потребоваться проверить существование HTTP-ресурса, прежде чем пытаться его использовать. </p>
+
+<p>Это может быть изображение, которое, как он ожидает, существует на удаленном сервере, или ссылка на сайт, которую пользователь скопировал и вставил в поле формы.</p>
+
+<p>К сожалению, многие разработчики довольно расточительно относятся к таким вещам. Вместо того, чтобы чисто сосредоточить свои усилия на проверке кода статуса ресурса, они будут пытаться его скачать, даже если на самом деле ресурс им не нужен.</p>
+
+<p>Чаще всего они будут пытаться загрузить ресурс, используя что-то вроде <code>file_get_contents</code>:</p>
+
+<pre><code class="language-php">&lt;?php
+
+$resourceUrl = 'http://example.com/img/large-image-34.jpg';
+
+$resourceExists = false;
+if(file_get_contents($resourceUrl) !== false){
+    $resourceExists = true;
+}</code>
+</pre>
+
+<p>Проблема заключается в том, что вы загружаете изображение с единственной целью — проверить, существует ли оно.</p>
+
+<h2>Использование cURL</h2>
+
+<p>Одна из замечательных особенностей <a href="https://www.php.net/curl" target="_blank" rel="noreferrer noopener nofollow">cURL</a> заключается в том, что она имеет опцию CURLOPT_NOBODY, которая позволяет вам отправлять <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html" target="_blank" rel="noreferrer noopener nofollow">HEAD запрос</a>:</p>
+
+<p>Метод <code>HEAD</code> идентичен <code>GET</code> за исключением того, что сервер НЕ ДОЛЖЕН возвращать тело сообщения в ответе. Метаинформация, содержащаяся в заголовках HTTP в ответ на запрос HEAD ДОЛЖНА быть идентична информации, отправленной в ответ на запрос GET. </p>
+
+<p>Этот метод может быть использован для получения метаинформации о сущности, подразумеваемой запросом, без передачи самого сущности-тела. Данный метод часто используется для проверки гипертекстовых ссылок на валидность, доступность и недавние изменения.</p>
+
+<p>В принципе, HEAD запрос позволит вам проверить, существует ли ресурс, не скачивая его. В PHP этот тип запроса может быть выполнен подобным образом:</p>
+
+<pre><code class="language-php">&lt;?php
+
+$resourceUrl = 'http://example.com/vid/large-video.mp4';
+$resourceExists = false;
+
+$ch = curl_init($resourceUrl);
+curl_setopt($ch, CURLOPT_NOBODY, true);
+curl_exec($ch);
+$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+// 200 = OK
+if($statusCode == '200'){
+    $resourceExists = true;
+}</code>
+</pre>
+
+<p>Как вы, наверное, можете себе представить, скачивать большое видео на PHP только для того, чтобы подтвердить его существование, было бы безумием!</p>
+
+<h2>Кодирование JSON данных</h2>
+
+<p>В PHP функция <code>json_encode()</code> используется для кодирования значения в формат JSON.</p>
+
+<p>Кодируемое значение может быть любым типом данных PHP, кроме ресурса, например, базы данных или дескриптора файла. В приведенном ниже примере показано, как кодировать ассоциативный массив PHP в объект JSON:</p>
+
+<pre><code class="language-php">&lt;?php
+// ассоциативный массив
+$marks = array("Peter"=&gt;65, "Harry"=&gt;80, "John"=&gt;78, "Clark"=&gt;90);
+ 
+echo json_encode($marks);
+?&gt;</code>
+</pre>
+
+<p>Вывод вышеприведенного примера будет выглядеть следующим образом:</p>
+
+<pre><code class="language-php">{"Peter":65,"Harry":80,"John":78,"Clark":90}</code></pre>
+
+<p>Точно так же вы можете закодировать индексированный массив PHP в массив JSON, например так:</p>
+
+<pre><code class="language-php">&lt;?php
+// индексированный массив
+$colors = array("Red", "Green", "Blue", "Orange", "Yellow");
+ 
+echo json_encode($colors);
+?&gt;</code>
+</pre>
+
+<p>Вывод вышеприведенного примера будет выглядеть следующим образом:</p>
+
+<pre><code class="language-php">["Red","Green","Blue","Orange","Yellow"]</code></pre>
+
+<p>Вы также можете заставить функцию <code>json_encode()</code> возвращать индексированный массив PHP как объект JSON, используя опцию <code>JSON_FORCE_OBJECT</code>, как показано в примере ниже:</p>
+
+<pre><code class="language-php">&lt;?php
+// индексированный массив
+$colors = array("Red", "Green", "Blue", "Orange");
+ 
+echo json_encode($colors, JSON_FORCE_OBJECT);
+?&gt;</code>
+</pre>
+
+<p>Вывод вышеприведенного примера будет выглядеть следующим образом:</p>
+
+<pre><code class="language-php">{"0":"Red","1":"Green","2":"Blue","3":"Orange"}</code></pre>
+
+<p>Как вы можете видеть в приведенных выше примерах, неассоциативный массив может быть закодирован как массив или объект. Однако ассоциативный массив всегда кодируется как объект.</p>
+
+<h2>Декодирование JSON данных</h2>
+
+<p>Декодирование данных JSON так же просто, как и их кодирование. Вы можете использовать функцию PHP <code>json_decode()</code> для преобразования строки в кодировке JSON в соответствующий тип данных PHP. В следующем примере показано, как декодировать или преобразовать объект JSON в объект PHP.</p>
+
+<pre><code class="language-php">&lt;?php
+// сохранение данных JSON в переменной PHP
+$json = '{"Peter":65,"Harry":80,"John":78,"Clark":90}';
+ 
+var_dump(json_decode($json));
+?&gt;</code>
+</pre>
+
+<p>Вывод вышеприведенного примера будет выглядеть примерно так:</p>
+
+<pre><code class="language-php">object(stdClass)#1 (4) { ["Peter"]=&gt; int(65) ["Harry"]=&gt; int(80) ["John"]=&gt; int(78) ["Clark"]=&gt; int(90) }</code></pre>
+
+<p>По умолчанию функция <code>json_decode()</code> возвращает объект. Однако можно дополнительно указать второй параметр <code>$assoc</code>, который принимает булевое значение, при котором при установке в качестве <code>true</code> JSON объекты декодируются в ассоциативные массивы. По умолчанию оно равно <code>false</code>. Приведем пример:</p>
+
+<pre><code class="language-php">&lt;?php
+// сохранение данных JSON в переменной PHP
+$json = '{"Peter":65,"Harry":80,"John":78,"Clark":90}';
+ 
+var_dump(json_decode($json, true));
+?&gt;</code></pre>
+
+<p>Вывод вышеприведенного примера будет выглядеть примерно так:</p>
+
+<pre><code class="language-php">array(4) { ["Peter"]=&gt; int(65) ["Harry"]=&gt; int(80) ["John"]=&gt; int(78) ["Clark"]=&gt; int(90) }</code></pre>
+
+<p>Теперь рассмотрим пример, который покажет, как декодировать JSON-данные и получить доступ к отдельным элементам JSON-объекта или массива в PHP.</p>
+
+<pre><code class="language-php">&lt;?php
+// присвоение строки в кодировке JSON переменной PHP
+$json = '{"Peter":65,"Harry":80,"John":78,"Clark":90}';
+ 
+// декодировать JSON данные в ассоциативный массив PHP
+$arr = json_decode($json, true);
+// доступ к значениям из ассоциативного массива
+echo $arr["Peter"];  // вывод: 65
+echo $arr["Harry"];  // вывод: 80
+echo $arr["John"];   // вывод: 78
+echo $arr["Clark"];  // вывод: 90
+ 
+// декодировать JSON данные в объект PHP
+$obj = json_decode($json);
+// доступ к значениям из возвращенного объекта
+echo $obj-&gt;Peter;   // вывод: 65
+echo $obj-&gt;Harry;   // вывод: 80
+echo $obj-&gt;John;    // вывод: 78
+echo $obj-&gt;Clark;   // вывод: 90
+?&gt;</code>
+</pre>
+
+<p>Также можно перебирать декодированные данные, используя цикл <code>foreach()</code>:</p>
+
+<pre><code class="language-php">&lt;?php
+// присвоение строки в кодировке JSON переменной PHP
+$json = '{"Peter":65,"Harry":80,"John":78,"Clark":90}';
+ 
+// декодировать JSON данные в ассоциативный массив PHP
+$arr = json_decode($json, true);
+ 
+// цикл по ассоциативному массиву
+foreach($arr as $key=&gt;$value){
+    echo $key . "=&gt;" . $value . "&lt;br&gt;";
+}
+echo "&lt;hr&gt;";
+// декодировать JSON данные в объект PHP
+$obj = json_decode($json);
+ 
+// перебираем объект в цикле
+foreach($obj as $key=&gt;$value){
+    echo $key . "=&gt;" . $value . "&lt;br&gt;";
+}
+?&gt;</code>
+</pre>
+
+<h2>Извлечение вложенных данных</h2>
+
+<p>Объекты и массивы JSON также могут быть вложенными.</p>
+
+<p>Объект JSON может произвольно содержать другие объекты JSON, массивы, вложенные массивы, массивы объектов JSON и т.д. </p>
+
+<p>В следующем примере показано, как декодировать вложенный объект JSON и вывести все его значения в PHP. Весь блок кода содержит комментарии.</p>
+
+<pre><code class="language-php">&lt;?php
+// Определение рекурсивной функции для извлечения вложенных значений
+function printValues($arr) {
+    global $count;
+    global $values;
+    
+    // проверяем массив ли на входе
+    if(!is_array($arr)){
+        die("ERROR: Input is not an array");
+    }
+    
+    /*
+    Проходим по массиву, если значение само является массивом, рекурсивно вызываем функцию, иначе добавляем найденное значение в массив выходных элементов и увеличиваем счетчик на 1 для каждого найденного значения
+    */
+    foreach($arr as $key=&gt;$value){
+        if(is_array($value)){
+            printValues($value);
+        } else{
+            $values[] = $value;
+            $count++;
+        }
+    }
+    
+    // возвращаем суммарное количество и значения, найденные в массиве
+    return array('total' =&gt; $count, 'values' =&gt; $values);
+}
+ 
+// присваиваем переменной PHP строку в кодировке JSON
+$json = '{
+    "book": {
+        "name": "Harry Potter and the Goblet of Fire",
+        "author": "J. K. Rowling",
+        "year": 2000,
+        "characters": ["Harry Potter", "Hermione Granger", "Ron Weasley"],
+        "genre": "Fantasy Fiction",
+        "price": {
+            "paperback": "$10.40", "hardcover": "$20.32", "kindle": "4.11"
+        }
+    }
+}';
+// декодирование данных JSON в формате ассоциативного массива PHP
+$arr = json_decode($json, true);
+ 
+// Вызываем функцию и выводим все значения
+$result = printValues($arr);
+echo "&lt;h3&gt;" . $result["total"] . " value(s) found: &lt;/h3&gt;";
+echo implode("&lt;br&gt;", $result["values"]);
+ 
+echo "&lt;hr&gt;";
+ 
+// Выводим одиночные значения
+echo $arr["book"]["author"] . "&lt;br&gt;";  // Output: J. K. Rowling
+echo $arr["book"]["characters"][0] . "&lt;br&gt;";  // Output: Harry Potter
+echo $arr["book"]["price"]["hardcover"];  // Output: $20.32
+?&gt;</code>
+</pre>
+
+<h2>Передача массивов в JSON и JS</h2>
+
+<p>Функция PHP <code>json_encode</code> преобразует переданные ей данные в строку JSON, которая затем может быть выведена в переменную JavaScript. В этом топике мы поработаем с одноуровневыми массивами, а в следующем материале мы разберем работы <code>json_encode</code> с многомерными массивами и скалярными значениями.</p>
+
+<p>Функция PHP <code>json_encode</code> возвращает строку, содержащую JSON-эквивалент переданного ей значения, как показано на примере массива с числовым индексом:</p>
+
+<pre><code class="language-php">&lt;?php
+$ar = array('apple', 'orange', 'banana', 'strawberry');
+echo json_encode($ar); // ["apple","orange","banana","strawberry"]
+?&gt;</code></pre>
+
+<p>Вы можете передать строку JSON, выведенную <code>json_encode</code>, в переменную JavaScript следующим образом:</p>
+
+<pre><code class="language-php">&lt;script type="text/javascript"&gt;
+// pass PHP variable declared above to JavaScript variable
+var ar = &lt;?php echo json_encode($ar) ?&gt;;
+&lt;/script&gt;</code>
+</pre>
+
+<p>Массив PHP с числовым индексом преобразуется в литерал массива в строке JSON. Опция <code>JSON_FORCE_OBJECT</code> может быть использована, если вы хотите, чтобы массив был выведен в виде объекта:</p>
+
+<pre><code class="language-php">&lt;?php
+echo json_encode($ar, JSON_FORCE_OBJECT);
+// {"0":"apple","1":"orange","2":"banana","3":"strawberry"} 
+?&gt;</code></pre>
+
+<p>Обратите внимание, что строка JSON не содержит пробелов, что может затруднить ее чтение. Для форматирования вывода JSON можно использовать опцию <code>JSON_PRETTY_PRINT</code>. Это продемонстрировано в примере с ассоциативным массивом ниже.</p>
+
+<p>Функция <code>json_encode</code> также предоставляет другие возможности, которые перечислены и продемонстрированы в <a href="https://www.php.net/manual/ru/function.json-encode.php" target="_blank" rel="noreferrer noopener">официальном руководстве PHP</a>.</p>
+
+<p>Пример ниже демонстрирует передачу массива PHP с числовым индексом, состоящего из строковых, числовых, булевых и нулевых значений, в <code>json_encode</code>. Мы передаем вывод <code>json_encode</code> в переменную JavaScript, и результатом является литерал массива:</p>
+
+<pre><code class="language-php">&lt;?php
+$ar = array('apple', 'orange', 1, false, null, true, 3 + 5);
+?&gt;
+&lt;script type="text/javascript"&gt;
+var ar = &lt;?php echo json_encode($ar) ?&gt;;
+// ["apple","orange",1,false,null,true,8];
+// access 4th element in array
+alert( ar[3] ); // false
+&lt;/script&gt;</code></pre>
+
+<p>Для демонстрации доступа к элементам массива мы используем <code>alert</code>. Обратите внимание, что типы данных были сохранены, тогда как при старом подходе они преобразовывались в строки.</p>
+
+<p>В другом примере показан вывод ассоциативного массива PHP в JavaScript с помощью <code>json_encode</code>. Обратите внимание, что ассоциативный массив PHP становится объектным литералом в JavaScript:</p>
+
+<pre><code class="language-php">&lt;?php
+$book = array(
+    "title" =&gt; "JavaScript: The Definitive Guide",
+    "author" =&gt; "David Flanagan",
+    "edition" =&gt; 6
+);
+?&gt;
+&lt;script type="text/javascript"&gt;
+var book = &lt;?php echo json_encode($book, JSON_PRETTY_PRINT) ?&gt;;
+/* var book = {
+    "title": "JavaScript: The Definitive Guide",
+    "author": "David Flanagan",
+    "edition": 6
+}; */
+alert(book.title);
+&lt;/script&gt;</code></pre>
+
+<p>Мы используем опцию <code>JSON_PRETTY_PRINT</code> в качестве второго аргумента <code>json_encode</code> для отображения вывода в удобочитаемом формате.</p>
+
+<p>Для доступа к свойствам объекта можно использовать точечный синтаксис, как показано в приведенном выше <code>alert</code>-е, или синтаксис квадратных скобок: <code>book['title']</code>.</p>
+
+<p><strong>Что насчет JSON.parse?</strong></p>
+
+<p>Возможно, вы заметили, что <code>JSON.parse</code> от JavaScript не был применен к результату в этом примере. Хотя не всегда необходимо прогонять результаты <code>json_encode</code> через парсер на стороне JavaScript, но возможно вы захотите это сделать. Мы больше раскроем тему о том, когда и как использовать JSON.parse в следующих топиках.</p>
+
+<h2>Преобразование в массивы</h2>
+
+<p>Преобразование объектов в массивы с помощью JSON Decode в PHP.</p>
+
+<p>Преобразование объекта в массив в PHP упрощает доступ к данным из набора объектов. Большинство API выдают объект в качестве ответа.</p>
+
+<p>Некоторые API могут возвращать сложную структуру объектов. Например, сочетание объектов и массивов в пакете с ответом. В этом случае процесс преобразования объекта в массив упростит разбор данных.</p>
+
+<p>Этот быстрый пример выполняет преобразование объекта в массив в PHP за один шаг. Он создает набор объектов и устанавливает их свойства.</p>
+
+<p>Для преобразования используется функция <code>JSON encode() decode()</code>. Функция <code>json_decode()</code> передает булево значение true для получения выходного массива.</p>
+
+<pre><code class="language-php">&lt;?php
+$object = new StdClass();
+$object-&gt;id = 5678;
+$object-&gt;name = "William";
+$object-&gt;department = "CSE";
+$object-&gt;designation = "Engineer";
+
+$result = json_encode($object);
+// converts object $result to array
+$output = json_decode($result, true);
+
+print "&lt;pre&gt;";
+print_r($result);
+?&gt;</code></pre>
+
+<p>После «декодирования» выходной массив выводится в браузер. На скриншоте ниже показан вывод этой программы.</p>
+
+<h3>Справка PHP</h3>
+
+<p>Из <a href="https://www.php.net/manual/ru/function.json-decode.php" target="_blank" rel="noreferrer noopener">официальной документации</a>:</p>
+
+<p>json_decode&nbsp;—&nbsp;Декодирует строку JSON</p>
+
+<pre><code class="language-php">json_decode(
+    string $json,
+    ?bool $associative = null,
+    int $depth = 512,
+    int $flags = 0
+): mixed</code></pre>
+
+<p>Принимает закодированную в JSON строку и преобразует её в переменную PHP. </p>
+
+<div class="attention-blue"><strong>Примечание</strong>. Подробнее про параметры функции см. в <a href="https://www.php.net/manual/ru/function.json-decode.php" target="_blank" rel="noreferrer noopener">документации</a> PHP.</div>
+
+<h3>Различные способы преобразования объекта PHP в массив</h3>
+
+<p>При преобразовании объекта в массив пары свойств объекта ‘имя:значение’ образуют ассоциативный массив.</p>
+
+<p>Если объект содержит неприсвоенные свойства, то будет возвращен массив с числовыми ключами.</p>
+
+<p>Существует два способа преобразования объекта в массив в PHP.</p>
+
+<ol>
+<li>Приведение типа объекта к массиву.</li>
+<li>Кодирование и декодирование свойств объекта в массив элементов.</li>
+</ol>
+
+<p>Приведение типов является простым методом преобразования типа входных данных. Второй метод применяет <code>json_decode()</code> к данному объекту. В качестве второго параметра он передает булево <code>true</code> для получения выходных данных в формате массива.</p>
+
+<p>В этой статье приведены примеры использования обоих вышеуказанных методов для выполнения преобразования объекта в массив.</p>
+
+<h3>Преобразование объекта PHP в массив с помощью приведения типов</h3>
+
+<p>Это альтернативный метод преобразования типа объекта в массив. В приведенном ниже примере используется тот же входной объект.</p>
+
+<p>Он заменяет преобразование <em><strong>JSON encode decode</strong></em> через оператор приведения типов. На выходе получится то же самое, что мы видели выше.</p>
+
+<p>Синтаксис приведения типов в PHP показан ниже. Он добавляет целевой тип данных, заключенный в круглые скобки.</p>
+
+<pre><code class="language-php">$output = (target-data-type) $input</code></pre>
+
+<p>В итоге:</p>
+
+<pre><code class="language-php">&lt;?php
+$object = new StdClass();
+$object-&gt;id = 5678;
+$object-&gt;name = "William";
+$object-&gt;department = "CSE";
+$object-&gt;destination = "Engineer";
+
+print"&lt;pre&gt;";
+print_r( (array) $object );
+?&gt;</code>
+</pre>
+
+<h3>Рекурсивное преобразование объекта в массив</h3>
+
+<p>В этом примере используется входной объект с глубиной = 3. Он добавляет дополнительные свойства на вложенном уровне на разной глубине. Набор иерархических объектов устанавливается в качестве входных данных для процесса преобразования.</p>
+
+<p>Эта программа определяет пользовательскую функцию для преобразования объекта PHP в массив. Она выполняет преобразование рекурсивно на каждом уровне входного объекта.</p>
+
+<pre><code class="language-php">&lt;?php
+$object = new StdClass();
+$object-&gt;id = 5678;
+$object-&gt;name = "William";
+
+$object-&gt;address = new stdClass();
+$object-&gt;address-&gt;email = "William@gmail.com";
+
+$object-&gt;address-&gt;billing = new stdClass();
+$object-&gt;address-&gt;billing-&gt;zipcode = 9950;
+
+$object-&gt;address-&gt;shipping = new stdClass();
+$object-&gt;address-&gt;shipping-&gt;zipcode = 1234;
+
+$object-&gt;address-&gt;state = "South Carolina";
+$object-&gt;address-&gt;city = "Columbia";
+$object-&gt;address-&gt;country = "US";
+
+function objectToArray($object)
+{
+    foreach ($object as $k =&gt; $obj) {
+        if (is_object($obj)) {
+            $object-&gt;$k = objectToArray($obj);
+        } else {
+            $object-&gt;$k = $obj;
+        }
+    }
+    return (array) $object;
+}
+
+$result = objectToArray($object);
+
+print "&lt;pre&gt;";
+print_r($result);
+?&gt;</code>
+</pre>
+
+<p>Это вывод рекурсивного объекта PHP для программы преобразования массива, приведенной выше.</p>
+
+<h3>Преобразование объекта класса PHP в массив</h3>
+
+<p>В этом примере создается пакет объектов класса PHP. Конструктор класса устанавливает свойства объекта во время создания экземпляра.</p>
+
+<p>Затем экземпляр класса <code>Student</code> кодируется для подготовки данных типа объекта. Функция <code>json_encode()</code> подготавливает объект JSON для предоставления его для декодирования, <code>json_decode()</code> преобразует объект PHP в массив.</p>
+
+<pre><code class="language-php">&lt;?php
+class student
+{
+    public function __construct($id, $name, $state, $city, $country)
+    {
+        $this-&gt;id = $id;
+        $this-&gt;name = $name;
+        $this-&gt;state = $state;
+        $this-&gt;city = $city;
+        $this-&gt;country = $country;
+    }
+}
+
+$student = new student("5678", "William", "South Carolina", "Columbia", "US");
+$result = json_encode($student);
+$output = json_decode($result, true);
+print "&lt;pre&gt;";
+print_r($output);
+?&gt;</code></pre>
+
+<h3>Проверка is_object() перед преобразованием</h3>
+
+<p>Хорошей практикой программирования является проверка доступности данных перед обработкой. В этом примере применяется проверка <code>is_object</code> перед преобразованием объекта PHP в массив.</p>
+
+<p>Этот метод проверяет, является ли входной файл объектом. PHP включает эксклюзивные функции для проверки наличия данных и их типов. Например, <code>isset()</code>, <code>empty()</code>, <code>is_array()</code> и т.д.</p>
+
+<pre><code class="language-php">&lt;?php
+
+class student
+{
+
+    public function __construct($id, $name, $state, $city, $country)
+    {
+        $this-&gt;id = $id;
+        $this-&gt;name = $name;
+        $this-&gt;state = $state;
+        $this-&gt;city = $city;
+        $this-&gt;country = $country;
+    }
+}
+$student= new student("5678", "William", "South Carolina", "Columbia", "US");
+
+print "&lt;pre&gt;";
+if (is_object($student)) {
+    echo "Input Object:" . '&lt;br&gt;';
+    $result = json_encode($student);
+    print_r($result);
+    $studentArray = json_decode($result, true);
+}
+
+if(!empty($studentArray) &amp;&amp; is_array($studentArray)) {
+    echo "&lt;br&gt;&lt;br&gt;Output Array:" . '&lt;br&gt;';
+    print_r($studentArray);
+}
+?&gt;</code>
+</pre>
+
+<h3>Преобразование приватного, защищенного объекта класса</h3>
+
+<p>Приведенная ниже программа определяет класс с приватными и защищенными свойствами. PHP-код инстанцирует класс и создает связку объектов.</p>
+
+<div class="attention-blue"><strong>Справка</strong>. Инстанцирование&nbsp;(англ. instantiation) — создание экземпляра класса. В отличие от слова «создание», применяется не к объекту, а к классу.</div>
+
+<p>Для преобразования объекта в массив она использует методы приведения типа и декодирования.</p>
+
+<p>При использовании метода приведения типа индекс выходного массива частного свойства содержит префикс имени класса. После преобразования индекс массива имеет префикс <code>*</code> для <code>protected</code> свойств.</p>
+
+<pre><code class="language-php">&lt;?php
+class Student
+{
+    public $name;
+    private $id;
+    protected $email;
+    
+    public function __construct()
+    {
+        $this-&gt;name ="William";
+        $this-&gt;id = 5678;
+        $this-&gt;email = "william@gmail.com";
+    }
+}
+
+print "&lt;pre&gt;";
+$student = new Student;
+$result = json_encode($student);
+$output1 = json_decode($result, true);
+print "&lt;br/&gt;Using JSON decode:&lt;br/&gt;";
+print_r($output1);
+
+$output2 = new Student;
+print "&lt;br/&gt;&lt;br/&gt;Using Type casting:&lt;br/&gt;";
+print_r( (array) $output2 );
+?&gt;</code>
+</pre>
+
+<p>Этот скриншот вывода показывает разницу в индексе массива. Они создаются из приватных и защищенных свойств экземпляра класса.</p>
+
+<figure>
+	<img src="images/private-protected-properties.jpg" alt="" class="img-fluid">
+</figure>
+
+<h3>Доступ к свойствам объекта с помощью числовых ключей</h3>
+
+<p>Эта программа включает ассоциативный массив данных о студентах. Она также содержит значения с числовыми ключами.</p>
+
+<p>При преобразовании этого массива в объект ключи ассоциативного массива используются для доступа к значениям свойств объекта. Существуют исключения для доступа к свойствам, если у них нет имени.</p>
+
+<p>В приведенном ниже коде показано, как получить доступ к объектам с числовыми ключами. Ключ заключен в фигурные скобки <code>{}</code> для получения значения.</p>
+
+<pre><code class="language-php">&lt;?php
+$inputArray = array(
+    'name' =&gt; 'William',
+    'email' =&gt; 'William@gmail.com',
+    'phone' =&gt; '12345678',
+    'REG5678'
+);
+
+$student = (object) array(
+    'name' =&gt; 'William',
+    'email' =&gt; 'William@gmail.com',
+    'phone' =&gt; '12345678',
+    'REG5678'
+);
+echo '&lt;pre&gt;' . print_r($student, true) . '&lt;/pre&gt;';
+echo '&lt;br /&gt;' . $student-&gt;name;
+echo '&lt;br /&gt;' . $student-&gt;email;
+echo '&lt;br /&gt;' . $student-&gt;phone;
+echo '&lt;br /&gt;' . $student-&gt;{0};
+?&gt;</code>
+</pre>
+
+<p>Мы рассмотрели различные способы преобразования объекта PHP в массив. Базовое приведение типов в PHP обеспечило преобразование объекта, за исключением нескольких особых случаев.</p>
+
+<p>Процесс PHP <strong><em>JSON encode decode</em></strong> выполнил преобразование с помощью одной строки кода. Он принимает объекты класса и преобразует их свойства в список массивов.</p>
+
+<p>Пользовательская функция выполняет рекурсивное преобразование объекта в массив. Она предназначена для обработки сложных объектов, дочерними элементами которых являются смешанные объекты или массивы.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 30 декабря 2022 в 17:16</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

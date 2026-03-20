@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Instagram API &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Instagram API</h1>
+
+<p>На этой странице будем разбираться с API социальной сети Instagram и использование данного интерфейса социальной сети в языке программирования PHP. Разберем все аспекты такого понятия как API и работу с данным интерфейсом в языке программирования PHP.</p>
+
+<h2>Получение постов Instagram через API</h2>
+
+<p>Ниже посмотрим как можно получить все изображения из Instagram с определенным хэштегом, используя API Инстаграма и PHP.</p>
+
+<h2>Что такое API</h2>
+
+<p>API (Application Programming Interface) — описание способов взаимодействия одной компьютерной программы с другими. Проще говоря, — набор компонентов, с помощью которых компьютерная программа (бот или же сайт) может использовать другую программу.</p>
+
+<p>Я работал с API Instagram для создания сайта социальной сети, где использовал многие из его функций, включая показ публичных изображений под определенным <em>#хэштегом</em>.</p>
+
+<p>Хэштег — это великолепная функция социальных сетей, которая уже используется во всех основных сайтах социальных сетей, включая Facebook и Twitter.</p>
+
+<h2>Работа с API</h2>
+
+<p>Каждый API требует регистрации, прежде чем вы сможете использовать его возможности. Обратите внимание, что для показа изображений под определенным хэштегом нам необходима любая аутентификация при подключении к Instagram API для всех, кто получает пост Instagram. Нам действительно нужны <strong>ID</strong> клиента и секретные ключи (<strong>secret key</strong>) клиента, которые мы получим, как только зарегистрируем приложение на платформе Instagram API.</p>
+
+<p>Итак, первым нашим шагом будет регистрация приложения на странице API Instagram — https://instagram.com/developer/</p>
+
+<p>И нажатие на кнопку Register Your Application.</p>
+
+<p>Вторым шагом нам нужен токен доступа для получения постов Instagram. В моем следующем уроке я рассмотрю как генерировать токен доступа API Instagram.</p>
+
+<p>И последний шаг — это получение последних постов Instagram.</p>
+
+<p>Здесь у нас будут три блока — PHP, HTML, CSS. Последние два отвечают за внешний вид, а первый за получение всех необходимых данных.</p>
+
+<h2>PHP код</h2>
+
+<p>Это основа взаимодействия нашего сайта (приложения) с API Инстаграма. Код не очень большой и будет понятен даже начинающим PHP программистам:</p>
+
+<pre><code class="language-php">function GetPost($accessToken) {
+    $url = 'https://api.instagram.com/v1/users/self/media/recent?access_token=' . $accessToken;
+ 
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $data = json_decode(curl_exec($ch), true);
+ 
+    curl_close($ch);
+ 
+    return $data;
+}
+$result = GetPost('ACCESS-TOKEN-XXXXXXXXXXXXXXXXXX');</code></pre>
+
+<p>Вместо <strong>ACCESS-TOKEN-XXXXXXXXXXXXXXXXXX</strong> укажите ваш токен.</p>
+
+<h2>CSS</h2>
+
+<p>CSS поможет нам навести красоту и задать стили отображения:</p>
+
+<pre><code class="language-css">.wraper{
+   width: 80%;
+   margin: auto
+}
+.profile{
+   float: left;
+}
+.profile img{
+   border-radius: 50%;
+}
+.userDetail{
+   float: left;
+   margin-left: 6%;
+   padding-top: 7%;
+}
+.header{
+   clear: both;
+   display: flow-root;
+   width: 50%;
+   margin: 0 auto 20px;
+}
+.post{
+   clear: both;
+   width: 100%;
+}
+.post-img img{
+   width: 100%;
+   height: 250px;
+}
+.post-img{
+   width: 32%;
+   margin-right: 10px;
+   display: inline-block;
+   margin-bottom: 10px;
+   position: relative
+}
+.caption{
+   display: none;
+   position: absolute;
+   background-color:rgba(0,0,0,0.5);
+   height: 100%;
+   width: 100%;
+   top: 0;
+   left: 0;
+   text-align: center;
+   margin: auto;
+   right: 0;
+   bottom: 0;
+}
+.post-img:hover .caption{
+   display: block
+}
+.caption label{
+   color: #fff;
+   position: absolute;
+   width: 100%;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   top: 0;
+   margin: auto;
+   text-align: center;
+   height: 0;
+   font-weight: bold;
+}</code>
+</pre>
+
+<h2>HTML</h2>
+
+<p>Конечный HTML документ мы сформируем таким образом:</p>
+
+<pre><code class="language-html">&lt;div class="wraper"&gt;
+            &lt;div class="header"&gt;
+                &lt;div class="profile"&gt;
+                    &lt;img src="&lt;?php echo $result['data'][0]['user']['profile_picture']; ?&gt;"&gt;
+ 
+                &lt;/div&gt;
+                &lt;div class="userDetail"&gt;
+                    &lt;h3&gt;&lt;?php echo $result['data'][0]['user']['username']; ?&gt;&lt;/h3&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="post"&gt;
+                &lt;?php foreach ($result['data'] as $row) { ?&gt;
+                    &lt;div class="post-img"&gt;
+                        &lt;img src="&lt;?php echo $row['images']['standard_resolution']['url']; ?&gt;"&gt;
+                        &lt;div class="caption"&gt;
+                            &lt;label&gt;Comments(&lt;?php echo $row['comments']['count'] ?&gt;) - Likes(&lt;?php echo $row['likes']['count'] ?&gt;)&lt;/label&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;?php } ?&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;</code>
+	</pre>
+
+<p>На этом всё. Со временем будет больше материалов про API и взаимодействие через АПИ с разными сайтами.</p>
+
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 2 января 2022 в 20:41</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

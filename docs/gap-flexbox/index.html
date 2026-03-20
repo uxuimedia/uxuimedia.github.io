@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Пространство между объектами в CSS Flexbox с помощью gap &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Пространство между объектами в CSS Flexbox с помощью gap</h1>
+
+<p>В этой статье я расскажу как добавить пространство между элементами CSS Flexbox с помощью свойства <code>gap</code> и необходимые решения для поддержки браузерами.</p>
+
+<h2>inline-flex</h2>
+
+<p>CSS Flexbox и CSS Grid — это отличные инструменты для верстки сайтов. Flexbox отлично справляется с одномерными макетами, а CSS Grid — с двухмерными макетами, колонками и строками. И, конечно, бывают ситуации когда мы хотим добавить пространство между элементами в нашем макете. </p>
+
+<p>Чтобы продемонстрировать свойство <code>gap</code> в CSS, мы будем использовать Flexbox. <code>gap</code> работает также в CSS Grid, но есть много случаев, когда у нас есть инлайн-списки (в одну строчку), которым нужно пространство без определенной сетки.</p>
+
+<p><strong>HTML</strong>:</p>
+
+<pre><code class="language-html">&lt;div class="flex-gap"&gt;
+	&lt;div&gt;1&lt;/div&gt;
+	&lt;div&gt;2&lt;/div&gt;
+	&lt;div&gt;3&lt;/div&gt;
+	&lt;div&gt;4&lt;/div&gt;
+	&lt;div&gt;5&lt;/div&gt;
+	&lt;div&gt;6&lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+
+<p><strong>CSS</strong>:</p>
+
+<pre><code class="language-css">.flex-gap {
+  display: inline-flex;
+  flex-wrap: wrap;
+}</code></pre>
+
+<p>Мы используем <code>inline-flex</code>, чтобы иметь гибкие элементы, но отображать родительский элемент как строчный элемент, а не как блочный. Свойство <code>flex-wrap: wrap</code> позволит нашим элементам обернуться (перейти на следующую строку) при уменьшении или ограничении родительского контейнера.</p>
+
+<figure><img src="images/css-flex-wrap.png" alt="" class="img-fluid"></figure>
+
+<p>Если мы хотим добавить пространство между каждым элементом, мы можем использовать <code>margin</code> (отступы) для каждого элемента.</p>
+
+<pre><code class="language-css">.flex-gap {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.flex-gap &gt; div {
+  margin: 6px;
+}</code></pre>
+
+<p>Это даст нам следующее:</p>
+
+<figure><img src="images/css-flex-wrap-and-margin-space.png" alt="" class="img-fluid"></figure>
+
+<p>Отступы (<code>margin</code>) работают, но это не то же самое поведение, что дает нам свойство для создания пространства с помощью свойства CSS <code>gap</code>. Обратите внимание на дополнительное пространство вокруг ячеек (зеленый цвет для примера). При использовании интервалов (отступов) мы хотим, чтобы пространство применялось только между элементами. Используя <code>gap</code>, мы можем этого добиться.</p>
+
+<p>Наш <strong>CSS</strong> в таком случае будет выглядеть так:</p>
+
+<pre><code class="language-css">.flex-gap {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}</code></pre>
+
+<p>Получим примерно такой вариант:</p>
+
+<figure><img src="images/css-flex-wrap-with-css-gap-spacing.png" alt="" class="img-fluid"></figure>
+
+<h2>Старые браузеры</h2>
+
+<p>CSS Gap — это особенность спецификации CSS Grid и Flexbox. Раньше только Firefox был единственным браузером, который поддерживал <code>gap</code> для flex-элементов. Но в начале прошлого года интервалы уже поддерживались во всех основных браузерах.</p>
+
+<p>Для старых браузеров, которые не поддерживают <code>gap</code> в Flexbox, можно использовать <code>margin</code> для создания обходного пути.</p>
+
+<p><strong>HTML</strong>:</p>
+
+<pre><code class="language-html">&lt;div class="emulated-flex-gap"&gt;
+  &lt;div&gt;1&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div&gt;5&lt;/div&gt;
+  &lt;div&gt;6&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p><strong>CSS</strong>:</p>
+
+<pre><code class="language-css">.emulated-flex-gap &gt; * {
+  margin: 12px 0 0 12px;
+}
+
+.emulated-flex-gap {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: -12px 0 0 -12px;
+  width: calc(100% + 12px);
+}</code></pre>
+
+<p>Мы можем задать отступы сверху и слева каждого элемента. На родительском flex-элементе мы используем отрицательные отступы, чтобы компенсировать избыточные отступы на внешних дочерних элементах. Эта техника дает эффект, аналогичный эффекту <code>gap</code> в CSS.</p>
+
+<figure><img src="images/css-flex-wrap-with-css-gap-spacing.png" alt="" class="img-fluid"></figure>
+
+<p>Мы можем немного очистить CSS, используя пользовательские свойства CSS, чтобы легче было изменять расстояние между полями.</p>
+
+<p><strong>CSS</strong>:</p>
+
+<pre><code class="language-css">.emulated-flex-gap {
+  --gap: 12px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
+  width: calc(100% + var(--gap));
+}
+
+.emulated-flex-gap &gt; * {
+  margin: var(--gap) 0 0 var(--gap);
+}</code></pre>
+
+<p>С помощью такого варианта мы можем получить нечто близкое к интервалам <code>gap</code> CSS в старых браузерах. С помощью интервалов мы можем устранить большую часть сложностей с белым пространством в CSS при использовании <code>margin</code>.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 22 декабря 2022 в 18:44</span><br>Теги: CSS
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

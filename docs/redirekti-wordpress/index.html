@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Редиректы WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Редиректы WordPress</h1>
+
+<p>В этом материале поговорим про самые полезные перенаправления или редиректы WordPress с помощью файла .htaccess или других возможностей.</p>
+
+
+
+<h2><span id="Cem_mozno_otredaktirovat_htaccess">Чем можно отредактировать .htaccess</span></h2>
+
+
+
+<p>Мы будем много работать с файлом <strong><em>.htaccess</em></strong>, поэтому нам важно понимать как его правильно редактировать. Прежде чем мы перейдем к тому как делать редиректы WordPress, я расскажу как вы можете отредактировать файл <em><strong>.htaccess</strong></em>. Если вы уже знаете как это делать, то просто пропустите этот раздел.</p>
+
+
+
+<p>В файле <strong><em>.htaccess</em></strong> есть инструкции/директивы, которые указывают серверу, как действовать в определенных сценариях, и напрямую влияют на функционирование вашего сайта. Общие директивы в файле .htaccess:</p>
+
+
+
+<ol>
+<li>Перенаправления</li>
+
+
+
+<li>Переписывание URL-адресов</li>
+</ol>
+
+
+
+<p><strong>Способы редактирования файла .htaccess</strong></p>
+
+
+
+<ol>
+<li>Отредактировать файл на своем компьютере и загрузить его на сервер с помощью FTP.</li>
+
+
+
+<li>Использование режима «Edit» в программе FTP, которая позволяет редактировать файл удаленно.</li>
+
+
+
+<li>Использование текстового редактора и SSH для редактирования файла.</li>
+
+
+
+<li>Использование менеджера файлов в cPanel для редактирования файла.</li>
+</ol>
+
+
+
+<p>Давайте отредактируем <strong><em>.htaccess</em></strong> через cPanel.</p>
+
+
+
+<div class="attention-red"><strong>Внимание</strong>! Создайте резервную копию вашего сайта на случай, если что-то пойдет не так.</div>
+
+
+
+<ol>
+<li>Войдите в cPanel вашего хостинга</li>
+
+
+
+<li>Перейдите в <strong>Files</strong> &gt; <strong>File Manager</strong></li>
+
+
+
+<li>Выберите ваш домен и перейдите в папку вашего сайта</li>
+
+
+
+<li>Отметьте в настройках Файлового Менеджера cPanel “<em>Show Hidden Files (dotfiles)</em>” (показать скрытые файлы)</li>
+
+
+
+<li>Нажмите <strong>Go</strong></li>
+
+
+
+<li>После того как откроется новая вкладка или окно, найдите файл .htaccess.</li>
+
+
+
+<li>Щелкните правой кнопкой мыши на файле .htaccess и выберите в меню пункт <strong>Code Edit</strong> (Редактирование кода).</li>
+
+
+
+<li>Может появиться диалоговое окно с вопросом о кодировке. Нажмите кнопку <strong>Edit</strong> (Редактировать), чтобы продолжить.</li>
+
+
+
+<li>Отредактируйте файл</li>
+
+
+
+<li>Нажмите “Save Changes” (сохранить изменения) после внесения всех изменений</li>
+
+
+
+<li>Протестируйте свой сайт, чтобы убедиться, что все сделано правильно, а в случае ошибки восстановите предыдущую версию и повторите попытку</li>
+
+
+
+<li>Как только вы закончите, нажмите <strong>Close</strong> (Закрыть), чтобы закрыть окно редактирования</li>
+</ol>
+
+
+
+<h2><span id="Zapresaem_avtomaticeskie_redirekty_WordPress">Запрещаем автоматические редиректы WordPress</span></h2>
+
+
+
+<p>WordPress имеет функцию, благодаря которой он автоматически перенаправляет ваши URL, т.е. делает редирект, если считает, что адрес написан неправильно. Он подбирает самостоятельно «подходящий» <strong>url</strong> и перенаправляет на него. </p>
+
+
+
+<p>Возьмем пример. У нас есть страница под названием <code>my-page</code>. Если мы обращаемся к ней по вот такому адресу:</p>
+
+
+
+<pre><code class="language-bash">www.mysite.com/something/my-page/</code></pre>
+
+
+
+<p>WordPress сразу же перенаправит на:</p>
+
+
+
+<pre><code class="language-bash">www.mysite.com/my-page/</code></pre>
+
+
+
+<p>Это происходит, т.к. по первому адресу страницы не существует и WordPress автоматом перенаправляет на второй url. Это не очень удобно, точнее — не очень контролируемый процесс даже с точки зрения SEO.</p>
+
+
+
+<p>Как можно отключить эту функцию и вместо редиректа получать страницу с 404 ошибкой?</p>
+
+
+
+<p>На самом деле ответ очень простой. Мы добавляем в файл <code>functions.php</code> вот такую строчку кода:</p>
+
+
+
+<pre><code class="language-php">remove_action('template_redirect', 'redirect_canonical');</code></pre>
+
+
+
+<p>Но стоит сделать важное замечание. Если вы понаблюдаете, что происходит (через <strong>HttpFox</strong>, <strong>WireShark</strong> или аналогичный анализатор пакетов), то страницы автоматически перенаправляются с помощью 301 редиректа («перемещено навсегда»), что является вполне подходящим поведением.</p>
+
+
+
+<p>Считается, что это помогает поисковым системам поддерживать свои базы данных в актуальном состоянии, а перенаправление помогает пользователям находить страницы. </p>
+
+
+
+<p>Будьте аккуратны. Это может повлиять на то, как такие редиректы WordPress влияют на процессы. В любом случае, — это ваш выбор, но не все уверены в том, что это хорошая идея.</p>
+
+
+
+<p>Если посмотреть на функцию <code>redirect_canonical</code> в <code>canonical.php</code>, то вы также можете изменить поведение с помощью своего собственного фильтра.</p>
+
+
+
+<p>В конце функции <code>redirect_canonical()</code> есть вызов для фильтрации окончательного ответа:</p>
+
+
+
+<pre><code class="language-php">$redirect_url = apply_filters( 'redirect_canonical', $redirect_url, $requested_url );</code></pre>
+
+
+
+<p>Таким образом, вы можете написать свой собственный фильтр для изменения окончательного перенаправления или вернуть значение <code>null</code>, чтобы остановить перенаправление на основе ввода, тем самым отключив функцию для определенного URL-адреса или подмножества URL-адресов.</p>
+
+
+
+<h2><span id="Perenapravlenie_www_na_bez-www_cerez_htaccess">Перенаправление www на без-www через htaccess</span></h2>
+
+
+
+<p>Конечно, про все редиректы WordPress нам поговорить не удастся, но основные мы рассмотрим и к ним относится перенаправление адреса <strong><em>www.example.com</em></strong> на <em><strong>example.com</strong></em> через файл <em>.htaccess</em>. Т.е. мы направляем адрес с префиксом <strong>www</strong> на адрес без <strong>www</strong>.</p>
+
+
+
+<p>Есть один стандартный способ:</p>
+
+
+
+<pre><code class="language-bash">RewriteCond %{HTTP_HOST} ^www\.example\.com [NC]
+RewriteRule ^(.*)$ http://example.com/$1 [L,R=301]</code></pre>
+
+
+
+<p>Но здесь мы жестко в .<strong>htaccess</strong> прописываем доменное имя. Но есть ли способ сделать это универсальным способом без жесткого кодирования доменного имени?</p>
+
+
+
+<p>Еще один метод без домена:</p>
+
+
+
+<pre><code class="language-bash">RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]</code></pre>
+
+
+
+<p>Но если нам нужно сделать это для разделения http и https, то есть такой вариант:</p>
+
+
+
+<pre><code class="language-bash">RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]</code></pre>
+
+
+
+<p>Если вы хотите сделать это в файле <strong>httpd.conf</strong>, вы можете сделать это без <code>mod_rewrite</code>, и, очевидно, это лучше для производительности):</p>
+
+
+
+<pre><code class="language-bash">&lt;VirtualHost *&gt;
+  ServerName www.example.com
+  Redirect 301 / http://example.com/
+&lt;/VirtualHost&gt;</code></pre>
+
+
+
+<p>Как правило рабочие варианты могут отличаться от хостинга к хостингу. Здесь уже придется использовать тестирование, потому что не все редиректы WordPress работают так как нам хочется.</p>
+
+
+
+<h2><span id="Redirekt_403_osibki_na_404">Редирект 403 ошибки на 404</span></h2>
+
+
+
+<p>Код состояния HTTP 403 (запрещен) указывает, что путь является правильным, но у вас нет разрешения на доступ к файлу или папке.</p>
+
+
+
+<h3><span id="403_osibka">403 ошибка</span></h3>
+
+
+
+<p>Простыми словами — этот тип ошибки говорит нам, что файл/папка существует и доступ к ней ограничен.</p>
+
+
+
+<p>Таким образом, 403 позволяет хакеру больше узнать о структуре вашей файловой системы и о возможных уязвимостях в системе безопасности.</p>
+
+
+
+<p>Рекомендуется перенаправить код возврата 403 на 404 (не найден), чтобы не было возможности оценить структуру сайта.</p>
+
+
+
+<p>Есть несколько способов сделать это, и мы сделаем редирект в Apache HTTP и Nginx.</p>
+
+
+
+<div class="attention-yellow"><strong>Внимание</strong>! Перед любыми изменениями сделайте резервную копию необходимого файла конфигурации. И, если возможно, сначала тестируйте все изменения в тестовой среде.</div>
+
+
+
+<h3><span id="Apache_HTTP">Apache HTTP</span></h3>
+
+
+
+<p>Мы будем использовать директиву <code>ErrorDocument</code> для создания документа:</p>
+
+
+
+<p>1. Создадим файл на уровне <code>DocumentRoot</code>, который будет обслуживаться по протоколу 404.</p>
+
+
+
+<p>2. Назовём файл 404</p>
+
+
+
+<p>3. Добавьте в файл httpd.conf следующее:</p>
+
+
+
+<pre><code class="language-bash">ErrorDocument 403 /404</code></pre>
+
+
+
+<p>Выше я инструктирую Apache использовать файл /404 всякий раз, когда произошла 403 ошибка.</p>
+
+
+
+<p>Сохраните конфигурационный файл и перезапустите Apache для проверки.</p>
+
+
+
+<h3><span id="Nginx">Nginx</span></h3>
+
+
+
+<p>В случае Nginx мы будем использовать директиву <code>error_page</code>.</p>
+
+
+
+<p>1. Создайте файл с именем 404.html.</p>
+
+
+
+<p>2. Добавьте в секцию <code>server</code> в конфигурационном файле Nginx следующее:</p>
+
+
+
+<pre><code class="language-bash">error_page 404 /404.html;
+error_page 403 =404 /404.html;</code></pre>
+
+
+
+<p>Благодаря первой строке Nginx будет использовать /404.html если файл не найден, а благодаря второй строке используется /404.html, когда запрашиваемые ресурсы возвращают 403 ошибку.</p>
+
+
+
+<h3><span id="WordPress">WordPress</span></h3>
+
+
+
+<p>Вы можете использовать плагин <a href="https://wordpress.org/plugins/custom-error-pages/" target="_blank" rel="noreferrer noopener">Custom Error Pages</a>, который позволяет настроить пользовательскую страницу для кода состояния 401 и 403.</p>
+
+
+
+<p>Я надеюсь, это вам поможет. В любом случае, оставляйте комментарии ниже, если есть пожелания или вопросы.</p>
+
+
+
+<h2><span id="Perenapravlenie_HTTP_na_HTTPS">Перенаправление HTTP на HTTPS</span></h2>
+
+
+
+<p>Разберемся как сделать перенаправление (редирект) с HTTP на HTTPS через файл htaccess в корне вашего сайта.</p>
+
+
+
+<p>Chrome и Firefox уже достаточно давно начали показывать предупреждения о незащищенных сайтах на которых не установлен SSL-сертификат. Без SSL ваш сайт будет выглядеть небезопасным для посетителей. Поэтому использование SSL-шифрованного соединения необходимо для обеспечения безопасности, доступности или соответствия стандарту PCI. Очень важным становится перенаправление с HTTP на HTTPS.</p>
+
+
+
+<h3><span id="Cto_takoe_SSL">Что такое SSL?</span></h3>
+
+
+
+<p>SSL (Secure Sockets Layer) — это стандартный протокол безопасности для установления зашифрованных соединений между веб-сервером и браузером при передаче данных в режиме онлайн.</p>
+
+
+
+<p>Использование технологии SSL гарантирует, что все данные, передаваемые между веб-сервером и браузером, остаются зашифрованными.</p>
+
+
+
+<p>Для создания SSL-соединения необходим SSL-сертификат. Когда вы решите активировать SSL на своем веб-сервере, вам нужно будет указать все данные о вашем сайте и вашей компании. После этого создаются два криптографических ключа — Private Key и Public Key.</p>
+
+
+
+<p>Чтобы заставить ваш веб-трафик использовать HTTPS, нужно отредактировать файл <em><strong>.htaccess</strong></em>.</p>
+
+
+
+<h3><span id="Perenapravlenie_vsego_veb-trafika">Перенаправление всего веб-трафика</span></h3>
+
+
+
+<p>Если у вас есть код в .htaccess, добавьте следующее:</p>
+
+
+
+<pre><code class="language-bash">RewriteEngine On
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://www.yourdomain.com/$1 [R,L]</code></pre>
+
+
+
+<h3><span id="Perenapravlenie_tolko_opredelennogo_domena">Перенаправление только определенного домена</span></h3>
+
+
+
+<p>Чтобы перенаправить определенный домен на HTTPS, добавьте следующее:</p>
+
+
+
+<pre><code class="language-bash">RewriteEngine On
+RewriteCond %{HTTP_HOST} ^yourdomain\.com [NC]
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://www.yourdomain.com/$1 [R,L]</code></pre>
+
+
+
+<h3><span id="Perenapravlenie_tolko_opredelennoj_papki">Перенаправление только определенной папки</span></h3>
+
+
+
+<p>Для перенаправления на HTTPS определенной папки добавьте следующее:</p>
+
+
+
+<pre><code class="language-bash">RewriteEngine On
+RewriteCond %{SERVER_PORT} 80
+RewriteCond %{REQUEST_URI} folder
+RewriteRule ^(.*)$ https://www.yourdomain.com/folder/$1 [R,L]</code></pre>
+
+
+
+<div class="attention-blue"><strong>Примечание</strong>. Не забудьте в приведенных сниппетах кода поменять <em><strong>yourdomain.com</strong></em> на свое доменное имя. Кроме того, в случае папки замените <strong><em>/folder</em></strong> на фактическое имя папки.</div>
+
+
+
+<p>Если вам помог урок, то поделитесь этой статьей с другими, чтобы помочь им перейти на HTTPS, а кроме того оставляйте комментарии по вашему кейсу или с вашими примерами.</p>
+
+
+
+<h2><span id="Ubiraem_html_iz_URL">Убираем .html из URL</span></h2>
+
+
+
+<p>Если вы делаете только лендинг без PHP на одних только HTML файлах, Javascript и CSS, а WordPress используете только как Базу Данных, то часто требуется убрать расширение файлов из URL. Стоит сказать, что расширение <strong>.html</strong> вы можете добавить к адресам в админке WP через настройки. А здесь мы разберем ситуацию при немного ином подходе в разработке.</p>
+
+
+
+<p>Самый простой  способ — прописать в <strong>.htaccess</strong> несколько строчек директив.</p>
+
+
+
+<p>Рекомендация первая (работает 100%, если у вас хостер Beget):</p>
+
+
+
+<pre><code class="language-bash">RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L,QSA]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.html\ HTTP/
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]</code></pre>
+
+
+
+<p>Директивы нужно добавить в самое начало файла <strong>.htaccess</strong>.</p>
+
+
+
+<p>Второй вариант:</p>
+
+
+
+<pre><code class="language-bash">RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)\.html$ /$1 [L,R=301]</code></pre>
+
+
+
+<p>Как работают данные рекомендации поможет объяснить следующая картинка:</p>
+
+
+<div>
+<figure><img src="images/html-v-url.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Есть еще вариант:</p>
+
+
+
+<pre><code class="language-bash">RewriteEngine on
+
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R]
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^ %{REQUEST_URI}.html [NC,L]</code></pre>
+
+
+
+<p>Если вы хотите удалить любое другое расширение, например, чтобы удалить расширение <strong>.php</strong>, просто замените HTML везде на PHP в приведенном выше коде.</p>
+
+
+
+<h2><span id="404_na_glavnuu_WordPress">404 на главную WordPress</span></h2>
+
+
+
+<p>Разберем плюсы и минусы редиректа 404 страницы с ошибкой на главную WordPress, покажу решение с помощью плагина и PHP кода.</p>
+
+
+
+<h3><span id="Vvodnye_pro_404_osibku">Вводные про 404 ошибку</span></h3>
+
+
+
+<p>На показатель отказов сайта в значительной степени влияет количество 404 ошибок. Это может произойти по разным причинам: </p>
+
+
+
+<ul>
+<li>неправильные навигационные ссылки,</li>
+
+
+
+<li>ссылки на контент, который был удален,</li>
+
+
+
+<li>пользователь допустил опечатку при попытке зайти на страницу конкретную сайта. </li>
+</ul>
+
+
+
+<p>И хотя некоторые ошибки 404 можно устранить, вебмастера должны отслеживать и бороться с теми, которые остаются.</p>
+
+
+
+<p>С ними можно бороться двумя способами:</p>
+
+
+
+<ol>
+<li>создание привлекательных 404 страниц для улучшения пользовательского опыта;</li>
+
+
+
+<li>перенаправление пользователей обратно на главную страницу, чтобы они могли быстро найти то, что искали. </li>
+</ol>
+
+
+
+<p>В этой статье мы рассмотрим второй подход. В частности, я постараюсь объяснить причины, по которым вы можете захотеть перенаправить свою страницу с 404 ошибкой на главную страницу в WordPress, а также методы, как это сделать. Обо всем этом ниже.</p>
+
+
+
+<h3><span id="Plusy_i_minusy_redirekta_404_na_glavnuu">Плюсы и минусы редиректа 404 на главную</span></h3>
+
+
+
+<p>Страницы ошибок 404 в прошлом приносили мало пользы, поскольку они не указывали причину, по которой посетитель видит экран ошибки 404, и часто не содержали полезных ссылок, которые посетитель мог бы использовать для навигации по сайту. Поэтому посетители часто покидали сайт, увидев такие ошибки.</p>
+
+
+
+<p>Редирект 404 на главную страницу или какую-либо другую страницу сайта было реализовано в попытке удержать посетителей на сайте. В настоящее время такая практика применяется реже, поскольку существует множество тем WordPress, предлагающих потрясающие 404 страницы, которые удерживают посетителей, обеспечивая ценную навигацию по сайту. Тем не менее, перенаправление страницы 404 на главную страницу может быть полезным в некоторых случаях.</p>
+
+
+
+<p>Как упоминалось выше, перенаправление (редирект) может помочь сохранить трафик на сайте, особенно если на вашем сайте много 404 ошибок. При перенаправлении посетителей важно предоставить им объяснение того, почему они были перенаправлены, и показать способ поиска нужного им контента. Наблюдение за ошибками сканирования в аккаунте Google Search Console поможет найти плохие страницы.</p>
+
+
+
+<p>С другой стороны, перенаправление 404 страницы также имеет свои минусы. Если не предоставить необходимое объяснение, пользователи могут запутаться, почему они продолжают заходить на вашу главную страницу при поиске определенного контента, и в результате покинуть сайт. Более того, Google интерпретирует такие перенаправления как мягкие ошибки 404, что в конечном итоге может привести к потере рейтинга страницы. Кроме того, такие перенаправления не рекомендуется использовать на очень больших сайтах, так как количество запросов на перенаправление может значительно замедлить работу сайта.</p>
+
+
+
+<h3><span id="Kratko_cto_v_itoge">Кратко, что в итоге</span></h3>
+
+
+
+<div class="attention-yellow"><strong>Внимание</strong>! Перенаправление страницы 404 на главную страницу можно рекомендовать только в качестве временной меры.</div>
+
+
+
+<p>Более долгосрочное решение должно включать в себя исправление неработающих ссылок на вашем сайте, создание привлекательной и информативной страницы 404, регистрацию ошибок 404 и применение перенаправления для определенных URL-адресов, которые часто посещаются или неправильно набираются.</p>
+
+
+
+<h3><span id="Redirekt_404_na_glavnuu_s_pomosu_plagina">Редирект 404 на главную с помощью плагина</span></h3>
+
+
+
+<p>Разобравшись, почему и когда вам может понадобиться перенаправить 404 страницу на главную страницу, давайте рассмотрим, как это можно сделать. Сначала мы рассмотрим метод с использованием плагина, поскольку он предпочтителен для большинства пользователей WordPress. Этот метод в виде использования плагина не требует специфических знаний программирования.</p>
+
+
+
+<p>Когда речь заходит о редиректах, то на выбор предлагается множество плагинов WordPress, как бесплатных, так и платных. Некоторые из них были созданы специально для перенаправления или как часть более широкого набора опций, включенных, например, в SEO-плагин типа Yoast. Здесь же я рассмотрю бесплатный плагин редиректа в WordPress, который немного менее известен, но идеально подходит для нашего случая — <a href="https://wordpress.org/plugins/redirect-404-error-page-to-homepage-or-custom-page/" target="_blank" rel="noreferrer noopener">Redirect 404 error page to homepage or custom page</a>.</p>
+
+
+
+<p>Этот простой плагин с понятным английским названием был создан специально для добавления и мониторинга перенаправления ошибок 404. Он идеально подходит для пользователей WordPress, чья тема предлагает неинтересную страницу ошибки 404, которую невозможно изменить без использования пользовательского кода. Вместо этого, используя этот плагин, вы можете настроить правило перенаправления со страницы 404 на любую другую страницу сайта. Кроме того, вы получите доступ к журналу ошибок 404, чтобы вы могли должным образом отследить свои 404 ошибки и выяснить причины их возникновения. Итак, я ниже объясню, как вы можете использовать этот плагин.</p>
+
+
+
+<p>После установки и активации плагина перейдите в раздел <strong>Redirect 404</strong> -&gt; <strong>Settings</strong> (Настройки). Опции, наиболее важные для данной статьи, находятся в подразделе <strong>Redirect Settings</strong> (Настройки перенаправления). </p>
+
+
+
+<p>Выберите главную страницу из выпадающего меню страниц, на которые вы хотите перенаправить, и выберите тип <strong>301 редиректа</strong> (301 redirect). Затем, по желанию, вы можете включить логирование 404 ошибки, установив соответствующий флажок и задав соответствующую историю логов в днях. После этого нажмите кнопку <strong>Save</strong> (Сохранить) в правом верхнем углу экрана, чтобы сохранить выбранные параметры и применить перенаправление.</p>
+
+
+<div>
+<figure><img src="images/404-redirect-001.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Затем вам следует проверить функциональность нового добавленного перенаправления, попытавшись получить доступ к ошибочно введенному URL на вашей странице. Вы должны быть перенаправлены на домашнюю страницу, а попытка будет показана в разделе <strong>Redirect 404 -&gt; 404 Log</strong>, если вы ранее включили регистрацию ошибок 404.</p>
+
+
+<div>
+<figure><img src="images/404-redirect-002.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<h3><span id="Redirekt_404_na_glavnuu_s_pomosu_koda">Редирект 404 на главную с помощью кода</span></h3>
+
+
+
+<p>Помимо использования плагина WordPress, вы можете перенаправить 404 ошибку на домашнюю страницу с помощью пользовательского кода. Само собой разумеется, этот метод больше подходит для продвинутых пользователей WordPress, поскольку он требует некоторого опыта программирования и общих знаний внутренностей WordPress. </p>
+
+
+
+<p>Тем не менее, я постараюсь объяснить как можно подробнее про сниппет кода, который мы создадим для редиректа.</p>
+
+
+
+<p>Приведенный ниже фрагмент кода должен быть добавлен через FTP либо в файл <strong>functions.php</strong> вашей дочерней темы, либо в соответствующий плагин для конкретного сайта. Я буду говорить про первый вариант. Если вы решите перенаправить 404 страницу на главную с помощью этого сниппета, то я советую все-таки подтянуть свои знания по FTP и сделать резервную копию вашего сайта в качестве меры предосторожности. Сделав и то, и другое, переходим к следующему пункту.</p>
+
+
+
+<p>Сначала подключитесь к своему серверу, используя учетные данные FTP, и перейдите в корневой каталог WordPress.</p>
+
+
+<div>
+<figure><img src="images/404-redirect-003.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Затем перейдите в каталог <strong><em>/wp-content/themes</em></strong> и найдите папку вашей дочерней темы. Щелкните, чтобы открыть ее, и найдите в ней файл <strong>functions.php</strong>. Щелкните файл правой кнопкой мыши и выберите в меню пункт <strong>View/Edit</strong> (Просмотр/редактирование).</p>
+
+
+<div>
+<figure><img src="images/404-redirect-004.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>После этого откройте файл в вашем любимом файловом редакторе и добавьте следующий код в конец файла:</p>
+
+
+
+<pre><code class="language-bash">if( ! function_exists('qode_redirect_404_page_to_homepage') ){
+    function qode_redirect_404_page_to_homepage(){
+        if( is_404() ) {
+            wp_safe_redirect( home_url('/'), 301 );
+            exit;
+        }
+    }
+    add_action( 'template_redirect', 'qode_redirect_404_page_to_homepage' );
+}</code></pre>
+
+
+
+<p>Я использую Sublime Text 3 и в нем выглядит это таким образом:</p>
+
+
+<div>
+<figure><img src="images/404-redirect-005.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Затем сохраните сделанные изменения и загрузите файл обратно на сервер, перезаписав имеющийся там файл.</p>
+
+
+
+<p>Давайте вкратце остановимся и немного разберемся в этом коде.</p>
+
+
+
+<p>Код представляет собой пользовательскую функцию <code>qode_redirect_404_page_to_homepage()</code>. Она перенаправляет URL пользователя на главную страницу сайта с помощью функции <a href="https://developer.wordpress.org/reference/functions/wp_safe_redirect/" target="_blank" rel="noreferrer noopener">wp_safe_redirect()</a>. URL домашней страницы задается с помощью функции <a href="https://developer.wordpress.org/reference/functions/home_url/" target="_blank" rel="noreferrer noopener">home_url()</a>. Поскольку результатом этой функции является URL домашней страницы без косой черты, мы должны указать его в качестве параметра.</p>
+
+
+
+<p>Таким образом, если вы хотите перенаправить URL на какую-то другую страницу сайта, вам придется использовать <code>'/relative-path-to-the-page'</code> в качестве параметра, заменив <strong>relative-path-to-the-page</strong> на ваш. Например, если вы хотите перенаправить на страницу About Us (your-website-url/about-us), используйте в качестве параметра <code>'/about-us'</code>.</p>
+
+
+
+<p>Код статуса перенаправления, который мы использовали, — 301 (Moved Permanently), а перенаправление выполняется только в случае обращения к странице 404, т.е. недействительной или несуществующей на данном сайте странице. Чтобы сделать все это возможным, код подключен к хуку экшена <a href="https://developer.wordpress.org/reference/hooks/template_redirect/" target="_blank" rel="noreferrer noopener">template_redirect</a>.</p>
+
+
+
+<p>Это гарантирует, что вам не придется редактировать код файла <strong><em>404.php</em></strong> напрямую, а можно поместить сниппет в файл <strong><em>functions.php</em></strong> дочерней темы или плагина для конкретного сайта, как уже говорилось ранее. Таким образом, вы сможете правильно отслеживать все свои изменения в коде и не беспокоиться о том, что они будут потеряны после обновления темы.</p>
+
+
+
+<p>Таким образом, после добавления кода остается только протестировать функцию перенаправления, то есть попытаться зайти с вашей страницы на ошибочно введенный URL. Как только вы успешно перейдете на главную страницу — тестирование завершено.</p>
+
+
+
+<h2><span id="Finalnye_mysli">Финальные мысли</span></h2>
+
+
+
+<p>Посетители часто склонны покидать определенный сайт, столкнувшись с 404 ошибкой или другим непредсказуемым поведением сайта. </p>
+
+
+
+<p>Вебмастерам всегда требовался способ борьбы с этими ошибками, чтобы избежать потери трафика и потенциальных клиентов. Редиректы WordPress — это лишь один из способов решения проблем.</p>
+
+
+
+<p>В этой статье мы рассмотрели основные способы добавления перенаправлений с помощью плагинов или простых фрагментов кода. Поскольку метода довольно просты в реализации, уверен, что вы смогли успешно перенаправить свои страницы куда надо, следуя этим рекомендациям. Кроме того, для некоторых редиректов мы обсудили плюсы и минусы и вы будете знать, стоит ли применять их на своем WordPress сайте.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 12 февраля 2023 в 13:43</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

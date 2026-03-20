@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Лучшие библиотеки для CSS анимации &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Лучшие библиотеки для CSS анимации</h1>
+
+<p>Рассмотрим самые лучшие библиотеки для анимации CSS, которые используются верстальщиками в данный момент. Независимо от того, что вы ищете, — чистоту, простоту или веселье и причудливость, вы обязательно найдете нужную библиотеку для себя.</p>
+
+<h2>1. Animate CSS</h2>
+
+<p>Официальный сайт — <a href="https://animate.style/" target="_blank" rel="noreferrer noopener nofollow">animate.style</a></p>
+
+<p>Animate CSS — это одна из самых используемых библиотек для кроссбраузерной анимации. Отлично подходит для расстановки акцентов, используется на посадочных страницах, для слайдеров и подсказок, который призваны привлечь внимание.</p>
+
+<p>Чаще всего Animate CSS применяется к заголовкам, когда нужна анимация при прокрутке страницы в данную область.</p>
+
+<p>Но у этой библиотеки есть хитрости по использованию, которые не сразу очевидны. Основная особенность состоит в том, что анимация не активируется при прокрутке экрана и в руководстве про это не ни слова. </p>
+
+<p>Для того, чтобы это реализовать, нам нужно использовать дополнительную мини-библиотеку WOWjs. На сайте WOWjs есть описание того, как нужно ее применять для Animate CSS. Но и там не описано всё до конца верно. Для использования нам нужно прописать примерно следующее:</p>
+
+<pre><code class="language-javascript">&lt;script src="/js/wow.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        const wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animate__animated',
+        offset: 30,
+        mobile: true,
+        live: true
+        })
+        wow.init();
+    &lt;/script&gt;</code></pre>
+
+<p>Но и в данном случае у вас может начать анимационный эффект дублироваться, что убирается добавлением следующих строчек в CSS:</p>
+
+<pre><code class="language-css">.wow {
+   visibility: hidden;
+ }</code></pre>
+
+<p>После этого всё заработает как надо.</p>
+
+<h2>2. Animatopy</h2>
+
+<p>Официальный сайт — <a href="https://sarthology.github.io/Animatopy/" target="_blank" rel="noreferrer noopener nofollow">sarthology.github.io/Animatopy</a></p>
+
+<p>Суть простая — мы на сайте формируем сниппеты для CSS и HTML и просто добавляем фрагменты CSS-анимации в наши файлы. </p>
+
+<p>Сюда входят много эффектов — bounce, flash, pulse, rubberBand, shake, swing, tada, wobble, jello, heartBeat, bounceIn и многие другие.</p>
+
+<p>На мой взгляд — одно из лучших решений для верстальщика, т.к. ты еще больше погружаешься в ванильный CSS и по сути не используешь никакие библиотеки.</p>
+
+<h2>3. Magic Effects</h2>
+
+<p>Официальный сайт — <a href="https://www.minimamente.com/project/magic/" target="_blank" rel="noreferrer noopener nofollow">minimamente.com/project/magic</a></p>
+
+<p>Magic CSS — это набор простых анимаций для включения в ваши веб-проекты или приложения.</p>
+
+<div>
+<figure><img src="images/css-magic.gif" alt="" class="img-fluid"><figcaption>Magic CSS</figcaption></figure></div>
+
+<h2>4. Animista</h2>
+
+<p>Официальный сайт — <a href="https://animista.net/" target="_blank" rel="noreferrer noopener nofollow">animista.net</a></p>
+
+<p>Animista — это библиотека CSS-анимации и место, где вы можете поиграть с коллекцией готовых CSS-анимаций и скачать только те, которые вы будете использовать. Очень много вариантов всяких эффектов.</p>
+
+<h2>5. Animation Library</h2>
+
+<p>Официальный сайт — <a href="http://animation.kaustubhmenon.com/" target="_blank" rel="noreferrer noopener nofollow">animation.kaustubhmenon.com</a></p>
+
+<p>Это коллекция чистых CSS-анимаций. Вы можете переопределить имя класса анимации для объекта, чтобы заставить его двигаться. Вы можете изменить имя класса, связанного с элементом, чтобы активировать его переход. В библиотеке также много вариантов движений, угасаний, переходов, подпрыгиваний и т.п.</p>
+
+<h2>6. Hamburgers</h2>
+
+<p>Официальный сайт — <a href="https://jonsuh.com/hamburgers/" target="_blank" rel="noreferrer noopener nofollow">jonsuh.com/hamburgers</a></p>
+
+<p>Гамбургеры (Hamburgers) — узконаправленная библиотека, которая предназначена для создания интерактивного элемента управления меню. Это коллекция из 10+ примеров CSS-анимаций гамбургеров, которые очень хорошо подходят для навигации на мобильных устройствах или в мобильных версиях сайтов.</p>
+
+<div>
+<figure><img src="images/css-hamburgers.gif" alt="Гамбургеры (Hamburgers)" class="img-fluid"><figcaption>Гамбургеры (Hamburgers)</figcaption></figure></div>
+
+<h2>7. Whirl</h2>
+
+<p>Официальный сайт — <a href="https://whirl.netlify.app/" target="_blank" rel="noreferrer noopener nofollow">whirl.netlify.app</a></p>
+
+<p>Whirl — это еще одна узконаправленная библиотека CSS анимации. Это подборка CSS-анимаций  для, так называемых, прелоадеров (элементов загрузки). В ней уже есть 106 различных прелоадеров на любой вкус.</p>
+
+<h2>8. Wicked CSS</h2>
+
+<p>Официальный сайт — <a href="https://kristofferandreasen.github.io/wickedCSS/" target="_blank" rel="noreferrer noopener nofollow">kristofferandreasen.github.io/wickedCSS</a></p>
+
+<p>Библиотека достаточно большая и можно в ней найти почти всё необходимое. После чего скачиваем файл CSS и мы готовы начать добавлять анимацию к своему контенту с помощью простых классов.</p>
+
+<h2>9. Three Dots</h2>
+
+<p>Официальный сайт — <a href="https://nzbin.github.io/three-dots/" target="_blank" rel="noreferrer noopener">nzbin.github.io/three-dots</a></p>
+
+<p>Three Dots — это еще один набор CSS-анимаций для прелоадеров, сделанных с помощью всего одного элемента. Авторы проекта заявляют, что он поможет не только улучшить ваши навыки CSS, но и усовершенствовать ваше воображение.</p>
+
+<div>
+<figure><img src="images/three-dots.gif" alt="Three Dots" class="img-fluid"><figcaption>Three Dots</figcaption></figure></div>
+
+<h2>10. CSShake</h2>
+
+<p>Официальный сайт — <a href="https://elrumordelaluz.github.io/csshake/" target="_blank" rel="noreferrer noopener nofollow">elrumordelaluz.github.io/csshake</a></p>
+
+<p>Простые в использовании классы CSS, которые добавят различные виды тряски нужным элементам вашего сайта.</p>
+
+<h2>11. VOV CSS</h2>
+
+<p>Официальный сайт — <a href="https://vaibhav111tandon.github.io/vov.css/" target="_blank" rel="noreferrer noopener nofollow">vaibhav111tandon.github.io/vov.css</a></p>
+
+<p>В эту библиотеку CSS включено несколько функций, в том числе затухание, масштабирование, прокручивание, встряхивание, повороты, размытие, скатывание и скольжение (fades, zooms, wheels, shakes, swivels, blurs, rolls, slides). Довольно простая и стандартная библиотека без излишеств.</p>
+
+<div>
+<figure><img src="images/vovcss.gif" alt="VOV CSS" class="img-fluid"><figcaption>VOV CSS</figcaption></figure></div>
+
+<h2>12. Mimic CSS</h2>
+
+<p>Демо сайт — erictreacy.github.io/mimic.css<br>GitHub c описанием — github.com/erictreacy/mimic.css</p>
+
+<p>Очень похожа на VOV CSS (см. выше). В отличие от фреймворков, Mimic CSS — это инлайн CSS и работает довольно хорошо и в наборе есть ряд нестандартных анимационных эффектов.</p>
+
+<p>На ГитХабе есть документация по работе с данной библиотекой и таблица эффектов.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 21 декабря 2022 в 17:00</span><br>Теги: CSS
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

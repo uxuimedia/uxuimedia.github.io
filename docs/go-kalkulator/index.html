@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Приложение калькулятор на Go &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Приложение калькулятор на Go</h1>
+
+<p>В седьмом уроке курса «МиниГо» мы создадим наше первое консольное приложение на языке программирования Go в виде простого калькулятора.</p>
+
+<p>Создание простого калькулятора с использованием командной строки на языке программирования Go — отличный способ проверить усвоенные основы языка и получить опыт работы с его встроенной функциональностью. </p>
+
+<p>В этом уроке мы перейдем к практике и рассмотрим шаги по созданию базового калькулятора, который может выполнять сложение, вычитание, умножение и деление.</p>
+
+<h2>Шаг 1: Настройка среды Go</h2>
+
+<p>Первым шагом в создании нашего калькулятора является настройка среды Go на вашем компьютере. Это включает в себя установку программного обеспечения Go и настройку рабочего пространства Go — каталога, в котором будет храниться ваш код на языке Go. </p>
+
+<p>Если вы еще не сделали этого, то можете загрузить программное обеспечение Go с официального сайта (<a href="https://golang.org/dl/" target="_blank" rel="noreferrer noopener">https://golang.org/dl/</a>) и следовать инструкциям по установке для вашей операционной системы.</p>
+
+<p>В целом, к данному уроку вы уже делали шаги по настройке окружения для работы с Go.</p>
+
+<h2>Шаг 2: создание нового проекта</h2>
+
+<p>Когда среда Go настроена, мы можем создать новый проект для нашего калькулятора. В терминале перейдите в рабочую директорию Go и создайте новую папку для нашего проекта. Мы можем назвать её «calculator».</p>
+
+<pre><code class="language-bash">$ mkdir calculator
+$ cd calculator</code></pre>
+
+<h2>Шаг 3: Написание кода</h2>
+
+<p>Теперь, когда наш проект настроен и все директории созданы, мы можем начать писать код для нашего калькулятора. В директории «<strong>calculator</strong>» создайте новый файл с именем «<strong>main.go</strong>». В нем мы напишем главную функцию нашей программы.</p>
+
+<p>Мы начнем с импорта пакета <code>fmt</code>, который обеспечивает операции ввода/вывода.</p>
+
+<pre><code class="language-go">package main
+import "fmt"</code></pre>
+
+<p>Далее мы определим главную функцию. Внутри главной функции мы будем использовать оператор <code>switch</code> для обработки различных операций (сложение, вычитание, умножение и деление).</p>
+
+<pre><code class="language-go">func main() {
+    var operator string
+    fmt.Println("Enter operator: +, -, *, /")
+    fmt.Scan(&amp;operator)
+
+    var num1, num2 float64
+    fmt.Println("Enter two numbers:")
+    fmt.Scan(&amp;num1, &amp;num2)
+
+    switch operator {
+    case "+":
+        fmt.Println(num1 + num2)
+    case "-":
+        fmt.Println(num1 - num2)
+    case "*":
+        fmt.Println(num1 * num2)
+    case "/":
+        fmt.Println(num1 / num2)
+    default:
+        fmt.Println("Invalid operator")
+    }
+}</code></pre>
+
+<p>В этом коде мы сначала просим пользователя ввести оператор, а затем два числа. Затем мы используем оператор <code>switch</code> для проверки значения оператора и выполнения соответствующей операции. Если введенный оператор не является одним из четырех поддерживаемых операторов, мы выводим сообщение об ошибке — <code>"Invalid operator"</code>.</p>
+
+<h2>Шаг 4: Сборка и запуск программы</h2>
+
+<p>После того как код написан, мы можем собрать и запустить программу. В терминале перейдите в каталог «<strong>calculator</strong>» (но скорее всего вы уже в нём) и выполните следующую команду:</p>
+
+<pre><code class="language-bash">$ go build main.go</code></pre>
+
+<p>Это создаст исполняемый файл в каталоге «<strong>calculator</strong>». Чтобы запустить программу, просто введите имя исполняемого файла (в данном случае «<strong>calculator</strong>») и нажмите <strong>Enter</strong>.</p>
+
+<p>Кроме того, вы можете просто запустить программу:</p>
+
+<pre><code class="language-bash">$ go run main.go</code></pre>
+
+<p>Программа предложит вам ввести оператор и два числа, а затем выведет результат вычисления.</p>
+
+<p>Вот и все! Мы успешно создали простой калькулятор с использованием командной строки на языке программирования Go. Этот калькулятор можно расширить, например, сделать более сложными математические операции, работать с числами с плавающей точкой и так далее.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 12 сентября 2024 в 15:04</span><br>Теги: Go
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

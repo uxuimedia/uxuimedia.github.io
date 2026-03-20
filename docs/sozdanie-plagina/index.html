@@ -1,0 +1,3729 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Создание плагина WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span>
+<span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container-fluid">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+
+		<div class="col-12 col-lg-3">
+
+			<div class="content-blocks bg-light p-3">				
+				<div>
+					<b>Содержание</b>
+				</div>
+				<div>
+					<span>1</span> <a href="#Cto_budet_v_rukovodstve"><span>Что будет в руководстве</span></a>
+				</div>
+				<div>
+					<span>2</span> <a href="#Zacem_nuzny_plaginy"><span>Зачем нужны плагины?</span></a>
+				</div>
+				<div>
+					<span>3</span> <a href="#Sozdanie_plagina_WordPress_-_cto_nuzno"><span>Создание плагина WordPress — что нужно</span></a>
+				</div>
+				<div>
+					<span>4</span> <a href="#Plagin_ili_tema"><span>Плагин или тема</span></a>
+				</div>
+				<div>
+					<span>5</span> <a href="#1_Vvedenie_v_razrabotku_plaginov"><span>Введение в разработку плагинов</span></a>
+					
+					<div class="px-3 pt-2">
+						<div>
+							<span>5.1</span> <a href="#Pocemu_my_delaem_plaginy"><span>Почему мы делаем плагины</span></a>
+						</div>
+						<div>
+							<span>5.2</span> <a href="#Cto_takoe_plagin"><span>Что такое плагин?</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>6</span> <a href="#2_Osnovy_plaginov"><span>Основы плагинов</span></a>
+					
+					<div class="px-3 pt-2">
+						<div>
+							<span>6.1</span> <a href="#Huki_hooks_dejstvia_actions_i_filtry"><span>Хуки (hooks): действия (actions) и фильтры</span></a>
+						</div>
+						<div>
+							<span>6.2</span> <a href="#Osnovnye_huki"><span>Основные хуки</span></a>
+						</div>
+						<div>
+							<span>6.3</span> <a href="#Dobavlenie_hukov"><span>Добавление хуков</span></a>
+						</div>
+						<div>
+							<span>6.4</span> <a href="#Udalenie_huka"><span>Удаление хука</span></a>
+						</div>
+						<div>
+							<span>6.5</span> <a href="#WordPress_API"><span>WordPress API</span></a>
+						</div>
+						<div>
+							<span>6.6</span> <a href="#Kak_WordPress_zagruzaet_plaginy"><span>Как WordPress загружает плагины</span></a>
+						</div>
+						<div>
+							<span>6.7</span> <a href="#Rasprostranenie_plagina"><span>Распространение плагина</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>7</span> <a href="#21_Trebovania_k_zagolovku_header"><span>Требования к заголовку (header)</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>7.1</span> <a href="#Minimalnye_pola"><span>Минимальные поля</span></a>
+						</div>
+						<div>
+							<span>7.2</span> <a href="#Pola_zagolovka_plagina"><span>Поля заголовка плагина</span></a>
+						</div>
+					</div>
+				</div>
+				
+				<div>
+					<span>8</span> <a href="#22_Vklucenie_licenzii_na_programmnoe_obespecenie"><span>Включение лицензии на программное обеспечение</span></a>
+				</div>
+				<div>
+					<span>9</span> <a href="#23_Huki_aktivacii_deaktivacii"><span>Хуки активации / деактивации</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>9.1</span> <a href="#Aktivacia"><span>Активация</span></a>
+						</div>
+						<div>
+							<span>9.2</span> <a href="#Deaktivacia"><span>Деактивация</span></a>
+						</div>
+						<div>
+							<span>9.3</span> <a href="#Primer"><span>Пример</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>10</span> <a href="#24_Metody_deinstallacii"><span>Методы деинсталляции</span></a>
+				</div>
+				<div>
+					<span>11</span> <a href="#25_Lucsie_praktiki"><span>Лучшие практики</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>11.1</span> <a href="#Procedurnye"><span>Процедурные</span></a>
+						</div>
+						<div>
+							<span>11.2</span> <a href="#OOP"><span>ООП</span></a>
+						</div>
+						<div>
+							<span>11.3</span> <a href="#Organizacia_fajlov"><span>Организация файлов</span></a>
+						</div>
+						<div>
+							<span>11.4</span> <a href="#Arhitektura_plagina"><span>Архитектура плагина</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>12</span> <a href="#26_Opredelenie_plaginov_i_direktorij_kontenta"><span>Определение плагинов и директорий контента</span></a>
+				</div>
+				<div>
+					<span>13</span> <a href="#27_Proverka_aktivacii_plagina"><span>2.7 Проверка активации плагина</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>13.1</span> <a href="#Ispolzovanie_class_exists_v_vasej_teme"><span>Использование class_exists в вашей теме</span></a>
+						</div>
+						<div>
+							<span>13.2</span> <a href="#Primer_koda"><span>Пример кода</span></a>
+						</div>
+						<div> 
+							<span>13.3</span> <a href="#Drugie_metody"><span>Другие методы</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>14</span> <a href="#28_Dobavlenie_CSS_na_frontend"><span>Добавление CSS на фронтенд</span></a>
+				</div>
+				<div>
+					<span>15</span> <a href="#3_Bezopasnost_plaginov"><span>Безопасность плагинов</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>15.1</span> <a href="#31_Proverka_vozmoznostej_polzovatela"><span>3.1 Проверка возможностей пользователя</span></a>
+						</div>
+						<div>
+							<span>15.2</span> <a href="#32_Validacia_dannyh"><span>3.2 Валидация данных</span></a>
+						</div>
+						<div>
+							<span>15.3</span> <a href="#33_Bezopasnost_Vvoda"><span>3.3 Безопасность Ввода</span></a>
+						</div>
+						<div>
+							<span>15.4</span> <a href="#34_Bezopasnost_Vyvoda"><span>3.4 Безопасность Вывода</span></a>
+						</div>
+						<div>
+							<span>15.5</span> <a href="#35_Odnorazovye_cisla_nonces"><span>3.5 Одноразовые числа (nonces)</span></a>
+						</div>
+						<div>
+							<span>15.6</span> <a href="#36_Zasita_fajlov_plagina"><span>3.6 Защита файлов плагина</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>16</span> <a href="#4_Huki_Hooks"><span>Хуки (Hooks)</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>16.1</span> <a href="#41_Dejstvia_Actions_ili_ekseny"><span>4.1 Действия (Actions или экшены)</span></a>
+						</div>
+						<div>
+							<span>16.2</span> <a href="#42_Filtry_Filters"><span>4.2 Фильтры (Filters)</span></a>
+						</div>
+						<div>
+							<span>16.3</span> <a href="#43_Polzovatelskie_huki"><span>4.3 Пользовательские хуки</span></a>
+						</div>
+						<div>
+							<span>16.4</span> <a href="#44_Prodvinutye_vozmoznosti"><span>4.4 Продвинутые возможности</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>17</span> <a href="#5_Menu_administrirovania"><span>Меню администрирования</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>17.1</span> <a href="#51_Menu_verhnego_urovna"><span>Меню верхнего уровня</span></a>
+						</div>
+						<div>
+							<span>17.2</span> <a href="#52_Podmenu"><span>5.2 Подменю</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>18</span> <a href="#sozdanie-na-praktike"><span>Создание первого плагина на практике</span></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12 col-lg-9 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Создание плагина WordPress</h1>
+
+<p>Данный материал содержит подробную информацию про создание плагина WordPress по шагам. Руководство создано на основе опыта разработки плагинов и использовании перевода на русский язык&nbsp;официального руководства WordPress по разработке плагинов.</p>
+
+<h2><span id="Cto_budet_v_rukovodstve">Что будет в руководстве</span></h2>
+
+<p>Много информации про создание плагина WordPress (далее также — WP) можно почерпнуть в Руководстве разработчика плагинов на сайте WordPress.org (см. ссылку выше). Независимо от того, являетесь ли вы новичком в разработке плагинов для WordPress или опытным разработчиком плагинов, вы сможете найти там ответы на многие вопросы, связанные с плагинами:</p>
+
+<ol>
+<li>Если вы новичок в разработке плагинов, начните с прочтения <strong>введения</strong>, а затем перейдите к основам.</li>
+<li><strong>Раздел 3</strong> познакомит вас с безопасностью плагина.</li>
+<li>С помощью хуков ваш плагин взаимодействует с WordPress. Узнайте все о них в <strong>разделе 4</strong>.</li>
+<li>Чтобы узнать больше о встроенных функциях WordPress, которые вы можете использовать в своем плагине, ознакомьтесь с <strong>разделами 5-11</strong>: меню администрирования, шорткоды, настройки, метаданные, пользовательские типы записей, таксономии и пользователи.</li>
+<li>Узнайте о получении данных с использованием HTTP API в <strong>разделе 12</strong>.</li>
+<li>Если вы используете JavaScript, jQuery или Ajax в своем плагине, вы найдете необходимую информацию в <strong>разделе 13</strong>.</li>
+<li>Чтобы узнать о задачах WordPress, основанных на времени, используя Cron, ознакомьтесь с <strong>разделом 14</strong>.</li>
+<li><strong>Разделы 15-17</strong> познакомят вас с интернационализацией вашего плагина, подготовкой его к выпуску на WordPress.org и некоторыми инструментами разработчика, которые могут оказаться полезными.</li>
+</ol>
+
+<p>Как заявлено создателями — «руководство разработчика плагинов WordPress создано сообществом WordPress для сообщества WordPress».</p>
+
+<h2><span id="Zacem_nuzny_plaginy">Зачем нужны плагины?</span></h2>
+
+<p>WordPress располагает большой коллекцией плагинов, которые необходимы для того, чтобы предоставлять дополнительную функциональность для вашего сайта. Более того, плагины могут добавить новые функции на сайт без необходимости изменения основного кода ядра Вордпресс.</p>
+
+<p>Хотя существует масса бесплатных и премиум-плагинов на выбор, могут возникнуть случаи, когда вам понадобятся специфические функции WordPress, которых нет в наличии. Для этого вам может понадобиться создать свой собственный плагин WordPress. О чем мы и поговорим.</p>
+
+<p>Данная статья в первую очередь будет полезна начинающим разработчикам WordPress. Кроме того, в этой статье мы рассмотрим различия между плагином и темой и то, как они работают на этой платформе.</p>
+
+<h2><span id="Sozdanie_plagina_WordPress_-_cto_nuzno">Создание плагина WordPress — что нужно</span></h2>
+
+<p>Создание плагина WordPress не отличается от обычной разработки, поэтому нам понадобятся:</p>
+
+<ul>
+<li>Текстовый редактор или IDE</li>
+<li>FTP-доступ к вашему хостинг-аккаунту или локальный сервер</li>
+<li>Работающая установка WordPress</li>
+</ul>
+
+<p>Для написания кода плагина вам понадобится текстовый редактор или IDE (среда разработки). Среди наиболее популярных HTML-редакторов можно назвать Notepad++ и Atom. Я пользуюсь бесплатной версией Sublime Text 3 и Visual Studio Code от Microsoft.</p>
+
+<p>После установки текстового редактора подключите его к вашему FTP-серверу для работы с кодом. В следующей статье я расскажу про подключение к FTP с помощью Notepad++ и других редакторов кода.</p>
+
+<p>Затем настройте FTP-клиент для загрузки файлов плагина на ваш сайт. Рекомендую использовать FTP-приложение FileZilla, так как оно простое в настройке и многие пользуются данной программой. Кроме того, вы можете использовать программу WinSCP. Последнее время чаще всего я пользуюсь ей.</p>
+
+<p>Убедитесь, что у вас установлена рабочая и актуальная версия WordPress. Существует несколько способов обновления основных файлов WordPress, если вы отключили автоматическое обновление, об этом в следующих статьях. Перед обновлением сайта создайте резервную копию файлов WordPress и копию Базы Данных, чтобы избежать потери данных.</p>
+
+<p>Для дальнейшей работы нам понадобятся базовые знания PHP, которые принесут определенную пользу в процессе разработки плагина. Вам потребуется написать пользовательскую функцию и вызвать существующие функции ядра WordPress. Как минимум, вы должны быть знакомы с правилами именования PHP и структурированием файлов.</p>
+
+<p>Создание плагина WordPress — это способ добавить на сайт функциональность, которой нет в имеющихся плагинах. Это может быть простой плагин, вносящий незначительные изменения, или сложный, изменяющий весь сайт.</p>
+
+<p>Вкратце, вот шаги по созданию плагина WordPress с нуля:</p>
+
+<ol>
+<li>Создайте папку для хранения файлов плагина.</li>
+<li>Создайте главный файл для вашего плагина.</li>
+<li>Добавьте код в несколько файлов для функций плагина.</li>
+<li>Создайте страницу администрирования плагина.</li>
+</ol>
+
+<p>Как и любой другой навык, создание плагинов WordPress требует времени. При достаточной практике вы сможете создавать плагины и делать их доступными для загрузки в каталоге плагинов WordPress или даже продавать их на одном из маркетплейсов.</p>
+
+<h2><span id="Plagin_ili_tema">Плагин или тема</span></h2>
+
+<p>Функциональность сайта WordPress можно изменить с помощью и плагинов и тем. Темы WordPress имеют файл <strong><em>functions.php</em></strong>, хранящийся в папке <strong><em>/wp-includes/</em></strong>, который позволяет добавлять пользовательский код для новых функций.</p>
+
+<p>Основной файл <strong><em>functions.php</em></strong> темы находится в корне папки темы и многие разработчики добавляют функциональность через него. Что не всегда хорошо. Хотя этот метод подходит для небольших изменений, он непрактичен для внесения серьезных изменений, которые затрагивают весь сайт.</p>
+
+<p>Это связано с тем, что функциональность, хранящаяся в файле <strong><em>functions.php</em></strong>, зависит от того, активна тема или нет. Отключение темы WordPress вернет изменения, внесенные в указанный файл, и вызовет ошибку, когда сайт обратится к отсутствующим функциям.</p>
+
+<p>Если вы не используете дочернюю тему, обновление темы также перезапишет файл <strong><em>functions.php</em></strong>, что заставит вас вручную восстанавливать пользовательский код WordPress.</p>
+
+<p>Вот почему создание пользовательского плагина является полезным. Это облегчает изменения стандартного поведения WordPress в соответствии с вашими потребностями.</p>
+
+<p>Вы можете добавить плагины WordPress к любой установке WordPress. Функции, внедренные плагином, останутся функциональными, даже если вы смените тему. Кроме того, обновления не будут перезаписывать существующие функции, что сэкономит ваше время и усилия.</p>
+
+<h2><span id="1_Vvedenie_v_razrabotku_plaginov">1. Введение в разработку плагинов</span></h2>
+
+<p>Добро пожаловать в Справочник разработчика плагинов. Независимо от того, пишете ли вы свой первый плагин или свой пятидесятый, мы надеемся, что этот ресурс поможет вам написать лучший плагин из возможных.</p>
+
+<p>Руководство разработчика плагинов охватывает множество тем — от того, что должно быть в заголовке плагина, до рекомендаций по безопасности и инструментов, которые вы можете использовать для создания вашего плагина.</p>
+
+<p>Еще руководство про то, как работать в процессе — если вы найдете что что-то пропустили или является неполным, пожалуйста, вы сможете отредактировать это и сделать это лучше.</p>
+
+<p>В WordPress есть три основных компонента:</p>
+
+<ul>
+<li>ядро</li>
+<li>темы</li>
+<li>плагины</li>
+</ul>
+
+<p>Это руководство о плагинах и их взаимодействии с WordPress. Это поможет вам понять, как они работают и как создать свой собственный.</p>
+
+<h3><span id="Pocemu_my_delaem_plaginy">Почему мы делаем плагины</span></h3>
+
+<p>Есть одно кардинальное правило в разработке WordPress — не трогайте ядро WordPress. Это означает, что вы не редактируете основные файлы WordPress для добавления функциональности на ваш сайт.</p>
+
+<p>Это происходит потому, что при обновлении WordPress до новой версии, он перезаписывает все основные файлы. Любая функциональность, которую вы хотите добавить, должна быть добавлена через плагины с использованием утвержденных API WordPress.</p>
+
+<p>Плагины WordPress могут быть простыми или сложными, в зависимости от того, что вы хотите сделать.</p>
+
+<p>Самый простой плагин представляет собой отдельный PHP-файл. Плагин <strong>Hello Dolly</strong> является примером такого плагина. Для PHP-файла плагина просто нужны заголовок плагина, пара PHP-функций и некоторые хуки для присоединения ваших функций.</p>
+
+<p>Плагины позволяют значительно расширить функциональность WordPress, не касаясь самого ядра WordPress.</p>
+
+<h3><span id="Cto_takoe_plagin">Что такое плагин?</span></h3>
+
+<p>Плагины — это пакеты кода, которые расширяют основные функциональные возможности WordPress. Плагины WordPress состоят из кода PHP и других ресурсов, таких как изображения, CSS и JavaScript.</p>
+
+<p>Создавая собственный плагин, вы расширяете WordPress, т.е. создаете дополнительные функциональные возможности поверх того, что WordPress уже предлагает. Например, вы можете написать плагин, который отображает ссылки на десять последних статей на вашем сайте.</p>
+
+<p>Или, используя настраиваемые типы записей WordPress, вы можете написать плагин, который создает полнофункциональную систему поддержки билетов с уведомлениями по электронной почте, пользовательскими статусами заявок и порталом для клиентов. Возможности безграничны!</p>
+
+<p>Большинство плагинов WordPress состоят из множества файлов, но плагину действительно нужен только один основной файл со специально отформатированным DocBlock в заголовке.</p>
+<p><strong>Hello Dolly</strong>, один из первых плагинов в котором всего <strong>82 строки</strong>. «Привет Долли» показывает текст из знаменитой песни в админке WordPress. Некоторые CSS стили используются в файле PHP для управления стилями лирики.</p>
+
+<p>Как автор плагина WordPress.org, у вас есть удивительная возможность создать плагин, который будет установлен и любим миллионами пользователей WordPress. Все, что вам нужно сделать, это превратить вашу прекрасную идею в код. Это руководство по разработке плагинов поможет вам в этом.</p>
+
+<h2><span id="2_Osnovy_plaginov">2. Основы плагинов</span></h2>
+
+<p>В простейшем случае плагин WordPress представляет собой файл PHP с комментарием в заголовке плагина. Настоятельно рекомендуется создать каталог для размещения вашего плагина, чтобы все файлы вашего плагина были аккуратно организованы в одном месте.</p>
+
+<p>Чтобы начать создавать новый плагин, выполните следующие действия.</p>
+
+<ol>
+<li>Перейдите в каталог <strong>wp-content</strong> установки WordPress.</li>
+<li>Откройте каталог плагинов — <strong>plugins</strong>.</li>
+<li>Создайте новый каталог и дайте ему соответствующее название, например, <strong>plugin-name</strong>.</li>
+<li>Откройте каталог (директорию) нового плагина.</li>
+<li>Создайте новый файл PHP. Его полезно назвать также, например, <strong>plugin-name.php</strong>.</li>
+</ol>
+
+<p>Вот как выглядит процесс в командной строке Unix:</p>
+
+<pre><code class="language-bash">wordpress$ cd wp-content
+wp-content$ cd plugins
+plugins$ mkdir plugin-name
+plugins$ cd plugin-name
+plugin-name$ vi plugin-name.php</code>
+</pre>
+
+<p>В приведенном выше примере «<strong>vi</strong>» — это имя текстового редактора. Используйте любой удобный для вас редактор.</p>
+
+<p>Теперь, мы можем редактировать файл PHP своего нового плагина, и нам нужно добавить комментарий в заголовке плагина. Это специально отформатированный блочный комментарий PHP, содержащий метаданные о плагине, такие как его имя, автор, версия, лицензия и т.д. Комментарий в заголовке плагина должен соответствовать требованиям к заголовку и, как минимум, содержать имя плагина.</p>
+
+<p>Только один файл в папке плагина должен иметь комментарий заголовка — если плагин имеет несколько файлов PHP, только один из этих файлов должен иметь комментарий заголовка.</p>
+
+<pre><code class="language-php">&lt;?php
+/**
+* Plugin Name: YOUR PLUGIN NAME
+*/</code></pre>
+
+<p>После сохранения файла вы сможете увидеть свой плагин в списке плагинов на вашем сайте WordPress. Войдите в админку своего сайта WordPress и нажмите «Плагины» (<strong>Plugins</strong>) на левой панели навигации администратора WordPress. На этой странице отображается список всех плагинов, которые есть на вашем сайте. Ваш новый плагин теперь должен быть в этом списке!</p>
+
+<h3><span id="Huki_hooks_dejstvia_actions_i_filtry">Хуки (hooks): действия (actions) и фильтры</span></h3>
+
+<p>Хуки WordPress (<strong>hooks</strong>) позволяют вам подключаться к WordPress в определенных точках, чтобы изменить поведение WordPress без редактирования каких-либо основных файлов.</p>
+
+<p>Создание плагина WordPress и темы всегда связано с двумя типами хуков: действия (<strong>actions</strong>) и фильтры (<strong>filters</strong>). Действия (<strong>actions</strong>) позволяют добавлять или изменять функциональные возможности WP, а фильтры (<strong>filters</strong>) позволяют изменять содержимое по мере его загрузки и отображения пользователю веб-сайта.</p>
+
+<p>Хуки служат не только для разработчиков плагинов; Хуки широко используются для обеспечения функциональности по умолчанию самим ядром WordPress. Другие хуки — это неиспользуемые заполнители, к которым вы можете просто подключиться, когда вам нужно изменить работу WordPress. Это то, что делает WordPress таким гибким.</p>
+
+<h3><span id="Osnovnye_huki">Основные хуки</span></h3>
+
+<p>3 основных хука, которые вам понадобятся при создании плагина, это:</p>
+
+<ul>
+<li><code>register_activation_hook()</code>,</li>
+<li><code>register_deactivation_hook()</code>,</li>
+<li><code>register_uninstall_hook()</code>.</li>
+</ul>
+
+<p>Хук активации запускается при активации вашего плагина. Вы можете использовать его, чтобы предоставить функцию для настройки вашего плагина — например, создание некоторых настроек по умолчанию в таблице параметров.</p>
+
+<p>Хук деактивации запускается, когда вы деактивируете свой плагин. Вы можете использовать его для предоставления функции, которая очищает любые временные данные, которые создал ваш плагин.</p>
+
+<p>Методы деинсталяции (удаления) используются для очистки после удаления (<strong>delete</strong>) вашего плагина через админ панель WordPress. Вы можете использовать его для удаления всех данных, созданных вашим плагином, таких как любые опции, которые были добавлены в таблицу опций (<strong>options</strong>).</p>
+
+<h3><span id="Dobavlenie_hukov">Добавление хуков</span></h3>
+
+<p>Вы можете добавить свои собственные пользовательские хуки с помощью <code>do_action()</code>, которая позволит разработчикам расширять ваш плагин, передавая функции через ваши хуки.</p>
+
+
+
+<h3><span id="Udalenie_huka">Удаление хука</span></h3>
+
+
+
+<p>Вы также можете использовать invoke <code>remove_action()</code>, чтобы удалить функцию, которая была определена ранее. Например, если ваш плагин является надстройкой к другому плагину, вы можете использовать <code>remove_action()</code> с той же функцией обратного вызова, которая была добавлена предыдущим плагином с помощью <code>add_action()</code>. Приоритет действий важен в этих ситуациях, так как <code>remove_action()</code> должен был бы выполняться после начальной <code>add_action()</code>.</p>
+
+
+
+<p>Вы должны быть осторожны при удалении действия из хука, а также при изменении приоритетов, потому что может быть трудно понять, как эти изменения повлияют на другие взаимодействия с тем же хуком. Мы настоятельно рекомендуем проводить частые тесты.</p>
+
+
+
+<p>Вы можете узнать больше о создании хуков и взаимодействии с ними в разделе хуков этого руководства.</p>
+
+
+
+<h3><span id="WordPress_API">WordPress API</span></h3>
+
+
+
+<p>Знаете ли вы, что WordPress предоставляет несколько интерфейсов прикладного программирования (Application Programming Interfaces или API)? Эти API-интерфейсы могут значительно упростить создание плагина WordPress и ваш код, который вы пишете в своих плагинах. Вы не захотите изобретать велосипед, особенно когда очень много людей проделали до вас большую работу и проводили много тестов.</p>
+
+
+
+<p>Наиболее распространенным из них является API параметров (Options API), который позволяет легко хранить данные в базе данных для вашего плагина. Если вы думаете об использовании cURL в своем плагине, то вам пригодится HTTP API.</p>
+
+
+
+<p>Поскольку мы говорим о плагинах, вам нужно изучить API плагинов (Plugin API). Он имеет множество функций, которые помогут вам в разработке плагинов.</p>
+
+
+
+<h3><span id="Kak_WordPress_zagruzaet_plaginy">Как WordPress загружает плагины</span></h3>
+
+
+
+<p>Когда WordPress загружает список установленных плагинов на странице плагинов администратора WordPress, он просматривает папку плагинов (и ее подпапки), чтобы найти файлы PHP с комментариями в заголовках плагинов WordPress.</p>
+
+
+
+<p>Если весь ваш плагин состоит из одного PHP-файла, например, как Hello Dolly, этот файл может находиться непосредственно в корне папки плагинов. Но чаще всего файлы плагинов будут находиться в собственной папке, названной в честь плагина.</p>
+
+
+
+<h3><span id="Rasprostranenie_plagina">Распространение плагина</span></h3>
+
+
+
+<p>Иногда созданный плагин предназначен только для вашего сайта. Но многим нравится делиться своими плагинами с остальным сообществом WordPress.</p>
+
+
+
+<p>Прежде чем делиться своим плагином, вам нужно выбрать лицензию. Это позволяет пользователю вашего плагина знать, как ему разрешено использовать ваш код. Для обеспечения совместимости с ядром WordPress рекомендуется выбрать лицензию, которая работает с GNU General Public License (GPLv2 +).</p>
+
+
+
+<h2><span id="21_Trebovania_k_zagolovku_header">2.1 Требования к заголовку (header)</span></h2>
+
+
+
+<p>Как описано в разделе «Основы плагинов», основной файл PHP должен содержать комментарий заголовка, который сообщает WordPress, что файл является плагином, и предоставляет информацию о плагине.</p>
+
+
+
+<h3><span id="Minimalnye_pola">Минимальные поля</span></h3>
+
+
+
+<p>Как минимум, заголовок комментария должен содержать имя плагина (<strong>Plugin Name</strong>):</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+/**
+* Plugin Name: YOUR PLUGIN NAME
+*/</code></pre>
+
+
+
+<h3><span id="Pola_zagolovka_plagina">Поля заголовка плагина</span></h3>
+
+
+
+<p>Доступные поля заголовка:</p>
+
+
+
+<ul>
+<li><strong>Plugin Name</strong> (обязательно): Название вашего плагина, который будет отображаться в списке плагинов в админке WordPress.</li>
+<li><strong>Plugin URI</strong>: Домашняя страница плагина, которая должна быть уникальным URL, желательно на вашем собственном сайте. Должно быть уникальным для вашего плагина. Вы здесь не можете использовать URL-адрес WordPress.org.</li>
+<li><strong>Description</strong>: Краткое описание плагина, которое показано в разделе плагинов в админке WordPress. Описание должно быть до 140 символов.</li>
+<li><strong>Version</strong>: Текущий номер версии плагина, например 1.0 или 1.0.3.</li>
+<li><strong>Requires at least</strong>: Самая низкая версия WordPress, над которой будет работать плагин.</li>
+<li><strong>Requires PHP</strong>: Минимальная требуемая версия PHP.</li>
+<li><strong>Author</strong>: Имя автора плагина. Несколько авторов могут быть перечислены с помощью запятых.</li>
+<li><strong>Author URI</strong>: Сайт автора или профиль на другом сайте, например WordPress.org.</li>
+<li><strong>License</strong>: Краткое название (slug, слаг) лицензии плагина (например, GPLv2). Более подробную информацию о лицензировании можно найти в руководствах WordPress.org.</li>
+<li><strong>License URI</strong>: Ссылка на полный текст лицензии (например, https://www.gnu.org/licenses/gpl-2.0.html).</li>
+<li><strong>Text Domain</strong>: Текстовый домен gettext плагина. Дополнительную информацию можно найти в разделе «Текстовый домен» (Text Domain) на странице «Как интернационализировать свой плагин» (How to Internationalize your Plugin).</li>
+<li><strong>Domain Path</strong>: Путь к домену позволяет WordPress знать, где найти переводы. Дополнительную информацию можно найти в разделе «Путь к домену» (Domain Path) на странице «Как интернационализировать свой плагин» (How to Internationalize your Plugin).</li>
+<li><strong>Network</strong>: Может ли плагин быть активирован только для всей сети. Может быть установлено только в <code>true</code> и должно быть пропущено, когда нет необходимости.</li>
+</ul>
+
+
+<p>Правильный файл PHP с комментарием заголовка может выглядеть так:</p>
+
+
+<pre><code class="language-php">&lt;?php
+/**
+ * Plugin Name:       My Basics Plugin
+ * Plugin URI:        https://example.com/plugins/the-basics/
+ * Description:       Handle the basics with this plugin.
+ * Version:           1.10.3
+ * Requires at least: 5.2
+ * Requires PHP:      7.2
+ * Author:            John Smith
+ * Author URI:        https://author.example.com/
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       my-basics-plugin
+ * Domain Path:       /languages
+ */</code></pre>
+
+
+
+<p>Вот еще один пример, который допускает файловый уровень PHPDoc DocBlock, а также заголовки файлов плагинов WordPress:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+/**
+ * Plugin Name
+ *
+ * @package           PluginPackage
+ * @author            Your Name
+ * @copyright         2019 Your Name or Company Name
+ * @license           GPL-2.0-or-later
+ *
+ * @wordpress-plugin
+ * Plugin Name:       Plugin Name
+ * Plugin URI:        https://example.com/plugin-name
+ * Description:       Description of the plugin.
+ * Version:           1.0.0
+ * Requires at least: 5.2
+ * Requires PHP:      7.2
+ * Author:            Your Name
+ * Author URI:        https://example.com
+ * Text Domain:       plugin-slug
+ * License:           GPL v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ */</code></pre>
+
+<p><strong>Замечание</strong></p>
+<div class="attention-yellow">При назначении номера версии вашему проекту, помните, что WordPress использует функцию PHP <strong style="font-weight: 600;">version_compare()</strong> для сравнения номеров версий плагина. Поэтому, прежде чем выпускать новую версию своего плагина, вы должны убедиться, что эта функция PHP считает, что новая версия «больше», чем старая. Например, 1.02 на самом деле больше, чем 1.1.</div>
+
+<h2><span id="22_Vklucenie_licenzii_na_programmnoe_obespecenie">2.2 Включение лицензии на программное обеспечение</span></h2>
+
+
+
+<p>Большинство плагинов WordPress выпускаются под лицензией <a href="http://www.gnu.org/licenses/gpl.html" target="_blank" rel="noreferrer noopener nofollow">GPL</a>, которая является той же лицензией, которую использует сам WordPress. Однако есть и другие варианты. Всегда лучше четко указать лицензию, которую использует ваш плагин.</p>
+
+
+
+<p>В разделе «Требования к заголовку» мы кратко упомянули, как вы можете указать лицензию вашего плагина в комментарии к заголовку плагина. Другая распространенная и рекомендуемая практика — размещать комментарий к блоку лицензии в верхней части основного файла плагина (того же, в котором есть комментарий к заголовку плагина).</p>
+
+<p>Этот комментарий к блоку лицензии обычно выглядит примерно так:</p>
+
+<pre><code class="language-php">/*
+{Plugin Name} is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+any later version.
+ 
+{Plugin Name} is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+along with {Plugin Name}. If not, see {URI to Plugin License}.
+*/</code></pre>
+
+<p>В сочетании с комментарием к заголовку плагина:</p>
+
+<pre><code class="language-php">&lt;?php
+/*
+Plugin Name: WordPress.org Plugin
+Plugin URI:  https://developer.wordpress.org/plugins/the-basics/
+Description: Basic WordPress Plugin Header Comment
+Version:     20160911
+Author:      WordPress.org
+Author URI:  https://developer.wordpress.org/
+Text Domain: wporg
+Domain Path: /languages
+License:     GPL2
+ 
+{Plugin Name} is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+any later version.
+ 
+{Plugin Name} is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+along with {Plugin Name}. If not, see {License URI}.
+*/</code></pre>
+
+<h2><span id="23_Huki_aktivacii_deaktivacii">2.3 Хуки активации / деактивации</span></h2>
+
+
+
+<p>Хуки активации и деактивации предоставляют способы выполнения действий, когда плагины активируются или деактивируются.</p>
+
+
+
+<p>При активации плагины могут запускать подпрограмму (функцию) для добавления правил перезаписи, добавления пользовательских таблиц базы данных или установки значений параметров по умолчанию.</p>
+
+
+
+<p>При деактивации плагины могут запускать подпрограмму для удаления временных данных, таких как кеш, временные файлы и каталоги.</p>
+
+
+
+<div class="attention-yellow"><strong>Внимание</strong>! Хук деактивации иногда путают с хуком удаления. Хук удаления лучше всего подходит для постоянного удаления всех данных, таких как удаление параметров плагина, пользовательских таблиц и т.д.</div>
+
+
+
+<h3><span id="Aktivacia">Активация</span></h3>
+
+
+
+<p>Чтобы настроить хук активации, используйте функцию register_activation_hook():</p>
+
+
+
+<pre><code class="language-php">register_activation_hook( __FILE__, 'pluginprefix_function_to_run' );</code></pre>
+
+
+
+<h3><span id="Deaktivacia">Деактивация</span></h3>
+
+
+
+<p>Чтобы установить хук деактивации, используйте функцию register_deactivation_hook():</p>
+
+<pre><code class="language-php">register_deactivation_hook( __FILE__, 'pluginprefix_function_to_run' );</code></pre>
+
+<p>Первый параметр в каждой из этих функций относится к вашему основному файлу плагина, который является файлом, в который вы поместили комментарий заголовка плагина.</p>
+
+
+
+<p>Обычно эти две функции запускаются из основного файла плагина; однако, если функции помещены в любой другой файл, вы должны обновить первый параметр, чтобы он правильно указывал на основной файл плагина.</p>
+
+<h3><span id="Primer">Пример</span></h3>
+
+<p>Одним из наиболее распространенных способов использования хука активации является обновление постоянных ссылок WordPress, когда плагин регистрирует пользовательский тип записи. Это избавляет от неприятных 404 ошибок.</p>
+
+<p>Давайте рассмотрим пример того, как это сделать:</p>
+
+<pre><code class="language-php">/**
+ * Register the "book" custom post type
+ */
+function pluginprefix_setup_post_type() {
+    register_post_type( 'book', ['public' =&gt; true ] ); 
+} 
+add_action( 'init', 'pluginprefix_setup_post_type' );
+ 
+ 
+/**
+ * Activate the plugin.
+ */
+function pluginprefix_activate() { 
+    // Trigger our function that registers the custom post type plugin.
+    pluginprefix_setup_post_type(); 
+    // Clear the permalinks after the post type has been registered.
+    flush_rewrite_rules(); 
+}
+register_activation_hook( __FILE__, 'pluginprefix_activate' );</code></pre>
+
+<p>Если вы не знакомы с регистрацией пользовательских типов записей, не беспокойтесь — об этом будет рассказано позже. Этот пример используется просто потому, что он очень распространен.</p>
+
+<p>Используя приведенный выше пример, ниже показано, как отменить этот процесс и деактивировать плагин:</p>
+
+<pre><code class="language-php">/**
+ * Deactivation hook.
+ */
+function pluginprefix_deactivate() {
+    // Unregister the post type, so the rules are no longer in memory.
+    unregister_post_type( 'book' );
+    // Clear the permalinks to remove our post type's rules from the database.
+    flush_rewrite_rules();
+}
+register_deactivation_hook( __FILE__, 'pluginprefix_deactivate' );</code></pre>
+
+<p>Для получения дополнительной информации об активации и деактивации хуков, есть несколько отличных ресурсов:</p>
+
+<ul>
+<li>register_activation_hook() в справочнике по функциям WordPress.</li>
+<li>register_deactivation_hook() в справочнике по функциям WordPress.</li>
+</ul>
+
+
+
+<h2><span id="24_Metody_deinstallacii">Методы деинсталляции</span></h2>
+
+
+
+<p>Вашему плагину может потребоваться некоторая очистка, когда он удаляется с сайта.</p>
+
+
+
+<p>Плагин считается деинсталлированным, если пользователь деактивировал плагин, а затем кликает ссылку удаления в админке WordPress.</p>
+
+
+
+<p>Когда ваш плагин будет удален, вы захотите очистить все его параметры и/или настройки, относящиеся к плагину, и/или другие объекты базы данных, такие как таблицы.</p>
+
+
+
+<p>Менее опытные разработчики иногда допускают ошибку, используя для этого хук деактивации.</p>
+
+
+
+<p>Эта таблица иллюстрирует различия между деактивацией и удалением.</p>
+
+
+
+<div class="table-responsive"><table class="table"><tbody><tr><th>Сценарий</th><th>Хук деактивации</th><th>Хук деинсталляции</th></tr><tr><td>Очистка кеш / временных файлов</td><td>Да</td><td>Нет</td></tr><tr><td>Очистка постоянных ссылок</td><td>Да</td><td>Нет</td></tr><tr><td>Удаление параметров из <code>{$wpdb-&gt; prefix}_options</code></td><td>Нет</td><td>Да</td></tr><tr><td>Удаление таблицы из <code>wpdb</code></td><td>Нет</td><td>Да</td></tr></tbody></table></div>
+
+
+
+<p><strong>Метод 1: register_uninstall_hook</strong></p>
+
+
+
+<p>Чтобы настроить хук удаления, используйте функцию register_uninstall_hook():</p>
+
+
+
+<pre><code class="language-php">register_uninstall_hook(__FILE__, 'pluginprefix_function_to_run');</code></pre>
+
+
+
+<p><strong>Метод 2: uninstall.php</strong></p>
+
+
+
+<p>Чтобы использовать этот метод, вам нужно создать файл <strong>uninstall.php</strong> в корневой папке вашего плагина. Этот волшебный файл запускается автоматически, когда пользователи удаляют плагин.</p>
+
+
+
+<p>Например: <strong>/plugin-name/uninstall.php</strong></p>
+
+
+
+<div class="attention-yellow"><strong>Внимание</strong>! При использовании&nbsp;<strong>uninstall.php</strong>&nbsp;перед выполнением плагин всегда должен проверять константу&nbsp;<strong>WP_UNINSTALL_PLUGIN</strong>, чтобы предотвратить прямой доступ.</div>
+
+
+
+<p>Константа будет определена WordPress во время вызова <strong><em>uninstall.php</em></strong>. Константа НЕ определяется, когда деинсталляция выполняется через register_uninstall_hook().</p>
+
+
+
+<p>Вот пример удаления записей опций и удаления таблицы базы данных:</p>
+
+
+
+<pre><code class="language-php">// если uninstall.php не вызван WordPress, die
+if (!defined('WP_UNINSTALL_PLUGIN')) {
+    die;
+}
+ 
+$option_name = 'wporg_option';
+ 
+delete_option($option_name);
+ 
+// для опций сайтов в Мультисайте
+delete_site_option($option_name);
+ 
+// удалить пользовательскую таблицу базы данных
+global $wpdb;
+$wpdb-&gt;query("DROP TABLE IF EXISTS {$wpdb-&gt;prefix}mytable");</code></pre>
+
+
+
+<div class="attention-blue"><strong>Примечание</strong>! В мультисайтах циклический просмотр всех блогов для удаления параметров может быть очень ресурсоемким.</div>
+
+
+
+<h2><span id="25_Lucsie_praktiki">2.5 Лучшие практики</span></h2>
+
+
+
+<p>Вот несколько рекомендаций (лучших практик), которые помогут организовать ваш код так, чтобы создание плагина WordPress прошло хорошо и он отлично работал вместе с ядром WordPress и другими плагинами.</p>
+
+
+
+<p><strong>Избегайте конфликтов имен</strong></p>
+
+
+
+<p>Конфликт имен происходит, когда ваш плагин использует то же имя для переменной, функции или класса, что и другой плагин. К счастью, вы можете избежать именования коллизий, используя методы ниже. Создание плагина WordPress можно осуществить в процедурном стиле или с использованием ООП. Про это ниже.</p>
+
+
+
+<h3><span id="Procedurnye">Процедурные</span></h3>
+
+
+
+<p>По умолчанию все переменные, функции и классы определены в глобальном пространстве имен, что означает, что ваш плагин может переопределять переменные, функции и классы, установленные другим плагином, и наоборот.</p>
+
+
+
+<p>На переменные, которые определены внутри функций или классов, это не влияет.</p>
+
+
+
+<p><strong>Префикс для всего</strong></p>
+
+
+
+<p>Все переменные, функции и классы должны иметь префикс с уникальным идентификатором. Префиксы не позволяют другим плагинам перезаписывать ваши переменные и случайно вызывать ваши функции и классы. Это также помешает вам сделать то же самое.</p>
+
+
+
+<p><strong>Проверка существующих реализаций</strong></p>
+
+
+
+<p>PHP предоставляет ряд функций для проверки существования переменных, функций, классов и констант. Все они вернут истину (<code>true</code>), если сущность существует.</p>
+
+
+<ul>
+<li>Переменные (<strong>Variables</strong>): isset() (includes arrays, objects, etc.)</li>
+<li>Функции (<strong>Functions</strong>): function_exists()</li>
+<li>Классы (<strong>Classes</strong>): class_exists()</li>
+<li>Константы (<strong>Constants</strong>): defined()</li>
+</ul>
+
+
+<p><strong>Пример</strong></p>
+
+
+<pre><code class="language-php">// создаем функцию "wporg_init" если она еще не существует
+if ( !function_exists( 'wporg_init' ) ) {
+    function wporg_init() {
+        register_setting( 'wporg_settings', 'wporg_option_foo' );
+    }
+}
+ 
+// создаем функцию "wporg_get_foo" если она еще несуществует
+if ( !function_exists( 'wporg_get_foo' ) ) {
+    function wporg_get_foo() {
+        return get_option( 'wporg_option_foo' );
+    }
+}</code></pre>
+
+<h3><span id="OOP">ООП</span></h3>
+
+<p>Более простой способ решения проблемы коллизии имен — использовать <a rel="noreferrer noopener" href="http://php.net/manual/en/language.oop5.php" target="_blank">класс</a> для кода вашего плагина.</p>
+
+<p>Вам по-прежнему нужно будет позаботиться о том, чтобы убедиться, что имя нужного вам класса уже занято, но об остальном позаботится PHP.</p>
+
+<p><strong>Пример</strong></p>
+
+<pre><code class="language-php">if ( !class_exists( 'WPOrg_Plugin' ) ) {
+    class WPOrg_Plugin
+    {
+        public static function init() {
+            register_setting( 'wporg_settings', 'wporg_option_foo' );
+        }
+ 
+        public static function get_foo() {
+            return get_option( 'wporg_option_foo' );
+        }
+    }
+ 
+    WPOrg_Plugin::init();
+    WPOrg_Plugin::get_foo();
+}</code></pre>
+
+
+
+<h3><span id="Organizacia_fajlov">Организация файлов</span></h3>
+
+
+
+<p>Корневой уровень вашей директории плагинов должен содержать ваш файл <strong>plugin-name.php</strong> и, необязательно, файл <strong>uninstall.php</strong>. Все остальные файлы должны быть организованы в подпапки, когда это возможно.</p>
+
+
+
+<p><strong>Структура папок</strong></p>
+
+
+
+<p>Четкая структура папок помогает вам и другим людям, работающим над вашим плагином, хранить похожие файлы вместе.</p>
+
+
+
+<p>Вот пример структуры папок для справки:</p>
+
+
+
+<pre><code class="language-bash">/plugin-name
+     plugin-name.php
+     uninstall.php
+     /languages
+     /includes
+     /admin
+          /js
+          /css
+          /images
+     /public
+          /js
+          /css
+          /images</code></pre>
+
+
+
+<h3><span id="Arhitektura_plagina">Архитектура плагина</span></h3>
+
+
+
+<p>Архитектура или организация кода, которую вы выбираете для своего плагина, вероятно, будет зависеть от размера вашего плагина.</p>
+
+
+
+<p>Для небольших плагинов специального назначения, которые имеют ограниченное взаимодействие с ядром WordPress, темами или другими плагинами, мало смысла в разработке сложных классов; только если вы не планируете значительно расширять плагин позже.</p>
+
+
+
+<p>Для больших плагинов с большим количеством кода начните с классов. Отдельные файлы стилей и скриптов, и даже файлы, связанные со сборкой. Это поможет организации кода и долгосрочном обслуживании плагина.</p>
+
+
+
+<p><strong>Условная загрузка</strong></p>
+
+
+
+<p>Полезно отделить ваш код администратора от общедоступного кода. Используйте условный <code>is_admin()</code>.</p>
+
+
+
+<p>Например:</p>
+
+
+
+<pre><code class="language-php">if ( is_admin() ) {
+    // мы в режиме админа
+    require_once __DIR__ . '/admin/plugin-name-admin.php';
+}</code></pre>
+
+
+
+<p><strong>Архитектурные паттерны</strong></p>
+
+
+
+<p>Хотя существует несколько возможных архитектурных шаблонов, их можно сгруппировать в три варианта:</p>
+
+
+
+<ul>
+<li>Single plugin file, containing functions</li>
+<li>Single plugin file, containing a class, instantiated object and optionally functions</li>
+<li>Main plugin file, then one or more class files</li>
+</ul>
+
+<p><strong>Объясненные паттернов архитектуры</strong></p>
+
+
+
+<p>Конкретные реализации более сложной из вышеперечисленных организаций кода уже были написаны в виде учебных пособий и слайдов:</p>
+
+
+
+<ul>
+<li>Slash – Singletons, Loaders, Actions, Screens, Handlers (см. сайт <em>jjj.blog</em>)</li>
+<li>Implementing the MVC Pattern in WordPress Plugins (см. сайт <em>iandunn.name</em>)</li>
+</ul>
+
+
+
+<p><strong>Стартовые точки Boilerplate (шаблона)</strong></p>
+
+
+
+<p>Вместо того, чтобы начинать с нуля для каждого нового плагина, который вы пишете, вы можете начать с шаблона (boilerplate). Одним из преимуществ использования шаблона является согласованность между вашими плагинами. Boilerplates также облегчают другим людям добавлять свой код, если вы используете шаблон, с которым они уже знакомы.</p>
+
+
+
+<p>Это также служит дополнительными примерами различных, но сопоставимых архитектур.</p>
+
+
+
+<ul>
+<li>WordPress Plugin Boilerplate: Основа для разработки плагинов WordPress, целью которой является предоставление четкого и последовательного руководства по созданию ваших плагинов.</li>
+
+
+
+<li>WordPress Plugin Bootstrap: Базовый загрузчик для разработки плагинов WordPress с использованием Grunt, Compass, GIT и SVN.</li>
+
+
+
+<li>WP Skeleton Plugin: Skeleton плагин, который фокусируется на модульных тестах и использовании композера для разработки.</li>
+
+
+
+<li>WP CLI Scaffold: Команда Scaffold WP CLI создает каркасный плагин с такими параметрами, как файлы конфигурации CI.</li>
+</ul>
+
+
+
+<p>Конечно, вы можете использовать различные аспекты из примеров выше и другие, чтобы создать свой собственный шаблон.</p>
+
+
+
+<h2><span id="26_Opredelenie_plaginov_i_direktorij_kontenta">2.6 Определение плагинов и директорий контента</span></h2>
+
+
+
+<p>При разработке плагинов WordPress вам часто нужно ссылаться на различные файлы и папки в процессе установки WordPress и в вашем плагине или теме.</p>
+
+
+
+<p>WordPress предоставляет несколько функций для простого определения того, где находится данный файл или каталог. Всегда используйте эти функции в своих плагинах вместо того, чтобы жестко кодировать ссылки на каталог <strong>wp-content</strong> или использовать внутренние константы WordPress.</p>
+
+
+<div class="attention-green">WordPress позволяет пользователям размещать каталог <strong style="font-weight: 600;">wp-content</strong> в любом месте и переименовывать его по своему усмотрению. Никогда не думайте, что плагины будут в <strong style="font-weight: 600;">wp-content/plugins</strong>, загрузки будут в <strong style="font-weight: 600;">wp-content/uploads</strong>, или что темы будут в <strong style="font-weight: 600;">wp-content/themes</strong>.</div>
+
+
+
+<p>Волшебная константа PHP <code>__FILE__</code> автоматически разрешает символические ссылки, поэтому, если символические ссылки содержат <strong>wp-content</strong> или <strong>wp-content/plugins</strong> или даже отдельный каталог плагинов, жестко закодированные пути не будут правильно работать.</p>
+
+
+
+<p><strong>Основное использование</strong></p>
+
+
+
+<p>Если ваш плагин содержит файлы JavaScript, CSS-файлы или другие внешние файлы, вероятно, вам понадобится URL-адрес этих файлов, чтобы вы могли загрузить их на страницу. Для этого вы должны использовать функцию plugins_url() следующим образом:</p>
+
+
+
+<pre><code class="language-php">plugins_url( 'myscript.js', _FILE_ );</code></pre>
+
+
+
+<p>Это вернет полный URL-адрес файла <strong>myscript.js</strong>, например:</p>
+
+
+
+<pre><code class="language-bash">example.com/wp-content/plugins/myplugin/myscript.js</code></pre>
+
+
+
+<p>Чтобы загрузить JavaScript или CSS ваших плагинов на страницу, вы должны использовать wp_enqueue_script() или wp_enqueue_style() соответственно, передавая результат <code>plugins_url()</code> в качестве URL файла.</p>
+
+
+
+<p><strong>Доступные функции</strong></p>
+
+
+
+<p>WordPress включает в себя множество других функций для определения путей и URL-адресов файлов или каталогов внутри плагинов, тем и самого WordPress. См. отдельные страницы Кодекса для каждой функции для получения полной информации об их использовании.</p>
+
+
+
+<p><strong>Плагины</strong></p>
+
+
+
+<pre><code class="language-php">plugins_url()
+plugin_dir_url()
+plugin_dir_path()
+plugin_basename()</code></pre>
+
+
+
+<p><strong>Темы</strong></p>
+
+
+
+<pre><code class="language-php">get_template_directory_uri()
+get_stylesheet_directory_uri()
+get_stylesheet_uri()
+get_theme_root_uri()
+get_theme_root()
+get_theme_roots()
+get_stylesheet_directory()
+get_template_directory()</code></pre>
+
+
+
+<p><strong>Главная страница</strong></p>
+
+
+
+<pre><code class="language-php">home_url()
+get_home_path()</code></pre>
+
+
+
+<p><strong>WordPress</strong></p>
+
+
+
+<pre><code class="language-php">admin_url()
+site_url()
+content_url()
+includes_url()
+wp_upload_dir()</code></pre>
+
+
+
+<p><strong>Мультисайт</strong></p>
+
+
+
+<pre><code class="language-php">get_admin_url()
+get_home_url()
+get_site_url()
+network_admin_url()
+network_site_url()
+network_home_url()</code></pre>
+
+
+
+<p><strong>Константы</strong></p>
+
+
+
+<p>WordPress использует следующие константы при определении пути к каталогам содержимого и плагинов. Они не должны использоваться непосредственно плагинами или темами, но перечислены здесь для полноты информации.</p>
+
+
+
+<pre><code class="language-php">WP_CONTENT_DIR  // без косой черты, только полные пути
+WP_CONTENT_URL  // полный url 
+WP_PLUGIN_DIR  // полный путь, без косой черты
+WP_PLUGIN_URL  // полный URL, без косой черты</code></pre>
+
+
+
+<pre><code>// Доступно по умолчанию в Мультисайт, не устанавливается при установке на одном сайте
+// Может использоваться в одиночной установке сайта (как обычно: на свой страх и риск)
+UPLOADS // (Если установлено, загружает папку относительно ABSPATH) (например: /wp-content/uploads)</code></pre>
+
+
+
+<p><strong>Каталоги WordPress</strong></p>
+
+
+
+<div class="table-responsive"><table class="table"><tbody><tr><th>Каталоги WordPress:</th></tr><tr><td>home_url()</td><td>Домашний URL</td><td>http://www.example.com</td></tr><tr><td>site_url()</td><td>URL каталога сайта</td><td>http://www.example.com или http://www.example.com/wordpress</td></tr><tr><td>admin_url()</td><td>URL каталога администратора</td><td>http://www.example.com/wp-admin</td></tr><tr><td>includes_url()</td><td>URL-адрес каталога includes</td><td>http://www.example.com/wp-includes</td></tr><tr><td>content_url()</td><td>URL каталога содержимого (content)</td><td>http://www.example.com/wp-content</td></tr><tr><td>plugins_url()</td><td>URL каталога плагинов</td><td>http://www.example.com/wp-content/plugins</td></tr><tr><td>wp_upload_dir()</td><td>URL каталог uploads (возвращает массив)</td><td>http://www.example.com/wp-content/uploads</td></tr></tbody></table></div>
+
+
+
+<h2><span id="27_Proverka_aktivacii_plagina">2.7 Проверка активации плагина</span></h2>
+
+
+
+<p>Вы можете использовать <code>class_exists</code> в WordPress, чтобы проверить, активен ли плагин. Это необходимо сделать при использовании класса PHP плагина в вашей теме.</p>
+
+
+
+<div class="attention-blue">Официальная документация PHP — class_exists</div>
+
+
+
+<p>Если вы не используете <code>class_exists</code> при использовании функций плагина в своей теме, вы получите сообщение об ошибке при загрузке страниц на сайте, если плагин деактивирован.</p>
+
+
+
+<p>Давайте посмотрим на рабочий пример с использованием кода из очень популярного плагина WordPress <strong>Advanced Custom Fields</strong> (ACF).</p>
+
+
+
+<h3><span id="Ispolzovanie_class_exists_v_vasej_teme">Использование class_exists в вашей теме</span></h3>
+
+
+
+<p>Следующий код проверяет, активен ли плагин ACF. Используйте этот код с фрагментами кода, которые используют специальные функции ACF, такие как <code>get_field();</code>.</p>
+
+
+
+<p>Если вы этого не сделаете, ваш код вызовет ошибки, если будет добавлен в файл темы, когда плагин ACF не активен.</p>
+
+
+
+<p>Следующий код проверяет, активен ли плагин ACF, ища класс <code>acf</code>. Если класс <code>acf</code> не существует, оператор <code>return</code> немедленно завершает выполнение текущей функции.</p>
+
+
+
+<pre><code class="language-php">if ( ! class_exists( 'acf' ) ) 
+    return;</code></pre>
+
+
+
+<h3><span id="Primer_koda">Пример кода</span></h3>
+
+
+
+<p>Следующий код будет работать нормально, если вы создали поле в ACF с именем <code>after_header</code> и активировали плагин.</p>
+
+
+
+<pre><code class="language-php">add_action( 'genesis_before_loop', 'test_acf_function' );
+function test_acf_function() {
+    
+    echo get_field( 'after_header' );
+}</code></pre>
+
+
+
+<p>Однако вот что происходит, когда вы деактивируете плагин ACF:</p>
+
+
+
+<p><strong><em>Fatal error: Call to undefined function get_field()</em></strong></p>
+
+
+
+<p>Вы получаете фатальную ошибку, потому что <code>get_field</code> — это функция, закодированная в файлах ACF, поэтому она не будет работать при использовании в теме, когда плагин ACF неактивен.</p>
+
+
+
+<p>Всегда добавляйте проверку для плагина при использовании функций плагина в вашей теме.</p>
+
+
+
+<p>Вот обновленный код, который, как вы догадались, включает <code>class_exists</code>.</p>
+
+
+
+<pre><code class="language-php">add_action( 'genesis_before_loop', 'test_acf_function' );
+function test_acf_function() {
+if ( ! class_exists( 'acf' ) ) 
+    return;
+    
+    echo get_field( 'after_header' );
+}</code></pre>
+
+
+
+<p>Приведенный выше код проверяет, если <code>class_exists</code> для плагина ACF, в противном случае возвращает <strong><em>false</em></strong>.</p>
+
+
+
+<h3><span id="Drugie_metody">Другие методы</span></h3>
+
+
+
+<p>Другой метод с использованием тернарного оператора:</p>
+
+
+
+<pre><code class="language-php">add_action( 'genesis_before_loop', 'test_acf_function' );
+function test_acf_function() { 
+    
+$output = class_exists( 'acf' ) ? get_field( 'after_header' ) : get_post_meta( get_the_ID(), 'after_header', true );
+    
+echo $output;
+}</code></pre>
+
+
+
+<p>Приведенный выше код проверяет, существует ли класс <code>acf</code>, что верно, когда подключаемый модуль ACF активен.</p>
+
+
+
+<p>Если подключаемый модуль ACF активен, переменная <code>$output</code> использует функцию ACF <code>get_field('after_header')</code> в качестве своего значения.</p>
+
+
+
+<p>В противном случае переменная <code>$output</code> равна <code>get_post_meta( get_the_ID(), 'after_header', true );</code>, что является функцией WordPress для настраиваемых (кастомных) полей и всегда работает в любой теме.</p>
+
+
+
+<p>Если вы используете в своей теме функции WooCommerce, вам также необходимо убедиться, что плагин WooCommerce активен следующим образом:</p>
+
+
+
+<pre><code class="language-php">if ( ! class_exists( 'WooCommerce' ) )
+    return;</code></pre>
+
+
+
+<p>Вы можете увидеть приведенный выше пример во многих новых темах, которые предназначены для работы с плагином WooCommerce из коробки и включают в себя специальную папку <strong><em>woocommerce</em></strong>.</p>
+
+
+
+<h2><span id="28_Dobavlenie_CSS_na_frontend">2.8 Добавление CSS на фронтенд</span></h2>
+
+
+
+<p>Рассмотрим как добавляются стили CSS в плагине для отображения этих стилей во фронтенде WordPress.</p>
+
+
+
+<p>Часто при создании плагинов есть желание применить таблицу стилей CSS, расположенную в папке плагина, к сайту, на котором он активирован. При этом, некоторые разработчики могут применять другие способы загрузки стилей на фронтенде, например, через раздел пользовательских CSS вашей темы. Но нам нужно, чтобы стили загружались через плагин, который мы создаем, что логично.</p>
+
+
+
+<p>Добавление (встраивание) стилей для плагина идентично тому, как мы добавляем стили при создании темы. Сниппет ниже демонстрирует вставку стилей через плагин. В главный файл плагина мы добавляем код ниже:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+/**
+ * Plugin Name: plugin name
+ * Plugin URI: http://www.pluginurl.com/
+ * Description: plugin description
+ * Version: 1.0
+ * Author: author name
+ * Author URI: http://www.authorurl.com/
+ */
+
+function wpsamurai_register_styles(){
+    wp_register_style( 'wpsamurai_stylesheet', plugins_url( '/css/my-plugin.css', __FILE__ ) );
+    wp_enqueue_style( 'wpsamurai_stylesheet' );
+}
+
+add_action( 'wp_enqueue_scripts', 'wpsamurai_register_styles' );</code></pre>
+
+
+
+<p>Файл стилей мы кладем в папку <strong>CSS</strong> в папке плагина. В нашем случае файл стилей мы назвали <strong><em>my-plugin.css</em></strong>, но название может быть любым, главное — не забыть поменять его в приведенном сниппете выше. Сам файл <strong><em>my-plugin.css</em></strong> может содержать все что угодно:</p>
+
+
+
+<pre><code>.classname { color: #000; }</code></pre>
+
+
+
+<p>Мы используем обычный хук действия <code>wp_enqueue_scripts</code>.</p>
+
+
+
+<h2><span id="3_Bezopasnost_plaginov">3. Безопасность плагинов</span></h2>
+
+
+
+<p>Поздравляем, ваш код работает! Но безопасно ли это? Как плагин защитит ваших пользователей, если их сайт будет взломан? Лучшие плагины в каталоге WordPress.org сохраняют информацию своих пользователей в безопасности.</p>
+
+
+
+<p>Помните, что ваш код может работать на сотнях, возможно, даже миллионах веб-сайтов, поэтому безопасность имеет первостепенное значение.</p>
+
+
+
+<p>В этой главе мы рассмотрим, как проверять возможности пользователей, проверять и очищать входные данные, очищать выходные данные, создавать и проверять одноразовые числа.</p>
+
+
+
+<ul>
+<li>Как исправить намеренно уязвимый плагин от Джона Кейва</li>
+
+
+
+<li>Безопасность тем и плагинов в презентации Марка Жакита</li>
+</ul>
+
+
+
+<h3><span id="31_Proverka_vozmoznostej_polzovatela">3.1 Проверка возможностей пользователя</span></h3>
+
+
+
+<p>Если ваш плагин позволяет пользователям отправлять данные — будь то на Админ или на Публичной стороне — он должен проверить на User Capabilities (Возможности пользователя).</p>
+
+
+
+<p><strong>Роли пользователей и возможности</strong></p>
+
+
+
+<p>Самым важным шагом в создании эффективного уровня безопасности является наличие системы пользовательских разрешений. WordPress обеспечивает это в виде ролей пользователей и возможностей.</p>
+
+
+
+<p>Каждому пользователю, авторизованному в WordPress, автоматически присваиваются конкретные возможности пользователя в зависимости от его роли.</p>
+
+
+
+<p><strong>Роли пользователей</strong> — это просто изящный способ сказать, к какой группе принадлежит пользователь. Каждая группа имеет определенный набор предопределенных возможностей.</p>
+
+
+
+<p>Например, основной пользователь вашего веб-сайта будет иметь роль User (Пользователь) администратора, в то время как у других пользователей могут быть роли типа Editor (Редактор) или Author (Автор). Вы можете назначить более одного пользователя на одну роль, т.е. на сайте может быть два администратора.</p>
+
+
+
+<p><strong>Пользовательские возможности</strong> — это конкретные разрешения, которые вы назначаете каждому пользователю или его роли.</p>
+
+
+
+<p>Например, администраторы имеют возможность «управлять_опциями» (manage_options), которая позволяет им просматривать, редактировать и сохранять опции сайта. Редакторы, с другой стороны, не имеют этой возможности, что препятствует их взаимодействию с опциями.</p>
+
+
+
+<p>Эти возможности затем проверяются в различных точках Админа. В зависимости от возможностей, назначенных для той или иной роли, могут быть добавлены или удалены меню, функциональность и другие аспекты работы с WordPress.</p>
+
+
+
+<p>При создании плагина убедитесь, что код запускается только тогда, когда текущий пользователь обладает необходимыми возможностями.</p>
+
+
+
+<p><strong>Иерархия</strong></p>
+
+
+
+<p>Чем выше роль пользователя, тем больше у него возможностей. Каждая пользовательская роль наследует предыдущие роли в иерархии.</p>
+
+
+
+<p>Например, «Администратор» (Administrator), которая является самой высокой пользовательской ролью на одном автономном сайте, наследует следующие роли и их возможности: «Подписчик» (Subscriber), «Участник» (Contributor), «Автор» (Author) и «Редактор» (Editor).</p>
+
+
+
+<p><strong>Пример (нет ограничений)</strong></p>
+
+
+
+<p>В примере, приведенном ниже, создается ссылка на фронтенде, которая дает возможность удалять статьи в корзину. Поскольку этот код не проверяет возможности пользователя, <strong>он позволяет любому посетителю удалять статьи</strong>!</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+/**
+* создать ссылку Delete (удалить) на основе URL домашней страницы
+*/
+function wporg_generate_delete_link($content)
+{
+// запускать только для одного поста (single)
+if (is_single() &amp;&amp; in_the_loop() &amp;&amp; is_main_query()) {
+// добавить аргументы запроса: action, post
+$url = add_query_arg(
+[
+'action' =&gt; 'wporg_frontend_delete',
+'post'   =&gt; get_the_ID(),
+],
+home_url()
+);
+return $content . ' &lt;a href="' . esc_url($url) . '"&gt;' . esc_html__('Delete Post', 'wporg') . '&lt;/a&gt;';
+}
+return null;
+}
+ 
+/**
+* обработчик запросов
+*/
+function wporg_delete_post()
+{
+if (isset($_GET['action']) &amp;&amp; $_GET['action'] === 'wporg_frontend_delete') {
+ 
+// проверка на id поста
+$post_id = (isset($_GET['post'])) ? ($_GET['post']) : (null);
+ 
+// проверка наличия поста с таким номером
+$post = get_post((int)$post_id);
+if (empty($post)) {
+return;
+}
+ 
+// удалить пост
+wp_trash_post($post_id);
+ 
+// перенаправление на страницу админа
+$redirect = admin_url('edit.php');
+wp_safe_redirect($redirect);
+ 
+// готово
+die;
+}
+}
+ 
+/**
+* добавить ссылку на удаление в конце статьи (content)
+*/
+add_filter('the_content', 'wporg_generate_delete_link');
+ 
+/**
+* зарегистрировать обработчик запроса с помощью хука init
+*/
+add_action('init', 'wporg_delete_post');</code></pre>
+
+
+
+<p><strong>Пример (ограничения с конкретными возможностями)</strong></p>
+
+
+
+<p>Пример выше позволяет любому посетителю сайта нажать на ссылку «Удалить» (Delete) и удалить пост. Однако, мы хотим, чтобы только Редакторы и выше могли нажать на ссылку «Удалить».</p>
+
+
+
+<p>Для этого мы проверим, что у текущего пользователя есть возможность редактирования постов <code>edit_others_posts</code>, которая есть только у редакторов и выше:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+/**
+* создать ссылку Delete на основе URL домашней страницы
+*/
+function wporg_generate_delete_link($content)
+{
+// запускать только для одного поста
+if (is_single() &amp;&amp; in_the_loop() &amp;&amp; is_main_query()) {
+// добавлять аргументы запроса: action, post
+$url = add_query_arg(
+[
+'action' =&gt; 'wporg_frontend_delete',
+'post'   =&gt; get_the_ID(),
+],
+home_url()
+);
+return $content . ' &lt;a href="' . esc_url($url) . '"&gt;' . esc_html__('Delete Post', 'wporg') . '&lt;/a&gt;';
+}
+return null;
+}
+ 
+/**
+* обработчик запросов
+*/
+function wporg_delete_post()
+{
+if (isset($_GET['action']) &amp;&amp; $_GET['action'] === 'wporg_frontend_delete') {
+ 
+// проверьте, есть ли у нас id поста
+$post_id = (isset($_GET['post'])) ? ($_GET['post']) : (null);
+ 
+// проверить наличие поста с таким номером
+$post = get_post((int)$post_id);
+if (empty($post)) {
+return;
+}
+ 
+// удалить пост
+wp_trash_post($post_id);
+ 
+// перенаправление на страницу Админа
+$redirect = admin_url('edit.php');
+wp_safe_redirect($redirect);
+ 
+// готово
+die;
+}
+}
+ 
+if (current_user_can('edit_others_posts')) {
+/**
+* добавить ссылку на удаление в конце публикации
+*/
+add_filter('the_content', 'wporg_generate_delete_link');
+ 
+/**
+* зарегистрировать обработчик запроса с помощью хука init
+*/
+add_action('init', 'wporg_delete_post');
+}</code></pre>
+
+
+
+<h3><span id="32_Validacia_dannyh">3.2 Валидация данных</span></h3>
+
+
+
+<p>Валидация данных — это процесс анализа данных по предопределенному шаблону (или шаблонам) с окончательным результатом: действительным или недействительным.</p>
+
+
+
+<p>Обычно это относится к данным, поступающим из внешних источников, таких как пользовательский ввод и запросы к веб-сервисам через API.</p>
+
+
+
+<p>Простые примеры валидации данных:</p>
+
+
+
+<ul>
+<li>Убедитесь, что необходимые поля не оставлены пустыми.</li>
+<li>Убедитесь, что введенный номер телефона содержит только цифры и знаки препинания.</li>
+<li>Убедитесь, что введенный почтовый индекс является действительным почтовым индексом.</li>
+<li>Убедитесь, что количественное поле больше 0</li>
+</ul>
+
+
+
+<p><strong>Валидацию данных следует проводить как можно раньше</strong>. Это означает, что перед выполнением каких-либо действий необходимо проверить данные.</p>
+
+
+
+<div class="attention-blue">Валидация может быть выполнена с помощью JavaScript на фронтенде и с помощью PHP на бекэнде.</div>
+
+
+
+<p><strong>Проверка данных</strong></p>
+
+
+
+<p>Существует как минимум три способа: встроенные функции PHP, основные функции WordPress и пользовательские функции, которые вы пишете.</p>
+
+
+
+<p><strong>Встроенные функции PHP</strong></p>
+
+
+
+<p>Базовая валидация возможна с использованием многих встроенных функций PHP, в том числе и этих:</p>
+
+
+
+<ul>
+<li>isset() и empty() для проверки, существует ли переменная и не пуста ли она</li>
+<li>mb_strlen() или strlen() для проверки, что строка имеет ожидаемое количество символов</li>
+<li>preg_match(), strpos() для проверки на наличие вхождения одних строк в другие</li>
+<li>count() для проверки количества элементов в массиве</li>
+<li>in_array() для проверки, существует ли что-то в массиве</li>
+</ul>
+
+
+
+<p><strong>Функции ядра WordPress</strong></p>
+
+
+
+<p>WordPress предоставляет множество полезных функций, которые помогают проверять различные типы данных. Вот несколько примеров:</p>
+
+
+
+<ul>
+<li>is_email() будет проверять действительность адреса электронной почты</li>
+<li>term_exists() проверяет, существует ли тег, категория или другой таксономический термин</li>
+<li>функция username_exists() проверяет, существует ли имя пользователя</li>
+<li>validate_file() подтвердит, что введенный путь к файлу является реальным путем (но не существует ли файл!)</li>
+</ul>
+
+
+
+<p>Проверьте руководство программиста WordPress, чтобы узнать больше о таких функциях.</p>
+
+
+
+<p>Поиск функций с подобными названиями: *<strong>exists()</strong>, *<strong>_validate()</strong> и <strong>is</strong>*(). Не все из них являются функциями проверки, но многие из них полезны.</p>
+
+
+
+<p><strong>Пользовательские функции PHP и JavaScript</strong></p>
+
+
+
+<p>Вы можете написать свои собственные PHP и JavaScript функции и включить их в свой плагин. При написании функции валидации вы захотите назвать ее как вопрос (примеры: <code>is_phone</code>, <code>is_available</code>, <code>is_us_zipcode</code>).</p>
+
+
+
+<p>Функция должна возвращать булевое значение, <code>true</code> или <code>false</code>, в зависимости от того, являются ли данные действительными или нет. Это позволит использовать функцию в качестве условия.</p>
+
+
+
+<p><strong>Пример 1</strong></p>
+
+
+
+<p>Допустим, у вас есть поле ввода почтового индекса США, которое отправляет пользователь.</p>
+
+
+
+<pre><code class="language-php">&lt;input id="wporg_zip_code" type="text" maxlength="10" name="wporg_zip_code"&gt;</code></pre>
+
+
+
+<p>Текстовое поле позволяет вводить до 10 символов без ограничений по типу используемых символов. Пользователь может ввести что-то действительное, например 1234567890 или что-то недействительное (и злое), например <code>eval()</code>.</p>
+
+
+
+<p>Атрибут максимальной длины (<strong>maxlength</strong>) в нашем поле ввода вводится только браузером, поэтому вам все равно придется проверять длину вводимого значения на сервере. Если вы этого не сделаете, атакующий может изменить значение <strong>maxlength</strong>.</p>
+
+
+
+<p>Используя валидацию, мы можем быть уверены, что принимаем только действительные почтовые коды.</p>
+
+
+
+<p>Сначала вам нужно написать функцию для валидации американских почтовых индексов:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+function is_us_zip_code($zip_code)
+{
+    // сценарий 1: empty (пусто)
+    if (empty($zip_code)) {
+        return false;
+    }
+ 
+    // сценарий 2: более 10 символов
+    if (strlen(trim($zip_code)) &gt; 10) {
+        return false;
+    }
+ 
+    // сценарий 3: неверный формат
+    if (!preg_match('/^\d{5}(\-?\d{4})?$/', $zip_code)) {
+        return false;
+    }
+ 
+    // успешно пройден
+    return true;
+}</code></pre>
+
+
+
+<p>При обработке формы ваш код должен проверить поле <code>wporg_zip_code</code> и выполнить действие на основании результата:</p>
+
+
+
+<pre><code class="language-php">if (isset($_POST['wporg_zip_code']) &amp;&amp; is_us_zip_code($_POST['wporg_zip_code'])) {
+    // выше действие
+}</code></pre>
+
+
+
+<p><strong>Пример 2</strong></p>
+
+
+
+<p>Скажем, вы собираетесь сделать запрос к базе данных для некоторых публикаций, и вы хотите дать пользователю возможность сортировать результаты запроса.</p>
+
+
+
+<p>Данный пример кода проверяет входящий ключ сортировки (хранящийся во входном параметре «<strong>orderby</strong>«) на корректность, сравнивая его с массивом разрешенных ключей сортировки с помощью встроенной PHP-функции in_array. Это предотвращает передачу пользователем вредоносных данных и потенциальную угрозу для сайта.</p>
+
+
+
+<p>Перед проверкой входящего ключа сортировки по массиву, ключ передается во встроенную функцию WordPress sanitize_key. Эта функция, помимо прочего, гарантирует, что ключ находится в строчном регистре (<code>in_array</code> выполняет поиск с учетом регистра).</p>
+
+
+
+<p>Передача «<strong>true</strong>» в третий параметр in_array позволяет выполнить строгую проверку типа, которая говорит функции не только сравнивать значения, но и типы значений. Это позволяет коду быть уверенным, что входящий ключ сортировки — это строка, а не какой-то другой тип данных.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+$allowed_keys = ['author', 'post_author', 'date', 'post_date'];
+ 
+$orderby = sanitize_key($_POST['orderby']);
+ 
+if (in_array($orderby, $allowed_keys, true)) {
+    // изменить запрос, чтобы отсортировать его по порядковым ключам
+}</code></pre>
+
+
+
+<h3><span id="33_Bezopasnost_Vvoda">3.3 Безопасность Ввода</span></h3>
+
+
+
+<p>Защита ввода данных — это процесс очищения (фильтрации) входных данных.</p>
+
+
+
+<p>Вы используете очистку, когда не знаете, чего ожидать, или не хотите быть строгим с валидацией данных.</p>
+
+
+
+<p>Всякий раз, когда вы принимаете потенциально опасные данные, важно их проверять или очищать.</p>
+
+
+
+<p><strong>Очистка данных</strong></p>
+
+
+
+<p>Самый простой способ очистки данных — это встроенные функции WordPress.</p>
+
+
+
+<p>Ряд вспомогательных функций <strong>sanitize_</strong>*() очень полезен, так как эти функции гарантируют, что вы получите безопасные данные, и это требует минимальных усилий с вашей стороны:</p>
+
+
+
+<ul>
+<li>sanitize_email()</li>
+<li>sanitize_file_name()</li>
+<li>sanitize_hex_color()</li>
+<li>sanitize_hex_color_no_hash()</li>
+<li>sanitize_html_class()</li>
+<li>sanitize_key()</li>
+<li>sanitize_meta()</li>
+<li>sanitize_mime_type()</li>
+<li>sanitize_option()</li>
+<li>sanitize_sql_orderby()</li>
+<li>sanitize_text_field()</li>
+<li>sanitize_title()</li>
+<li>sanitize_textarea_field()</li>
+<li>sanitize_title_for_query()</li>
+<li>sanitize_title_with_dashes()</li>
+<li>sanitize_user()</li>
+<li>esc_url_raw()</li>
+<li>wp_kses()</li>
+<li>wp_kses_post()</li>
+</ul>
+
+<p><strong>Пример</strong></p>
+
+
+
+<p>Допустим, у нас есть поле ввода с именем title.</p>
+
+
+
+<pre><code class="language-php">&lt;input id="title" type="text" name="title"&gt;</code></pre>
+
+
+
+<p>Очистить входные данные можно с помощью функции <code>sanitize_text_field()</code>:</p>
+
+
+
+<pre><code class="language-php">$title = sanitize_text_field($_POST['title']);
+update_post_meta($post-&gt;ID, 'title', $title);</code></pre>
+
+
+
+<p>Функция <code>sanitize_text_field()</code> делает следующее:</p>
+
+
+
+<ul>
+<li>Проверки на недействительный UTF-8</li>
+<li>Преобразовывает одиночные символы (&lt;) в сущность</li>
+<li>Удаляет теги</li>
+<li>Удаляет разрывы строк, табуляции и дополнительное белое пространство</li>
+<li>Удаляет октеты</li>
+</ul>
+
+
+
+<h3><span id="34_Bezopasnost_Vyvoda">3.4 Безопасность Вывода</span></h3>
+
+
+
+<p>Обеспечение безопасности вывода — это процесс экранирования выходных данных.</p>
+
+
+
+<p>Эскейпинг означает удаление нежелательных данных, таких как неверно сформированный HTML или теги скрипта.</p>
+
+
+
+<p>Всякий раз, когда вы визуализируете данные, убедитесь, что они правильно экранируются. Экранирование выходных данных предотвращает XSS атаки (межсайтовый скриптинг).</p>
+
+
+<div class="attention-blue"><a rel="noreferrer nofollow noopener" href="https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank" style="color: rgb(34, 113, 177); transition: none 0s ease 0s; outline: 0px;">Межсайтовый скриптинг (XSS)</a> — это тип уязвимости компьютерной безопасности, обычно встречающейся в веб-приложениях. XSS позволяет злоумышленникам внедрять клиентские скрипты в веб-страницы, просматриваемые другими пользователями. Уязвимость межсайтового скриптинга может использоваться злоумышленниками для обхода контроля доступа, например, с помощью правила ограничения домена (same-origin policy).</div>
+
+<p><strong>Escaping&nbsp;(экранирование)</strong></p>
+
+<p>Escaping или экранирование помогает защитить ваши данные перед их отображением для конечного пользователя. WordPress имеет несколько вспомогательных функций, которые можно использовать для большинства распространенных сценариев.</p>
+
+<ul>
+<li>esc_html() — Используйте эту функцию в любое время, когда HTML-элемент заключает в себе участок отображаемых данных.</li>
+<li>esc_url() — Используйте эту функцию для всех URL, включая те, которые находятся в атрибутах src и href HTML-элемента.</li>
+<li>esc_js() — Используйте эту функцию для встроенного Javascript.</li>
+<li>esc_attr() — Используйте эту функцию для всего остального, что выводится в атрибут HTML-элемента.</li>
+</ul>
+
+<p>Большинство функций WordPress правильно подготавливают данные для вывода, так что вам не нужно будет снова экранировать данные. Например, вы можете безопасно вызвать функцию the_title() без экранирования.</p>
+
+
+
+<p><strong>Эскейпинг с локализацией</strong></p>
+
+
+
+<p>Вместо того, чтобы использовать <code>echo</code> для вывода данных, обычно используются функции локализации WordPress, такие как _e() или __().</p>
+
+
+
+<p>Эти функции просто обертывают функцию локализации внутри экранирующей функции:</p>
+
+
+
+<pre><code class="language-php">esc_html_e( 'Hello World', 'text_domain' );
+// точно так же, как
+echo esc_html( __( 'Hello World', 'text_domain' ) );</code></pre>
+
+
+
+<p>Эти вспомогательные функции сочетают в себе локализацию и экранирование:</p>
+
+<ul>
+<li>esc_html__()</li>
+<li>esc_html_e()</li>
+<li>esc_html_x()</li>
+<li>esc_attr__()</li>
+<li>esc_attr_e()</li>
+<li>esc_attr_x()</li>
+</ul>
+
+
+
+<p><strong>Собственный Escaping</strong></p>
+
+
+
+<p>В случае, если вам необходимо экранировать ваш вывод определенным образом, вам пригодится функция wp_kses() (произносится как «поцелуй» — kisses).</p>
+
+
+
+<p>Эта функция гарантирует, что в вашем выводе будут присутствовать только указанные HTML элементы, атрибуты и значения атрибутов, и нормализует HTML сущности.</p>
+
+
+
+<pre><code class="language-php">$allowed_html = [
+'a'      =&gt; [
+'href'  =&gt; [],
+'title' =&gt; [],
+],
+'br'     =&gt; [],
+'em'     =&gt; [],
+'strong' =&gt; [],
+];
+echo wp_kses( $custom_content, $allowed_html );</code>
+</pre>
+
+<p>wp_kses_post() — функция обёртывания для <code>wp_kses</code>, где <code>$allowed_html</code> — набор правил, используемых для содержимого записи.</p>
+
+<pre><code class="language-php">echo wp_kses_post( $post_content );</code></pre>
+
+<h3><span id="35_Odnorazovye_cisla_nonces">3.5 Одноразовые числа (nonces)</span></h3>
+
+
+
+<p>Nonces — это генерируемые числа, используемые для проверки происхождения и интента (намерение) запросов в целях безопасности. Каждое число может быть использована только один раз.</p>
+
+
+
+<p>Nonce так и расшифровывается — «число, используемое один раз» (англ. — number used once). Некоторые пользователи называют их токенами.</p>
+
+
+
+<p>Если ваш плагин позволяет пользователям предоставлять данные; будь то на стороне администратора или на публичной стороне; вы должны убедиться, что пользователь тот, за кого он себя выдает, и что у него есть необходимые возможности для выполнения этого действия. Выполнение обоих действий в тандеме означает, что данные изменяются только тогда, когда пользователь ожидает их изменения.</p>
+
+
+
+<p><strong>Использование nonces</strong></p>
+
+
+
+<p>Следуя нашему примеру проверки возможностей пользователей, следующим шагом в обеспечении безопасности предоставления пользовательских данных является использование nonces.</p>
+
+
+
+<p>Проверка возможности гарантирует, что только пользователи, имеющие разрешение на удаление сообщения, могут его удалять. Но что, если кто-то обманом заставит вас нажать на эту ссылку? У вас есть необходимая возможность, поэтому вы можете непреднамеренно удалить сообщение.</p>
+
+
+
+<p>Одноразовые числа могут быть использованы для проверки того, что текущий пользователь на самом деле намерен выполнить это действие.</p>
+
+
+
+<p>Когда вы генерируете ссылку delete (удалить), вы захотите использовать функцию wp_create_nonce() для добавления одноразового числа в ссылку, аргумент, переданный в функцию, гарантирует, что создаваемое число уникально для данного конкретного действия.</p>
+
+
+
+<p>Затем, когда вы обрабатываете запрос на удаление ссылки, вы можете проверить, что nonce тот, который вы ожидаете.</p>
+
+
+
+<p><strong>Подробный пример</strong></p>
+
+
+
+<p>Полный пример с использованием проверок возможностей, проверки данных, безопасного ввода, безопасного вывода и одноразовых чисел:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+/**
+ * generate a Delete link based on the homepage url
+ */
+function wporg_generate_delete_link($content)
+{
+    // run only for single post page
+    if (is_single() &amp;&amp; in_the_loop() &amp;&amp; is_main_query()) {
+        // add query arguments: action, post, nonce
+        $url = add_query_arg(
+            [
+                'action' =&gt; 'wporg_frontend_delete',
+                'post'   =&gt; get_the_ID(),
+                'nonce'  =&gt; wp_create_nonce('wporg_frontend_delete'),
+            ],
+            home_url()
+        );
+        return $content . ' &lt;a href="' . esc_url($url) . '"&gt;' . esc_html__('Delete Post', 'wporg') . '&lt;/a&gt;';
+    }
+    return null;
+}
+ 
+/**
+ * request handler
+ */
+function wporg_delete_post()
+{
+    if (
+        isset($_GET['action']) &amp;&amp;
+        isset($_GET['nonce']) &amp;&amp;
+        $_GET['action'] === 'wporg_frontend_delete' &amp;&amp;
+        wp_verify_nonce($_GET['nonce'], 'wporg_frontend_delete')
+    ) {
+ 
+        // verify we have a post id
+        $post_id = (isset($_GET['post'])) ? ($_GET['post']) : (null);
+ 
+        // verify there is a post with such a number
+        $post = get_post((int)$post_id);
+        if (empty($post)) {
+            return;
+        }
+ 
+        // delete the post
+        wp_trash_post($post_id);
+ 
+        // redirect to admin page
+        $redirect = admin_url('edit.php');
+        wp_safe_redirect($redirect);
+ 
+        // we are done
+        die;
+    }
+}
+ 
+if (current_user_can('edit_others_posts')) {
+    /**
+     * add the delete link to the end of the post content
+     */
+    add_filter('the_content', 'wporg_generate_delete_link');
+ 
+    /**
+     * register our request handler with the init hook
+     */
+    add_action('init', 'wporg_delete_post');
+}</code></pre>
+
+
+
+<h3><span id="36_Zasita_fajlov_plagina">3.6 Защита файлов плагина</span></h3>
+
+
+
+<p>Создание плагина WordPress подразумевает и защиту файлов плагина от прямого доступа.</p>
+
+
+
+<pre><code class="language-php">&lt;?php 
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit; // выйти если обращаются напрямую
+    }
+?&gt;</code></pre>
+
+
+
+<p>Предотвращает пользователям прямой доступ к вашим <strong>.php</strong>-файлам по URL. Иначе, если ваш файл содержит некоторые операции ввода/вывода, он может быть вызван (злоумышленником), и это может привести к неожиданному поведению.</p>
+
+
+
+<p>Таким образом, использование сниппета может предотвратить доступ к вашим файлам (напрямую) и гарантирует, что ваши файлы темы или плагина будут выполняться только в среде WordPress.</p>
+
+
+
+<p>Использование:</p>
+
+<ul>
+<li>может быть размещен в верхней части любого из ваших PHP-файлов (темы и плагинов);</li>
+<li>может быть размещен в верхней части вашего <strong>wp-config.php</strong>.</li>
+</ul>
+
+<p><code>ABSPATH</code> — это константа PHP, определяемая WordPress в нижней части <strong>wp-config.php</strong>:</p>
+
+<pre><code class="language-php">/* That's all, stop editing! Happy blogging. */
+
+/** Absolute path to the WordPress directory. */
+if ( !defined('ABSPATH') )
+    define('ABSPATH', dirname(__FILE__) . '/');</code></pre>
+
+
+
+<p>Как видно из блока комментариев выше, <strong>WordPress не рекомендует изменять эти строки кода</strong> — вероятно, потому, что многие плагины и темы полагаются на <code>ABSPATH</code> для проверки того, выполняются ли их PHP-файлы в среде WordPress.</p>
+
+
+
+<p>Если вы используете этот фрагмент в верхней части вашего файла <strong>wp-config.php</strong>, вы остановите выполнение <strong>wp-config.php</strong>, потому что ABSPATH на тот момент еще не был определен. А другие файлы, зависящие от <strong>wp-config.php</strong>, не будут работать (т.е. вы сломаете свой сайт).</p>
+
+
+
+<p>Этот сниппет широко используется PHP-файлами плагинов и тем только условно. Теоретически это означает, что вы можете добавить свою собственную константу в нижней части <strong>wp-config.php</strong>, и вы получите тот же практический результат.</p>
+
+
+
+<p>Ваш <strong><em>wp-config.php</em></strong>:</p>
+
+
+
+<pre><code class="language-php">if ( !defined('MY_CONSTANT') )
+    define('MY_CONSTANT', 'fool');</code></pre>
+
+
+
+<p>Ваш файл темы или плагина:</p>
+
+
+
+<pre><code class="language-php">&lt;?php 
+    if ( ! defined( 'MY_CONSTANT' ) ) {
+        exit; // выйти если обращаются напрямую
+    }</code></pre>
+
+
+
+<p>Более подробно об этом почитать можно на официальном сайта PHP в справке по синтаксису констант и волшебным константам.</p>
+
+
+
+<h2><span id="4_Huki_Hooks">4. Хуки (Hooks)</span></h2>
+
+
+
+<p>Как я писал ранее создание плагина WordPress без хуков — невозможно. Плагины WordPress взаимодействуют с основным кодом с помощью именно хуков (крючков). Существует два разных типа хуков WordPress:</p>
+
+
+
+<ul>
+<li>Хуки действий (экшенов) — добавление или удаление функций</li>
+<li>Хуки фильтров — изменяют данные, созданные функциями</li>
+</ul>
+
+<p>На английском языке в руководствах они называются <strong>Action</strong> hooks (действия) и <strong>Filter</strong> hooks (фильтры). В дальнейшем мы часто будем использовать эти два слова — экшены и фильтры.</p>
+
+
+
+<p>Хуки — это способ для одного куска кода взаимодействовать/модифицировать другой кусок кода в специфических, предопределенных точках. Они составляют основу того, как плагины и темы взаимодействуют с ядром WordPress (Core), но они также широко используются самим ядром.</p>
+
+
+
+<p>Есть два типа хуков: Действия (Actions) и Фильтры (Filters). Чтобы использовать любой из них, вам нужно написать пользовательскую функцию, известную как <strong>Callback</strong>, а затем зарегистрировать ее с помощью хука WordPress для конкретного действия или фильтра.</p>
+
+
+
+<p>Callback-функции — это Функции обратного вызова.</p>
+
+
+
+<p>Действия (Actions) позволяют добавлять данные или изменять работу WordPress. Функции обратного вызова для Actions будут выполняться в определенных точках при выполнении WordPress, и могут выполнять какие-то задачи, например, выводить данные пользователю или вставлять что-то в базу данных. Экшены не возвращают ничего обратно в вызывающий хук.</p>
+
+
+
+<p>Фильтры (Filters) дают возможность изменять данные во время выполнения WordPress. Функции обратного вызова для Фильтров будут принимать переменную, изменять ее и возвращать. Они предназначены для изолированной работы и никогда не должны иметь побочных эффектов, таких как воздействие на глобальные переменные и вывод. Фильтры ожидают, что к ним что-то вернется.</p>
+
+<p>Основное различие между действием и фильтром можно резюмировать следующим образом:</p>
+
+<ul>
+<li><strong>действие</strong> принимает информацию, которую получает, что-то делает с ней, и ничего не возвращает. Другими словами: он действует на что-то, а затем выходит, ничего не возвращая обратно на вызывающий хук.</li>
+<li><strong>фильтр</strong> принимает полученную информацию, как-то модифицирует ее и возвращает. Другими словами: он фильтрует что-то и передает это обратно на хук для дальнейшего использования.</li>
+</ul>
+
+<p>Другими словами:</p>
+
+<ul>
+<li><strong>действие</strong> прерывает поток кода, чтобы что-то сделать, а затем возвращается в нормальный поток, ничего не изменяя;</li>
+<li><strong>фильтр</strong> используется для модификации чего-либо определенным образом, так что модификация затем используется кодом.</li>
+</ul>
+
+<p>«Что-то» — это список параметров, посылаемый через определение хука. Подробнее об этом в следующих разделах.</p>
+
+<ul>
+<li>Filter Reference</li>
+<li>Action Reference</li>
+</ul>
+
+
+<h3><span id="41_Dejstvia_Actions_ili_ekseny">4.1 Действия (Actions или экшены)</span></h3>
+
+<p>Действия — один из двух видов <strong>Хуков</strong> (Hooks). Они обеспечивают способ выполнения функции в определенных точках выполнения в ядре WordPress Core, плагинах и темах. Они являются аналогом Фильтров (Filters). Дополнительная информация о разнице между действиями и фильтрами ниже.</p>
+
+
+
+<p>Действие (<code>action</code>) — это функция PHP, вызываемая через определенный хук действия при посещении пользователем страницы WordPress. Веб-разработчики могут добавлять собственные функции в список действий или удалять уже существующие, добавляя скрипт хука действия <code>wp_head()</code> перед закрывающим тегом (<code>&lt;/head&gt;</code>) любой страницы.</p>
+
+
+
+<p>Хуки действий являются контекстными, что означает, что не все страницы WordPress вызывают их. На странице WordPress Plugin Action Reference представлен полный список хуков действий и контекстов, в которых они вызываются.</p>
+
+
+
+<p><strong>Добавление действия</strong></p>
+
+
+
+<p>Процесс добавления действия включает в себя два этапа:</p>
+
+
+
+<p><strong>Создание функции обратного вызова (callback)</strong></p>
+
+
+
+<p>Сначала создайте функцию обратного вызова (<strong>callback function</strong>). Эта функция будет запущена, когда будет выполнено действие, к которому она привязана (или зацеплена хуком).</p>
+
+
+
+<p>Функция обратного вызова похожа на обычную функцию: она должна быть префиксной и должна быть в файле <strong>functions.php</strong> или где-нибудь в вызываемом месте. Параметры, которые она должна принять, будут определяться действием (action), к которому вы подключаетесь (цепляетесь хуком); большинство хуков хорошо определены, поэтому просмотрите документацию хуков, чтобы увидеть, какие параметры выбранное вами действие будет передавать в вашу функцию.</p>
+
+
+
+<p><strong>Присваивание (хук) вашей функции обратного вызова</strong></p>
+
+
+
+<p>Во-вторых, добавьте callback-функцию к действию (action). Это называется «перехватом» или хукингом и сообщает экшену, что нужно запустить вашу функцию обратного вызова, когда действие (action) запущено.</p>
+
+
+
+<p>Когда функция обратного вызова готова, используйте add_action(), чтобы привязать ее к выбранному вами действию. Как минимум, add_action() требует два параметра:</p>
+
+
+
+<ol>
+<li>строка (string) <strong>$tag</strong> — название действия, к которому вы цепляетесь (hook)</li>
+<li>вызываемая <strong>$function_to_add</strong> имя вашей функции обратного вызова</li>
+</ol>
+
+<p>В примере ниже будет запущена функция <code>wporg_callback()</code> при выполнении инициализации хука:</p>
+
+<pre><code class="language-php">function wporg_callback() {
+    // сделать что-то
+}
+add_action( 'init', 'wporg_callback' );</code></pre>
+
+<p>Список доступных хуков можно найти в главе «Хуки».</p>
+
+<p>Как только у вас появится больше опыта, просмотр исходного кода ядра WordPress позволит вам находить наиболее подходящие хуки.</p>
+
+
+
+<p><strong>Дополнительные параметры</strong></p>
+
+
+
+<p><code>add_action()</code> может принимать два дополнительных параметра, <code>int $priority</code> для приоритета, отдаваемого функции обратного вызова, и <code>int $accepted_args</code> для количества аргументов, которые будут переданы функции обратного вызова.</p>
+
+
+
+<p><strong>Приоритет</strong></p>
+
+
+
+<p>Многие функции обратного вызова могут быть подключены (зацеплены) к одному действию. Например, хук <code>init</code> очень часто полезен. Могут быть случаи, когда вам нужно убедиться, что ваша функция обратного вызова работает до или после других функций обратного вызова, даже когда эти другие функции, возможно, еще не были подключены.</p>
+
+
+
+<p>WordPress определяет порядок выполнения функций обратного вызова на основе двух вещей и <strong>первый способ</strong> — это ручная установка приоритета. Это делается с помощью третьего аргумента <code>add_action()</code>.</p>
+
+<p>Вот некоторые важные факты о приоритетах:</p>
+
+<ul>
+<li>приоритеты — положительные целые числа, обычно от 1 до 20</li>
+<li>приоритет по умолчанию (т.е. приоритет, назначенный, когда значение приоритета не задается вручную) равен 10</li>
+<li>теоретически нет верхнего предела для значения приоритета, но реалистичный верхний предел составляет 100</li>
+</ul>
+
+
+
+<p>Функция с приоритетом 11 будет выполняться после функции с приоритетом 10; а функция с приоритетом 9 будет выполняться перед функцией с приоритетом 10.</p>
+
+
+
+<p><strong>Второй способ</strong> определения порядка следования функций обратного вызова — это просто порядок, в котором она была зарегистрирована в пределах одного и того же значения приоритета. Таким образом, если две функции обратного вызова зарегистрированы для одного и того же хука с одинаковым приоритетом, они будут запущены в том порядке, в котором они были зарегистрированы.</p>
+
+
+
+<p>Например, все следующие функции обратного вызова зарегистрированы для хука init, но с разными приоритетами:</p>
+
+
+
+<pre><code class="language-php">add_action('init', 'wporg_callback_run_me_late', 11);
+add_action('init', 'wporg_callback_run_me_normal');
+add_action('init', 'wporg_callback_run_me_early', 9);
+add_action('init', 'wporg_callback_run_me_later', 11);</code></pre>
+
+<p>В примере выше:</p>
+
+<ul>
+<li>Первой выполняемой функцией будет функция <code>wporg_call_backrun_me_early()</code>, так как она имеет ручной приоритет <strong>9</strong></li>
+<li>Далее, <code>wporg_callback_run_me_normal()</code>, потому что она не имеет установленного приоритета, а значит, ее приоритет <strong>10</strong></li>
+<li>Далее выполняется функция <code>wporg_callback_run_me_late()</code>, поскольку ее ручной приоритет <strong>11</strong></li>
+<li>Наконец, запущена функция <code>wporg_callback_run_me_later()</code>: она также имеет приоритет <strong>11</strong>, но была подключена после <code>wporg_callback_run_me_late()</code>.</li>
+</ul>
+
+<p><strong>Количество аргументов</strong></p>
+
+<p>Иногда, желательно для функции обратного вызова (callback-функции) иметь возможность принимать какие-то дополнительные данные, связанные с действием (action), которое подключается (цепляется хуком).</p>
+
+
+
+<p>Например, когда WordPress сохраняет запись и запускает хук <code>save_post</code>, он передаёт в функцию обратного вызова два параметра: идентификатор сохраняемой записи и сам объект записи:</p>
+
+
+<pre><code class="language-php">do_action( 'save_post', $post-&gt;ID, $post );</code></pre>
+
+
+
+<p>Когда функция обратного вызова зарегистрирована для хука save_post, то она может указать, что хочет получить эти два параметра. Она делает это, сказав <code>add_action</code> ожидать их, поместив 2 в качестве четвертого аргумента:</p>
+
+
+
+<pre><code class="language-php">add_action('save_post', 'wporg_custom', 10, 2);</code></pre>
+
+
+
+<p>Чтобы на самом деле получить эти параметры в вашей функции обратного вызова, измените параметры, которые будет принимать ваша функция обратного вызова:</p>
+
+
+
+<pre><code class="language-php">function wporg_custom( $post_id, $post ) {
+    // сделать что-то
+}</code></pre>
+
+<div class="attention-green">Хорошая практика — давать параметрам функции обратного вызова то же имя, что и переданным параметрам, или как можно более близкое.</div>
+
+
+
+<p>Добавление функций к хуку действия в файле плагина требует вызова функции <code>add_action()</code> как минимум с двумя параметрами.</p>
+
+
+
+<pre><code class="language-php">// Хук для действия 'init', которое вызывается после того, как WordPress закончит загрузку основного кода
+
+add_action( 'init', 'add_Cookie' );
+
+// Установка cookie с текущим временем суток
+
+function add_Cookie() {
+ setcookie("last_visit_time", date("r"), time()+60*60*24*30, "/");
+}</code></pre>
+
+
+
+<p>Третий необязательный параметр задает приоритет указанной функции. По умолчанию приоритет равен <strong>10</strong>, что ставит пользовательскую функцию после любой из встроенных.</p>
+
+
+
+<p>Первый параметр — это имя хука действия, к которому вы хотите прикрепить обратную функцию (callback-функцию или функция обратного вызова), а второй параметр содержит имя функции, которую вы хотите запустить.</p>
+
+
+
+<div class="attention-blue"><strong>Справка</strong>. <em>Callback</em> (англ. call — вызов, англ. back — обратный) или функция обратного вызова в программировании — передача исполняемого кода в качестве одного из параметров другого кода.</div>
+
+
+
+<p>Четвертый параметр, который также является необязательным, содержит количество аргументов или параметров, которые может принимать пользовательская функция. Значение по умолчанию равно <strong>1</strong>.</p>
+
+
+
+<p><strong>Пример кода плагина для отображения текста после футера каждой страницы</strong></p>
+
+
+
+<p>Этот пример плагина вызывает хук действия <code>wp_footer()</code> перед закрывающим тегом <code>&lt;/body&gt;</code> каждой страницы и добавляет новую функцию <code>mfp_Add_Text()</code>. Поскольку эта функция является частью плагина, она будет работать даже после смены темы.</p>
+
+
+
+<p>Сохраните этот пример как PHP-файл и загрузите его в папку <em><strong>plugins</strong></em>, которая находится внутри папки <strong><em>wp-content</em></strong>.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+/*
+Plugin Name: Add Text To Footer
+*/
+// Цепляем хук действия 'wp_footer', добавляем в него функцию с именем 'mfp_Add_Text'
+
+add_action("wp_footer", "mfp_Add_Text");
+ 
+// Определяем функцию 'mfp_Add_Text'
+
+function mfp_Add_Text()
+{
+  echo "&lt;p style='color: black;'&gt;After the footer is loaded, my text is added!&lt;/p&gt;";
+}</code></pre>
+
+
+
+<p>На скриншоте ниже видим, что после активации плагина через панель администратора WordPress выводит на сайте следующее:</p>
+
+
+<div>
+<figure><img src="images/urok-po-plaginam-01.jpg" alt="" class="img-fluid"><figcaption>Фраза из функции вывелась на сайт ниже футера</figcaption></figure></div>
+
+
+<div class="attention-yellow"><strong>Важно</strong>! PHP оценивает весь скрипт перед его выполнением. Запись вызовов <code>add_action()</code> в верхней части файла в порядке их выполнения, а затем определение ваших функций в том же порядке ниже, сделает файл более легким для чтения.</div>
+
+
+
+<p><strong>Удаление функций из хука действия с помощью remove_action()</strong></p>
+
+
+
+<p>Чтобы удалить действие из хука действия, напишите новую функцию <code>remove_action()</code>, а затем вызовите написанную функцию с помощью <code>add_action()</code>.</p>
+
+
+
+<p>Функция <code>remove_action()</code> также должна содержать как минимум <strong>2 параметра</strong>.</p>
+
+
+
+<pre><code class="language-php">// В действие 'init', которое вызывается после завершения загрузки кода ядра WordPress, добавьте функцию 'remove_My_Meta_Tags'.
+
+add_action( 'init', 'remove_My_Meta_Tags' );
+
+// Удалите функцию 'add_My_Meta_Tags' из хука действия wp_head
+
+function remove_My_Meta_Tags()
+{
+  remove_action( 'wp_head', 'add_My_Meta_Tags');
+}</code></pre>
+
+
+
+<p>Первый параметр — это имя хука действия, к которому привязана функция, а второй параметр содержит имя функции, которую вы хотите удалить.</p>
+
+
+
+<p>Третий необязательный параметр указывает приоритет исходной функции. Он должен быть идентичен приоритету, который был изначально определен при добавлении действия к хуку действия. Если вы не определили приоритет в пользовательской функции, не указывайте этот параметр.</p>
+
+
+
+<p>В следующем примере мы не допустим появления дополнительного текста в футере в статьях, опубликованных в понедельник.</p>
+
+
+
+<p>Один из способов сделать это — использовать функцию PHP <code>date()</code> для получения текущего дня, а затем условные теги для проверки того, что сегодня понедельник. После анализа информации страница будет выполнять функцию <code>remove_action()</code> в каждой статье, опубликованной в понедельник.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+// Подцепите действие 'wp_footer', запустите функцию с именем 'mfp_Add_Text()'.
+
+add_action("wp_footer", "mfp_Add_Text");
+
+// Подцепите действие 'wp_head', запустите функцию с именем 'mfp_Remove_Text()'.
+
+add_action("wp_head", "mfp_Remove_Text");
+
+// Определяем функцию с именем 'mfp_Add_Text('), которая просто выводит простой текст методом echo
+
+function mfp_Add_Text()
+{
+  echo "&lt;p style='color: #FFF;'&gt;After the footer is loaded, my text is added!&lt;/p&gt;";
+}
+
+// Определяем функцию с именем 'mfp_Remove_Text()', чтобы удалить нашу предыдущую функцию из действия 'wp_footer'
+
+function mfp_Remove_Text()
+{
+  if (date("l") === "Monday") {
+
+    // удаляем из 'wp_footer' функцию 'mfp_Add_Text' с учетом условия if выше
+
+    remove_action("wp_footer", "mfp_Add_Text");
+  }
+}</code></pre>
+
+
+
+<p>Обратите внимание, что в коде плагина мы сначала определили все <code>add_action</code> по порядку, а уже после них определили все функции также по порядку согласно <code>add_action</code>.</p>
+
+
+
+<h3><span id="42_Filtry_Filters">4.2 Фильтры (Filters)</span></h3>
+
+
+
+<p>Фильтры — один из двух типов <strong>Хуков</strong> (hooks).</p>
+
+
+
+<p>Они дают возможность функциям изменять данные других функций. Они являются аналогом <strong>действий</strong> (Action-ов).</p>
+
+
+
+<p>В отличие от <strong>Actions</strong>, фильтры предназначены для изолированной работы и никогда не должны иметь побочных эффектов, таких как воздействие на глобальные переменные и вывод.</p>
+
+
+
+<p><strong>Добавить фильтр</strong></p>
+
+
+
+<p>Процесс добавления фильтра включает в себя два этапа.</p>
+
+
+
+<p>Во-первых, вам нужно создать функцию обратного вызова, которая будет вызываться при запуске фильтра. Во-вторых, вам нужно добавить функцию Callback (Обратный вызов) на хук, который будет выполнять вызов этой функции.</p>
+
+
+
+<p>Вы будете использовать функцию add_filter(), передавая как минимум два параметра, <code>string $tag</code>, вызываемую <code>$function_to_add</code>.</p>
+
+
+
+<p>Пример ниже будет запущен при выполнении <strong>the_title</strong>.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+function wporg_filter_title($title)
+{
+    return 'The ' . $title . ' was filtered';
+}
+add_filter('the_title', 'wporg_filter_title');</code></pre>
+
+
+
+<p>Допустим, у нас есть заголовок публикации «Learning WordPress», в приведенном выше примере он будет изменен на «The Learning WordPress was filtered».</p>
+
+
+
+<p>Этот блок имеет неожидаемое или неверное содержимое.</p>
+
+
+
+<p>Попытка восстановления блока</p>
+
+
+
+<p>Список доступных хуков можно найти в главе «b&gt;Хуки».</p>
+
+
+
+<p>По мере того, как вы приобретаете больше опыта, просматривая исходный код ядра WordPress, вы сможете найти наиболее подходящий хук.</p>
+
+
+
+<p><strong>Дополнительные параметры</strong></p>
+
+
+
+<p>add_filter() может принимать два дополнительных параметра, <code>int $priority</code> для приоритета, отдаваемого функции обратного вызова, и <code>int $accepted_args</code> для количества аргументов, которые будут переданы функции обратного вызова.</p>
+
+
+
+<p>Подробное объяснение этих параметров можно найти в статье о <strong>действиях</strong>.</p>
+
+
+
+<p><strong>Пример</strong></p>
+
+
+
+<p>Добавление класса CSS к тегу при выполнении определенного условия:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+function wporg_css_body_class($classes)
+{
+    if (!is_admin()) {
+        $classes[] = 'wporg-is-awesome';
+    }
+    return $classes;
+}
+add_filter('body_class', 'wporg_css_body_class');</code></pre>
+
+
+
+<p>Фильтер (<code>filter</code>) — это функция PHP, вызываемая определенным хуком filter, которая изменяет данные, возвращаемые существующими функциями. Как и хуки действий, хуки фильтров также зависят от контекста.</p>
+
+
+
+<p>Полный список хуков фильтров и контекстов, в которых они вызываются, доступен на странице Справочник фильтров плагинов WordPress.</p>
+
+
+
+<p><strong>Добавление фильтров с помощью функции add_filter()</strong></p>
+
+
+
+<p>Добавление функции фильтра к хуку фильтра в файле плагина требует вызова функции <code>add_filter()</code> как минимум с <strong>2 параметрами</strong>.</p>
+
+
+
+<pre><code class="language-php">// Подцепите хук фильтра 'the_content' (содержимое любой статьи), запустите функцию с именем 'mfp_Fix_Text_Spacing'.
+
+add_filter("the_content", "mfp_Fix_Text_Spacing");
+
+// Автоматическое исправление двойных пробелов в любой записи
+
+function mfp_Fix_Text_Spacing($the_Post)
+{
+ $the_New_Post = str_replace("  ", " ", $the_Post);
+ return $the_New_Post;
+}</code></pre>
+
+
+
+<p>Первый параметр — это имя хука фильтра, к которому вы хотите добавить функцию обратного вызова, а второй параметр содержит имя функции, которую вы хотите запустить при применении фильтра.</p>
+
+
+
+<p>Третий необязательный параметр задает приоритет указанной функции. По умолчанию приоритет равен <strong>10</strong>, что ставит пользовательскую функцию после всех функций по умолчанию.</p>
+
+
+
+<p>Четвертый необязательный параметр содержит количество аргументов или параметров, которые может принимать пользовательская функция фильтра. Значение по умолчанию равно <strong>1</strong>.</p>
+
+
+
+<p><strong>Пример плагина для изменения отрывка поста</strong></p>
+
+
+
+<p>В WordPress есть функция для получения отрывков постов, которая называется <code>get_the_excerpt()</code>. Это также хук фильтра. Добавление этого фильтра после получения отрывка изменит текст до того, как он будет отображен на сайте WordPress.</p>
+
+
+
+<p>Следующий пример плагина определяет функцию фильтра, которая принимает отрывок как единственный входной параметр, добавляет перед ним текст и возвращает новое значение каждый раз, когда скрипт вызывает функцию <code>get_the_excerpt()</code>.</p>
+
+
+
+<p>Поскольку возвращаемым значением функции <code>get_the_excerpt()</code> является фактический текст отрывка, плагин будет автоматически вводить новое значение в качестве параметра функции <code>$old_Excerpt</code> при вызове с помощью <code>add_filter()</code>. Функция, определяемая плагином, должна возвращать новое значение.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+/*
+Plugin Name: Add Excerpt 
+*/
+// Подцепите хук фильтра get_the_excerpt, запустите функцию mfp_Add_Text_To_Excerpt
+
+add_filter("get_the_excerpt", "mfp_Add_Text_To_Excerpt");
+
+// Берем отрывок, добавляем перед ним текст и возвращаем новый отрывок
+
+function mfp_Add_Text_To_Excerpt($old_Excerpt)
+{
+  $new_Excerpt = "&lt;b&gt;Excerpt: &lt;/b&gt;" . $old_Excerpt;
+  return $new_Excerpt;
+}</code></pre>
+
+
+
+<p><strong>Удаление фильтров с помощью remove_filter()</strong></p>
+
+
+
+<p>Удаление фильтра намного проще, чем удаление действия, поскольку WordPress позволяет вызывать функцию <code>remove_filter()</code> без определения новой.</p>
+
+
+
+<p>В следующем примере мы удалим дополнительный текст отрывка, если текущий день — четверг. Мы будем использовать функцию <code>remove_filter()</code> как минимум с двумя параметрами.</p>
+
+
+
+<p>Первый параметр должен содержать хук фильтра, к которому привязана функция. Второй параметр должен быть именем фильтра, который вы хотите удалить. Добавьте параметр приоритета, если вы определили его при создании функции.</p>
+
+
+
+<pre><code class="language-php">// Перехватите хук фильтра get_the_excerpt, запустите функцию с именем mfp_Add_Text_To_Excerpt.
+
+add_filter("get_the_excerpt", "mfp_Add_Text_To_Excerpt");
+
+// Если сегодня четверг, удалите фильтр из the_excerpt()
+
+if (date("l") === "Thursday") {
+  remove_filter("get_the_excerpt", "mfp_Add_Text_To_Excerpt");
+}
+
+// Возьмите отрывок, добавьте перед ним текст и верните новый отрывок
+
+function mfp_Add_Text_To_Excerpt($old_Excerpt)
+{
+  $new_Excerpt = "&lt;b&gt;Excerpt: &lt;/b&gt;" . $old_Excerpt;
+  return $new_Excerpt;
+}</code></pre>
+
+
+
+<p>Теперь, когда у вас есть базовое понимание хуков и фильтров, мы создадим простой плагин WordPress, который добавит новую страницу со ссылкой на панель управления администратора.</p>
+
+
+
+<div class="attention-yellow"><strong>Важно</strong>! Использование тестового сайта WordPress для тестирования новых плагинов поможет вам избежать ошибок, которые могут привести к простою. Существует два способа создания среды тестирования — вручную или с помощью плагина, например, WP Staging. В качестве альтернативы установите WordPress локально на свой компьютер.</div>
+
+
+
+<h3><span id="43_Polzovatelskie_huki">4.3 Пользовательские хуки</span></h3>
+
+
+
+<p>Важной, но часто игнорируемой практикой является использование пользовательских хуков в вашем плагине, чтобы другие разработчики могли расширять и изменять его.</p>
+
+
+
+<p>Пользовательские хуки создаются и вызываются так же, как и хуки ядра WordPress.</p>
+
+
+
+<p><strong>Создание хука</strong></p>
+
+
+
+<p>Для создания пользовательского хука используйте do_action() для <strong>экшенов</strong> и apply_filters() для <strong>фильтров</strong>.</p>
+
+
+<div class="attention-blue">Мы рекомендуем использовать <a rel="noreferrer nofollow noopener" href="https://developer.wordpress.org/reference/functions/apply_filters/" target="_blank" style="color: rgb(34, 113, 177); transition: none 0s ease 0s; outline: 0px;">apply_filters()</a> для любого текста, который выводится в браузер. Особенно на фронтенде. Это облегчает модификацию плагинов в соответствии с потребностями пользователя.</div>
+
+
+
+<p><strong>Добавление Callback на Хук</strong></p>
+
+
+
+<p>Чтобы добавить функцию обратного вызова (callback-функцию) на пользовательский хук, используйте add_action() для <strong>действий</strong> и add_filter() для <strong>фильтров</strong>.</p>
+
+
+
+<p><strong>Конфликты с названиями</strong></p>
+
+
+
+<p>Так как любой плагин может создать пользовательский хук, важно, установить префикс в имени хука, чтобы избежать конфликтов с другими плагинами.</p>
+
+
+
+<p>Например, фильтр с именем <code>email_body</code> будет менее целесообразен, потому что, скорее всего, другой разработчик выберет то же самое имя. Если пользователь установит оба плагина, это может привести к ошибкам, которые трудно отследить.</p>
+
+
+
+<p>Название функции <code>wporg_email_body</code> (где <code>wporg_</code> является уникальным префиксом для вашего плагина) позволит избежать любых конфликтов.</p>
+
+
+
+<p><strong>Расширяемый экшен: Форма настроек</strong></p>
+
+
+
+<p>Если ваш плагин добавляет форму настроек в Административные панели, вы можете использовать экшен, чтобы позволить другим плагинам добавлять свои собственные настройки к нему.</p>
+
+
+
+<pre><code class="language-php">Foo: 
+Bar: 
+&lt;?php
+    do_action( 'wporg_after_settings_page_html' );
+</code>
+</pre>
+
+<p>Теперь другой плагин может зарегистрировать функцию обратного вызова (callback) для хука <code>wporg_after_settings_page_html</code> и вставить новые настройки:</p>
+
+
+<pre><code class="language-php">New 1: 
+&lt;?php 
+add_action( 'wporg_after_settings_page_html', 'myprefix_add_settings' );</code>
+</pre>
+
+
+
+<p><strong>Расширяемый фильтр: Пользовательский тип записи</strong></p>
+
+
+
+<p>В данном примере, при регистрации нового типа записи, параметры, определяющие ее, передаются через фильтр, поэтому другой плагин может изменить их до того, как будет создан тип записи.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+function wporg_create_post_type()
+{
+    $post_type_params = [/* ... */];
+ 
+    register_post_type(
+        'post_type_slug',
+        apply_filters( 'wporg_post_type_params', $post_type_params )
+    );
+}</code></pre>
+
+
+
+<p>Теперь другой плагин может зарегистрировать функцию обратного вызова для хука wporg_post_type_params и изменить параметры типа записи:</p>
+
+
+
+<pre><code class="language-php">&lt;?php 
+function myprefix_change_post_type_params( $post_type_params ) {             
+    $post_type_params['hierarchical'] = true;
+    return $post_type_params;
+} 
+add_filter( 'wporg_post_type_params', 'myprefix_change_post_type_params' );</code></pre>
+
+
+
+<p>Дополнительные ресурсы:</p>
+
+
+
+<ul>
+<li>Extendable Extensions Майкла Филдса</li>
+<li>The Pluggable Plugin Брендана Дова</li>
+<li>WordPress Plugin Pet Peeves #3: Not Being Extensible Уилла Норриса (см. сайт <em>willnorris.com</em>)</li>
+</ul>
+
+
+
+<h3><span id="44_Prodvinutye_vozmoznosti">4.4 Продвинутые возможности</span></h3>
+
+
+
+<p><strong>Удаление действий и фильтров</strong></p>
+
+
+
+<p>Иногда вы хотите удалить функцию обратного вызова из хука, который зарегистрирован другим плагином, темой или даже ядром WordPress.</p>
+
+
+
+<p>Чтобы удалить функцию обратного вызова с хука, необходимо вызвать функцию remove_action() или remove_filter(), в зависимости от того, была ли функция обратного вызова добавлена как Action или как Filter.</p>
+
+
+
+<p>Параметры, передаваемые для функции remove_action() / remove_filter(), должны быть идентичны параметрам, передаваемым для функции add_action() / add_filter(), которая ее зарегистрировала.</p>
+
+
+<div class="attention-yellow">Для успешного удаления функции обратного вызова необходимо выполнить ее удаление после регистрации функции обратного вызова. Важен порядок выполнения.</div>
+
+<p><strong>Пример</strong></p>
+
+
+
+<p>Допустим, мы хотим улучшить производительность большой темы, удалив ненужную функциональность.</p>
+
+
+
+<p>Проанализируем код темы, заглянув в <strong>function.php</strong>.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+function my_theme_setup_slider()
+{
+    // ...
+}
+add_action('template_redirect', 'my_theme_setup_slider', 9);</code></pre>
+
+
+
+<p>Функция <code>my_theme_setup_slider</code> добавляет слайдер, который нам не нужен, который, вероятно, загружает огромный CSS-файл с последующим инициализационным файлом JavaScript, использующим пользовательскую написанную библиотеку размером 1MB. Мы можем от этого избавиться.</p>
+
+
+
+<p>Так как мы хотим зацепиться (хук) в WordPress после регистрации функции обратного вызова <code>my_theme_setup_slider</code> (выполняется <strong>functions.php</strong>), наш лучший вариант — хук after_setup_theme.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+function wporg_disable_slider()
+{
+    // make sure all parameters match the add_action() call exactly
+    remove_action('template_redirect', 'my_theme_setup_slider', 9);
+}
+// make sure we call remove_action() after add_action() has been called
+add_action('after_setup_theme', 'wporg_disable_slider');</code></pre>
+
+
+
+<p><strong>Удаление всех Callback-функций</strong></p>
+
+
+
+<p>Вы также можете удалить все функции обратного вызова, связанные с хуком, с помощью функций remove_all_actions() / remove_all_filters().</p>
+
+
+
+<p><strong>Определение текущего хука</strong></p>
+
+
+
+<p>Иногда вы хотите запустить Экшен или Фильтр на нескольких хуках, но при этом поведение должно отличается в зависимости от того, какой из них вызывается в данный момент.</p>
+
+
+
+<p>Вы можете использовать current_action() / current_filter() для определения текущего экшена / фильтра.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+function wporg_modify_content($content)
+{
+    switch (current_filter()) {
+        case 'the_content':
+            // do something
+            break;
+        case 'the_excerpt':
+            // do something
+            break;
+    }
+    return $content;
+}
+add_filter('the_content', 'wporg_modify_content');
+add_filter('the_excerpt', 'wporg_modify_content');</code></pre>
+
+
+
+<p><strong>Проверка, сколько раз был запущен хук</strong></p>
+
+
+
+<p>Некоторые хуки вызываются несколько раз в процессе выполнения, но вы можете захотеть, чтобы ваша функция обратного вызова запускалась только один раз.</p>
+
+
+
+<p>В этой ситуации вы можете проверить, сколько раз хук выполнялся с помощью функции did_action().</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+function wporg_custom()
+{
+    if (did_action('save_post') !== 1) {
+        return;
+    }
+    // ...
+}
+add_action('save_post', 'wporg_custom');</code></pre>
+
+
+
+<p><strong>Отладка хуком «all»</strong></p>
+
+
+
+<p>Если вы хотите, чтобы функция обратного вызова срабатывала на каждом хуке, вы можете зарегистрировать ее на всех хуках. Иногда это полезно при отладке, при определении, когда конкретное событие происходит или когда страница ломается.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+function wporg_debug()
+{
+    echo '&lt;p&gt;' . current_action() . '&lt;/p&gt;';
+}
+add_action('all', 'wporg_debug');</code></pre>
+
+
+
+<h2><span id="5_Menu_administrirovania">5. Меню администрирования</span></h2>
+
+
+
+<p>Меню администрирования — это интерфейсы, отображаемые в панели администрирования WordPress. Они позволяют вам добавлять страницы опций для вашего плагина.</p>
+
+<div class="attention-blue">Информацию об управлении навигационными меню см. в главе «Навигационные меню» Руководства для разработчиков тем.</div>
+
+
+
+<p><strong>Меню верхнего уровня и подменю</strong></p>
+
+
+
+<p>Меню верхнего уровня отображается в левой части панели администрирования WordPress. Каждое меню может содержать набор подменю.</p>
+
+
+
+<p>При выборе между меню верхнего уровня и подменю тщательно продумайте потребности вашего плагина, а также потребности ваших конечных пользователей.</p>
+
+<div class="attention-yellow"><strong>Внимание</strong>! Мы рекомендуем разработчикам с одной опционной страницей добавить ее в качестве <em>Подменю</em> в одно из существующих меню верхнего уровня; например, «Настройки» (Settings) или «Инструменты» (Tools).</div>
+
+<h3><span id="51_Menu_verhnego_urovna">5.1 Меню верхнего уровня</span></h3>
+
+<p>Для добавления нового меню верхнего уровня в WordPress Administration используйте функцию add_menu_page().</p>
+
+<pre><code class="language-php">&lt;?php
+add_menu_page(
+    string $page_title,
+    string $menu_title,
+    string $capability,
+    string $menu_slug,
+    callable $function = '',
+    string $icon_url = '',
+    int $position = null
+);</code></pre>
+
+<p><strong>Пример</strong></p>
+
+<p>Допустим, мы хотим добавить новое меню верхнего уровня под названием «WPOrg».</p>
+
+<p>Первым шагом будет создание функции, которая будет выводить HTML. В этой функции мы выполним необходимые проверки безопасности и отобразим зарегистрированные нами опции с помощью Settings API (Настройки API).</p>
+
+<div class="attention-blue">Мы рекомендуем обернуть ваш HTML с помощью <code style="font-family: monospace; direction: ltr; unicode-bidi: embed; padding: 0px; margin: 0px; background: inherit; font-size: inherit;">&lt;div&gt;</code> с классом <code style="font-family: monospace; direction: ltr; unicode-bidi: embed; padding: 0px; margin: 0px; background: inherit; font-size: inherit;">wrap</code>.</div>
+
+
+
+<pre><code class="language-php">&lt;?php
+function wporg_options_page_html() {
+    ?&gt;
+    &lt;div class="wrap"&gt;
+      &lt;h1&gt;&lt;?php echo esc_html( get_admin_page_title() ); ?&gt;&lt;/h1&gt;
+      &lt;form action="options.php" method="post"&gt;
+        &lt;?php
+        // output security fields for the registered setting "wporg_options"
+        settings_fields( 'wporg_options' );
+        // output setting sections and their fields
+        // (sections are registered for "wporg", each field is registered to a specific section)
+        do_settings_sections( 'wporg' );
+        // output save settings button
+        submit_button( __( 'Save Settings', 'textdomain' ) );
+        ?&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;?php
+}
+?&gt;</code></pre>
+
+<p>Вторым шагом будет регистрация нашего меню WPOrg. Регистрация должна произойти во время перехвата ([erf) действия <strong>admin_menu</strong>.</p>
+
+<pre><code class="language-php">&lt;?php
+add_action( 'admin_menu', 'wporg_options_page' );
+function wporg_options_page() {
+    add_menu_page(
+        'WPOrg',
+        'WPOrg Options',
+        'manage_options',
+        'wporg',
+        'wporg_options_page_html',
+        plugin_dir_url(__FILE__) . 'images/icon_wporg.png',
+        20
+    );
+}
+?&gt;</code></pre>
+
+
+
+<p>Список параметров и то, что каждый из них делает, смотрите в справке add_menu_page().</p>
+
+
+
+<p><strong>Использование PHP-файла для HTML</strong></p>
+
+
+
+<p>Лучшей практикой для переносимого кода было бы создание функции обратного вызова (Callback), которая требует/включает в себя ваш PHP-файл.</p>
+
+
+
+<p>Для полноты и облегчения понимания унаследованного кода мы покажем другой способ: передача пути к PHP-файлу в виде параметра <strong>$menu_slug</strong> с параметром <strong>null</strong> <strong>$function</strong>.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+add_action( 'admin_menu', 'wporg_options_page' );
+function wporg_options_page() {
+    add_menu_page(
+        'WPOrg',
+        'WPOrg Options',
+        'manage_options',
+        plugin_dir_path(__FILE__) . 'admin/view.php',
+        null,
+        plugin_dir_url(__FILE__) . 'images/icon_wporg.png',
+        20
+    );
+}
+?&gt;</code></pre>
+
+
+
+<p><strong>Удаление меню верхнего уровня</strong></p>
+
+
+
+<p>Чтобы удалить зарегистрированное меню из администрирования WordPress, используйте функцию remove_menu_page().</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+remove_menu_page(
+    string $menu_slug
+);
+?&gt;</code></pre>
+
+
+
+<div class="attention-red">Удаление меню не помешает пользователям получить к ним прямой доступ. Это никогда не должно использоваться как способ ограничить возможности пользователей.</div>
+
+
+
+<p><strong>Пример</strong></p>
+
+
+
+<p>Допустим, мы хотим убрать меню «Инструменты» (Tools).</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+add_action( 'admin_menu', 'wporg_remove_options_page', 99 );
+function wporg_remove_options_page() {
+    remove_menu_page( 'tools.php' );
+}
+?&gt;</code></pre>
+
+
+
+<p>Убедитесь, что меню было зарегистрировано с помощью хука <code>admin_menu</code>, прежде чем пытаться удалить, укажите номер с более высоким приоритетом для функции add_action().</p>
+
+
+
+<p><strong>Отправка форм</strong></p>
+
+
+
+<p>Чтобы обработать отправку форм на страницах параметров, вам понадобятся две вещи:</p>
+
+
+
+<ol>
+<li>Используйте URL-адрес страницы в качестве атрибута действия формы.</li>
+<li>Добавьте хук со слагом (slug), возвращаемый <strong>add_menu_page</strong>.</li>
+</ol>
+
+
+
+<div class="attention-blue">Вам нужно следовать этим шагам только в том случае, если вы вручную создаете формы в бэкэнде. Рекомендуется использовать API Settings.</div>
+
+
+
+<p><strong>Атрибут действия формы</strong></p>
+
+
+
+<p>Используйте параметр <strong>$menu_slug</strong> страницы параметров в качестве первого параметра menu_page_url(). Функция автоматически экранирует URL и выводит его по умолчанию, поэтому вы можете напрямую использовать его в теге <code>&lt;form&gt;</code>:</p>
+
+
+
+<pre><code class="language-php">&lt;form action="&lt;?php menu_page_url( 'wporg' ) ?&gt;" method="post"&gt;</code></pre>
+
+
+
+<p><strong>Обработка формы</strong></p>
+
+
+
+<p><strong>$function</strong>, указанная вами при добавлении страницы, будет вызываться только тогда, когда пришло время отобразить страницу, что делает ее неуместной, если вам нужно отправить заголовки (например, перенаправления) обратно в браузер.</p>
+
+
+
+<p><strong>add_menu_page</strong> возвращает <strong>$hookname</strong>, а WordPress запускает действие «<strong>load-$hookname</strong>» перед любым выводом HTML. Вы можете использовать это, чтобы назначить функцию, которая может обрабатывать форму.</p>
+
+
+<div class="attention-blue">«<strong style="font-weight: 600;">load-$hookname</strong>» будет выполняться каждый раз перед отображением страницы параметров, даже если форма не отправляется.</div>
+
+
+
+<p>Учитывая возвращаемый параметр и действие, приведенный выше пример будет выглядеть так:</p>
+
+
+
+<pre><code class="language-php">add_action( 'admin_menu', 'wporg_options_page' );
+function wporg_options_page() {
+    $hookname = add_menu_page(
+        'WPOrg',
+        'WPOrg Options',
+        'manage_options',
+        'wporg',
+        'wporg_options_page_html',
+        plugin_dir_url(__FILE__) . 'images/icon_wporg.png',
+        20
+    );
+ 
+    add_action( 'load-' . $hookname, 'wporg_options_page_submit' );
+}</code></pre>
+
+
+
+<p>Вы можете запрограммировать <strong>wporg_options_page_submit</strong> в соответствии с вашими потребностями, но имейте в виду, что вы должны вручную выполнить все необходимые проверки, включая:</p>
+
+
+
+<ol>
+<li>Отправляется ли форма (<code>'POST' === $_SERVER['REQUEST_METHOD']</code>).</li>
+<li>Проверка <strong>CSRF</strong></li>
+<li>Валидация (Validation)</li>
+<li>Очистка (Sanitization)</li>
+</ol>
+
+
+
+<h3><span id="52_Podmenu">5.2 Подменю</span></h3>
+
+
+
+<p><strong>Добавление подменю</strong></p>
+
+
+
+<p>Чтобы добавить новое Подменю в панели администрирования WordPress, используйте функцию <strong>add_submenu_page()</strong>.</p>
+
+
+
+<pre><code class="language-php">add_submenu_page(
+    string $parent_slug,
+    string $page_title,
+    string $menu_title,
+    string $capability,
+    string $menu_slug,
+    callable $function = ''
+);</code></pre>
+
+
+
+<p><strong>Пример</strong></p>
+
+
+
+<p>Допустим, мы хотим добавить подменю «Параметры WPOrg» (WPOrg Options) в меню верхнего уровня «Инструменты» (Tools).</p>
+
+
+
+<p>Первым шагом будет создание функции, которая будет выводить HTML. В этой функции мы выполним необходимые проверки безопасности и отобразим зарегистрированные нами опции с помощью Settings API.</p>
+
+
+<div class="attention-blue">Мы рекомендуем обернуть ваш HTML с помощью <code style="font-family: monospace; direction: ltr; unicode-bidi: embed; padding: 0px; margin: 0px; background: inherit; font-size: inherit;">&lt;div&gt;</code> с классом <code style="font-family: monospace; direction: ltr; unicode-bidi: embed; padding: 0px; margin: 0px; background: inherit; font-size: inherit;">wrap</code>.</div>
+
+
+
+<pre><code class="language-php">function wporg_options_page_html() {
+    // check user capabilities
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+    ?&gt;
+    &lt;div class="wrap"&gt;
+        &lt;h1&gt;&lt;?php echo esc_html( get_admin_page_title() ); ?&gt;&lt;/h1&gt;
+        &lt;form action="options.php" method="post"&gt;
+            &lt;?php
+            // output security fields for the registered setting "wporg_options"
+            settings_fields( 'wporg_options' );
+            // output setting sections and their fields
+            // (sections are registered for "wporg", each field is registered to a specific section)
+            do_settings_sections( 'wporg' );
+            // output save settings button
+            submit_button( __( 'Save Settings', 'textdomain' ) );
+            ?&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;?php
+}</code></pre>
+
+
+
+<p>Вторым шагом будет регистрация нашего подменю «WPOrg Options». Регистрация должна произойти во время перехвата действия <strong>admin_menu</strong>.</p>
+
+
+
+<pre><code class="language-php">function wporg_options_page()
+{
+    add_submenu_page(
+        'tools.php',
+        'WPOrg Options',
+        'WPOrg Options',
+        'manage_options',
+        'wporg',
+        'wporg_options_page_html'
+    );
+}
+add_action('admin_menu', 'wporg_options_page');</code></pre>
+
+
+
+<p>Список параметров и то, что каждый из них делает, смотрите в справке add_submenu_page().</p>
+
+
+
+<p><strong>Предопределённые подменю</strong></p>
+
+
+
+<p>Было бы здорово, если бы у нас были вспомогательные функции, определяющие <strong>$parent_slug</strong> для встроенного меню верхнего уровня WordPress и избавляющие нас от ручного поиска по исходному коду?</p>
+
+
+
+<p>Ниже приведен список родительских слагов и их вспомогательных функций:</p>
+
+
+
+<ul>
+<li>add_dashboard_page()&nbsp;–&nbsp;<code>index.php</code></li>
+<li>add_posts_page()&nbsp;–&nbsp;<code>edit.php</code></li>
+<li>add_media_page()&nbsp;–&nbsp;<code>upload.php</code></li>
+<li>add_pages_page()&nbsp;–&nbsp;<code>edit.php?post_type=page</code></li>
+<li>add_comments_page()&nbsp;–&nbsp;<code>edit-comments.php</code></li>
+<li>add_theme_page()&nbsp;–&nbsp;<code>themes.php</code></li>
+<li>add_plugins_page()&nbsp;–&nbsp;<code>plugins.php</code></li>
+<li>add_users_page()&nbsp;–&nbsp;<code>users.php</code></li>
+<li>add_management_page()&nbsp;–&nbsp;<code>tools.php</code></li>
+<li>add_options_page()&nbsp;–&nbsp;<code>options-general.php</code></li>
+<li>add_options_page()&nbsp;–&nbsp;<code>settings.php</code></li>
+<li>add_links_page()&nbsp;–&nbsp;<code>link-manager.php</code>&nbsp;– требуется плагин, с версии WP 3.5+</li>
+<li>Custom Post Type (Пользовательский тип записи) –&nbsp;<code>edit.php?post_type=wporg_post_type</code></li>
+<li>Network Admin (Сетевой администратор) –&nbsp;<code>settings.php</code></li>
+</ul>
+
+<p><strong>Удаление подменю</strong></p>
+
+
+
+<p>Процесс удаления подменю точно такой же, как и <strong>удаление меню верхнего уровня</strong>.</p>
+
+<p><strong>Отправка форм</strong></p>
+
+
+
+<p>Процесс обработки отправки форм в подменю точно такой же, как и <strong>отправка форм в меню верхнего уровня</strong>.</p>
+
+
+
+<p><strong>add_submenu_page()</strong> вместе со всеми функциями для предопределенных подменю (<strong>add_dashboard_page</strong>, <strong>add_posts_page</strong> и т.д.) вернет <strong>$hookname</strong>, которое вы можете использовать в качестве первого параметра <strong>add_action</strong> для обработки отправки форм на пользовательских страницах:</p>
+
+
+
+<pre><code class="language-php">function wporg_options_page() {
+    $hookname = add_submenu_page(
+        'tools.php',
+        'WPOrg Options',
+        'WPOrg Options',
+        'manage_options',
+        'wporg',
+        'wporg_options_page_html'
+    );
+ 
+    add_action( 'load-' . $hookname, 'wporg_options_page_html_submit' );
+}
+ 
+add_action('admin_menu', 'wporg_options_page');</code></pre>
+
+
+
+<p>Как всегда, не забудьте проверить, отправляется ли форма, выполнить проверку CSRF, <strong>валидацию</strong> и очистку.</p>
+
+<p>На этом мы пока закончим создание плагина WordPress. Информации на данном этапе уже очень много. В ближайших материалах напишу статьи про создание первого плагина для WP, про конфиденциальность в WordPress и отдельно про перевод плагинов. Следите за обновлениями на сайте.</p>
+
+<!-- FROM NEW POST -->
+
+<h2><span id="sozdanie-na-praktike">Создание первого плагина на практике</span></h2>
+
+<p>Выше мы рассматривали создание плагина WordPress, где приводили много служебной информации про этот процесс. Дальше же мы создадим свой первый плагин на практике.</p>
+
+<h2><span id="Razrabotka_plagina_WordPress_ctandarty">Разработка плагина WordPress: cтандарты</span></h2>
+
+<p>Поскольку потребности вашего сайта постоянно развиваются, вам придется пересматривать код плагина для внедрения обновлений и исправлений безопасности.</p>
+
+<p>Учитывая это, с самого начала следуйте лучшим практикам разработки плагинов. Это облегчит весь процесс для вас и всех веб-разработчиков, с которыми вы будете работать в будущем.</p>
+
+
+
+<p>Кроме того, обратитесь к лучшим примерам плагинов WordPress для вдохновения. Посмотрите на их исходный код, на то, как они организуют свои папки, и на другие методы, которые следует применять при создании плагинов WordPress.</p>
+
+
+
+<p>Вот некоторые из лучших практик кодинга и разработки плагинов, которые помогут в создании вашего первого плагина WordPress:</p>
+
+
+
+<ul>
+<li><strong>Разрабатывайте и тестируйте плагины WP в тестовой среде</strong>. Таким образом, не будет риска поломать сайт, если плагин имеет некорректный код.</li>
+<li><strong>Создайте логичную структуру папок</strong>. Создайте подпапки для каждой функциональности и разделите код на отдельные файлы в зависимости от их назначения или типа языка, чтобы избежать беспорядка.</li>
+<li><strong>Называйте каждый файл, папку и элемент с осторожностью</strong>. Используйте уникальные префиксы, чтобы они не пересекались с именами файлов других плагинов или ядра WordPress.</li>
+<li><strong>Добавляйте комментарии для обозначения каждой функции</strong>. Это позволит вам и другим разработчикам понять ваш код при его обновлении или отладке.</li>
+<li><strong>Создавайте документацию</strong>. Эта практика особенно полезна, если вы создаете плагины со сложной функциональностью для большого числа пользователей.</li>
+<li><strong>Используйте программное обеспечение для контроля версий, чтобы отслеживать изменения, внесенные в ваш код</strong>. Знание того, кто что добавил, поможет предотвратить конфликты между обновлениями и уменьшить количество ошибок.</li>
+<li><strong>Обратитесь к <a href="https://developer.wordpress.org/coding-standards/wordpress-coding-standards/" target="_blank" rel="noreferrer noopener">WordPress Codex</a>, чтобы узнать стандарты кодинга</strong>. Обязательно соблюдайте их при совместной работе над проектом.</li>
+<li><strong>Активируйте WP_DEBUG или используйте инструмент отладки при разработке плагинов</strong>. Это облегчит поиск ошибок и ускорит процесс создания плагина в целом.</li>
+</ul>
+
+
+
+<h2><span id="Raspolozenie_plagina">Расположение плагина</span></h2>
+
+
+
+<p>Первым шагом при создании нового плагина является создание папки для его файлов. Имя папки должно быть уникальным и информативным. Проверьте имена других папок плагинов в каталоге <strong><em>/wp-content/plugins/</em></strong>, чтобы убедиться, что новое имя еще не используется.</p>
+
+
+
+<p>Для облегчения процесса загрузки файлов используйте FTP-клиент для подключения к аккаунту хостинга. Перейдите в <strong>wp-content</strong> -&gt; <strong>plugins</strong> из основной директории WordPress. Затем создайте новую папку с именем <strong>my-first-plugin</strong> в папке plugins.</p>
+
+
+<div>
+<figure><img src="images/sozdanie-plagina-01.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Практика управления файлами во время разработки WordPress значительно облегчит процесс в долгосрочной перспективе. Разделите файлы на подпапки в зависимости от их функциональности.</p>
+
+
+
+<p>Например, сохраняйте файлы CSS, PHP и JavaScript в отдельных папках. По мере разработки плагина WordPress вам будет легче находить конкретные файлы, если у каждого из них будет своя директория.</p>
+
+
+
+<h2><span id="Sozdanie_pervogo_fajla">Создание первого файла</span></h2>
+
+
+
+<p>Основной файл плагина будет содержать информацию, необходимую WordPress для отображения вашего плагина в списке плагинов, где вы сможете его активировать.</p>
+
+
+
+<p>Создайте новый PHP-файл под названием <strong><em>my-first-plugin.php</em></strong> в папке, которую вы создали ранее. Этот основной файл плагина будет содержать комментарии заголовка с дополнительной информацией, которую WordPress должен прочитать или отобразить.</p>
+
+
+<div>
+<figure><img src="images/sozdanie-plagina-02.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Затем щелкните на файле правой кнопкой мыши и выберите View/Edit, чтобы добавить следующий код с помощью HTML-редактора:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+/*
+Plugin Name: Мой первый плагин
+Description: Это мой первый плагин! Он делает новую ссылку в меню админки!
+Author: Ваше имя
+*/</code></pre>
+
+
+
+<p>Вы можете посмотреть <a href="https://www.php.net/manual/ru/language.basic-syntax.instruction-separation.php" target="_blank" rel="noreferrer noopener">это руководство PHP</a>, чтобы понять, почему закрывающий тег <code>?&gt;</code> здесь не нужен.</p>
+
+
+
+<p><strong>Сохраните файл.</strong></p>
+
+
+
+<p>Затем перейдите в раздел <strong>Plugins</strong> вашей административной панели управления WordPress. Если WordPress правильно прочитал новый файл, вы увидите в списке <strong>My First Plugin</strong>:</p>
+
+
+<div>
+<figure><img src="images/sozdanie-plagina-03.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<h2><span id="Napisanie_funkcij_plagina">Написание функций плагина</span></h2>
+
+
+
+<p>Прежде чем приступить к написанию функций для плагина, настоятельно рекомендуется дать всем файлам, функциям и переменным уникальный префикс в их названии, чтобы избежать конфликтов с другими плагинами. В нашем примере мы будем использовать префикс <code>mfp</code>, что является сокращением от <strong>My First Plugin</strong>.</p>
+
+
+
+<p>Создайте новую папку <strong><em>Includes</em></strong> в основном каталоге плагина. Мы будем использовать ее для хранения вспомогательных файлов, используемых основным файлом. В этой папке создайте PHP-файл и назовите его <strong><em>mfp-functions.php</em></strong>. Дайте ему открывающий тег <code>&lt;?php</code> в первой строке.</p>
+
+
+
+<p>Этот новый файл будет содержать все функции вашего плагина.</p>
+
+
+
+<p>Мы должны включить <strong><em>mfp-functions.php</em></strong> в основной файл плагина, чтобы другие файлы плагина могли использовать функции, которые он определяет. Используйте <code>require_once</code>, чтобы плагин работал только при наличии файла функций.</p>
+
+
+
+<p>Отредактируйте файл <em><strong>my-first-plugin.php</strong></em>, как показано ниже. Затем сохраните его и загрузите файл еще раз, перезаписав предыдущую версию при необходимости.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+/*
+Plugin Name: My First Plugin
+Description: This is my first plugin! It makes a new admin menu link!
+Author: Your Name
+*/
+// Подключаем mfp-functions.php, используем require_once для остановки скрипта, если mfp-functions.php не найден
+
+require_once plugin_dir_path(__FILE__) . 'includes/mfp-functions.php';</code></pre>
+
+
+
+<p>Функция WordPress <code>plugin_dir_path(__FILE)</code> позволяет включать файлы из папки плагина, указывая полный путь к директории, в которой хранится новый плагин.</p>
+
+
+
+<p>Теперь вернитесь к файлу <strong><em>mfp-functions.php</em></strong> в директории <strong><em>Includes</em></strong>. Поскольку наш плагин будет добавлять новую ссылку верхнего уровня в навигационное меню панели управления администратора, мы будем использовать пользовательскую функцию <code>mfp_Add_My_Admin_Link()</code>. Добавьте приведенный ниже блок кода в файл <strong><em>mfp-functions.php</em></strong>:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+/*
+ * Добавляем мое новое меню в панель управления администратора
+ */
+// Перехватите хук действия 'admin_menu', запустите функцию с именем 'mfp_Add_My_Admin_Link()'
+
+add_action( 'admin_menu', 'mfp_Add_My_Admin_Link' );
+
+// Добавить новую ссылку меню верхнего уровня в админ панели
+
+function mfp_Add_My_Admin_Link()
+{
+      add_menu_page(
+        'My First Page', // Заголовок страницы
+        'My First Plugin', // Текст для отображения в ссылке меню
+        'manage_options', // Требования к возможностям для просмотра ссылки
+        'includes/mfp-first-acp-page.php' // 'slug' - файл для отображения при переходе по ссылке
+    );
+}</code></pre>
+
+
+
+<div class="attention-yellow"><strong>Важно</strong>! Группируйте похожие функции вместе и добавляйте описание над каждой из них с помощью многострочного комментария. Это облегчит обновление и отладку плагина в будущем.</div>
+
+
+
+<p><code>mfp_Add_My_Admin_Link()</code> использует встроенную функцию WordPress <strong>add_menu_page()</strong> с минимум четырьмя параметрами в следующем порядке:</p>
+
+
+
+<ul>
+<li><strong>Page title</strong> — заголовок страницы — название страницы, отображаемое на вкладке браузера</li>
+<li><strong>Menu title</strong> — заголовок меню — текст, используемый для пункта меню, в нашем примере это название плагина</li>
+<li><strong>Capability&nbsp;</strong>— возможности — требования к возможностям пользователя для просмотра меню плагина, в данном случае только пользователи с правами <code>manage_options</code> могут получить доступ к привязанной странице</li>
+<li><strong>Menu slug</strong> — файл, который будет использоваться для отображения фактической страницы, мы создадим файл <strong><em>mfp-first-acp-page.php</em></strong> в папке <strong><em>Includes</em></strong> в следующем разделе</li>
+<li><strong>Function</strong> — Функция (необязательная) — функция, которая выводит содержимое страницы</li>
+</ul>
+
+
+
+<p>Прикрепление пользовательской функции с помощью <code>add_action()</code> позволяет плагину вызывать хук действия при определенных обстоятельствах. Добавление <code>admin_menu</code> в качестве первого параметра вызовет функцию, когда пользователь зайдет в меню администратора. Между тем, <code>mfp_Add_My_Admin_Link</code> — это функция, которая будет запущена, когда она будет указана в качестве второго параметра.</p>
+
+
+
+<p>Наконец, загрузите файл плагина <strong><em>mfp-functions.php</em></strong> в папку <strong><em>Includes</em></strong>.</p>
+
+
+
+<h2><span id="Sozdanie_administrativnoj_stranicy">Создание административной страницы</span></h2>
+
+
+
+<p>После определения функций плагина пришло время создать страницу, на которую будет перенаправлять кнопка меню. Создайте новый PHP-файл с именем <strong><em>mfp-first-acp-page.php</em></strong> в подпапке <strong><em>Includes</em></strong> и добавьте в него следующий код:</p>
+
+
+
+<pre><code class="language-html">&lt;div class="wrap"&gt;
+  &lt;h1&gt;Привет!&lt;/h1&gt;
+  &lt;p&gt;Это первая страница моего плагина&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+
+
+<p>При создании страниц администратора WordPress рекомендует заключать собственный HTML в тег</p>
+
+
+
+<p>и присваивать ему класс <code>wrap</code>, чтобы гарантировать, что все содержимое появится в нужном месте. Это также помогает уменьшить беспорядок в коде.</p>
+
+
+
+<p>Наконец, перейдите в раздел <strong><em>Plugins</em></strong> вашей панели WordPress и активируйте новый плагин. Если процесс прошел успешно, ссылка на панель администратора вашего первого плагина появится в нижней части навигационного меню.</p>
+
+
+<div>
+<figure><img src="images/sozdanie-plagina-04.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Поздравляем — вы успешно создали свой первый плагин WordPress.</p>
+
+
+
+<h2><span id="Ustanovka_na_rabocij_sajt">Установка на рабочий сайт</span></h2>
+
+
+
+<p>Если вы создали плагин на тестовом сайте, вам нужно будет установить его на реальном сайте. Следующие шаги продемонстрируют как это сделать.</p>
+
+
+
+<p>1. В FileZilla щелкните правой кнопкой мыши на папке <strong><em>my-new-plugin</em></strong> и выберите <strong>Download</strong>. Затем сожмите файлы в ZIP-архив.</p>
+
+
+<div>
+<figure><img src="images/sozdanie-plagina-05.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>2. Перейдите в меню <strong>Plugins</strong> (Плагины) на панели управления WordPress. Затем нажмите кнопку <strong>Add New</strong> (Добавить новый).</p>
+
+
+
+<p>3. Нажмите <strong>Upload Plugin</strong> (Загрузить плагин) и выберите ZIP-файл вашего плагина.</p>
+
+
+
+<p>4. Выберите <strong>Install Now</strong> (Установить сейчас), чтобы начать процесс установки.</p>
+
+
+<div>
+<figure><img src="images/sozdanie-plagina-06.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Разработка плагина WordPress на этом завершена. Дальше мы будем его усложнять и добавлять функционал. Обо всем этом мы поговорим в следующих статьях.</p>
+
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a>
+
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 12 февраля 2023 в 23:47</span>
+Теги: WordPress, PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

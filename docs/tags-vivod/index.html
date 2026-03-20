@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Вывод тегов на сайте WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Вывод тегов на сайте WordPress</h1>
+
+<p>В данной статье рассмотрим как выводить теги WordPress на сайте, категории и таксономии.</p>
+
+<h2><span id="Vyvod_tegi_WordPress">Вывод теги WordPress</span></h2>
+
+<p>Разберемся как отобразить на страницах сайта WordPress все теги в виде одного списка. Структуру сайта на базе Системы Управления WordPress можно сделать разными способами. Можно сделать много рубрик и распределять все записи по ним, а можно сделать одну рубрику, но много тегов, которые добавляются к разным записям.</p>
+
+
+
+<p>Если у нас второй вариант как на этом сайте, когда все записи в одной рубрике, но с разными тегами, то иногда может понадобиться отображать список всех тегов в виде списка или меню.</p>
+
+
+
+<p>Пример сайта, где под меню мы видим список всех тегов:</p>
+
+
+<div>
+<figure><img src="images/vse-tegi-spiskom.jpg" alt="Пример вывода тегов на фронтенде" class="img-fluid"><figcaption>Пример вывода тегов на фронтенде</figcaption></figure></div>
+
+
+<p>Сделать это не сложно, но нужно ориентироваться в темах WordPress и понимать какой файл темы за что отвечает, чтобы вывести все теги WordPress там где нужно.</p>
+
+
+
+<p>Итак, выводим все теги списком. </p>
+
+
+
+<p>Функция <code>get_tags( )</code> извлекает массив объектов для каждого термина в таксономии <code>post_tag</code>.</p>
+
+
+
+<pre><code class="language-php">echo "Все теги:&lt;br/&gt;";
+
+$args = array( 
+    'orderby'                  =&gt; 'name',
+    'order'                    =&gt; 'ASC',
+    'public'                   =&gt; true,
+); 
+
+$tags = get_tags( $args );
+
+foreach ( $tags as $tag ) {
+     echo '&lt;a href="' . get_tag_link( $tag ) . '"&gt;' . $tag-&gt;name . '&lt;/a&gt;&lt;br/&gt;';
+}</code></pre>
+
+
+
+<p><strong>Категории</strong>. Функция <code>get_categories( )</code> возвращает массив объектов категорий, соответствующих параметрам запроса.</p>
+
+
+
+<pre><code class="language-php">echo "Категории:&lt;br/&gt;";
+
+$args = array( 
+    'orderby'                  =&gt; 'name',
+    'order'                    =&gt; 'ASC', 
+    'public'                   =&gt; true,
+); 
+
+$categories = get_categories( $args );
+
+foreach ( $categories as $category ) {
+     echo '&lt;a href="' . get_category_link( $category ) . '"&gt;' . $category-&gt;name . '&lt;/a&gt;&lt;br/&gt;';
+}
+
+echo "&lt;hr&gt;"; // разделитель</code></pre>
+
+
+
+<p><strong>Таксономии</strong>. Функция get_taxonomies( ) получает список зарегистрированных объектов таксономии.</p>
+
+
+
+<pre><code class="language-php">echo "Taxonomies:&lt;br/&gt;";
+
+$args = array(  
+    '_builtin'                 =&gt; false, 
+    'public'                   =&gt; true,
+); 
+
+$taxonomies = get_taxonomies( $args, 'objects' ); 
+
+foreach ( $taxonomies as $taxonomy ) {
+    echo '&lt;p&gt;' . $taxonomy-&gt;labels-&gt;name . '&lt;/p&gt;';
+}</code></pre>
+
+
+
+<p><strong>Типы постов</strong>. Функция <code>get_post_types( )</code> возвращает зарегистрированные типы постов, найденные в <code>$wp_post_types</code>. Функция <code>get_posts( )</code> создает массив постов на основе набора параметров, поэтому используйте ее со списком <code>post_type_list</code>.</p>
+
+
+
+<pre><code class="language-php">echo "Типы постов:&lt;br/&gt;";
+
+$args = array(
+    'public'   =&gt; true,
+    '_builtin' =&gt; false,
+);
+$output = 'names'; // names or objects, note names is the default
+$operator = 'and'; // 'and' or 'or'
+$post_types = get_post_types($args, $output, $operator);
+
+// get all the posts for all post_types
+
+$posts = get_posts(array(
+                           'post_type'   =&gt; $post_types,
+                           'numberposts' =&gt; - 1,
+                           'orderby'     =&gt; 'post_type',
+                           'order'       =&gt; 'ASC',
+                           'post_status' =&gt; array( 'publish' ),
+                           'public'      =&gt; true,
+                       ));
+
+foreach($posts as $post) {
+
+    $link = get_permalink($post);
+    $title = $post-&gt;post_title;
+
+    if($post_type !== $post-&gt;post_type) {
+        $post_type = $post-&gt;post_type;
+        echo '&lt;/br/&gt;&lt;p&gt;' . $post_type . '&lt;/p&gt;&lt;/br/&gt;';
+    }
+
+    // показать ссылку на запись
+
+    echo "&lt;p&gt;&lt;a href=\"$link\"&gt;$title&lt;/a&gt;&lt;/p&gt;";
+}</code></pre>
+
+
+
+<p><strong>Временное кэширование</strong>. Если вы хотите кэшировать результаты всех этих запросов, рассмотрите <strong>API Transients</strong>. Это позволит сохранить результат в базе данных на ограниченное время (которое вы ~запросите~). Это не определенное время, потому что такие плагины, как <strong>WP Optimize</strong>, могут очистить кэш в любое время.</p>
+
+
+
+<pre><code class="language-php">// check if the value exists using the key -- if it fails then we'll generate the content
+
+if(false === ($trans_value = get_transient($trans_key = 'my_transient_key'))) {
+
+    print_r('NO CACHE FOR ' . $trans_key); // (debug output)
+
+    // start the output buffer to capture our generated content
+
+    ob_start();
+
+    // run your expensive operations -- data sent to the screen will be captured
+
+    print_r('This is an expensive operation!');
+
+    // using ob_get_clean we'll store the results and set the value variable.
+
+    // double check the amount of time you want to keep the data cached
+    // set to 0 for auto loading on every page hit.
+
+    set_transient($trans_key, $trans_value = ob_get_clean(), 1 * MINUTE_IN_SECONDS);
+}
+else {
+    print_r('THIS IS A CACHED RESULT FOR ' . $trans_key); // (debug output)
+}
+
+// value is ready and cached
+print_r("&lt;pre&gt;$trans_value&lt;/pre&gt;");</code></pre>
+
+
+
+<p>Чтобы очистить значение, просто удалите его с помощью ключа.</p>
+
+
+
+<pre><code class="language-php">delete_transient ( $trans_key );</code></pre>
+
+
+
+<p><strong>Метаданные термина</strong>. Можно получить миниатюры для терминов, используя новые метаданные терминов с версии 4.4. Вам просто также нужно определить их заранее самостоятельно.</p>
+
+
+
+<pre><code class="language-php">add_term_meta( int $term_id, string $meta_key, mixed $meta_value, bool $unique = false )
+
+get_term_meta( int $term_id, string $key = '', bool $single = false )
+
+update_term_meta( int $term_id, string $meta_key, mixed $meta_value, mixed $prev_value = '' )</code></pre>
+
+
+
+<p>Описанный выше метод для тегов я использовал на этом сайте, выводя все теги WordPress под шапкой на главной странице в виде дополнительного меню.</p>
+
+
+
+<p>Но теперь давайте ниже рассмотрим как отобразить популярные теги WordPress без использования и с использованием плагина.</p>
+
+
+
+<h2><span id="Popularnye_tegi_WordPress">Популярные теги WordPress</span></h2>
+
+
+
+<p>Хотите отобразить самые популярные теги, используемые на вашем сайте, сделанном на WordPress? </p>
+
+
+
+<p>Теги и категории — это два способа сортировки контента в WordPress по умолчанию. К ним можно добавить еще пользовательские типы записей, но они применяются намного реже классических тегов и категорий.</p>
+
+
+
+<p>Категории часто получают больше внимания благодаря более широкому охвату. В этой статье мы покажем вам, как легко отобразить ваши самые популярные теги в WordPress, т.к. нельзя недооценивать силу тегов.</p>
+
+
+
+<p>Категории и теги — это две таксономии по умолчанию для сортировки ваших статей в WordPress. Категории используются для более широких тем или разделов вашего сайта, в то время как теги хорошо подходят для конкретных идей в контексте ваших статей.</p>
+
+
+
+<p>Часто новички используют их неправильно, но есть простые инструменты, которые позволяют объединять категории и теги и даже конвертировать их.</p>
+
+
+
+<p>Как только вы начнете правильно использовать категории и теги, скорее всего, на вашем сайте будет больше тегов, чем категорий. Благодаря их более широкому охвату, вы можете поместить категории в навигационные меню, но часто ваши теги могут оставаться менее просматриваемыми.</p>
+
+
+
+<p>Одним из способов решения этой проблемы является добавление стандартного виджета «<strong>Облако тегов</strong>«, перейдя на страницу «<strong>Внешний вид</strong>» и добавив виджет «<strong>Облако тегов</strong>» на боковую панель (сайдбар).</p>
+
+
+<div>
+<figure><img src="images/oblako-tegov.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Однако, вы заметите, что виджет тегов по умолчанию будет показывать все ваши теги в алфавитном порядке. Вы не можете изменить их порядок или ограничить количество отображаемых тегов.</p>
+
+
+
+<p>Вы можете решить эту проблему, отобразив наиболее популярные или наиболее часто используемые теги на Вашем сайте WordPress.</p>
+
+
+
+<p>Это позволит вашим пользователям быстро получить представление о том, какие темы чаще всего обсуждаются на вашем сайте. Это также поможет пользователям обнаружить больше контента, что означает большее количество просмотров страниц и вовлечение пользователей.</p>
+
+
+
+<p>Теперь давайте посмотрим, как отобразить ваши самые популярные теги в WordPress двумя способами — через плагин и через код.</p>
+
+
+
+<h3><span id="1_Ispolzuem_plagin">1. Используем плагин</span></h3>
+
+
+
+<p> Я не сторонник использовать плагины в большинстве случаев, но обойти стороной это нельзя, т.к. в некоторых случаях сделаны очень удобные решения командами разработчиков.</p>
+
+
+
+<p>Этот метод проще и рекомендуется большинству пользователей.</p>
+
+
+
+<p>Первое, что вам нужно сделать, это установить и активировать плагин <a href="https://wordpress.org/plugins/simple-tags/" target="_blank" rel="noreferrer noopener">Simple Tags</a>.</p>
+
+
+
+<p>После активации вам необходимо посетить страницу <strong>Appearance</strong> (Внешний вид) -&gt; <strong>Widgets</strong> (Виджеты) и добавить виджет «Tag Cloud (Simple Tags)» на боковую панель (сайдбар).</p>
+
+
+<div>
+<figure><img src="images/oblako-tegov-plugin.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Виджет развернется, и вы сможете увидеть его настройки.</p>
+
+
+
+<p>Здесь Вы можете выбрать количество тегов, которые хотите отобразить, размеры шрифта, цвета и т.д.</p>
+
+
+
+<p>Чтобы отобразить свои теги по популярности, убедитесь, что вы выбрали количество в опции ‘<strong><em>Order by for display tags</em></strong>’ (Сортировать по… для отображаемых тегов) и убывание для опции ‘<strong><em>Order for display tags</em></strong>’ (Сортировать для отображаемых тегов).</p>
+
+
+
+<p>Не забудьте нажать на кнопку сохранения, чтобы сохранить настройки виджета. Теперь вы можете посетить ваш сайт, чтобы увидеть ваши популярные теги в действии.</p>
+
+
+
+<h3><span id="2_Ispolzuem_kod">2. Используем код</span></h3>
+
+
+
+<p>Этот метод требует добавления кода в файлы тем WordPress. Если Вы не делали этого раньше, то, пожалуйста, ознакомьтесь с моим руководством по копированию и вставке кода в WordPress.</p>
+
+
+
+<p>Сначала вам нужно добавить код ниже в файл <strong>functions.php</strong> вашей темы или в файл плагина для конкретного сайта.</p>
+
+
+
+<pre><code class="language-php">function wpb_tag_cloud() { 
+$tags = get_tags();
+$args = array(
+    'smallest'                  =&gt; 10, 
+    'largest'                   =&gt; 22,
+    'unit'                      =&gt; 'px', 
+    'number'                    =&gt; 10,  
+    'format'                    =&gt; 'flat',
+    'separator'                 =&gt; " ",
+    'orderby'                   =&gt; 'count', 
+    'order'                     =&gt; 'DESC',
+    'show_count'                =&gt; 1,
+    'echo'                      =&gt; false
+); 
+ 
+$tag_string = wp_generate_tag_cloud( $tags, $args );
+ 
+return $tag_string; 
+ 
+} 
+// Add a shortcode so that we can use it in widgets, posts, and pages
+add_shortcode('wpb_popular_tags', 'wpb_tag_cloud'); 
+ 
+// Enable shortcode execution in text widget
+add_filter ('widget_text', 'do_shortcode'); </code></pre>
+
+
+
+<p>Этот код просто генерирует 10 наиболее популярных тегов вашего сайта в облаке с количеством постов в каждом теге. После этого он создает шорткод <strong>wpb_popular_tags</strong> и включает вставку шорткода в текстовый виджет.</p>
+
+
+
+<p>Теперь вы можете добавить шорткод <strong>[wpb_popular_tags]</strong> в любую запись, страницу или виджет для отображения ваших самых популярных тегов.</p>
+
+
+
+<p>Также вы можете использовать шорткод в любом файле темы через PHP:</p>
+
+
+
+<pre><code class="language-php">&lt;?php echo do_shortcode('[wpb_popular_tags]'); ?&gt;</code></pre>
+
+
+
+<p>Не забываем, что <code>do_shortcode</code> работает только когда мы выводим его через <code>echo</code>. Иначе вы свой шорткод не увидите.</p>
+
+
+
+<p><strong>Обновление</strong>!</p>
+
+
+
+<p>У меня решение выше от wpbeginner.com не отображало ссылки, т.е. ссылки были, но с пустым <strong>href</strong>.</p>
+
+
+
+<p>Я модифицировал их код таким образом:</p>
+
+
+
+<pre><code class="language-php">function wpb_tag_cloud() {   
+$args = array(
+    'smallest'                  =&gt; 14, 
+    'largest'                   =&gt; 14,
+    'unit'                      =&gt; 'px', 
+    'number'                    =&gt; 10,  
+    'format'                    =&gt; 'flat',
+    'separator'                 =&gt; " ",
+    'orderby'                   =&gt; 'count', 
+    'order'                     =&gt; 'DESC',
+    'show_count'                =&gt; 0,
+    'echo'                      =&gt; false,
+    'include'                   =&gt; $term_ids
+); 
+ 
+$tag_string = wp_tag_cloud( $args );
+
+return $tag_string; 
+
+} 
+// Add a shortcode so that we can use it in widgets, posts, and pages
+add_shortcode('wpb_popular_tags', 'wpb_tag_cloud'); 
+ 
+// Enable shortcode execution in text widget
+add_filter ('widget_text', 'do_shortcode'); </code></pre>
+
+
+
+<p>Дефолтные (по-умолчанию) настройки у облака тегов wp_tag_cloud такие:</p>
+
+
+
+<pre><code class="language-php">$defaults = array(
+        'smallest'   =&gt; 8,
+        'largest'    =&gt; 22,
+        'unit'       =&gt; 'pt',
+        'number'     =&gt; 45,
+        'format'     =&gt; 'flat',
+        'separator'  =&gt; "\n",
+        'orderby'    =&gt; 'name',
+        'order'      =&gt; 'ASC',
+        'exclude'    =&gt; '',
+        'include'    =&gt; '',
+        'link'       =&gt; 'view',
+        'taxonomy'   =&gt; 'post_tag',
+        'post_type'  =&gt; '',
+        'echo'       =&gt; true,
+        'show_count' =&gt; 0,
+    );</code></pre>
+
+
+
+<p>Это вполне нормальное решение, которое стилями можно хорошо настроить и вставить в нужное место на сайте.</p>
+
+
+
+<p>В моем примере я сделал так, что все теги WordPress имели размер шрифта одинаковый для всех тегов равный <strong>14px</strong>, но вы можете свои размеры указать в <code>smallest</code> и <code>largest</code>.</p>
+
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 10 февраля 2023 в 01:33</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

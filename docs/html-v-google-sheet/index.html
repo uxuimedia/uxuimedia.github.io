@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Отправка данных из HTML-формы в Google Sheet &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Отправка данных из HTML-формы в Google Sheet</h1>
+
+<p>Рассмотрим как отправлять данные из HTML-форм в таблицу Google Sheet используя Google Sheets API и Javascript.</p>
+
+<h2>Идея</h2>
+
+<p>Я все чаще и чаще сталкиваюсь с ситуацией, когда мне нужно собирать пользовательские данные на веб-сайте для каких-то целей, например, — список рассылки, форма подписки или опрос.</p>
+
+<p>Эти данные надо где-то хранить и иметь для этих целей какую-то маркетинговую платформу для хранения всех собранных данных. </p>
+
+<p>Но, как правило, у всех платформ разные ценники и функциональность, и у меня нет времени, чтобы понять, что использовать. Мне просто хотелось быстро добавить данные из моего интерфейса в таблицу Google с элементарным сопоставление полей с заголовками столбцов, а уже позже побеспокоиться о специализированной маркетинговой платформе. </p>
+
+<p>В итоге, подходящий сервис я не нашел и решил создать его сам. Разберемся дальше как можно всё это достаточно быстро реализовать.</p>
+
+<h2>Стек технологий</h2>
+
+<p>Как я уже писал ранее, я думаю, что идеальный стек технологий для вашего стартапа — это все, что вы можете использовать для максимально быстрого выполнения работы.</p>
+
+<p>Для меня — это вариант стека MERN с <a href="https://www.serverless.com/" target="_blank" rel="noreferrer noopener nofollow">Serverless</a> в качестве фреймворка хостинга.</p>
+
+<div class="attention-blue"><strong>Serverless</strong> в переводе с английского — бессерверный.</div>
+
+<p>Если вы никогда раньше не создавали Serverless приложение и ищете что-то, что поможет вам начать работу с такой технологией, то взгляните на проект шаблона по <a href="https://github.com/levinunnink/serverless-boilerplate" target="_blank" rel="noreferrer noopener nofollow">этой ссылке</a>, который я собрал. Он довольно простой, но я использую его для многих проектов для начала работы.</p>
+
+<div class="attention-blue"><strong>Boilerplate</strong> в переводе с английского — шаблон.</div>
+
+<p>Когда я смотрел на проект, я руководствовался следующими ключевыми моментами:</p>
+
+<ol>
+<li>Нам нужно было использовать HTTP-запрос, чтобы подтвердить ввод формы и выдать ошибку, видимую пользователю.</li>
+<li>Если все выглядело хорошо, тогда нам нужно было поговорить с Google об обновлении таблицы. А поскольку это была сторонняя компания, нам нужно было действовать ответственно и ограничивать наши запросы.</li>
+</ol>
+
+<p>Поэтому любое взаимодействие с Google должно происходить в очереди с рабочей функцией. Это идеальное приложение для Serverless и FIFO.</p>
+
+<p>В конечном счете, базовая архитектура, которую я набросал, выглядела следующим образом:</p>
+
+<div>
+<figure><img src="images/html-google-sheet.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Имея эту структуру, мне нужно было перейти к специфике каждой логической части.</p>
+
+<h2>Работа с Google Sheets API</h2>
+
+<p>Мой конечная точка HTTP (endpoint) будет получать полезные данные POST, например:</p>
+
+<pre><code class="language-json">{
+    "DOB": "6/20/1997"
+    "Name": "Jane Doe",
+    "Email": "jane@applemail.com",
+}</code></pre>
+
+<p>Мне нужно было преобразовать это в лист вроде:</p>
+
+<figure><img src="images/html-google-sheet-2.jpg" alt="" class="img-fluid"></figure>
+
+<p>Единственное предостережение: мне нужно было правильно упорядочить данные, чтобы значения соответствовали столбцам на листе, а затем добавить их в конец листа. Довольно просто.</p>
+
+<p>Примечание: Все эти примеры используют API Google Sheets, v4. <a href="https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append" target="_blank" rel="noreferrer noopener">Документация API</a>.</p>
+
+<pre><code class="language-javascript">const { google } = require('googleapis');
+
+class ExecuteSheetUpdateCommand {
+  /**
+   * @param {string} spreadsheetId ID of the Google Spreadsheet.
+   * @param {Object} data Object that contains the data to add to the sheet as key-value pairs.
+   * @param {google.auth.OAuth2} auth An Google OAuth client with a valid access token: https://github.com/googleapis/google-api-nodejs-client.
+  */
+  static async exec(spreadsheetId, data, auth) {
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    const rows = [data.Name, data.Email, data.DOB];
+    // Add our new data to the bottom of the sheet.
+    await sheets.spreadsheets.values.append({
+      spreadsheetId,
+      range: 'A1',
+      valueInputOption: 'RAW',
+      insertDataOption: 'INSERT_ROWS',
+      resource: {
+        values: [rows],
+      },
+    });
+  }
+}</code></pre>
+
+<p>Вуаля! С помощью одной простой функции мы автоматически сопоставляли данные форм в Google Sheets.</p>
+
+<p>Очевидно, что эта функция не очень хороша. Он связывает заголовки формы со структурой листа с помощью этой строки:</p>
+
+<pre><code class="language-javascript">const rows = [data.Name, data.Email, data.DOB];</code></pre>
+
+<p>Вам действительно не стоит так делать.</p>
+
+<p>Например, если бы я переместил столбец в своей электронной таблице, эта функция продолжала бы вставлять данные на старое место, и на моем листе были бы неверные данные.</p>
+
+<p>Сложнее автоматически сопоставить поля формы с заголовками листа, и я оставляю эту часть для будущих материалов ради этого примера.</p>
+
+<h2>Добавление конечной точки REST с помощью SQS worker</h2>
+
+<p>Итак, у нас есть функция, которая может отправлять объект JSON в Google Sheet, но как это сделать с помощью HTML-формы? Ответ — HTTP + SQS.</p>
+
+<p>Часть HTTP довольно проста, если вы знакомы с Node и <a href="https://www.npmjs.com/package/express" target="_blank" rel="noreferrer noopener nofollow">Express</a>.</p>
+
+<p>Вы можете с такой же легкостью развернуть ее на другом Node-friendly окружении, но я покажу вам, как работать с Serverless и AWS.</p>
+
+<p>Я использую пакет <a href="https://github.com/awslabs/aws-serverless-express" target="_blank" rel="noreferrer noopener nofollow">aws-serverless-express</a> для отправки моих экспресс-приложений в качестве функций Serverless Lambda. В сочетании с пакетом <a href="https://github.com/droplr/serverless-api-cloudfront" target="_blank" rel="noreferrer noopener nofollow">serverless-api-cloudfront</a> невероятно легко развернуть масштабируемый API.</p>
+
+<p>Вот конечная точка Express HTTP, с которой начинается обновление Google Sheet:</p>
+
+<pre><code class="language-javascript">const express = require('express');
+const bodyParser = require('body-parser');
+
+// An AWS SQS client
+const sqsClient = require('./clients/SQSClient');
+
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/form/:spreadsheetId', async (req, res, next) =&gt; {
+  const { spreadsheetId } = req.params; // The Google Sheet ID
+  const { body } = req; // The post body
+
+  /* Note: You should run your own custom validation on the 
+     * form before forwarding it on. In this example we just continue.
+   *
+     * At a minimum, make sure you have permission to update the 
+   * sheet, otherwise this will break downstream.
+     */
+  const passedValidation = true;
+
+  if(passedValidation) {
+    // Send the data to our SQS queue for further processing
+    await sqsClient.createEntry.sendMessage({
+      spreadsheetId,
+            body,
+    });
+  } else {
+    throw new Error('Invalid form data');
+  }
+
+  res.status(200).send('Submitted your form');
+});</code></pre>
+
+<p>А вот функция Lambda, которая извлекает данные из регулируемой очереди SQS FIFO и обрабатывает их для Google:</p>
+
+<pre><code class="language-javascript">const { google } = require('googleapis');
+const ExecuteSheetUpdateCommand = require('../commands/ExecuteSheetUpdateCommand');
+
+exports.handle = async (event, context, callback) =&gt; {
+  const messages = event.record.body;
+
+  // This little logic helps us throttle our API interactions
+  messages.reduce(async (previousPromise, nextMessage) =&gt; {
+    await previousPromise;
+    const { spreadsheetId, body } = nextMessage;
+    const accessToken = /* Load a valid access token for your Google user */;
+    // Construct an oAuth client with your client information that you've securely stored in the environment
+        const oAuth2Client = new google.auth.OAuth2(
+      process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET, null,
+    );
+    oAuth2Client.setCredentials({
+      access_token: accessToken,
+    });
+    await ExecuteSheetUpdateCommand.exec(spreadsheetId, body, oAuth2Client);
+    return new Promise((resolve) =&gt; {
+      setTimeout(resolve, 1000); // Throttle for the Google API
+    });
+  }, Promise.resolve());
+
+  callback();
+};</code></pre>
+
+<p>Причина, по которой мы используем <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html" target="_blank" rel="noreferrer noopener nofollow">SQS с FIFO</a>, а не просто выполняем все это в конечной точке HTTP, заключается в том, что он позволяет нам быстро отвечать пользователю, отправляющему форму, и обновлять лист, как только мы можем, при соблюдении ограничений API.</p>
+
+<p>Если мы не будем думать об ограничениях API, мы можем попасть в ситуации, когда пользователю будет показан экран с ошибкой, как только он отправит форму. И это не хорошо. API Google Таблиц имеет ограничение — «100 запросов в 100 секунд на пользователя», или 1 запрос в секунду — это максимальная скорость, с которой мы можем безопасно взаимодействовать с ним.</p>
+
+<p><a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html" target="_blank" rel="noreferrer noopener nofollow">SQS FIFO queues</a> позволяют нам помещать обновления наших листов в одну строку, сгруппированную по идентификатору пользователя, и затем мы можем регулировать эти выполнения, используя приведенный выше фрагмент <code>messages.reduce</code>, чтобы убедиться, что мы никогда не превышаем наш лимит в 1 запрос в секунду на пользователя.</p>
+
+<p>И мы также получаем дополнительное преимущество, позволяя AWS выполнять тяжелую работу по регулированию.</p>
+
+<p>Ключевым моментом является то, что при заполнении очереди FIFO надо убедиться, что <code>MessageGroupId</code> установлен на идентификатор пользователя Google, который выполняет запрос OAuth.</p>
+
+<h2>Создание формы</h2>
+
+<p>Используя комбинацию этих техник и функций, вы должны подойти к тому моменту, где вы можете написать форму HTML, которая вас устроит:</p>
+
+<pre><code class="language-html">&lt;form action="https://&lt;my-express-endpoint&gt;/form/&lt;my-sheet-id&gt;" method="post"&gt;
+&lt;input type="email" name="Email" placeholder="Enter your email" required /&gt;
+&lt;input type="name" name="Name" placeholder="Enter your name" required /&gt;
+&lt;input type="submit" value="Submit" /&gt;
+&lt;/form&gt;</code></pre>
+
+<p>После чего данные будут волшебным образом отображаться в вашей таблице Google каждый раз, когда она будет отправлена:</p>
+
+<figure><img src="images/html-google-sheet-3.jpg" alt="" class="img-fluid"></figure>
+
+<p>На этом всё. Поэкспериментируйте с таблицами, у вас получится.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 13 сентября 2020 в 01:38</span><br>Теги: JavaScript
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Выпадающее меню в WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container-fluid">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 col-lg-3">
+			<div class="content-blocks bg-light p-3">
+				<div>
+					<b>Содержание</b>
+				</div>
+				<div>
+					<span>1</span> <a href="#Menu_v_WordPress"><span>Меню в WordPress</span></a>
+				</div>
+				<div>
+					<span>2</span> <a href="#5_sagov_po_sozdaniu_vypadausego_menu"><span>Создание выпадающего меню</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>2.1</span> <a href="#Sag_1_Sozdanie_punktov_menu"><span>Шаг 1: Создание пунктов меню</span></a>
+						</div>
+						<div>
+							<span>2.2</span> <a href="#Sag_2_Organizacia_menu"><span>Шаг 2: Организация меню</span></a>
+						</div>
+						<div>
+							<span>2.3</span> <a href="#Sag_3_Vklucenie_izobrazenij_v_menu_WordPress"><span>Шаг 3: Включение изображений в меню WordPress</span></a>
+						</div>
+						<div>
+							<span>2.4</span> <a href="#Sag_4_Dobavlenie_polzovatelskogo_CSS_v_vypadausee_menu"><span>Шаг 4: Добавление пользовательского CSS в выпадающее меню</span></a>
+						</div>
+						<div>
+							<span>2.5</span> <a href="#Sag_5_Publikacia_menu_v_lucsem_meste"><span>Шаг 5: Публикация меню в лучшем месте</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>3</span> <a href="#Plaginy_WordPress_dla_ulucsenia_vypadausih_menu"><span>Плагины WordPress для улучшения выпадающих меню</span></a>
+				</div>
+				<div>
+					<span>4</span> <a href="#Ustranenie_nepoladok_s_vypadausim_menu"><span>Устранение неполадок с выпадающим меню</span></a>
+				</div>
+				<div>
+					<span>5</span> <a href="#Zaklucenie"><span>Заключение</span></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Выпадающее меню в WordPress</h1>
+
+<p>В этой статье мы обсудим, почему навигация на сайте важна и как выпадающие меню могут быть нам полезны. Расскажу о том, как создать выпадающее меню в WordPress, поделюсь некоторыми плагинами, которые нам смогут помочь.</p>
+
+<h2><span id="Menu_v_WordPress">Меню в WordPress</span></h2>
+
+<p>Навигация сайта является ключевым фактором, помогающим вашим пользователям попасть туда, куда они хотят. Хорошо продуманное меню может значительно улучшить пользовательский опыт (UX) и даже снизить процент отказов. Однако плохо составленное меню может привести к прямо противоположному результату.</p>
+
+
+
+<p>К счастью, WordPress позволяет создавать пользовательские меню в соответствии с потребностями вашего сайта. Вы даже можете использовать встроенные функции для добавления компактного выпадающего меню WordPress, которое экономит место, но при этом обеспечивает четкую навигацию для ваших посетителей.</p>
+
+
+
+<p>Несмотря на свою непритязательность, навигационные меню являются жизненно важным элементом. Они помогают пользователям быстро найти наиболее подходящие страницы для достижения своих целей, а также дают посетителям представление о том, что вы можете предложить. Пример того, как может выглядеть меню:</p>
+
+
+<div>
+<figure><img src="images/wp-menu-primer-001.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Хорошо продуманное навигационное меню — это ключ к повышению конверсии и снижению показателя отказов. Когда пользователи могут легко найти страницы, на которых расположен ваш продукт, форма подписки на электронную почту или другой конверсионный контент, вам будет проще побудить их совершить покупку, подписаться на новости или перейти на новые страницы.</p>
+
+
+
+<p>Кроме того, если пользователи могут уверенно ориентироваться на вашем сайте, им не придется уходить с ваших страниц, из-за того что они попали не туда. Помогая им найти правильный путь с первого раза, вы улучшаете UX и минимизируете разочарование.</p>
+
+
+
+<p>В WordPress меню являются неотъемлемой функцией. Любой сайт, созданный на этой платформе, может отображать одно или несколько меню. Однако темы WordPress также играют важную роль при оформлении и размещении одного или нескольких меню.</p>
+
+
+
+<p>По этой причине меню WordPress может принимать различные формы. Наиболее привычным является стандартное меню в шапке:</p>
+
+
+<div>
+<figure><img src="images/wp-menu-primer-002.png" alt="" class="img-fluid"><figcaption>Пример типичного меню в шапке сайта WordPress</figcaption></figure></div>
+
+
+<p>Часто можно также включить дополнительное меню в нижней части страницы (футере или подвале). Оно может отображать то же содержимое, что и основное меню, или предлагать несколько иные опции:</p>
+
+
+<div>
+<figure><img src="images/wp-menu-primer-003.png" alt="" class="img-fluid"><figcaption>Пример меню в футере WordPress</figcaption></figure></div>
+
+
+<p>Другим стилем является наложение меню или всплывающее меню, оверлей (см. пример ниже), которое пользователи могут открывать и закрывать по своему усмотрению, и которое отображается поверх всего содержимого или его части:</p>
+
+
+<div>
+<figure><img src="images/wp-menu-primer-004.png" alt="Пример оверлейного меню" class="img-fluid"><figcaption>Пример оверлейного меню</figcaption></figure></div>
+
+
+<p>В качестве альтернативы на некоторых сайтах используется статическое или всплывающее боковое меню:</p>
+
+
+<div>
+<figure><img src="images/wp-menu-primer-005.png" alt="" class="img-fluid"><figcaption>Пример бокового меню</figcaption></figure></div>
+
+
+<p>Или вы можете использовать выпадающее меню, которое также иногда называют «вложенным» меню:</p>
+
+
+<div>
+<figure><img src="images/wp-menu-primer-006.png" alt="" class="img-fluid"><figcaption>Пример выпадающего меню</figcaption></figure></div>
+
+
+<p>Этот тип навигации идеально подходит для многих типов сайтов. Он не заслоняет контент, как оверлейное меню, но и не является таким навязчивым, как большое меню в шапке или в боковой панели.</p>
+
+
+
+<p>Скрывая часть контента до тех пор, пока он не понадобится, вы сэкономите место на экране и при этом предоставляете пользователям легкий способ навигации по сайту.</p>
+
+
+
+<h2><span id="5_sagov_po_sozdaniu_vypadausego_menu">Создание выпадающего меню</span></h2>
+
+
+
+<p>Если вы решили, что выпадающее меню может подойти для вашего сайта на WordPress, настроить его довольно просто. Используя встроенные функции меню, доступные в WordPress, вы можете создать пользовательскую систему навигации, соответствующую вашим потребностям, всего за пять шагов.</p>
+
+
+
+<h3><span id="Sag_1_Sozdanie_punktov_menu">Шаг 1: Создание пунктов меню</span></h3>
+
+
+
+<p>Первый шаг к созданию меню — это решить, что в него включить. Начните с перехода к разделу <em>Внешний вид -&gt; Меню</em> (<strong>Appearance -&gt; Menus</strong>) в приборной панели WordPress:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-001.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>То, что вы увидите в редакторе меню, будет немного отличаться в зависимости от вашей темы.</p>
+
+
+
+<p>Однако сейчас важно обратить внимание на первую опцию вкладки «Редактировать меню» (<strong>Edit Menus</strong>). Вы должны увидеть опцию, в которой можно выбрать одно из существующих меню для редактирования, а также опцию для «создания нового меню» (<strong>create a new menu</strong>):</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-002.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>В данном примере мы выберем последний вариант и создадим новое меню. Для этого нужно добавить заголовок, а затем нажать кнопку «Создать меню» (<strong>Create Menu</strong>):</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-003.png" alt="" class="img-fluid"><figcaption>Наименование и создание нового меню</figcaption></figure></div>
+
+
+<p>Теперь вы готовы начать добавлять пункты в меню WordPress. В большинстве случаев лучше всего, чтобы ваше меню было как можно проще, но при этом давало пользователям достаточно информации, чтобы они могли попасть туда, куда им нужно.</p>
+
+
+
+<p>Слишком большое количество страниц может перегрузить посетителей и усложнить навигацию вместо того, чтобы облегчить ее.</p>
+
+
+
+<p>Существует несколько различных подходов к добавлению пунктов меню. Первые два — это страницы и записи, и они работают практически одинаково.</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-004.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>В боковой панели редактора меню просто установите флажки для каждой страницы или поста, которые вы хотите включить, и нажмите на кнопку «Добавить в меню» (<strong>Add to Menu</strong>):</p>
+
+
+
+<p>Следующим вариантом является включение «пользовательских ссылок» (<strong>Custom Links</strong>). Для этого нужно указать URL страницы, на которую вы хотите направить пользователей, а затем придумать для нее короткую, но описательную метку. После этого вы можете снова нажать на кнопку «Добавить в меню» (<strong>Add to Menu</strong>):</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-005.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Наконец, вы также можете добавить в навигационное меню страницы и категории записей. Это приведет пользователей на страницу архива, где они смогут просмотреть все содержимое по определенной теме.</p>
+
+
+
+<p>Эта функция может оказаться особенно полезной для блогов и других сайтов с большим объемом контента:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-006.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Как и в случае со страницами и записями, просто установите галочки напротив категорий, которые вы хотите включить, и выберите «Добавить в меню» (<strong>Add to Menu</strong>).</p>
+
+
+
+<h3><span id="Sag_2_Organizacia_menu">Шаг 2: Организация меню</span></h3>
+
+
+
+<p>После добавления всех пунктов меню вы должны увидеть их в виде отдельных вкладок в разделе «Структура меню» (<strong>Menu Structure</strong>) в редакторе:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-007.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Первоначально пункты меню будут отображаться в том порядке, в котором вы их добавили. Однако вы можете легко изменить их расположение, перетаскивая их на нужное место. Это позволит вам создать простое меню без выпадающих элементов.</p>
+
+
+
+<p>Существует несколько способов добавления выпадающих элементов в меню WordPress.</p>
+
+
+
+<p>Самый простой — продолжать перетаскивать элементы меню, но при этом вложить одни пункты меню в другие:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-008.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Например, на изображении выше мы переместили три категории записей, которые мы добавили в меню в разделе Блог, сделав их «подпунктами». На фронтенде это создаст выпадающее меню, которое будет выглядеть следующим образом:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-009.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Если вы хотите добавить выпадающее меню, включающее все категории на вашем сайте, вы можете сделать это, добавив «пользовательскую ссылку» (<strong>Custom Link</strong>) к вашему меню. Используйте «<strong>#</strong>» в качестве URL-адреса и «Categories» или что-то подобное в качестве метки:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-010.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Затем вы можете добавить все свои категории в меню и расположить их под этим ярлыком. Каждая категория будет кликабельной, а ярлык — нет:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-011.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Используя аналогичную технику, вы также можете скрыть все пункты меню в одном выпадающем меню.</p>
+
+
+
+<p>Добавьте еще одну пользовательскую ссылку, используя «<strong>#</strong>» в качестве URL и «Menu» в качестве метки. Затем вложите все остальные пункты меню под эту ссылку:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-012.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>В результате на фронтенде появится выпадающее меню, включающее ключевые страницы вашего сайта.</p>
+
+
+
+<p>Как вы можете видеть в пункте «Категории» ниже, любое содержимое, вложенное в подпункт, будет отображаться в подменю:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-013.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Используя редактор меню перетаскиванием (drag-and-drop) таким образом, вы можете создать любой стиль и комбинацию выпадающих меню WordPress. Однако помните, что слишком большое количество пунктов меню может запутать пользователей.</p>
+
+
+
+<p>Лучше ограничить количество включаемых подменю, чтобы не загромождать навигацию.</p>
+
+
+
+<h3><span id="Sag_3_Vklucenie_izobrazenij_v_menu_WordPress">Шаг 3: Включение изображений в меню WordPress</span></h3>
+
+
+
+<p>Если к концу <strong>Шага 2</strong> ваше выпадающее меню выглядит именно так, как вы его себе представляли, вы можете перейти к <strong>Шагу 5</strong>, чтобы опубликовать его. Однако есть дополнительные шаги, которые вы можете предпринять, если хотите усовершенствовать свое меню с помощью пользовательских настроек.</p>
+
+
+
+<p>Одной из тактик, которую следует рассмотреть, является включение визуальных элементов в меню, чтобы предоставить посетителям дополнительные подсказки. Хотя описательные надписи крайне важны, иногда изображение или значок могут помочь пользователям быстрее определить, куда ведет та или иная навигационная ссылка.</p>
+
+
+
+<p>Можно добавить изображения с помощью пользовательского CSS, о чем мы расскажем в ближайшее время. Однако мы рекомендуем использовать такой плагин, как <a href="https://wordpress.org/plugins/menu-image/" target="_blank" rel="noreferrer noopener">Menu Image, Icons Made Easy</a>:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-014.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Таким образом, вам не придется возиться с кодом, чтобы добавить визуальный эффект вашему выпадающему меню.</p>
+
+
+
+<p>Просто установите плагин, а затем перейдите в меню <em>Внешний вид -&gt; Меню</em> (<strong>Appearance -&gt; Menus</strong>):</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-015.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Вы увидите, что теперь появились опции изображения для каждой страницы, которую вы включили в меню. Вы можете выбрать фотографию, размер и положение каждой страницы. Не забудьте сохранить изменения, когда закончите.</p>
+
+
+
+<h3><span id="Sag_4_Dobavlenie_polzovatelskogo_CSS_v_vypadausee_menu">Шаг 4: Добавление пользовательского CSS в выпадающее меню</span></h3>
+
+
+
+<p>Хотя это не рекомендуется для начинающих, средние и опытные пользователи могут захотеть включить свой собственный стиль в свои выпадающие меню WordPress. Однако прежде чем приступить к работе с CSS, необходимо добавить класс к меню.</p>
+
+
+
+<p>Если вы пропустите этот шаг, ваш пользовательский CSS может создать проблемы для других меню на вашем сайте. Например, вы можете нечаянно применить к меню в футере стиль, который предназначался только для главного выпадающего меню.</p>
+
+
+
+<p>В редакторе меню нажмите на «Параметры экрана» (<strong>Screen Options</strong>) в правом верхнем углу:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-016.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Затем установите флажок в поле «Классы CSS» (<strong>CSS Classes</strong>):</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-017.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Это добавит поле «Классы CSS» к каждому пункту вашего меню:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-018.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>После добавления одного или нескольких классов CSS к пунктам меню любой пользовательский код, который вы включите в таблицу стилей, будет применяться только к пунктам меню с указанным классом.</p>
+
+
+
+<p>Теперь вы можете перейти к своей таблице стилей или к кастомайзеру (<strong>Customizer</strong>) и приступить к работе над пользовательским стилем CSS.</p>
+
+
+
+<h3><span id="Sag_5_Publikacia_menu_v_lucsem_meste">Шаг 5: Публикация меню в лучшем месте</span></h3>
+
+
+
+<p>После того как структура выпадающего меню WordPress будет соответствовать вашим потребностям, и вы включите все необходимые настройки, вы будете готовы опубликовать его на своем сайте.</p>
+
+
+
+<p>Этот процесс будет немного отличаться в зависимости от вашей темы и от того, какие места для размещения меню она поддерживает. В данном примере мы будем использовать тему Twenty Twenty.</p>
+
+
+
+<p>В редакторе меню прокрутите вниз до раздела «Настройки меню» (<strong>Menu Settings</strong>):</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-019.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Вы можете установить первую галочку, если хотите, чтобы новые страницы автоматически добавлялись в ваше меню. Если вы только начинаете работу над сайтом и еще не добавили все ключевые страницы, это может оказаться полезным. Однако будьте внимательны, чтобы случайно не добавить в меню слишком много пунктов.</p>
+
+
+
+<p>Под этой опцией вы увидите список флажков, отмечающих различные области вашего сайта, в которых вы можете отобразить меню.</p>
+
+
+
+<p>Тема Twenty Twenty включает в себя различные области меню: <em>Desktop Horizontal Menu, Desktop Expanded Menu, Mobile Menu, Footer Menu, Social Menu</em>.</p>
+
+
+
+<p>В данном случае созданное нами меню лучше всего подходит для размещения в горизонтальном меню на десктопе, которое находится в шапке сайта:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-020.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Вы также можете перейти на вкладку «Управление областями» (<strong>Manage Locations</strong>) в блоке «Меню» (<strong>Menus</strong>) на панели инструментов. Здесь вы можете увидеть все места расположения меню, поддерживаемые вашей темой, а также то, какое меню вы назначили для каждого из них:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-021.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>При размещении меню полезно посмотреть, как они будут выглядеть на фронтенде.</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-022.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Нажмите на кнопку «Предпросмотр» (<strong>Manage with Live Preview</strong>), чтобы увидеть, как ваше меню будет выглядеть в выбранном вами месте с помощью кастомайзера WordPress:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-023.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Затем вы можете опубликовать свое меню или несколько меню прямо из «Настройщика». Если вам понадобится добавить или удалить пункты из выпадающего меню, вы можете просто вернуться в редактор меню и внести необходимые изменения.</p>
+
+
+
+<h2><span id="Plaginy_WordPress_dla_ulucsenia_vypadausih_menu">Плагины WordPress для улучшения выпадающих меню</span></h2>
+
+
+
+<p>Хотя вы можете создавать полнофункциональные навигационные меню WordPress без каких-либо дополнительных инструментов, иногда бывает полезно расширить функциональность вашего меню. Если с вашим сайтом дело обстоит именно так, возможно, вам стоит обратить внимание на некоторые популярные плагины для создания меню WordPress.</p>
+
+
+
+<p><a href="https://wordpress.org/plugins/wp-nested-pages/" target="_blank" rel="noreferrer noopener">Nested Pages</a> — это эффективный способ создания выпадающих меню для блогов с большим объемом контента. Хотя этот плагин в основном используется для организации записей и страниц, он также автоматически генерирует меню, которое отражает структуру вашего контента:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-024.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Хотя включать в меню большое количество пунктов не всегда целесообразно, иногда это неизбежно.</p>
+
+
+
+<p>Если с вашим сайтом дело обстоит именно так, плагин <strong>Max Mega Menu</strong> поможет вам объединить существующие меню WordPress в одно «мега-меню»:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-025.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>В связи с ростом популярности мобильных устройств важно, чтобы ваши меню были читаемы и на мобильных устройствах.</p>
+
+
+
+<p><strong>WP Mobile Menu</strong> в паре с любой адаптивной темой поможет вам создать навигационную систему для пользователей вашего сайта, которые используют смартфон:</p>
+
+
+<div>
+<figure><img src="images/wordpress-menu-026.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Наконец, как мы уже говорили, могут возникнуть ситуации, когда базовых пунктов меню недостаточно. В таких ситуациях вы можете рассмотреть возможность использования плагина <em>Menu Image</em>, <em>Icons Made Easy</em>, как мы описали в <strong>Шаге 3</strong> выше.</p>
+
+
+
+<p>Вы можете использовать любой из этих плагинов, чтобы улучшить вашу текущую систему навигации и сделать выпадающее меню WordPress более эффективным. Просто помните, что иногда, когда дело доходит до навигации, проще — значит лучше. Добавляйте дополнительные функции только в том случае, если это улучшит UX и позволит избежать загромождения сайта.</p>
+
+
+
+<h2><span id="Ustranenie_nepoladok_s_vypadausim_menu">Устранение неполадок с выпадающим меню</span></h2>
+
+
+
+<p>Если вы настроили свое меню, как описано выше, но функциональность выпадающего меню не работает, существует несколько возможных причин.</p>
+
+
+
+<p>Хотя мы не можем описать все из них здесь, мы можем помочь вам определить причину вашей проблемы, чтобы вы могли найти правильное решение.</p>
+
+
+
+<p>Часто неработающее меню является результатом конфликта кода между вашим пользовательским меню и темой. Первое, что вы должны сделать, если ваше меню не работает, это переключиться на тему по умолчанию, например Twenty Twenty. Если ваше меню снова заработает, вы поймете, что проблема связана с вашей темой. Затем вы можете связаться с разработчиком вашей темы для поиска решения.</p>
+
+
+
+<p>Еще несколько возможных причин:</p>
+
+
+
+<ul>
+<li><strong>Неправильный код</strong>: Дважды проверьте правильность добавленного вами пользовательского CSS и использование классов CSS, как описано в Шаге 4.</li>
+
+
+
+<li><strong>Несовместимость плагинов</strong>: Попробуйте отключить все плагины, связанные с меню, которые вы установили, и посмотрите, решит ли это проблему.</li>
+
+
+
+<li><strong>Устаревший jQuery</strong>: Обновите jQuery до последней версии и попробуйте снова открыть выпадающее меню.</li>
+</ul>
+
+
+
+<p>Однако, как мы уже упоминали ранее, потенциальных причин неисправности вашего меню множество. Если ни одно из вышеперечисленных решений не помогает, мы рекомендуем посетить форумы поддержки WordPress или нанять разработчика WordPress для устранения неполадок.</p>
+
+
+
+<h2><span id="Zaklucenie">Заключение</span></h2>
+
+
+
+<p>Хотя это может показаться мелочью, навигация вашего сайта WordPress может сделать ваш сайт лучше или наоборот. Использование выпадающих меню позволяет сэкономить место на экранах пользователей, в то же время позволит им легко ориентироваться на вашем сайте и повысить конверсию.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 31 декабря 2022 в 01:30</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

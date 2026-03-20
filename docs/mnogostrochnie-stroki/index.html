@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Многострочный вывод &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Многострочный вывод</h1>
+
+<p>Пятый урок мини-курса по языку программирования Go (Golang) в котором мы поговорим про многострочные строки и как с ними работать в Го.</p>
+
+<p>Первым заданием на курсе Codecademy «Learn Go» идет создание программы, которая печатает ASCII-рисунки. От программы «Hello, World» она отличается тем, что должна выводить несколько строк. Это отличная возможность узнать, как в Go могут быть представлены многострочные строки.</p>
+
+<h2>Строковые литералы Go</h2>
+
+<p>Строковые литералы представляют собой «строковые константы», то есть неизменяемые строковые значения в исходном файле Go.</p>
+
+<p>В Go существует два способа объявления строковых литералов: с помощью стандартных двойных кавычек и с помощью обратных кавычек. В первом случае объявляется «интерпретированная строка», во втором — «необработанная строка». Существуют также «рунные литералы», которые не являются собственно строками, а представляют собой один символ.</p>
+
+<h2>Интерпретируемые строки</h2>
+
+<p>Строковый литерал, заключенный в двойные кавычки (″), является интерпретируемой строкой.</p>
+
+<p>Интерпретируемые строки характеризуются следующими особенностями:</p>
+
+<ul>
+<li>Они могут занимать одну строку в исходном файле.</li>
+<li>Они могут содержать любой символ, кроме «сырой» новой строки или двойной кавычки без экранирования.</li>
+<li>Эскейпы обратной косой черты интерпретируются.</li>
+</ul>
+
+<p><strong>Примеры</strong>:</p>
+
+<pre><code class="language-bash">"foo"                  // The word foo
+"foo\nbar"             // foo, newline, and bar
+"Saudações"            // UTF-8 text
+"Sauda\u00E7\u00F5es"  // Unicode code points (same text as above)</code></pre>
+
+<h2>Необработанные строки</h2>
+
+<p>Строковый литерал, объявленный между обратными кавычками, является необработанной строкой. Она обладает следующими характеристиками:</p>
+
+<ul>
+<li>Может занимать несколько строк в исходном коде.</li>
+<li>Необработанные новые строки в исходном файле становятся новыми строками в строковой константе.</li>
+<li>Не интерпретирует экранирующие последовательности.</li>
+<li>Не может включать обратные знаки (даже через экранирование; см. выше).</li>
+</ul>
+
+<h2>Рунные литералы</h2>
+
+<p>Процитируем документацию Go, — <em>«рунный литерал представляет собой рунную константу, целочисленное значение, идентифицирующее точку кода Юникода»</em>. Концептуально он представляет собой один символ (учитывая, что это Юникод).</p>
+
+<p>Рунные литералы также интерпретируют эскейпы обратного слеша.</p>
+
+<p><strong>Примеры</strong>:</p>
+
+<pre><code class="language-bash">'a'
+'ã'
+'\t'
+'\377'
+'\xff'
+'\u12e4'
+'\U00101234'</code></pre>
+
+<h2>ASCII-арт в исходном коде Go</h2>
+
+<p>В ASCII-арте, который я хотел вывести из своей первой программы на Go, свободно использовались всевозможные символы, такие как обратные кавычки (`), одинарные кавычки (‘) и обратные слеши (\). Разумеется, в ней также было несколько строк.</p>
+
+<p>У меня было несколько вариантов представления этого в исходном файле:</p>
+
+<ul>
+<li><strong>Между двойными кавычками</strong>. Мне нужно разбить его на несколько строковых констант (по одной на строку) и экранировать символы обратной косой черты и двойных кавычек. Это сработает, но будет выглядеть искаженно в исходном файле.</li>
+<li><strong>Очень длинный, однострочный интерпретируемый скрипт</strong> с экранированными символами новой строки. Это громоздко.</li>
+<li><strong>Между обратными кавычками</strong>. У меня будет одна многострочная строка, и мне не нужно будет ничего экранировать. Но я не смогу использовать обратные кавычки в самой строке.</li>
+</ul>
+
+<p>Другой альтернативой, конечно, было бы не встраивать строку в исходный файл Go, но это не входит в задачу упражнения. На самом деле это упражнение было довольно умным, потому что оно заставило меня узнать много нового о строковых литералах в Go.</p>
+
+<p>Я решил выбрать вариант 3 с обратными кавычками. Главным образом потому, что встроенная строка выглядит лучше в исходном файле Go, если она не экранирована. Я пошел на компромисс, заменив символы обратных кавычек на обратные косые черты (слеши) в ASCII-арте.</p>
+
+<p>Вот мой конечный результат:</p>
+
+<pre><code class="language-go">package main
+
+import (
+  "fmt"
+)
+
+func main() {
+  // Credit: unknown artist.
+  fmt.Println(`    888888888888888888888
+  s 88 ooooooooooooooo 88     s 888888888888888888888888888888888888888
+  S 88 888888888888888 88    SS 888888888888888888888888888888888888888
+ SS 88 888888888888888 88   SSS 8888                         - --+ 8888
+ SS 88 ooooooooooooooo 88  sSSS 8888           o8888888o         | 8888
+sSS 88 888888888888888 88 SSSSS 8888         o88888888888o         8888
+SSS 88 888888888888888 88 SSSSS 8888        8888 88888 8888      | 8888
+SSS 88 ooooooooooooooo 88 SSSSS 8888       o888   888   888o       8888
+SSS 88 888888888888888 88 SSSSS 8888       8888   888   8888       8888
+SSS 88 888888888888888 88 SSSSS 8888       8888   888   8888       8888
+SSS 88 oooooooooo      88 SSSSS 8888       8888o o888o o8888       8888
+SSS 88 8888888888 .::. 88 SSSSS 8888       988 8o88888o8 88P       8888
+SSS 88 oooooooooo :::: 88 SSSSS 8888        8oo 9888889 oo8        8888
+SSS 88 8888888888  \'  88 SSSSS 8888         988o     o88P         8888
+SSS 88ooooooooooooooooo88  SSSS 8888           98888888P           8888
+SSS 888888888888888888888__SSSS 8888                               8888_____
+SSS |   *  *  *   )8c8888  SSSS 888888888888888888888888888888888888888
+SSS 888888888888888888888.  SSS 888888888888888888888888888888888888888
+SSS 888888888888888888888 \_ SSsssss oooooooooooooooooooooooooooo ssss
+SSS 888888888888888888888  \\   __SS 88+-8+-88============8-8==88 S
+SSS 888888888888888888888-. \\  \  S 8888888888888888888888888888
+SSS 888888888888888888888  \\\  \\       \.__________.'      \ .
+SSS 88O8O8O8O8O8O8O8O8O88  \\.   \\______________________________\_.
+SSS 88 el cheapo 8O8O8O88 \\  '.  \|________________________________|
+ SS 88O8O8O8O8o8O8O8O8O88  \\   '-.___
+  S 888888888888888888888 /~          ~~~~~-----~~~~---.__
+ .---------------------------------------------------.    ~--.
+ \ \______\ __________________________________________\-------^.-----------.
+ :'  _   _ _ _ _  _ _ _ _  _ _ _ _   _ _ _           \\        \
+ ::\ ,\_\,\_\_\_\_\\_\_\_\_\\_\_\_\_\,\_\_\_\           \      o '8o 8o .
+ |::\  -_-_-_-_-_-_-_-_-_-_-_-_-_-___  -_-_-_   _ _ _ _  \      8o 88 88 \
+ |_::\ ,\_\_\_\_\_\_\_\_\_\_\_\_\_\___\,\_\_\_\,\_\_\_\_\ \      88       \
+    \:\ ,\__\_\_\_\_\_\_\_\_\_\_\_\_\  \,\_\_\_\,\_\_\_\ \ \      88       .
+     \:\ ,\__\_\_\_\_\_\_\_\_\_\_\_\____\    _   ,\_\_\_\_\ \      88o    .|
+       :\ ,\____\_\_\_\_\_\_\_\_\_\_\____\  ,\_\ _,\_\_\_\ \ \      'ooooo'
+        :\ ,\__\\__\_______________\__\\__\,\_\_\_\,\___\_\_\ \
+         \\  --  -- --------------- --  --   - - -   --- - -   )____________
+           \--------------------------------------------------'
+`)
+}</code></pre>
+
+<h2>Краткие выводы</h2>
+
+<p>Go предлагает 3 способа представления строковых или символьных литералов:</p>
+
+<pre><code class="language-html">&lt;div class="table-responsive"&gt;
+    &lt;table class="table"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th align="center"&gt;Синтакс&lt;/th&gt;
+                &lt;th align="center"&gt;Символ&lt;/th&gt;
+                &lt;th align="center"&gt;Span&lt;/th&gt;
+                &lt;th align="right"&gt;Экранирование&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td align="center"&gt;Interpreted strings&lt;/td&gt;
+                &lt;td align="center"&gt;double quotes (&lt;code class="noClass"&gt;"&lt;/code&gt;)&lt;/td&gt;
+                &lt;td align="center"&gt;Single source line&lt;/td&gt;
+                &lt;td align="right"&gt;Yes&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td align="center"&gt;Raw strings&lt;/td&gt;
+                &lt;td align="center"&gt;backticks (&lt;code class="noClass"&gt;`&lt;/code&gt;)&lt;/td&gt;
+                &lt;td align="center"&gt;Multiple source lines&lt;/td&gt;
+                &lt;td align="right"&gt;No&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td align="center"&gt;Rune literals&lt;/td&gt;
+                &lt;td align="center"&gt;single quotes (&lt;code class="noClass"&gt;'&lt;/code&gt;)&lt;/td&gt;
+                &lt;td align="center"&gt;Single code point&lt;/td&gt;
+                &lt;td align="right"&gt;Yes&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th align="center">Синтакс</th>
+                <th align="center">Символ</th>
+                <th align="center">Span</th>
+                <th align="right">Экранирование</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td align="center">Interpreted strings</td>
+                <td align="center">double quotes (<code class="noClass">"</code>)</td>
+                <td align="center">Single source line</td>
+                <td align="right">Yes</td>
+            </tr>
+            <tr>
+                <td align="center">Raw strings</td>
+                <td align="center">backticks (<code class="noClass">`</code>)</td>
+                <td align="center">Multiple source lines</td>
+                <td align="right">No</td>
+            </tr>
+            <tr>
+                <td align="center">Rune literals</td>
+                <td align="center">single quotes (<code class="noClass">'</code>)</td>
+                <td align="center">Single code point</td>
+                <td align="right">Yes</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<p>Если вам есть что добавить о строках в Go, то жду вас в комментариях.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 8 сентября 2024 в 15:59</span><br>Теги: Go
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Куки (cookie) или печеньки в PHP &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Куки (cookie) или печеньки в PHP</h1>
+
+<p>Поговорим о куках, куки, cookie, cookies в языке программирования PHP, что такое и зачем они нужны. Поговорим о куках, они же куки, cookie, cookies.</p>
+
+<h2>Что такое Куки (cookie)?</h2>
+
+<p>Куки (Cookie) — это небольшой файл размером не более 4 КБ, который веб-сервер хранит на компьютере клиента.</p>
+
+<p>После установки cookie все последующие запросы страниц возвращают имя и значение cookie.</p>
+
+<p>Файл cookie может быть прочитан только с того домена, на котором он был создан. Например, файл cookie, установленный в домене www.uzabila.com, не может быть прочитан из домена career.uzabila.com.</p>
+
+<p>На большинстве сайтов в Интернете могут отображаются элементы от других доменов, например реклама. Домены, обслуживающие эти элементы, могут также устанавливать свои собственные файлы cookie. Они известны как файлы cookie третьих лиц или сторонние куки.</p>
+
+<div class="attention-blue"><strong>Примечание</strong>. Информация о куки есть в официально документации PHP на <a href="https://www.php.net/manual/ru/features.cookies.php" target="_blank" rel="noreferrer noopener">этой странице</a>.</div>
+
+<p>Куки, созданные пользователем, могут быть видны только ему. Другие пользователи не могут видеть значения куки.</p>
+
+<p>Большинство веб-браузеров имеют опции для отключения cookies, сторонних cookies или и тех, и других. В этом случае PHP отвечает передачей токена cookie в URL.</p>
+
+<p>Вкратце, давайте посмотрим как работают куки:</p>
+
+<ol>
+<li>Пользователь запрашивает страницу, на которой хранятся файлы cookie</li>
+<li>Сервер устанавливает cookie на компьютере пользователя</li>
+<li>Другие запросы страницы от пользователя будут возвращать имя и значение cookie.</li>
+</ol>
+
+<h2>Зачем и когда использовать куки в PHP?</h2>
+
+<p>Вариантов использования куки на сайтах множество. Остановимся на основных.</p>
+
+<ul>
+<li>Http — это протокол без статических данных или протокол без сохранения состояния; куки позволяют нам отслеживать состояние приложения с помощью небольших файлов, хранящихся на компьютере пользователя. Путь, по которому хранятся файлы cookie, зависит от браузера. Internet Explorer обычно хранит их в папке <strong><em>Temporal Internet Files</em></strong>.</li>
+<li>Персонализация пользовательского опыта — достигается за счет того, что пользователи могут выбирать свои предпочтения. Запрашиваемые последующие страницы персонализируются на основе установленных предпочтений в файлах cookie.</li>
+<li>Отслеживание страниц, посещаемых пользователем.</li>
+</ul>
+
+<h2>Создание куки (cookie)</h2>
+
+<p>Теперь рассмотрим основной синтаксис, используемый для создания cookie.</p>
+
+<pre><code class="language-php">&lt;?php
+setcookie(cookie_name, cookie_value, [expiry_time], [cookie_path], [domain], [secure], [httponly]);</code></pre>
+
+<p>Разберем синтаксис более подробно.</p>
+
+<p>В php <code>setcookie</code> — это функция PHP, используемая для создания cookie.</p>
+
+<p><code>cookie_name</code> — это имя cookie, которое сервер будет использовать при извлечении его значения из переменной массива $_COOKIE. Оно является обязательным.</p>
+
+<p><code>cookie_value</code> — это значение cookie и поле является также обязательным.</p>
+
+<p><code>[expiry_time]</code> является необязательным; его можно использовать для установки времени действия cookie, например, 1 час. Время устанавливается с помощью функций PHP <a href="https://www.php.net/manual/ru/function.time" target="_blank" rel="noreferrer noopener">time()</a> плюс-минус число секунд, больше 0, т.е. <code>time() + 3600</code> для 1 часа.</p>
+
+<p><code>[cookie_path]</code> является необязательным; его можно использовать для задания пути к cookie на сервере. Прямая косая черта или слеш «/» означает, что куки будет доступна на всем домене. Подкаталоги ограничивают доступ файлов cookie к поддомену.</p>
+
+<p><code>[domain]</code> является необязательным, он может быть использован для определения иерархии доступа к cookie, например, www.cookiedomain.com означает весь домен, а www.sub.cookiedomain.com ограничивает доступ к cookie доменом www.sub.cookiedomain.com и его поддоменами. Обратите внимание, что можно иметь поддомен поддомена, если общее количество символов не превышает 253.</p>
+
+<p>[<code>secure]</code> является необязательным, по умолчанию <code>false</code>. Он используется для определения того, отправляется ли cookie по протоколу <strong>https</strong>, если установлено значение <code>true</code>, или <strong>http</strong>, если установлено значение <code>false</code>.</p>
+
+<p><code>[Httponly]</code> является необязательным. Если он установлен в <code>true</code>, то только языки сценариев на стороне клиента, т.е. JavaScript, не смогут получить к ним доступ.</p>
+
+<div class="attention-blue">Примечание. Функция php <code>setcookie</code> должна выполняться перед открывающим тегом HTML.</div>
+
+<p>Давайте теперь рассмотрим пример, в котором используются файлы cookie.</p>
+
+<p>Мы создадим базовую программу, которая позволит нам хранить имя пользователя в файле cookie, срок действия которого истекает через 60 секунд.</p>
+
+<p>Ниже в коде показана реализация приведенного выше примера. Создадим файл <strong><em>cookies.php</em></strong> на сервере, куда поместим данный код:</p>
+
+<pre><code class="language-php">&lt;?php
+setcookie("user_name", "Uzabila", time()+ 60,'/'); // expires after 60 seconds
+echo 'the cookie has been set for 60 seconds'; // Куки установлены на 60 секунд</code></pre>
+
+<p>После того как мы откроем файл на сервере программа выведет на экран:</p>
+
+<pre><code class="language-php">the cookie has been set for 60 seconds</code></pre>
+
+<h2>Получение значения Cookie</h2>
+
+<p>Создадим еще один файл с именем <strong><em>cookies_read.php</em></strong> в котором разместим следующее:</p>
+
+<pre><code class="language-php">&lt;?php
+print_r($_COOKIE); // вывести содержимое переменной массива cookie </code></pre>
+
+<p>Обращение к данному файлу выведет на экран:</p>
+
+<pre><code class="language-php">Array ( [PHPSESSID] =&gt; h5onbf7pctbr0t68adugdp2611 [user_name] =&gt; Uzabila )</code></pre>
+
+<div class="attention-blue"><strong>Примечание</strong>. <code>$_COOKIE</code> — это встроенная в PHP суперглобальная переменная.</div>
+
+<p>Эта переменная содержит имена и значения всех установленных куки. Количество значений, которые может содержать массив $_COOKIE зависит от объема памяти, установленного в <strong><em>php.ini</em></strong>. По умолчанию это значение равно 1 ГБ.</p>
+
+<p>Давайте теперь протестируем наше мини-приложение. Предположим, что вы сохранили свои PHP-файлы в папке phptuts на локальном сервере.</p>
+
+<div>
+<figure><img src="images/cookie_empty_array.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Откройте веб-браузер и введите URL-адрес <em>http://localhost/phptuts/cookies_read.php</em>. На данный момент отображается только пустой массив.</p>
+
+<p>Перейдите на URL <em>http://localhost/phptuts/cookies.php</em>.</p>
+
+<p>Теперь мы увидим предупреждение: «<em>the cookie has been set for 60 seconds</em>«.</p>
+
+<p>Переключитесь обратно на первую вкладку (с именем <strong><em>cookies_read.php</em></strong> ), затем нажмите кнопку обновления страницы браузера. Теперь мы видим, что массива не пустой:</p>
+
+<pre><code class="language-php">Array ( [PHPSESSID] =&gt; h5onbf7pctbr0t68adugdp2611 [user_name] =&gt; Uzabila )</code></pre>
+
+<p>Далее ждем более 60 секунд, обновляем страницу и убеждаемся, что массив снова стал пустым.</p>
+
+<h2>Удаление куки</h2>
+
+<p>Если вы хотите уничтожить файл cookie до истечения срока его действия, то установите время истечения срока действия на время, которое уже прошло.</p>
+
+<p>Создайте новый файл с именем cookie_destroy.php со следующим кодом:</p>
+
+<pre><code class="language-php">&lt;?php
+setcookie("user_name", "Guru99", time() - 360,'/');</code></pre>
+
+<p>Повторите предыдущие шаги с примером об извлечении значений cookie. После чего откройте URL <em>http://localhost/phptuts/cookie_destroy.php</em>. Далее перейдите на URL <em>http://localhost/phptuts/cookies_read.php</em> и проверьте какой результат отображается.</p>
+
+<p>Cookies — это небольшие файлы, сохраненные на компьютере пользователя. Cookies могут быть прочитаны только из домена, выдавшего их. Cookies могут иметь время действия, если оно не установлено, то срок действия cookie истекает при закрытии браузера.</p>
+
+<p>И куки и сессии должны быть запущены до того, как в браузер будут отправлены какие-либо HTML-теги.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 11 сентября 2022 в 00:12</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

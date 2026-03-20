@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>GET-запросы в PHP &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">GET-запросы в PHP</h1>
+
+<p>Рассмотрим как отправить простой HTTP GET-запрос с помощью PHP. Для отправки GET-запросов с помощью PHP существует два разных способа.</p>
+
+<h2>file_get_contents</h2>
+
+<p>Первый метод предполагает использование функции <a rel="noreferrer noopener" href="http://php.net/manual/en/function.file-get-contents.php" target="_blank">file_get_contents</a>. Эта простая в использовании функция присутствует в PHP с версии 4.3.0 и предназначена для «чтения всего файла в строку». </p>
+
+<p>В этом случае, указанный файл является URL, к которому мы получим доступ через GET. Взгляните на следующий пример кода:</p>
+
+<pre><code class="language-php">// URL для GET запроса
+$url = 'http://google.com';
+
+// использовать file_get_contents для GET запроса к URL
+$contents = file_get_contents($url);
+
+// если $contents не FALSE
+if($contents !== false){
+    // вывести содержимое
+    echo $contents;
+}</code></pre>
+
+<p>При указании URL-адреса, <code>file_get_contents</code> получит содержимое URL-адреса с помощью HTTP GET-запроса.</p>
+
+<p>Если вам нужно добавить параметры запроса / GET, то вы можете просто добавить их в конец URL подобным образом:</p>
+
+<pre><code class="language-php">// URL с дополнительными параметрами запроса
+$url = 'http://google.com?id=1&amp;name=wayne';
+
+// также используем file_get_contents для GET запроса к URL
+$contents = file_get_contents($url);
+
+// если $contents не булевое FALSE
+if($contents !== false){
+    // выводим contents
+    echo $contents;
+}</code></pre>
+
+<p>В коде выше я добавил строковые <strong>id</strong> и <strong>name</strong> параметры запроса.</p>
+
+<p>К сожалению, недостаток использования <a rel="noreferrer noopener" href="http://php.net/manual/en/function.file-get-contents.php" target="_blank">file_get_contents</a> заключается в том, что вы не можете получить HTTP-коды ответа, а обработка ошибок является крайне простой.</p>
+
+<h2>cURL</h2>
+
+<p>Для получения кодов ответа HTTP и другой информации о заголовках можно использовать библиотеку cURL. По умолчанию cURL использует GET-запросы:</p>
+
+<pre><code class="language-php">// инициализируем cURL
+$ch = curl_init();
+
+// установите URL, который вы хотите получить с помощью опции CURLOPT_URL
+curl_setopt($ch, CURLOPT_URL, 'http://google.com');
+
+// установите CURLOPT_RETURNTRANSFER так, чтобы содержимое возвращалось в качестве переменной
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// установите значение CURLOPT_FOLLOWLOCATION в true, чтобы следовать перенаправлению.
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+// выполняем запрос
+$data = curl_exec($ch);
+
+// закрываем обработчик cURL
+curl_close($ch);
+
+// вывести данные на страницу
+echo $data;</code></pre>
+
+<p>В приведенном выше коде, мы:</p>
+
+<ol>
+<li>Инициализировали cURL с помощью функции curl_init.</li>
+<li>Мы устанавливаем URL, который хотим получить (GET) с помощью параметра CURLOPT_URL.</li>
+<li>Мы установили опцию CURLOPT_RETURNTRANSFER в true, чтобы содержимое URL не выводилось на страницу автоматически (вместо этого оно возвращается в виде строки функцией curl_exec).</li>
+<li>Мы устанавливаем опцию CURLOPT_FOLLOWLOCATION в true, потому что мы хотим следовать любым редиректам, которыми сайт говорит нам следовать. Если вы хотите игнорировать перенаправление заголовков, то просто удалите соответствующую строку или установите опцию в false.</li>
+<li>Мы выполнили GET-запрос с помощью curl_exec.</li>
+<li>Мы закрыли обработчик CURL-ручки.</li>
+<li>Наконец, мы вывели на печать содержимое URL-адреса на страницу.</li>
+</ol>
+
+<p>cURL является лучшим вариантом для использования, если вы хотите больше контроля над вашими HTTP-запросами.</p>
+
+<p>Он не только имеет лучшую обработку ошибок, но и позволяет использовать куки, устанавливать информацию о реферерах, настраивать пользовательские user agents и т.д.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 13 октября 2022 в 00:07</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Создание PDF через HTML форму с помощью PHP &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Создание PDF через HTML форму с помощью PHP</h1>
+
+<p>Подробное руководство по созданию и скачиванию файлов PDF с помощью PHP через форму обратной связи на HTML.</p>
+
+<h2>Устанавливаем Composer</h2>
+
+<p>Из-за того, что данный материал создан из серии «для себя», я опишу более подробные шаги реализации проекта, чтобы возвращаться сюда для напоминания себе некоторых моментов, а то вдруг склероз.</p>
+
+<p>Постараемся сделать проект более профессионально, поэтому будем работать через Composer, который мы установим с самого начала. Composer — это менеджер зависимостей в PHP.</p>
+
+<div class="attention-blue">Официальный сайт — <a aria-label="undefined (откроется в новой вкладке)" rel="noreferrer noopener" href="https://getcomposer.org/" target="_blank">getcomposer.org</a>.</div>
+
+<p>Для начала мы подключаемся к нашему хостингу или серверу через SSH, а для этого мы используем <a aria-label="undefined (откроется в новой вкладке)" href="https://www.putty.org/" target="_blank" rel="noreferrer noopener">PuTTy</a>.</p>
+
+<p>После входа мы попадаем в терминал:</p>
+
+<div>
+<figure><img src="images/pdf-1-1.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Забегая вперед немного хотел сказать, что в терминале для копирования и вставки не работают стандартные сочетания <strong>Ctrl+V</strong>, <strong>Ctrl+C</strong>. </p>
+
+<p>Исторически <strong>Ctrl+C</strong> это сочетание клавиш для прерывания текущего процесса. Поэтому, для копирования и вставки при работе в терминале используются <strong>Ctrl+Insert</strong> и <strong>Shift+Insert</strong> соответственно.</p>
+
+<div class="attention-yellow"><strong>Внимание</strong>! Используйте <strong>Shift+Insert</strong> для вставки скопированного текста в терминал.</div>
+
+<p>Теперь переходим в папку нашего сайта, где мы хотим иметь возможность работать с зависимостями. </p>
+
+<p>Для проверки работы терминала и того, что у нас всё в порядке мы можем проверить версию PHP, введя:</p>
+
+<pre><code class="language-bash">$ php -v</code></pre>
+
+<p>Получаем:</p>
+
+<div>
+<figure><img src="images/pdf-1-2.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Теперь перейдем к установке. Вводим:</p>
+
+<pre><code class="language-bash">$ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"</code></pre>
+
+<p>После чего вводим:</p>
+
+<pre><code class="language-bash">$ php -r "if (hash_file('sha384', 'composer-setup.php') === 'e5325b19b381bfd88ce90a5ddb7823406b2a38cff6bb704b0acc289a09c8128d4a8ce2bbafcd1fcbdc38666422fe2806') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"</code></pre>
+
+<p>Этими двумя командами мы загружаем программу установки в текущую директорию и проверяем инсталлятор SHA-384.</p>
+
+<div>
+<figure><img src="images/pdf-1-3.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Видим надпись, что установщик проверен.</p>
+
+<p>Далее вводим для запуска установщика:</p>
+
+<pre><code class="language-bash">$ php composer-setup.php</code></pre>
+
+<div>
+<figure><img src="images/pdf-1-4.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>И, наконец, удаляем установщик:</p>
+
+<pre><code class="language-bash">$ php -r "unlink('composer-setup.php');"</code></pre>
+
+<p>Командой <strong>ls -1a</strong> мы проверяем, что установщик удален:</p>
+
+<div>
+<figure><img src="images/pdf-1-5.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>На этом этапе может возникнуть непонятная ситуация, т.к. нам нужно создать проект, но мы получим предупреждение, что не найден файл <strong>composer.json</strong>.</p>
+
+<p>Мы создадим его вручную в корне, используя <strong>nano</strong>:</p>
+
+<pre><code class="language-bash">$ nano composer.json</code></pre>
+
+<div>
+<figure><img src="images/pdf-1-6.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Мы в файл вставляем:</p>
+
+<pre><code class="language-json">{
+    "require": {
+        "php": "&gt;=5.3.2"
+    }
+}</code></pre>
+
+<p>Далее выходим через <strong>CTRL+X</strong> и жмем <strong>Y</strong> для сохранения файла.</p>
+
+<p>И теперь устанавливаем зависимости командой:</p>
+
+<pre><code class="language-bash">$ php composer.phar install</code></pre>
+
+<h2>Библиотека mPDF</h2>
+
+<p>На данном этапе мы установили в локальную папку на сервере менеджер зависимостей и теперь нам нужно установить нужную библиотеку для работы с PDF — <a aria-label="undefined (откроется в новой вкладке)" href="https://mpdf.github.io/" target="_blank" rel="noreferrer noopener">mPDF</a>.</p>
+
+<p>Для этого вводим команду:</p>
+
+<pre><code class="language-bash">$ php composer.phar require mpdf/mpdf</code></pre>
+
+<p>Далее запускается процесс установки:</p>
+
+<div>
+<figure><img src="images/pdf-1-7.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Проверяем установку пакета в файле <strong>composer.json</strong>:</p>
+
+<div>
+<figure><img src="images/pdf-1-8.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Всё ОК, библиотека добавлена.</p>
+
+<h2>Создание формы</h2>
+
+<p>Форма будет состоять из двух основных блоков — обработка формы и генерация PDF и, собственно, сама форма.</p>
+
+<p>Мы создаем файл index.php в корне папки с сайтом и помещаем туда вот такой код:</p>
+
+<pre><code class="language-php">&lt;?php
+require_once __DIR__ . '/vendor/autoload.php';
+
+// получаем переменные
+if(isset($_POST['fname']) &amp;&amp; isset($_POST['lname']) &amp;&amp; isset($_POST['email']) &amp;&amp; isset($_POST['message']))
+{
+$fname = $_POST['fname'];
+$lname = $_POST['lname'];
+$email = $_POST['email'];
+$message = $_POST['message'];
+
+$mpdf = new \Mpdf\Mpdf();
+
+$data = "";
+$data .= "&lt;h1&gt;Your Details&lt;/h1&gt;";
+$data .='&lt;strong&gt;First Name&lt;/strong&gt; '. $fname.'&lt;br&gt;';
+$data .='&lt;strong&gt;Last Name&lt;/strong&gt; '. $lname.'&lt;br&gt;';
+$data .='&lt;strong&gt;Email&lt;/strong&gt; '. $email .'&lt;br&gt;';
+$data .='&lt;strong&gt;Message&lt;/strong&gt; '. $message.'&lt;br&gt;';
+
+$mpdf-&gt;WriteHtml($data);
+$mpdf-&gt;output("myfile.pdf",'D');
+}
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+
+	&lt;meta charset="utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;Создание PDF из HTML формы с помощью mPDF&lt;/title&gt;
+		
+	&lt;!-- Latest compiled and minified CSS --&gt;
+	&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/&gt;
+	&lt;link rel="stylesheet" href="/assets/css/styles.css" /&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div class="container-fluid"&gt;
+    &lt;div class="container"&gt;
+    	&lt;div class="col-md-6 col-md-offset-3"&gt;
+        	&lt;h1&gt;Создание PDF из HTML формы&lt;/h1&gt;
+        	&lt;p&gt;Заполните поля ниже для создания формы&lt;/p&gt;
+
+	        &lt;form action="index.php" method="post"&gt;
+
+	        &lt;input type="text" name="fname" class="form-control" placeholder="Имя*" required&gt;
+	        &lt;div class="clearfix pb-10"&gt;&lt;/div&gt;
+	        &lt;input type="text" name="lname" class="form-control" placeholder="Фамилия*" required&gt;
+	        &lt;div class="clearfix pb-10"&gt;&lt;/div&gt;
+	        &lt;input type="email" name="email" class="form-control" placeholder="Email*" required&gt;
+	        &lt;div class="clearfix pb-10"&gt;&lt;/div&gt;
+	        &lt;textarea class="form-control" name="message" placeholder="Сообщение"&gt;&lt;/textarea&gt;
+	        &lt;div class="clearfix pb-10"&gt;&lt;/div&gt;
+	        &lt;p&gt;* - обязательное поле&lt;/p&gt;
+	        &lt;button class="btn btn-primary btn-lg" type="submit"&gt;Создать PDF&lt;/button&gt;
+	        &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;
+    &lt;div class="container-fluid"&gt;
+    	&lt;div class="container"&gt;
+    		&lt;div class="col-sm-12 tc"&gt;
+    			Демо создано &lt;a href="/"&gt;Uzabila.com&lt;/a&gt; для статьи &lt;a href="/html-to-php/"&gt;Создание PDF через HTML форму с помощью PHP"&gt;&lt;/a&gt;
+    		&lt;/div&gt;
+    	&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>
+</pre>
+
+<p>Немного разберем сам код.</p>
+
+<p>Сначала мы создаем простую форму с несколькими полями.</p>
+
+<pre><code class="language-html">&lt;input type="text" name="fname" class="form-control" placeholder="Имя*" required&gt;
+&lt;input type="text" name="lname" class="form-control" placeholder="Фамилия*" required&gt;
+&lt;input type="email" name="email" class="form-control" placeholder="Email*" required&gt;
+&lt;textarea class="form-control" name="message" placeholder="Сообщение"&gt;&lt;/textarea&gt;
+&lt;p&gt;* - обязательное поле&lt;/p&gt;
+&lt;button class="btn btn-primary btn-lg" type="submit"&gt;Создать PDF&lt;/button&gt;</code></pre>
+
+<p>Я часто использую Bootstrap фреймворк, поэтому можно увидеть в коде стили от Bootstrap. Код ниже проверяет, что все поля заполнены:</p>
+
+<pre><code class="language-php">if($_POST['fname']) &amp;&amp; isset($_POST['lname']) &amp;&amp; isset($_POST['email']) &amp;&amp; isset($_POST['message'])){}</code></pre>
+
+<p>А эта часть кода отвечает за работу с библиотекой mPDF:</p>
+
+<pre><code class="language-php">$mpdf = new \Mpdf\Mpdf();
+
+$data = "";
+$data .= "&lt;h1&gt;Your Details&lt;/h1&gt;";
+$data .='&lt;strong&gt;First Name&lt;/strong&gt; '. $fname.'&lt;br&gt;';
+$data .='&lt;strong&gt;Last Name&lt;/strong&gt; '. $lname.'&lt;br&gt;';
+$data .='&lt;strong&gt;Email&lt;/strong&gt; '. $email .'&lt;br&gt;';
+$data .='&lt;strong&gt;Message&lt;/strong&gt; '. $message.'&lt;br&gt;';
+
+$mpdf-&gt;WriteHtml($data);
+$mpdf-&gt;output("demo.pdf",'D');</code></pre>
+
+<p>На этом всё.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 6 августа 2020 в 18:12</span><br>Теги: PHP, HTML
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Установка Composer PHP на CentOS 7 &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Установка Composer PHP на CentOS 7</h1>
+
+<p>Рассмотрим как установить Composer для управления зависимостями в PHP на CentOS 7.</p>
+
+<h2>Что такое Компоузер?</h2>
+
+<p>Composer — это инструмент для управления зависимостями в PHP. Он позволяет вам объявить библиотеки, от которых зависит ваш проект, и он будет управлять ими (устанавливать/обновлять) за вас.</p>
+
+<p><a href="https://getcomposer.org/" target="_blank" rel="noreferrer noopener">Сайт</a> | <a href="https://getcomposer.org/doc/" target="_blank" rel="noreferrer noopener">Документация</a> (англ.)</p>
+
+<p>Composer — менеджер зависимостей для PHP (аналогичен npm для Node.js или pip для Python).</p>
+
+<p>Composer соберет все необходимые пакеты PHP, от которых зависит ваш проект, и будет управлять ими за вас. Он используется во всех современных PHP фреймворках и платформах, таких как Laravel, Symfony, Drupal и Magento 2.</p>
+
+<p>Прежде чем продолжить убедитесь в том, что вы выполнили следующие условия:</p>
+
+<ul>
+<li>Авторизованы как пользователь с привилегиями <strong>sudo</strong></li>
+<li>На Вашем CentOS 7 установлен <strong>PHP 7</strong></li>
+</ul>
+
+<h2>Установка Composer на CentOS</h2>
+
+<p>Следующие шаги описывают установку Composer в системе CentOS 7.</p>
+
+<p>1. Сначала установите пакет <strong>PHP CLI</strong> (интерфейс командной строки) и все остальные зависимости с помощью:</p>
+
+<pre><code class="language-bash">$ sudo yum install php-cli php-zip wget unzip</code></pre>
+
+<p>2. После установки PHP CLI скачайте скрипт инсталлятора Composer:</p>
+
+<pre><code class="language-bash">$ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"</code></pre>
+
+<p>Команда выше скачает файл <strong>composer-setup.ph</strong>p в текущий рабочий каталог.</p>
+
+<p>3. Для проверки целостности данных скрипта сравните хэш скрипта SHA-384 с последним хэшем инсталлятора, найденным на странице <a href="https://composer.github.io/pubkeys.html" target="_blank" rel="noreferrer noopener nofollow">Composer Public Keys / Signatures</a>.</p>
+
+<p>Следующая команда <code>wget</code> загрузит ожидаемую сигнатуру последнего инсталлятора Composer со страницы Composer’s Github и сохранит её в переменной под названием <code>HASH</code>:</p>
+
+<pre><code class="language-bash">$ HASH="$(wget -q -O - https://composer.github.io/installer.sig)"</code></pre>
+
+<p>Чтобы убедиться, что сценарий установки не поврежден, выполните следующую команду:</p>
+
+<pre><code class="language-bash">$ php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"</code></pre>
+
+<p>Если хэши совпадают, будет показано следующее сообщение:</p>
+
+<pre><code class="language-bash">Installer verified</code></pre>
+
+<p>Если хэши не совпадают, вы увидите, что инсталлятор поврежден (<code>Installer corrupt</code>). В этом случае вам нужно перезагрузить скрипт установки Composer и дважды проверить значение переменной <code>$HASH</code> с помощью <code>echo $HASH</code>. После того, как программа установки будет проверена, вы можете продолжить следующий шаг.</p>
+
+<p>4. Для установки Composer в каталоге /usr/local/bin выполните следующую команду:</p>
+
+<pre><code class="language-bash">$ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer</code></pre>
+
+<p>Вывод:</p>
+
+<pre><code class="language-bash">All settings correct for using Composer
+Downloading...
+
+Composer (version 1.8.5) successfully installed to: /usr/local/bin/composer
+Use it: php /usr/local/bin/composer</code></pre>
+
+<p>Композер (Composer) устанавливается как общесистемная команда и будет доступен для всех пользователей.</p>
+
+<p>5. Последний шаг — проверка установки:</p>
+
+<pre><code class="language-bash">$ composer</code></pre>
+
+<p>Вышеприведенная команда выведет версию Composer, команды и аргументы.</p>
+
+<pre><code class="language-bash">______
+/ ____/___  ____ ___  ____  ____  ________  _____
+/ /   / __ \/ __ `__ \/ __ \/ __ \/ ___/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ (__  )  __/ /
+\____/\____/_/ /_/ /_/ .___/\____/____/\___/_/
+                    /_/
+Composer version 1.8.5 2019-04-09 17:46:47
+
+Usage:
+    command [options] [arguments]</code>
+</pre>
+
+<p>На данный момент вы успешно установили Composer на вашу систему CentOS.</p>
+
+<p>Если вы хотите, чтобы для каждого проекта был установлен Composer, используйте следующую команду: <code>php composer-setup.php</code>, которая создаст файл с именем <strong>composer.phar</strong> в вашем текущем рабочем каталоге. Вы можете использовать композер, запустив:</p>
+
+<pre><code class="language-bash">./composer.phar &lt;command&gt;</code></pre>
+
+<h2>Начало работы с Composer</h2>
+
+<p>Теперь, когда Composer установлен на вашей CentOS системе, мы покажем вам, как использовать Composer в PHP проекте.</p>
+
+<p>Начните с создания каталога, который будет корневым каталогом проекта и будет содержать файл <strong>composer.json</strong>.</p>
+
+<p>Файл <strong>composer.json</strong> описывает ваш PHP проект, включая зависимости PHP и другие метаданные.</p>
+
+<p>Создайте каталог проекта и переключитесь на него:</p>
+
+<pre><code class="language-bash">$ mkdir ~/my-first-composer-project
+$ cd ~/my-first-composer-project</code></pre>
+
+<p>В этом примере мы создадим образец приложения, которое будет выводить на печать текущее время с помощью пакета под названием <a href="https://carbon.nesbot.com/docs/" target="_blank" rel="noreferrer noopener nofollow">carbon</a>.</p>
+
+<p>Запустите следующую команду, чтобы инициализировать новый проект Composer и установить пакет <strong>carbon</strong>:</p>
+
+<pre><code class="language-bash">$ composer require nesbot/carbon</code></pre>
+
+<p>Вывод:</p>
+
+<pre><code class="language-bash">Using version ^2.2 for nesbot/carbon
+./composer.json has been created
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+Package operations: 3 installs, 0 updates, 0 removals
+  - Installing symfony/polyfill-mbstring (v1.9.0): Downloading (100%)
+  - Installing symfony/translation (v4.1.4): Downloading (100%)
+  - Installing nesbot/carbon (2.2.0): Downloading (100%)
+symfony/translation suggests installing symfony/config
+symfony/translation suggests installing symfony/yaml
+symfony/translation suggests installing psr/log-implementation (To use logging capability in translator)
+Writing lock file
+Generating autoload files</code>
+</pre>
+
+<p>Как видно из вышеприведенного вывода, Composer создаст файл <strong>composer.json</strong> и загрузит и установит carbon и все его зависимости.</p>
+
+<p>Если вы выведете список каталогов вашего проекта, вы увидите, что он содержит два файла <strong>composer.json</strong> и <strong>composer.lock</strong>, а также каталог <code>vendor</code>.</p>
+
+<pre><code class="language-bash">$ ls -l</code></pre>
+
+<p>Вывод:</p>
+
+<pre><code class="language-bash">-rw-r--r-- 1 linuxize users   60 Aug 29 00:50 composer.json
+-rw-r--r-- 1 linuxize users 6.8K Aug 29 00:50 composer.lock
+drwxr-xr-x 5 linuxize users 4.0K Aug 29 00:50 vendor</code></pre>
+
+<ul>
+<li>Каталог <code>vendor</code> — это каталог, в котором хранятся зависимости проекта.</li>
+<li>В файле <strong>composer.lock</strong> содержится список всех установленных пакетов, включая их версии.</li>
+<li><strong>Composer.json</strong> описывает проект PHP и все зависимости PHP.</li>
+</ul>
+
+<p>Пакеты PHP для проекта вы можете найти в репозитории Composer <a href="https://packagist.org/" target="_blank" rel="noreferrer noopener nofollow">Packagist</a>.</p>
+
+<p>Composer предоставляет возможности автозагрузки, которые позволяют использовать PHP-классы без необходимости использования требуемых (<code>require</code>) или включаемых (<code>include</code>) файлов.</p>
+
+<p>Создайте файл с именем <strong>testing.php</strong> и добавьте следующий код:</p>
+
+<pre><code class="language-bash">&lt;?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Carbon\Carbon;
+
+printf("Now: %s", Carbon::now());</code>
+</pre>
+
+<p>Давайте проанализируем код построчно.</p>
+
+<p>В первой строке после открытия тега php мы включаем файл <strong>vendor/autoload.php</strong>, который был автоматически сгенерирован Composer, который автоматически загрузит все библиотеки.</p>
+
+<p>Далее мы присваиваем <code>Carbon\Carbon</code> псевдоним <code>Carbon</code> и в последней строке выводим текущее время методом Carbon <code>now</code>.</p>
+
+<p>Запустите скрипт, набрав:</p>
+
+<pre><code class="language-bash">$ php testing.php</code></pre>
+
+<p>Вывод должен выглядеть примерно так:</p>
+
+<pre><code class="language-bash">Now: 2018-09-26 20:08:18</code></pre>
+
+<p>Позже, если вы захотите обновить ваши пакеты PHP, вы можете просто запустить:</p>
+
+<pre><code class="language-bash">$ composer update</code></pre>
+
+<p>Команда выше проверит наличие более новых версий установленных пакетов, и если найдена более новая версия и ограничение по версии совпадает с версией, указанной в файле composer.json, Composer обновит пакет.</p>
+
+<p>Вы научились устанавливать Composer на вашу машину CentOS 7. Мы также показали вам, как использовать Composer для создания базового PHP-проекта.</p>
+
+<p>Чтобы найти больше информации о Composer, посетите официальную страницу <a href="https://getcomposer.org/doc/" target="_blank" rel="noreferrer noopener">документации Composer</a>.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 16января 2023 в 17:21</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

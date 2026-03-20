@@ -1,0 +1,1423 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Произвольные поля WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container-fluid">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 col-lg-3">
+			<div class="content-blocks bg-light p-3">
+				<div>
+					<b>Содержание</b>
+				</div>
+				<div>
+					<span>1</span> <a href="#Zacem_nuzny_proizvolnye_pola"><span>Зачем нужны произвольные поля?</span></a>
+				</div>
+				<div>
+					<span>2</span> <a href="#Prostoe_ispolzovanie"><span>Простое использование</span></a>
+				</div>
+				<div>
+					<span>3</span> <a href="#Otobrazenie_polej"><span>Отображение полей</span></a>
+				</div>
+				<div>
+					<span>4</span> <a href="#Cto_esli_proizvolnye_pola_ne_otobrazautsa"><span>Что если произвольные поля не отображаются?</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>4.1</span> <a href="#Variant_1"><span>Вариант 1</span></a>
+						</div>
+						<div>
+							<span>4.2</span> <a href="#Variant_2"><span>Вариант 2</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>5</span> <a href="#Vyvod_znacenij_standartnyh_polej"><span>Вывод значений стандартных полей</span></a>
+				</div>
+				<div>
+					<span>6</span> <a href="#Vyvod_zapisej_s_opredelennymi_polami"><span>Вывод записей с определенными полями</span></a>
+				</div>
+				<div>
+					<span>7</span> <a href="#Left_Join"><span>Left Join</span></a>
+				</div>
+				<div>
+					<span>8</span> <a href="#Izmenaem_zapros_Query"><span>Изменяем запрос (Query)</span></a>
+				</div>
+				<div>
+					<span>9</span> <a href="#Predotvrasenie_dublikatov"><span>Предотвращение дубликатов</span></a>
+				</div>
+				<div>
+					<span>10</span> <a href="#Polucenie_vseh_zapisej"><span>Получение всех записей</span></a>
+				</div>
+				<div>
+					<span>11</span> <a href="#Zapros_zapisej"><span>Запрос записей</span></a>
+					<div class="lwptoc_itemWrap">
+						<div>
+							<span>11.1</span> <a href="#Obsie_pravila"><span>Общие правила</span></a>
+						</div>
+						<div>
+							<span>11.2</span> <a href="#Primer"><span>Пример</span></a>
+						</div>
+						<div>
+							<span>11.3</span> <a href="#Parametry_proizvolnogo_pola"><span>Параметры произвольного поля</span></a>
+						</div>
+						<div>
+							<span>11.4</span> <a href="#Prodvinutyj_primer"><span>Продвинутый пример</span></a>
+						</div>
+						<div>
+							<span>11.5</span> <a href="#Odno_znacenie_polzovatelskogo_pola"><span>Одно значение пользовательского поля</span></a>
+						</div>
+						<div>
+							<span>11.6</span> <a href="#Mnozestvennye_znacenia_proizvolnyh_polej_znacenia_na_osnove_teksta"><span>Множественные значения произвольных полей (значения на основе текста)</span></a>
+						</div>
+						<div>
+							<span>11.7</span> <a href="#Mnozestvennye_znacenia_polej_znacenia_na_osnove_massiva"><span>Множественные значения полей (значения на основе массива)</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>12</span> <a href="#Znacenia_podpolej"><span>Значения подполей</span></a>
+				</div>
+				<div>
+					<span>13</span> <a href="#Vklucenie_redaktora_Gutenberg"><span>Включение редактора Gutenberg</span></a>
+				</div>
+				<div>
+					<span>14</span> <a href="#Registracia_polzovatelskih_tipov_zapisej"><span>Регистрация пользовательских типов записей</span></a>
+				</div>
+				<div>
+					<span>15</span> <a href="#Dobavlenie_podderzki_Gutenberg"><span>Добавление поддержки Gutenberg</span></a>
+				</div>
+				<div>
+					<span>16</span> <a href="#Dinamiceskie_parametry_GET"><span>Динамические параметры $_GET</span></a>
+				</div>
+				<div>
+					<span>17</span> <a href="#Vyvod_po_taksonomii"><span>Вывод по таксономии</span></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Произвольные поля WordPress</h1>
+
+<p>Пользовательские поля или произвольные поля WordPress (<strong>custom fields</strong>) — это один из самых мощных инструментов, доступных в этом движке.</p>
+
+<h2><span id="Zacem_nuzny_proizvolnye_pola">Зачем нужны произвольные поля?</span></h2>
+
+<p>Произвольные поля WordPress особенно полезны при расширении WordPress за счет использования пользовательских типов постов (<strong>custom post types</strong>). Я постоянно создаю пользовательские типы постов для таких вещей, как товары, портфолио или галереи при разработке тем WordPress для клиентов.</p>
+
+
+
+<p>Пользовательские поля очень удобны, когда нужно добавить детали продукта, такие как номера товаров или цены. К сожалению, поиск в WordPress по пользовательским полям невозможен из коробки. Чтобы исправить это, необходимо изменить поиск WordPress так, чтобы он включал пользовательские поля.</p>
+
+
+
+<p>Рассмотрим зачем в WordPress нужны произвольные поля (Custom Fields), как их применять в своих проектах и многое многое другое.</p>
+
+
+
+<p>Понимаю, что тем, кто нашел данный справочник скорее всего интересно как именно добавить кастомные поля на сайт технически, но не сказать более подробно о том, что это за поля мы не можем.</p>
+
+
+
+<p>Простыми словами, произвольное поле — это блок с дополнительной информацией, которую можно добавить к, практически, любой записи в WordPress. Ниже я покажу как создание произвольного поля помогает добавить ссылку на оригинал статьи, если запись является переводом с другого языка.</p>
+
+
+
+<p>Кроме того, через произвольные поля можно делать очень многое. Из простых примеров, которые вы найдете в других статьях про поля — это добавление поля «настроение». Или блок, где перечислен весь коллектив, который имеет отношение к какой-либо статье на сайте.</p>
+
+
+
+<p>Например, в блоге про животных можно добавить произвольное поле в котором будет информация о породе какого-либо животного из статьи. В общем, вариантов использования таких полей может быть очень много. </p>
+
+
+
+<p>Сам блок добавления кастомного поля в админке при добавлении записи выглядит примерно так:</p>
+
+
+
+<figure><img src="images/blok-proizvolnie-polya-01.jpg" alt="Произвольные поля WordPress при добавлении записи" class="img-fluid"><figcaption>Произвольные поля WordPress при добавлении записи</figcaption></figure>
+
+
+
+<p>Ниже покажу как закрыть реальную потребность заказчика с мини-задачей по доработке шаблона WordPress в виде добавления возможности через произвольные поля указывать ссылку на оригинал статьи.</p>
+
+
+
+<h2><span id="Prostoe_ispolzovanie">Простое использование</span></h2>
+
+
+
+<p>WordPress позволяет авторам публикаций назначать пользовательские поля для своих публикаций. Эта произвольная дополнительная информация известна как метаданные (<strong>metadata</strong>). Эти метаданные могут включать такие кусочки информации как:</p>
+
+
+
+<ul>
+<li>Настроение: Счастливый</li>
+
+
+
+<li>В настоящее время Читаю: Золушка</li>
+
+
+
+<li>Слушаю: Rock Around the Clock</li>
+
+
+
+<li>Погода: Жарко и влажно</li>
+</ul>
+
+
+
+<p>С помощью некоторого дополнительного программирования можно выполнить более сложные действия, например, использовать метаданные для хранения даты истечения срока давности публикации.</p>
+
+
+
+<p>Метаданные обрабатываются парами ключ/значение (<strong>key/value</strong>). Ключом является имя элемента метаданных. Значение — это информация, которая будет появляться в списке метаданных для каждой отдельной записи, с которой эта информация связана.</p>
+
+
+
+<p>Ключи можно использовать более одного раза на одну публикацию. Например, если вы читаете две разные книги (возможно, техническую книгу на работе и художественную литературу дома), вы можете создать ключ «reading» (или «читаю») и использовать его дважды в одной и той же записи, один раз для каждой книги.</p>
+
+
+
+<p>Вот пример того, как эта информация может выглядеть в вашей записи:</p>
+
+
+
+<p><strong>Currently Reading</strong>: Calvin and Hobbes<br><strong>Today’s Mood</strong>: Jolly and Happy</p>
+
+
+
+<p>Основываясь на нашем примере выше, давайте добавим два пользовательских поля, одно из которых называется «Сейчас читаю» (Currently Reading), а другое «Сегодняшнее настроение» (Today’s Mood). Пожалуйста, выполните следующие шаги, чтобы добавить эту информацию в запись, используя пользовательские поля.</p>
+
+
+
+<ul>
+<li>Опции пользовательских полей на экранах редактирования публикаций и страниц по умолчанию скрыты, если они не использовались ранее. Используя Редактор блоков, нажмите кнопку с тремя точками в верхней части правой боковой панели и посетите раздел Опции, чтобы включить его. Если вы используете Классический редактор, проверьте опции экрана.</li>
+
+
+
+<li>После того, как вы написали свою запись, прокрутите вниз до области под названием «Пользовательские поля» (<strong>Custom Fields</strong>).</li>
+
+
+
+<li>Для создания нового пользовательского поля (<strong>Custom Field</strong>) под названием «Сейчас читаю» (Currently Reading) введите текст «Сейчас читаю» (без кавычек) в текстовом поле ввода под названием «Имя» (<strong>Name</strong>).</li>
+
+
+
+<li>Вновь созданному Ключу («Сейчас читаю») теперь должно быть присвоено Значение (value), которое в нашем случае является названием читаемой в настоящее время книги, например «Кальвин и Хоббс» (Calvin and Hobbes). Введите «Calvin and Hobbes» в поле Value, опять же без кавычек.</li>
+
+
+
+<li>Нажмите кнопку Добавить пользовательское поле (<strong>Add Custom Field</strong>), чтобы сохранить эту пользовательскую информацию для данной записи.</li>
+</ul>
+
+
+
+<p>Вот как это выглядит:</p>
+
+
+<div>
+<figure><img src="images/polzovatelskoe-pole.jpg" alt="Произвольные поля в Wordpess" class="img-fluid"><figcaption>Произвольные поля в Wordpess</figcaption></figure></div>
+
+
+<p>Чтобы добавить ваше «Настроение сегодня» (Today’s Mood), повторите процесс и добавьте «Настроение сегодня» к ключу и описание вашего настроения в текстовом поле значения и нажмите кнопку <strong>Add Custom Field</strong> (Добавить пользовательское поле), чтобы сохранить эту информацию вместе с сообщением.</p>
+
+
+
+<p>В следующей записи вы можете добавить новую книгу и настроение в свои метаданные. В разделе Произвольные поля теперь будет выпадающий список с ранее введенными Пользовательскими полями.</p>
+
+
+
+<p>Выберите «Сейчас читаю», а затем введите в значение новую книгу, которую вы читаете.</p>
+
+
+
+<p>Нажмите кнопку <strong>Add Custom Field</strong> (Добавить пользовательское поле) и повторите процесс добавления «Today’s Mood» (Сегодняшнее настроение).</p>
+
+
+
+<p>Вам нужно лишь один раз создать новый «Ключ», после чего вы можете присваивать значение этому ключу для каждой записи, если вы этого пожелаете. Вы также можете назначить несколько значений ключу для записи. Это пригодится людям, которые читают несколько книг одновременно.</p>
+
+
+
+<h2><span id="Otobrazenie_polej">Отображение полей</span></h2>
+
+
+
+<p>Для отображения произвольных полей для каждой публикации необходимо использовать тег шаблона, который настраивает вашу тему. Для получения более подробной информации об этом, пожалуйста, обратитесь к:</p>
+
+
+
+<ul>
+<li><a rel="noreferrer noopener" href="https://developer.wordpress.org/reference/functions/the_meta/" target="_blank">the_meta()&nbsp;</a>– Тэг шаблона, который автоматически перечисляет все произвольные поля публикации</li>
+
+
+
+<li><a rel="noreferrer noopener" href="https://developer.wordpress.org/reference/functions/get_post_custom/" target="_blank">get_post_custom()</a>&nbsp;и&nbsp;<a rel="noreferrer noopener" href="https://developer.wordpress.org/reference/functions/get_post_meta/" target="_blank">get_post_meta()</a>&nbsp;– Получает одну или все метаданные записи</li>
+
+
+
+<li><a rel="noreferrer noopener" href="https://developer.wordpress.org/reference/functions/get_post_custom_values/" target="_blank">get_post_custom_values()</a>&nbsp;– Извлекает значения для пользовательского поля записи</li>
+
+
+
+<li><a rel="noreferrer noopener" href="https://developer.wordpress.org/themes/basics/template-tags/" target="_blank">Template Tags</a>&nbsp;– Страница справочника разработчиков тем WordPress по  тегам шаблонов</li>
+</ul>
+
+
+
+<p>Вы можете установить Плагин, который управляет произвольными пользовательскими полями:</p>
+
+
+
+<ul>
+<li><a href="https://wordpress.org/plugins/meta-box/" target="_blank" rel="noreferrer noopener">Meta Box plugin</a>&nbsp;– Плагин, позволяющий создавать пользовательские метабоксы и пользовательские поля.</li>
+
+
+
+<li><a href="https://wordpress.org/plugins/piklist/" target="_blank" rel="noreferrer noopener">Piklist</a>&nbsp;– Плагин, который позволяет создавать пользовательские метабоксы и поля повсюду в WordPress.</li>
+
+
+
+<li><a href="https://wordpress.org/plugins/advanced-custom-fields/" target="_blank" rel="noreferrer noopener">Advanced Custom Fields</a>&nbsp;– Плагин, позволяющий создавать сложные поля и макеты с помощью дружественного интерфейса.</li>
+</ul>
+
+
+
+<h2><span id="Cto_esli_proizvolnye_pola_ne_otobrazautsa">Что если произвольные поля не отображаются?</span></h2>
+
+
+
+<p>Первое и самое важное с чем можно столкнуться — это с тем, что блок «Произвольные поля» в WordPress (<strong>Custom Fields</strong> — см. скрин выше) не отображается в админке при добавлении «Записи» (<strong>Post</strong>).</p>
+
+
+
+<p>Здесь есть два варианта почему блок не отображается:</p>
+
+
+
+<ol>
+<li>Блок для добавления произвольных полей не включен в настройках</li>
+
+
+
+<li>Установлен плагин ACF, который отключает базовые произвольные поля</li>
+</ol>
+
+
+
+<h3><span id="Variant_1">Вариант 1</span></h3>
+
+
+
+<p>Здесь всё достаточно просто. В редакторе Gutenberg и в Классическом редакторе WordPress есть настройки, которые помогут включить отображение блока «Произвольные поля» при добавлении Записи.</p>
+
+
+
+<p>Для классического редактора мы в самом верху жмем на «Параметры экрана» и в появившемся окне ставим нужную галочку напротив «Произвольные поля».</p>
+
+
+<div>
+<figure><img src="images/blok-proizvolnie-polya-02.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Всё. Закрываем «Настройки экрана» и продолжаем работать. </p>
+
+
+
+<p>Для редактора Gutenberg нам нужно также включать блок с Произвольными полями в редакторе. Делается это немного по другому, чем в Классическом редакторе.</p>
+
+
+
+<p>В Гутенберге в правом верхнем углу кликаем на иконку с тремя вертикальными точками. Выбираем «Предпочтения» (<strong>Options</strong>).</p>
+
+
+<div>
+<figure><img src="images/blok-proizvolnie-polya-03.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Затем выбираем «Панели» (<strong>Panels</strong>) и в «Дополнительно» (<strong>Additional</strong>) видим переключатель включения «Произвольные поля» (<strong>Custom Fields</strong>):</p>
+
+
+<div>
+<figure><img src="images/blok-proizvolnie-polya-04.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Теперь блок с добавлением полей должен появиться в админке при добавлении записей.</p>
+
+
+
+<p>При этом, еще раз подчеркну, это работает, если у вас не установлен плагин ACF (Advanced Custom Fields). Если у вас установлен плагин ACF, то переходим ко второму варианту.</p>
+
+
+
+<h3><span id="Variant_2">Вариант 2</span></h3>
+
+
+
+<p>Вообще, при наличии плагина ACF я бы не рекомендовал ничего делать и добавлял бы кастомные (произвольные) поля только через этот плагин. Но если вам прям так хочется, то идем дальше.</p>
+
+
+
+<p>В ACF, начиная с версии 5.5.13, по умолчанию включена опция отключения опции настраиваемых полей в WordPress. Сделано это для ускорения скорости загрузки страницы редактирования после публикации. Т.е. ACF считает, что если этот плагин есть, то все можно сделать через него.</p>
+
+
+
+<p>Если вам такое не нравится и мы хотим включить поля обратно, то в <strong><em>functions.php</em></strong> темы добавляем строчку:</p>
+
+
+
+<pre><code class="language-php">add_filter('acf/settings/remove_wp_meta_box', '__return_false');</code></pre>
+
+
+
+<p>Теперь блок с добавление кастомных полей должен появиться.</p>
+
+
+
+<p>Мое мнение, что как только вы познакомитесь с ACF, то будете использовать только это плагин, т.к. он перекрывает почти любые потребности при разработке сайтов на WordPress, но об этом ниже.</p>
+
+
+
+<h2><span id="Vyvod_znacenij_standartnyh_polej">Вывод значений стандартных полей</span></h2>
+
+
+
+<div class="attention-yellow"><strong>Внимание</strong>! В данном случае мы не используем ACF, а работаем со стандартным блоком «Настраиваемых полей» на сайте WordPress. Про ACF дальше в этом руководстве.</div>
+
+
+
+<p>Чтобы вывести поле на странице Записи мы делаем следующие шаги:</p>
+
+
+
+<ol>
+<li>Добавляем функционал вывода произвольного поля в теме WordPress</li>
+
+
+
+<li>Добавляем произвольное поле с названием и содержимом в админке</li>
+
+
+
+<li>Публикуем статью</li>
+
+
+
+<li>Проверяем запись и вывод  поля во фронтенде</li>
+</ol>
+
+
+
+<p>Так как у нас задача добавления «Кастомного поля» с названием «Ссылка на оригинал», то мы добавим поле <strong><em>original</em></strong> и вывод этого поля в файле <strong>single.php</strong> темы WordPress.</p>
+
+
+
+<p>Для вывода поля в теме мы в <strong>single.php</strong> в цикле вставляем:</p>
+
+
+
+<pre><code class="language-php">&lt;?php while ( have_posts() ) : the post(); ?&gt; // Начало Цикла
+
+    &lt;?php echo get_post_meta($post-&gt;ID, 'original', true); ?&gt;
+
+&lt;?php endwhile; ?&gt; // Конец цикла</code></pre>
+
+
+
+<p>Теперь мы просто добавляем поле <strong><em>original</em></strong> в админке при добавлении записи и обновляем Запись.</p>
+
+
+<div>
+<figure><img src="images/blok-proizvolnie-polya-05.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>В итоге, на странице статьи мы увидим, что WordPress вывел значение поля <code>original</code> во фронтенде. Для одного из моих клиентов я делал сниппет с проверкой добавлено ли такое поле и только после этого выводить его на сайте:</p>
+
+
+
+<pre><code class="language-php">&lt;?php 
+    $originalLink = get_post_meta($post-&gt;ID, 'original', true);
+
+    if ($originalLink) {
+        echo '&lt;br&gt;&lt;small&gt;&lt;a href="' . $originalLink . '" target="_blank" rel="noopener nofollow"&gt;Ссылка на оригинал&lt;/a&gt;&lt;/small&gt;';
+    }</code></pre>
+
+
+
+<p>На сайте WP-kama пример привожу ниже.</p>
+
+
+
+<p>Цитата: «Пример ниже показывает, как использовать функцию для того, чтобы получить значение произвольного поля&nbsp;<code>thumb</code>, в значении которого сохраняется ссылка на картинку-миниатюру, для того чтобы получить эту ссылку и использовать её в шаблоне».</p>
+
+
+
+<pre><code class="language-php">&lt;?php if ( $thumb = get_post_meta( $post-&gt;ID, 'thumb', true ) ) : ?&gt;
+	&lt;a href="&lt;?php the_permalink() ?&gt;" rel="bookmark"&gt;
+		&lt;img class="thumb" src="&lt;?php echo $thumb ?&gt;" alt="&lt;?php the_title(); ?&gt;" /&gt;
+	&lt;/a&gt;
+&lt;?php endif; ?&gt;</code></pre>
+
+
+
+<h2><span id="Vyvod_zapisej_s_opredelennymi_polami">Вывод записей с определенными полями</span></h2>
+
+
+
+<p>Выводим список всех записей, содержащих конкретные произвольные поля.</p>
+
+
+
+<p>Код позволяет вывести список всех записей с настраиваемым полем «Short_Link», отсортированный по значению пользовательского поля «Comment_Count», которое не исключает никаких «post_type» и предполагает, что каждая запись имеет только одно поле для Short_Link и одно для Comment_Count.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+ 
+$meta_key1 = 'Short_Link';
+$meta_key2 = 'Comment_Count';
+ 
+$postids = $wpdb-&gt;get_col( $wpdb-&gt;prepare( 
+    "
+    SELECT      key1.post_id
+    FROM        $wpdb-&gt;postmeta key1
+    INNER JOIN  $wpdb-&gt;postmeta key2
+                ON key2.post_id = key1.post_id
+                AND key2.meta_key = %s
+    WHERE       key1.meta_key = %s
+    ORDER BY    key2.meta_value+(0) ASC
+    ",
+        $meta_key2,
+    $meta_key1
+) ); 
+ 
+if ( $postids ) 
+{
+    echo "List of {$meta_key1} posts, sorted by {$meta_key2}";
+    foreach ( $postids as $id ) 
+    {
+        $post = get_post( intval( $id ) );
+        setup_postdata( $post );
+        ?&gt;
+        &lt;p&gt;
+            &lt;a href="&lt;?php the_permalink() ?&gt;" rel="bookmark" title="Permanent Link to &lt;?php the_title_attribute(); ?&gt;"&gt;
+                &lt;?php the_title(); ?&gt;
+            &lt;/a&gt;
+        &lt;/p&gt;
+        &lt;?php
+    }
+}</code></pre>
+
+
+
+<h2><span id="Left_Join">Left Join</span></h2>
+
+
+
+<p>Таблица <code>'postmeta'</code> — это место, где в базе данных хранятся все данные произвольных полей. По умолчанию функция поиска WordPress настроена на поиск только в таблице <code>'posts'</code>. Чтобы включить данные пользовательских полей в наш поиск, нам сначала нужно выполнить левое объединение (лефт джоин) таблиц <code>'posts'</code> и <code>'postmeta'</code> в базе данных.</p>
+
+
+
+<pre><code class="language-php">/**
+ * Join posts and postmeta tables
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_join
+ */
+function cf_search_join( $join ) {
+    global $wpdb;
+
+    if ( is_search() ) {    
+        $join .=' LEFT JOIN '.$wpdb-&gt;postmeta. ' ON '. $wpdb-&gt;posts . '.ID = ' . $wpdb-&gt;postmeta . '.post_id ';
+    }
+
+    return $join;
+}
+add_filter('posts_join', 'cf_search_join' );</code></pre>
+
+
+
+<h2><span id="Izmenaem_zapros_Query">Изменяем запрос (Query)</span></h2>
+
+
+
+<p>Нам нужно изменить поисковый запрос WordPress, чтобы включить в него произвольные поля.</p>
+
+
+
+<pre><code class="language-php">/**
+ * Modify the search query with posts_where
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_where
+ */
+function cf_search_where( $where ) {
+    global $pagenow, $wpdb;
+
+    if ( is_search() ) {
+        $where = preg_replace(
+            "/\(\s*".$wpdb-&gt;posts.".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+            "(".$wpdb-&gt;posts.".post_title LIKE $1) OR (".$wpdb-&gt;postmeta.".meta_value LIKE $1)", $where );
+    }
+
+    return $where;
+}
+add_filter( 'posts_where', 'cf_search_where' );</code></pre>
+
+
+
+<h2><span id="Predotvrasenie_dublikatov">Предотвращение дубликатов</span></h2>
+
+
+
+<p>Наконец, нам нужно добавить ключевое слово <code>DISTINCT</code> в запрос SQL, чтобы предотвратить возврат дубликатов.</p>
+
+
+
+<pre><code class="language-php">
+/**
+ * Prevent duplicates
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_distinct
+ */
+function cf_search_distinct( $where ) {
+    global $wpdb;
+
+    if ( is_search() ) {
+        return "DISTINCT";
+    }
+
+    return $where;
+}
+add_filter( 'posts_distinct', 'cf_search_distinct' );</code></pre>
+
+
+
+<p>Добавьте следующее в файл <strong><em>functions.php</em></strong>, чтобы добавить функционал поиска в WordPress по кастомным полям.</p>
+
+
+
+<p>Этот код не только изменит поиск во внешнем интерфейсе, но вы также сможете искать по пользовательским полям в админке.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+
+/**
+ * Join posts and postmeta tables
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_join
+ */
+function cf_search_join( $join ) {
+    global $wpdb;
+
+    if ( is_search() ) {    
+        $join .=' LEFT JOIN '.$wpdb-&gt;postmeta. ' ON '. $wpdb-&gt;posts . '.ID = ' . $wpdb-&gt;postmeta . '.post_id ';
+    }
+
+    return $join;
+}
+add_filter('posts_join', 'cf_search_join' );
+
+/**
+ * Modify the search query with posts_where
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_where
+ */
+function cf_search_where( $where ) {
+    global $pagenow, $wpdb;
+
+    if ( is_search() ) {
+        $where = preg_replace(
+            "/\(\s*".$wpdb-&gt;posts.".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+            "(".$wpdb-&gt;posts.".post_title LIKE $1) OR (".$wpdb-&gt;postmeta.".meta_value LIKE $1)", $where );
+    }
+
+    return $where;
+}
+add_filter( 'posts_where', 'cf_search_where' );
+
+/**
+ * Prevent duplicates
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_distinct
+ */
+function cf_search_distinct( $where ) {
+    global $wpdb;
+
+    if ( is_search() ) {
+        return "DISTINCT";
+    }
+
+    return $where;
+}
+add_filter( 'posts_distinct', 'cf_search_distinct' );</code></pre>
+
+
+
+<h2><span id="Polucenie_vseh_zapisej">Получение всех записей</span></h2>
+
+
+
+<p>Например, если нам надо получить все записи с одинаковым почтовым индексом (zipcode) в качестве метазначения, то следующий код можно использовать для наших целей:</p>
+
+
+
+<pre><code class="language-php">$query_args = array(
+        'post_type'   =&gt; 'service',
+        'posts_per_page' =&gt; -1,
+        'meta_query'  =&gt; array(
+            array(
+                'value'   =&gt; $zip,
+                'compare' =&gt; 'LIKE',
+                'key'     =&gt; 'zipcode',
+            ),
+        )
+    );
+   $query = new WP_Query($query_args);
+   &lt;?php if ( $query-&gt;have_posts() ) :while ( $query-&gt;have_posts() ) : $query-&gt;the_post();  ?&gt;
+       &lt;h3&gt;&lt;?php the_title(); ?&gt;&lt;/h3&gt;
+   &lt;?php endwhile; // end of the loop. ?&gt;
+   &lt;?php wp_reset_query(); ?&gt;
+   &lt;?php else: ?&gt;
+      No results found.
+   &lt;?php endif; ?&gt;</code></pre>
+
+
+
+<p><code>zipcode</code> — это цифры, например 12345. Если записи имеют значение 12345 в пользовательском поле, то оно должно отображать все записи, которые имеют значение 12345.</p>
+
+
+
+<h2><span id="Zapros_zapisej">Запрос записей</span></h2>
+
+
+
+<p>Ниже я приведу рекомендации по запросу (Query) по кастомным (произвольным) полям от создателей плагина ACF (Advanced Custom Fields) и расскажу, как получить массив объектов записей из базы данных с помощью собственных функций WordPress. </p>
+
+
+
+<p>В WP существует множество способов запросить записи, однако в этой статье будут использованы общие функции <code>get_posts</code>, объект <code>WP_Query</code> и фильтр <code>pre_get_posts</code>.</p>
+
+
+
+<h3><span id="Obsie_pravila">Общие правила</span></h3>
+
+
+
+<p>Если вы уже знакомы с приведенными выше функциями, объектами и фильтрами, то можете пропустить этот блок.</p>
+
+
+
+<p>Объект <code>WP_Query</code> используется для запроса записей и возвращает объект, содержащий массив объектов <code>$post</code> и множество полезных методов.</p>
+
+
+
+<p>Функция <code>get_posts</code> использует вышеупомянутый объект <code>WP_Query</code>, однако возвращает только массив объектов <code>$post</code>, что делает ее более простым способом поиска и перебора постов.</p>
+
+
+
+<p>Фильтр <code>pre_get_post</code> вызывается после создания объекта запроса, но перед выполнением самого запроса.</p>
+
+
+
+<h3><span id="Primer">Пример</span></h3>
+
+
+
+<p>Этот пример демонстрирует, как запросить все посты и отобразить их в списке. Обратите внимание, что функции <code>setup_postdata()</code> и <code>wp_reset_postdata()</code> используются для того, чтобы такие функции, как <code>the_permalink()</code> и <code>the_title()</code>, работали как положено.</p>
+
+
+
+<pre><code class="language-php">&lt;?php 
+
+$posts = get_posts(array(
+	'posts_per_page'	=&gt; -1,
+	'post_type'			=&gt; 'post'
+));
+
+if( $posts ): ?&gt;
+	
+	&lt;ul&gt;
+		
+	&lt;?php foreach( $posts as $post ): 
+		
+		setup_postdata( $post );
+		
+		?&gt;
+		&lt;li&gt;
+			&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;
+		&lt;/li&gt;
+	
+	&lt;?php endforeach; ?&gt;
+	
+	&lt;/ul&gt;
+	
+	&lt;?php wp_reset_postdata(); ?&gt;
+
+&lt;?php endif; ?&gt;</code></pre>
+
+
+
+<h3><span id="Parametry_proizvolnogo_pola">Параметры произвольного поля</span></h3>
+
+
+
+<p>И функция <code>get_posts</code>, и объект <code>WP_Query</code> принимают аргументы для запроса значений пользовательских полей. Существует как базовый, так и расширенный способ запроса, которые описаны ниже. Вы можете прочитать больше о параметрах в руководстве WP codex.</p>
+
+
+
+<p><strong>Основной пример</strong></p>
+
+
+
+<p>В этом примере показаны аргументы для поиска всех постов, в которых пользовательское поле <code>'color'</code> имеет значение <code>'red'</code>.</p>
+
+
+
+<pre><code class="language-php">$posts = get_posts(array(
+	'numberposts'	=&gt; -1,
+	'post_type'		=&gt; 'post',
+	'meta_key'		=&gt; 'color',
+	'meta_value'	=&gt; 'red'
+));</code></pre>
+
+
+
+<h3><span id="Prodvinutyj_primer">Продвинутый пример</span></h3>
+
+
+
+<p>В этом примере показаны аргументы для поиска всех записей, в которых пользовательское поле <code>'color'</code> имеет значение <code>'red'</code> или <code>'orange'</code>, а другое пользовательское поле <code>'featured'</code> (флажок или чекбокс) отмечен галочкой.</p>
+
+
+
+<pre><code class="language-php">$posts = get_posts(array(
+	'numberposts'	=&gt; -1,
+	'post_type'		=&gt; 'post',
+	'meta_query'	=&gt; array(
+		'relation'		=&gt; 'AND',
+		array(
+			'key'	 	=&gt; 'color',
+			'value'	  	=&gt; array('red', 'orange'),
+			'compare' 	=&gt; 'IN',
+		),
+		array(
+			'key'	  	=&gt; 'featured',
+			'value'	  	=&gt; '1',
+			'compare' 	=&gt; '=',
+		),
+	),
+));</code></pre>
+
+
+
+<p>Ниже вы найдете еще ряд примеров. </p>
+
+
+
+<p>Обратите внимание, что в этих примерах используется объект <code>WP_Query</code>, а не функция <code>get_posts</code>, однако аргументы и логика остаются теми же.</p>
+
+
+
+<h3><span id="Odno_znacenie_polzovatelskogo_pola">Одно значение пользовательского поля</span></h3>
+
+
+
+<p>В этом примере мы найдем все записи, которые имеют тип поста (<code>post_type</code>) <code>'event'</code>, где пользовательское поле <code>'location'</code> равно <code>'Melbourne'</code>. Пользовательское поле <code>'location'</code> в данном случае может быть текстовым полем, радиокнопкой или полем выбора (то, что сохраняет одно текстовое значение).</p>
+
+
+
+<pre><code class="language-php">&lt;?php 
+
+// args
+$args = array(
+	'numberposts'	=&gt; -1,
+	'post_type'		=&gt; 'event',
+	'meta_key'		=&gt; 'location',
+	'meta_value'	=&gt; 'Melbourne'
+);
+
+
+// query
+$the_query = new WP_Query( $args );
+
+?&gt;
+&lt;?php if( $the_query-&gt;have_posts() ): ?&gt;
+	&lt;ul&gt;
+	&lt;?php while( $the_query-&gt;have_posts() ) : $the_query-&gt;the_post(); ?&gt;
+		&lt;li&gt;
+			&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;
+				&lt;img src="&lt;?php the_field('event_thumbnail'); ?&gt;" /&gt;
+				&lt;?php the_title(); ?&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;?php endwhile; ?&gt;
+	&lt;/ul&gt;
+&lt;?php endif; ?&gt;
+
+&lt;?php wp_reset_query();	 // Restore global post data stomped by the_post(). ?&gt;</code></pre>
+
+
+
+<h3><span id="Mnozestvennye_znacenia_proizvolnyh_polej_znacenia_na_osnove_teksta">Множественные значения произвольных полей (значения на основе текста)</span></h3>
+
+
+
+<p>В этом примере мы найдем все записи, которые имеют тип записи (<code>post_type</code>) <code>'event'</code>, где пользовательское поле <code>'location'</code> равно <code>'Melbourne'</code>, а пользовательское поле <code>'attendees'</code> больше 100. Пользовательское поле <code>'attendees'</code> в данном случае может быть числовым полем, текстовым полем, радиокнопкой или полем выбора (то, что сохраняет одно текстовое значение).</p>
+
+
+
+<pre><code class="language-php">&lt;?php 
+
+// args
+$args = array(
+	'numberposts'	=&gt; -1,
+	'post_type'		=&gt; 'event',
+	'meta_query'	=&gt; array(
+		'relation'		=&gt; 'AND',
+		array(
+			'key'		=&gt; 'location',
+			'value'		=&gt; 'Melbourne',
+			'compare'	=&gt; '='
+		),
+		array(
+			'key'		=&gt; 'attendees',
+			'value'		=&gt; 100,
+			'type'		=&gt; 'NUMERIC',
+			'compare'	=&gt; '&gt;'
+		)
+	)
+);
+
+
+// query
+$the_query = new WP_Query( $args );
+
+?&gt;
+&lt;?php if( $the_query-&gt;have_posts() ): ?&gt;
+	&lt;ul&gt;
+	&lt;?php while ( $the_query-&gt;have_posts() ) : $the_query-&gt;the_post(); ?&gt;
+		&lt;li&gt;
+			&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;
+				&lt;img src="&lt;?php the_field('event_thumbnail'); ?&gt;" /&gt;
+				&lt;?php the_title(); ?&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;?php endwhile; ?&gt;
+	&lt;/ul&gt;
+&lt;?php endif; ?&gt;
+
+&lt;?php wp_reset_query();	 // Restore global post data stomped by the_post(). ?&gt;</code></pre>
+
+
+
+<h3><span id="Mnozestvennye_znacenia_polej_znacenia_na_osnove_massiva">Множественные значения полей (значения на основе массива)</span></h3>
+
+
+
+<p>В этом примере мы найдем все записи, имеющие тип (<code>post_type</code>) <code>'event'</code>, в которых пользовательское поле <code>'location'</code> равно <code>'Melbourne'</code> или <code>'Sydney'</code>. Пользовательское поле <code>'location'</code> в данном случае может быть полем с несколькими вариантами выбора или полем с флажком (что-то, что сохраняет сериализованное значение массива).</p>
+
+
+
+<pre><code class="language-php">&lt;?php 
+
+// args
+$args = array(
+	'numberposts'	=&gt; -1,
+	'post_type'		=&gt; 'event',
+	'meta_query'	=&gt; array(
+		'relation'		=&gt; 'OR',
+		array(
+			'key'		=&gt; 'location',
+			'value'		=&gt; 'Melbourne',
+			'compare'	=&gt; 'LIKE'
+		),
+		array(
+			'key'		=&gt; 'location',
+			'value'		=&gt; 'Sydney',
+			'compare'	=&gt; 'LIKE'
+		)
+	)
+);
+
+
+// query
+$the_query = new WP_Query( $args );
+
+?&gt;
+&lt;?php if( $the_query-&gt;have_posts() ): ?&gt;
+	&lt;ul&gt;
+	&lt;?php while ( $the_query-&gt;have_posts() ) : $the_query-&gt;the_post(); ?&gt;
+		&lt;li&gt;
+			&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;
+				&lt;img src="&lt;?php the_field('event_thumbnail'); ?&gt;" /&gt;
+				&lt;?php the_title(); ?&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;?php endwhile; ?&gt;
+	&lt;/ul&gt;
+&lt;?php endif; ?&gt;
+
+&lt;?php wp_reset_query();	 // Restore global post data stomped by the_post(). ?&gt;</code></pre>
+
+
+
+<p>О произвольных полях с использованием плагина ACF мы поговорили в <a href="../advanced-custom-fields/" target="_blank" rel="noreferrer noopener">этом материале</a>.</p>
+
+
+
+<h2><span id="Znacenia_podpolej">Значения подполей</span></h2>
+
+
+
+<p>В этом примере мы найдем все <code>events</code>, у которых есть <code>city</code> или <code>Melbourne</code> или <code>Sydney</code>. Каждый <code>city</code> добавляется как новая строка в повторяющееся поле под названием <code>location</code>.</p>
+
+
+
+<p>Чтобы успешно запросить значения подполей, нужно помнить, что номер строки неизвестен (может быть 1, 2 или даже 3 строки данных повторяющегося поля). Поэтому нам нужно использовать предложение <code>LIKE</code> в нашем SQL-запросе, чтобы разрешить WILDCARD в поиске мета ключа <code>meta_key</code>. Для этого мы создаем пользовательский фильтр, чтобы заменить стандартное ‘=’ на ‘LIKE’.</p>
+
+
+
+<p><strong>UPD</strong>: После изменения поведения <code>esc_sql()</code> в WordPress 4.8.3, теперь не так просто использовать символ <code>%</code> в качестве заполнителя для следующего поиска и замены, вместо него мы рекомендуем использовать символ <code>$</code>, как показано ниже.</p>
+
+
+
+<p><strong>Примечание</strong>: этот метод требует подключения к фильтру <code>posts_where</code>, который не гарантированно будет выполняться при всех запросах к записям. Чтобы решить эту проблему, установите значение <code>suppress_filters</code> равным <code>false</code> в массиве аргументов, передаваемых в <code>get_posts()</code> или <code>WP_Query</code>.</p>
+
+
+
+<pre><code class="language-php">&lt;?php 
+
+// filter
+function my_posts_where( $where ) {
+	
+	$where = str_replace("meta_key = 'locations_$", "meta_key LIKE 'locations_%", $where);
+
+	return $where;
+}
+
+add_filter('posts_where', 'my_posts_where');
+
+
+// vars
+$city = 'Melbourne';
+
+
+// args
+$args = array(
+	'numberposts'	=&gt; -1,
+	'post_type'		=&gt; 'event',
+	'meta_query'	=&gt; array(
+		'relation'		=&gt; 'OR',
+		array(
+			'key'		=&gt; 'locations_$_city',
+			'compare'	=&gt; '=',
+			'value'		=&gt; 'Melbourne',
+		),
+		array(
+			'key'		=&gt; 'locations_$_city',
+			'compare'	=&gt; '=',
+			'value'		=&gt; 'Sydney',
+		)
+	)
+);
+
+
+// query
+$the_query = new WP_Query( $args );
+
+?&gt;
+&lt;?php if( $the_query-&gt;have_posts() ): ?&gt;
+	&lt;ul&gt;
+	&lt;?php while ( $the_query-&gt;have_posts() ) : $the_query-&gt;the_post(); ?&gt;
+		&lt;li&gt;
+			&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;?php endwhile; ?&gt;
+	&lt;/ul&gt;
+&lt;?php endif; ?&gt;
+
+&lt;?php wp_reset_query();	 // Restore global post data stomped by the_post(). ?&gt;</code></pre>
+
+
+
+<h2><span id="Vklucenie_redaktora_Gutenberg">Включение редактора Gutenberg</span></h2>
+
+
+
+<p>На протяжении многих лет сообщество WordPress использовало пользовательские типы записей (CPT — Custom Post Types) для расширения функциональности стандартной платформы WordPress. Учитывая популярность, эта функция стала неотъемлемой частью WordPress 5.x.</p>
+
+
+
+<p>В текущей версии WordPress редактор Gutenberg доступен только для страниц и записей по умолчанию. </p>
+
+
+
+<p>Поскольку пользовательские типы постов WordPress присутствуют практически везде, недоступность редактора Gutenberg — это то, о чем сообщество говорило с момента выхода WordPress 5.0. Если у вас есть CPT на сайте WordPress с версией выше 5.x, то при создании или редактировании CPT вы увидите старый добрый классический редактор (Classic Editor).</p>
+
+
+
+<p>Хотя в ближайших версиях планируется устранить эту особенность, вам не обязательно ждать, пока команда поддержки ядра WordPress выпустит обновление. На самом деле, если вы хотите использовать редактор Gutenberg с текущим кастомным постом на своем сайте, то нам нужно будет сделать минимум действий.</p>
+
+
+
+<p>Я объясню как зарегистрировать пользовательский тип постов WordPress и затем покажу вам, как включить Gutenberg для пользовательских типов постов.</p>
+
+
+
+<h2><span id="Registracia_polzovatelskih_tipov_zapisej">Регистрация пользовательских типов записей</span></h2>
+
+
+
+<p>Начнем с регистрации пользовательского типа записи. Этот процесс довольно прост и включает в себя добавление следующего фрагмента кода (сниппета — прим.ред.).</p>
+
+
+
+<pre><code class="language-php">/* Register WordPress  Gutenberg CPT */
+function cw_post_type() {
+
+    register_post_type( 'portfolio',
+        // WordPress CPT Options Start
+        array(
+            'labels' =&gt; array(
+                'name' =&gt; __( 'Portfolio' ),
+                'singular_name' =&gt; __( 'Portfolio' )
+            ),
+            'has_archive' =&gt; true,
+            'public' =&gt; true,
+            'rewrite' =&gt; array('slug' =&gt; 'portfolio'),
+ 
+        )
+    );
+}
+ 
+add_action( 'init', 'cw_post_type' );</code></pre>
+
+
+
+<p>Когда сниппет установлен, пользовательский тип поста зарегистрирован. Однако, что удивительно — когда вы попытаетесь создать или отредактировать пользовательский тип поста, вы все равно увидите старый редактор Classic.</p>
+
+
+<div>
+<figure><img src="images/gutenberg-wordPress.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<h2><span id="Dobavlenie_podderzki_Gutenberg">Добавление поддержки Gutenberg</span></h2>
+
+
+
+<p>Теперь, чтобы включить редактор Gutenberg в пользовательских постах WordPress, необходимо выполнить дополнительный простой шаг — добавить следующий фрагмент кода к сниппету выше:</p>
+
+
+
+<ol>
+<li>добавить поддержку редактора,</li>
+
+
+
+<li>добавить ключ <code>show_in_rest</code> и установить его в <code>true</code> через ваш пользовательский тип поста</li>
+</ol>
+
+
+
+<pre><code class="language-php">'show_in_rest' =&gt; true,
+'supports' =&gt; array('editor')</code></pre>
+
+
+
+<p>Как вы можете видеть, приведенный выше фрагмент кода просто установил параметр <code>'show_in_rest'</code> в значение <code>'TRUE'</code>. После этого шага при создании или редактировании пользовательского типа поста вы увидите активным редактор Gutenberg.</p>
+
+
+<div>
+<figure><img src="images/gutenberg-wordPress-cpt.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Вот код, который вы поместите в файл <strong><em>functions.php</em></strong>, расположенный в папке темы:</p>
+
+
+
+<pre><code class="language-php">/*Register WordPress  Gutenberg CPT */
+function cw_post_type() {
+
+    register_post_type( 'portfolio',
+        // WordPress CPT Options Start
+        array(
+            'labels' =&gt; array(
+                'name' =&gt; __( 'Portfolio' ),
+                'singular_name' =&gt; __( 'Portfolio' )
+            ),
+            'has_archive' =&gt; true,
+            'public' =&gt; true,
+            'rewrite' =&gt; array('slug' =&gt; 'portfolio'),
+            'show_in_rest' =&gt; true,
+            'supports' =&gt; array('editor')
+        )
+    );
+}
+ 
+add_action( 'init', 'cw_post_type' );</code></pre>
+
+
+
+<p>Использование редактора Gutenberg с пользовательскими типами постов WordPress — это простой вопрос установки нужных параметров в файле <strong>functions.php</strong>. Как только нужный сниппет будет установлен, вы сможете легко получить доступ к редактору Gutenberg в ваших пользовательских постах.</p>
+
+
+
+<h2><span id="Dinamiceskie_parametry_GET">Динамические параметры $_GET</span></h2>
+
+
+
+<p>Этот пример показывает, как использовать параметры <code>$_GET</code> (из <strong>URL</strong>) для изменения запроса архива типа <code>post</code>. В данном примере предполагается, что существует тип поста <code>'event'</code> и что его архив существует по адресу URL; <em><strong>www.website.com/events</strong></em>.</p>
+
+
+
+<p>Тип поста <code>event</code> содержит поле <code>select</code> под названием <code>'city'</code> со значениями <code>'melbourne'</code> и <code>'sydney'</code>. Если добавить параметр к <strong>url</strong>, запрос будет изменен, и будут показаны только те посты, которые соответствуют <code>'city'</code>: <em><strong>www.website.com/events?city=melbourne</strong></em>.</p>
+
+
+
+<pre><code class="language-php">// FUNCTIONS.PHP
+
+function my_pre_get_posts( $query ) {
+	
+	// do not modify queries in the admin
+	if( is_admin() ) {
+		
+		return $query;
+		
+	}
+	
+	
+	// only modify queries for 'event' post type
+	if( isset($query-&gt;query_vars['post_type']) &amp;&amp; $query-&gt;query_vars['post_type'] == 'event' ) {
+		
+		// allow the url to alter the query
+		if( isset($_GET['city']) ) {
+			
+    		$query-&gt;set('meta_key', 'city');
+			$query-&gt;set('meta_value', $_GET['city']);
+			
+    	} 
+		
+	}
+	
+	
+	// return
+	return $query;
+
+}
+
+add_action('pre_get_posts', 'my_pre_get_posts');</code></pre>
+
+
+
+<h2><span id="Vyvod_po_taksonomii">Вывод по таксономии</span></h2>
+
+
+
+<p>Отображение всех постов пользовательского типа, сгруппированных по пользовательской таксономии.</p>
+
+
+
+<p>Часто возникает ситуация, когда нам нужно вывести все посты пользовательского типа, сгруппированных по пользовательской таксономии.</p>
+
+
+
+<p>Допустим, пользовательский тип записи называется <code>member</code>, а пользовательская таксономия называется <code>member_groups</code>. Задача перечислить всех участников, но сгруппировать их в соответствующие группы.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+$member_group_terms = get_terms( 'member_group' );
+
+foreach ( $member_group_terms as $member_group_term ) {
+    $member_group_query = new WP_Query( array(
+        'post_type' =&gt; 'member',
+        'tax_query' =&gt; array(
+            array(
+                'taxonomy' =&gt; 'member_group',
+                'field' =&gt; 'slug',
+                'terms' =&gt; array( $member_group_term-&gt;slug ),
+                'operator' =&gt; 'IN'
+            )
+        )
+    ) );
+    ?&gt;
+    &lt;h2&gt;&lt;?php echo $member_group_term-&gt;name; ?&gt;&lt;/h2&gt;
+    &lt;ul&gt;
+    &lt;?php
+    if ( $member_group_query-&gt;have_posts() ) : while ( $member_group_query-&gt;have_posts() ) : $member_group_query-&gt;the_post(); ?&gt;
+        &lt;li&gt;&lt;?php echo the_title(); ?&gt;&lt;/li&gt;
+    &lt;?php endwhile; endif; ?&gt;
+    &lt;/ul&gt;
+    &lt;?php
+    // Reset things, for good measure
+    $member_group_query = null;
+    wp_reset_postdata();
+}</code></pre>
+
+
+
+<p>Или так:</p>
+
+
+
+<pre><code class="language-php">&lt;?php // Output all Taxonomies names with their respective items
+$terms = get_terms('member_groups');
+foreach( $terms as $term ):
+?&gt;                          
+    &lt;h3&gt;&lt;?php echo $term-&gt;name; // Print the term name ?&gt;&lt;/h3&gt;                          
+    &lt;ul&gt;
+      &lt;?php                         
+          $posts = get_posts(array(
+            'post_type' =&gt; 'member',
+            'taxonomy' =&gt; $term-&gt;taxonomy,
+            'term' =&gt; $term-&gt;slug,                                  
+            'nopaging' =&gt; true, // to show all posts in this taxonomy, could also use 'numberposts' =&gt; -1 instead
+          ));
+          foreach($posts as $post): // begin cycle through posts of this taxonmy
+            setup_postdata($post); //set up post data for use in the loop (enables the_title(), etc without specifying a post ID)
+      ?&gt;        
+          &lt;li&gt;&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/li&gt;    
+        &lt;?php endforeach; ?&gt;
+    &lt;/ul&gt;                                                   
+&lt;?php endforeach; ?&gt;</code></pre>
+
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 5 февраля 2023 в 16:59</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

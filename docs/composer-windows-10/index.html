@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Установка Composer на Windows 10 &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Установка Composer на Windows 10</h1>
+
+<p>Установим Composer и PHP на Windows 10, чтобы мы могли устанавливать зависимости для наших веб-приложений непосредственно из командной строки Windows.</p>
+
+<h2>1. Скачайте и установите Visual C++</h2>
+
+<p>Чтобы запустить PHP на Windows 10, вам необходимо установить Visual C++ Redistributable for Visual Studio. Вы можете скачать ее со <a href="https://www.microsoft.com/en-ie/download/details.aspx?id=48145" target="_blank" rel="noreferrer noopener nofollow">страницы загрузки Windows</a> или по прямой ссылке ниже.</p>
+
+<p><strong>Скачать</strong>: <a href="https://aka.ms/vs/15/release/VC_redist.x64.exe" target="_blank" rel="noreferrer noopener nofollow">VC_redist.x64.exe (64 бит)</a> или <a href="https://aka.ms/vs/16/release/VC_redist.x86.exe" target="_blank" rel="noreferrer noopener nofollow">VC_redist.x86.exe (32 бит)</a></p>
+
+<p>После скачивания запустите программу установки и нажмите кнопку <strong>Install</strong> (Установить).</p>
+
+<div>
+<figure><img src="images/install-vc15.png" alt="" class="img-fluid"></figure></div>
+
+<h2>2. Скачайте и извлеките PHP</h2>
+
+<p>Перейдите на <a href="https://windows.php.net/download/" target="_blank" rel="noreferrer noopener nofollow">страницу скачивания PHP для Windows</a> и скачайте .zip нужной вам версии PHP. В данном руководстве мы устанавливаем <strong>PHP 7.4 VC15 x64 Non Thread Safe</strong>.</p>
+
+<div>
+<figure><img src="images/vc15.png" alt="" class="img-fluid"></figure></div>
+
+<p>После скачивания создайте новую папку в <strong><em>c:\php7</em></strong> (или где вам удобнее) и извлеките в нее ваш zip-архив с PHP.</p>
+
+<div>
+<figure><img src="images/php7-for-windows-extracted.png" alt="" class="img-fluid"></figure></div>
+
+<h2>3. Скачивание и установка Composer</h2>
+
+<p>Скачайте файл <a href="https://getcomposer.org/Composer-Setup.exe" target="_blank" rel="noreferrer noopener nofollow">Composer-Setup.exe</a> со страницы загрузки Composer.</p>
+
+<p>На втором шаге установки Composer убедитесь, что задан правильный путь к <strong>php.exe</strong>, и нажмите <strong>Next</strong> (Далее).</p>
+
+<div>
+<figure><img src="images/installing-composer-windows-10.png" alt="" class="img-fluid"></figure></div>
+
+<p>Если Setup предложит создать <strong>php.ini</strong>, разрешите это и нажмите <strong>Next</strong>.</p>
+
+<p>Пропустите настройки <strong>URL Proxy</strong>, просто нажмите <strong>Next</strong>, а затем <strong>Install</strong>.</p>
+
+<p>После завершения установки нажмите <strong>Finish</strong>.</p>
+
+<h2>4. Тестирование PHP</h2>
+
+<p>Если у вас открыты какие-либо окна <strong>Command Prompt</strong> (Командная строка или Терминал), закройте их сейчас.</p>
+
+<p>Откройте Command Prompt (Командная строка), введите:</p>
+
+<pre><code class="language-bash">php -v</code></pre>
+
+<p>Нажмите <strong>Enter</strong>. Теперь вы должны увидеть версию PHP.</p>
+
+<div>
+<figure><img src="images/windows-10-php7-command-prompt.png" alt="" class="img-fluid"></figure></div>
+
+<p>Если он возвращает версию PHP, вы можете перейти к <strong>Шагу 6</strong> для тестирования Composer.</p>
+
+<p>Если вы получите ошибку <em>«‘php’ is not recognized as an internal or external command, operable program or batch file.»</em>, вам может понадобиться добавить переменную окружения <strong>Path</strong>.</p>
+
+<h2>5. Добавление переменной среды Path</h2>
+
+<p>Установка Composer обычно делает это за вас, но если по какой-то причине она этого не сделала, вы можете установить ее вручную.</p>
+
+<p>Чтобы вам не приходилось набирать весь путь к <strong>php.exe</strong> каждый раз, когда вы запускаете команду PHP, вам следует добавить <strong>c:\php7</strong> в качестве переменной окружения <strong>path</strong>.</p>
+
+<p>Откройте Свойства системы, нажав на меню <strong>Пуск</strong>, введите <strong><em>sysdm.cpl</em></strong> и нажмите <strong>Enter</strong>.</p>
+
+<div>
+<figure><img src="images/windows-10-advanced-system-settings.png" alt="" class="img-fluid"></figure></div>
+
+<p>В <strong>System Properties</strong> (Свойства системы) нажмите <strong>Environment Variables</strong> (Переменные среды).</p>
+
+<div>
+<figure><img src="images/windows-10-system-properties.png" alt="" class="img-fluid"></figure></div>
+
+<p>В разделе <strong>System Variables</strong> (Системные переменные) нажмите <strong>Path</strong> (Путь), а затем <strong>Edit</strong> (Изменить).</p>
+
+<div>
+<figure><img src="images/windows-10-system-variables-path.png" alt="" class="img-fluid"></figure></div>
+
+<p>Нажмите <strong>New</strong>, введите путь к папке PHP (<strong>c:\php7</strong>) и нажмите <strong>OK</strong>.</p>
+<div>
+<figure><img src="images/windows-10-new-environment-variable-path.png" alt="" class="img-fluid"></figure></div>
+
+<p>Закройте диалог <strong>System Properties</strong> («Свойства системы»), нажав <strong>OK</strong>.</p>
+
+<h2>6. Тестирование Composer</h2>
+
+<p>Откройте Command Prompt («Командная строка») и введите с заглавной буквой V:</p>
+
+<pre><code class="language-bash">composer -V</code></pre>
+
+<p>Если все было установлено правильно, вы должны увидеть номер версии.</p>
+
+<div>
+<figure><img src="images/composer-windows-10-command-prompt.png" alt="" class="img-fluid"></figure></div>
+
+<p>Теперь вы можете запускать Composer и PHP на Windows 10.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 16 января 2023 в 17:26</span><br>Теги: CSS, Email, HTML
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

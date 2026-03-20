@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Пагинация в WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Пагинация в WordPress</h1>
+
+<p>Пагинация — это обычная функция для многих сайтов и блогов на WordPress.</p>
+
+
+
+<p>Функция пагинация достаточно важна для большого количества владельцев сайтов, что является одной из основных функций ядра WordPress.</p>
+
+
+
+<p>Пагинация — это простая и стандартная практика, которая позволяет вам не загружать все ваши статьи сразу, иначе ваш сайт будет очень долго загружаться для пользователя. Во многих темах пагинация уже встроена, но если это не так, вы можете легко настроить пагинацию на своем сайте с помощью всего нескольких строк кода или дополнительного плагина. В этой статье мы рассмотрим несколько различных способов добавления пагинации на ваш сайт.</p>
+
+
+
+<h2><span id="Gde_nahoditsa_paginacia">Где находится пагинация</span></h2>
+
+
+
+<p>Пагинация фактически встроена прямо в WordPress. Чтобы все настроить, вам нужно сначала зайти в админку, а оттуда вы можете перейти в <em>Настройки -&gt; Чтение</em>. Здесь вы можете настроить базовое форматирование ваших постов. Например, опция «<em>Отображение на главной странице</em>» может быть установлена как «<em>Ваши последние записи</em>» (по умолчанию) или как статическая страница и страница записи. В обоих случаях на странице, где перечислены ваши посты, потребуется пагинация.</p>
+
+
+<div>
+<figure><img src="images/wordpress-nastroiki.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Важный параметр, на который следует обратить внимание, — «<em>На страницах блога отображать не более</em>«. Здесь вы можете добавить любое целое число, чтобы указать, сколько записей должно быть показано на каждой странице. После добавления пагинации на вашу страницу любая запись, превышающая это число, будет показана на следующей странице.</p>
+
+
+
+<p>Скорее всего, вы захотите оставить обе эти опции по умолчанию. Но если вы захотите быстро изменить количество постов, отображаемых на каждой странице, или то, где перечислены записи вашего блога, вы можете сделать это в этом разделе админки.</p>
+
+
+
+<h2><span id="Dobavlenie_paginacii_vrucnuu">Добавление пагинации вручную</span></h2>
+
+
+
+<p>Если вы создаете свою собственную тему или хотите добавить пагинацию в свою тему, вы можете сделать это с помощью встроенных функций WordPress и нескольких строк кода.</p>
+
+
+
+<p>Существует два различных метода вставки пагинации.</p>
+
+
+
+<p>Либо с помощью ссылок «<em>Предыдущие записи</em>» и «<em>Следующие записи</em>«, добавленных в нижней части страницы, либо с помощью полной строки пагинации с номерами страниц (<em>1 … 3 4 5 6 7 … 9</em>). Мы рассмотрим каждый из них.</p>
+
+
+
+<h3><span id="Dobavlenie_ssylok_na_predydusie_i_sleduusie_zapisi">Добавление ссылок на предыдущие и следующие записи</span></h3>
+
+
+
+<p>Если вы хотите добавить поддержку пагинации в свою тему, то большую часть приведенного здесь кода следует поместить в файл <strong><em>functions.php</em></strong> вашей темы или дочерней темы. Если вы используете премиум-тему, я бы рекомендовал установить дочернюю тему с пользовательской функциональностью.</p>
+
+
+
+<p>Чтобы добавить пагинацию в тему WordPress, нам нужно создать функцию, которая будет выводить ссылки на предыдущее и следующее посты внизу страницы, а затем добавить ее на страницу нашего шаблона. Это похоже на ссылки «Старые записи» и «Новые записи», которые вы могли видеть в разных простых темах.</p>
+
+
+
+<p>Однако нам также необходимо убедиться, что эти ссылки отображаются только тогда, когда есть записи, на которые можно сослаться. Например, нам не нужна ссылка «Новые записи» на первой странице и «Старые записи» на последней. Первым шагом будет создание функции. Вы можете сделать это, открыв файл <em><strong>functions.php</strong></em>, прокрутив его до самого низа и добавив этот код:</p>
+
+
+
+<pre><code class="language-php">function pagination_nav() {
+    global $wp_query;
+ 
+    if ( $wp_query-&gt;max_num_pages &gt; 1 ) { ?&gt;
+        &lt;nav class="pagination" role="navigation"&gt;
+            &lt;div class="nav-previous"&gt;&lt;?php next_posts_link( '← Older posts' ); ?&gt;&lt;/div&gt;
+            &lt;div class="nav-next"&gt;&lt;?php previous_posts_link( 'Newer posts →' ); ?&gt;&lt;/div&gt;
+        &lt;/nav&gt;
+&lt;?php }
+}</code></pre>
+
+
+
+<p>При добавлении в шаблон эта функция выводит предыдущую и следующую ссылки, обернутые в навигационный тег HTML5. Первая часть функции проверяет, есть ли на самом деле более одной страницы постов. Если нет, то этот код не потребуется.</p>
+
+
+
+<p>Далее он фактически структурирует HTML-разметку. Мы начинаем с базового тега <code>nav</code>, а затем используем функции <code>next_posts_link</code> и <code>previous_posts_link</code> внутри тегов <code>div</code>. Обе эти функции принимают HTML в качестве первого аргумента, который можно использовать для настройки фактического выводимого текста. Мы включаем немного HTML и HTML-стрелки в каждую из них, чтобы позже мы могли придать этому стиль с помощью CSS.</p>
+
+
+
+<p>После того как вы добавили эту функцию в <strong><em>functions.php</em></strong>, вам просто нужно объявить ее в вашей актуальной теме. Для этого перейдите в тему, выберите файл, в котором вы хотите добавить постраничную навигацию, обычно это файл <em><strong>index.php</strong></em> или <strong><em>archive.php</em></strong>, и прокрутите вниз до конца цикла. </p>
+
+
+
+<p>Пагинацию часто добавляют после <code>endwhile</code> и перед любыми операторами <code>else</code> внутри цикла. </p>
+
+
+
+<p>Добавляем единственную строку:</p>
+
+
+
+<pre><code class="language-php">&lt;?php pagination_nav(); ?&gt;</code></pre>
+
+
+
+<p>Это выведет ссылки на ваши страницы под вашим контентом, и будет показывать ссылки только тогда, когда они будут уместны.</p>
+
+
+
+<h3><span id="Dobavlenie_paginacii_s_nomerami_stranic">Добавление пагинации с номерами страниц</span></h3>
+
+
+
+<p>Если вы хотите что-то более продвинутое, чем просто ссылки на старые и новые записи блога, вы также можете использовать WordPress для вывода списка номеров страниц, со следующей и предыдущей ссылкой на каждой стороне.</p>
+
+
+
+<p>Настройка этого параметра фактически очень похожа на настройку базовой пагинации, но вместо ссылок на следующий и предыдущий пост мы будем использовать функцию <code>paginate_links</code> WordPress. </p>
+
+
+
+<p>Это позволит вывести полную панель пагинации, где бы вы ни разместили ее в своих шаблонах. И снова, первый кусочек кода будет размещен в файле <strong><em>functions.php</em></strong> нашей темы или дочерней темы. Мы будем использовать ссылки <strong><em>paginate</em></strong> для подсчета количества страниц и отображения списка ссылок соответствующим образом.</p>
+
+
+
+<pre><code class="language-php">function pagination_bar() {
+    global $wp_query;
+ 
+    $total_pages = $wp_query-&gt;max_num_pages;
+ 
+    if ($total_pages &gt; 1){
+        $current_page = max(1, get_query_var('paged'));
+ 
+        echo paginate_links(array(
+            'base' =&gt; get_pagenum_link(1) . '%_%',
+            'format' =&gt; '/page/%#%',
+            'current' =&gt; $current_page,
+            'total' =&gt; $total_pages,
+        ));
+    }
+}</code></pre>
+
+
+
+<p>И снова мы добавляем глобальный объект <code>$wp_query</code>, чтобы иметь доступ ко всем нашим постам. Далее мы определяем, сколько страниц существует на нашей странице, используя функцию <code>max_num_pages</code>, и выполняем условную проверку, чтобы убедиться, что существует более 1 страницы, что делает необходимым пагинацию. В противном случае ничего не будет показано. Наконец, мы используем функцию <code>get_query_var</code>, чтобы узнать, на какой странице мы сейчас находимся.</p>
+
+
+
+<p>Последний шаг — это использование функции <code>paginate_links</code> для отображения списка страниц, а также кнопок «<em>Предыдущая</em>» и «<em>Следующая</em>«. В параметре <code>base</code> мы передаем нашу начальную страницу. В параметре <code>format</code> мы можем указать, как мы хотим, чтобы URL изменялся при обращении к последующим страницам.</p>
+
+
+
+<p>В приведенном выше примере страницы будут отображаться как <em><strong>http://site.com/page/2</strong></em> и т.д. Последнее, что мы делаем, это используем собранные нами переменные, чтобы определить, на какой странице мы сейчас находимся, и сколько всего страниц. Используя эти данные, WordPress может отобразить для нас стандартную панель пагинации.</p>
+
+
+
+<p>Чтобы добавить пагинацию, перейдите на страницу, на которую вы хотите добавить функциональность (обычно <strong><em>index.php</em></strong> или <strong><em>archive.php</em></strong>), и вставьте следующий код непосредственно перед концом нашего цикла, после оператора <code>endif</code>, но перед <code>endwhile</code>.</p>
+
+
+
+<pre><code class="language-php">&lt;nav class="pagination"&gt;
+    &lt;?php pagination_bar(); ?&gt;
+&lt;/nav&gt;</code></pre>
+
+
+
+<p>Вместо простых ссылок «Следующая» и «Предыдущая» теперь вы увидите полный список связанных страниц, как на изображении выше.</p>
+
+
+
+<h2><span id="Ispolzovanie_plagina">Использование плагина</span></h2>
+
+
+
+<p>Если вам нужна более индивидуальная пагинация, или вы не хотите реализовывать ее вручную, есть несколько плагинов, которые могут помочь. </p>
+
+
+
+<h3><span id="WP-PageNavi">WP-PageNavi</span></h3>
+
+
+
+<p>Пожалуй, самым популярным является <a href="https://wordpress.org/plugins/wp-pagenavi/" target="_blank" rel="noreferrer noopener">WP-PageNavi</a>, потому что его легко установить, легко настроить и легко стилизовать.</p>
+
+
+
+<p>Если вы устанавливаете плагин на свою собственную тему, вам придется добавить одну функцию вместо типичной пагинации.</p>
+
+
+
+<pre><code class="language-php">&lt;?php wp_pagenavi(); ?&gt;</code></pre>
+
+
+
+<p>Затем вы можете использовать страницу настроек плагина для настройки каждого аспекта пагинации. Выберите, какой текст отображать для следующей и предыдущей ссылок, когда показывать пагинацию и формат каждого раздела пагинации.</p>
+
+
+
+<p>WP-PageNavi примет эти настройки и выведет полностраничную навигацию в нижней части ваших страниц, которая сообщит пользователям, сколько всего страниц, на какой странице они сейчас находятся, а также ссылки на следующую, предыдущую, первую и последнюю страницы.</p>
+
+
+
+<p>Плагин поставляется в комплекте со стилями по умолчанию, но вы можете удалить их в админке, если хотите сделать стиль самостоятельно.</p>
+
+
+
+<h3><span id="WP-Paginate">WP-Paginate</span></h3>
+
+
+
+<p>WP Paginate очень похож на WP-PageNavi, но имеет несколько дополнительных функций, которые вы можете найти полезными. Например, вы можете управлять разметкой, в которую обернута ваша пагинация, если вы хотите впоследствии настроить ее с помощью CSS, а также выбрать точное количество номеров страниц, которые будут отображаться в вашей пагинации, чтобы она не стала слишком громоздкой. Как и в WP-PageNavi, номера страниц добавляются на страницу с помощью одной функции, заменяя существующую пагинацию.</p>
+
+
+
+<pre><code class="language-php">&lt;?php if(function_exists('wp_paginate_comments')) {
+    wp_paginate_comments();
+} ?&gt;</code></pre>
+
+
+
+<p>В вашей теме будет выведен полностью стилизованный список страниц, который вы можете настроить с помощью параметров плагина. WP-Paginate отлично подходит, если вы ищете простое решение, которое не перегружено множеством опций и работает автоматически.</p>
+
+
+
+<h3><span id="WP_Smart_Navigation">WP Smart Navigation</span></h3>
+
+
+
+<p>Если вы ищете немного альтернативный подход к пагинации, вы можете попробовать WP Smart Navigation. Его вывод похож на WP-Pagenavi, но он также имеет простую ссылку «Jump To» («Перейти к …») в конце пагинации, чтобы пользователи могли перейти на любую страницу, введя ее в текстовое поле. Чтобы использовать эту функцию, вы можете заменить любую существующую пагинацию на:</p>
+
+
+
+<pre><code class="language-php">&lt;?php echo do_shortcode('[wpsp]'); ?&gt;</code></pre>
+
+
+
+<p>У него не так много возможностей для настройки, как у WP-PageNavi, но его стиль в основном наследуется от вашей темы, поэтому он подходит практически везде. Если вы ведете блог с большим количеством страниц, где навигация очень важна для пользователей, то этот плагин может быть идеальным для вас.</p>
+
+
+
+<h2><span id="Vmesto_zaklucenia">Вместо заключения</span></h2>
+
+
+
+<p>Раньше было гораздо сложнее добавить надлежащую навигацию в WordPress из коробки, но в последние годы поддержка стала намного лучше. Если вам нужна только базовая навигация для пользователей в нижней части списка постов, то стандартные функции WordPress должны работать отлично. Но если ваш сайт более сложный и вам нужно получить немного больше от пагинации, плагин может работать лучше для вас и учитывать более сложные случаи использования. Выбор остается за вами.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 13 мая 2023 в 20:42</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

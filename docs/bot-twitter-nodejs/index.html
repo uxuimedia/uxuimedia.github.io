@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Создаем простого бота Twitter с Node.js &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Создаем простого бота Twitter с Node.js</h1>
+
+<p>Создадим простого бота в Twitter с использованием Javascript и Node.js и 38 строк кода.</p>
+
+<p>Это первый урок в серии из нескольких частей. В следующих статьях я покажу вам, как добавить более продвинутую функциональность нашему боту. На данный момент мы собираемся создать очень простого бота в Twitter, который будет лайкать тех, кто пишет на определенные темы.</p>
+
+<h2>Создаем приложение</h2>
+
+<p>Готовы? Давай сделаем это. Вот что нам понадобится:</p>
+
+<ul>
+<li><strong>API Twitter</strong>: если у вас есть учетная запись Twitter, вы можете использовать API Twitter. Вы можете прочитать документацию по API.</li>
+<li><strong>Node.js</strong>: посетите официальный сайт Node.js, чтобы загрузить и установить Node, если вы этого еще не сделали.</li>
+<li><strong>Twitter NPM</strong>: модуль NPM Twitter, который позволяет легко взаимодействовать с API Twitter.</li>
+</ul>
+
+<p>Основная причина, по которой этот бот будет работать, это API Twitter. На самых базовых уровнях API — это просто способ взаимодействия одной программы с другой.</p>
+
+<p>Мы будем создавать приложение Node.js, которое взаимодействует с API Twitter. В этом приложении API позволит нам искать твиты и добавлять их в избранное.</p>
+
+<p>Чтобы использовать Twitter API, нам нужна информация! Зайдите в Twitter API и создайте новое приложение.</p>
+
+<div>
+<figure><img src="images/nodejs-bot-twitter-01.png" alt="" class="img-fluid"></figure></div>
+
+<p>Вам нужно будет заполнить некоторую информацию, а затем найти лополнительную информацию на вкладке Ключи и токены доступа (Keys и Access Tokens). Возможно, вам придется нажать «Создать токен доступа» (Generate Access Token), чтобы создать свой токен доступа.</p>
+
+<ul>
+<li>Consumer Key</li>
+<li>Consumer Secret</li>
+<li>Access Token Key</li>
+<li>Access Token Secret</li>
+</ul>
+
+<div>
+<figure><img src="images/nodejs-bot-twitter-02.png" alt="" class="img-fluid"></figure></div>
+
+<p>Как только вы увидите эти ключи, вы будете готовы перейти к следующему разделу.</p>
+
+<h2>Конфигурация</h2>
+
+<p>Теперь, когда у нас есть необходимая информация о приложении, давайте настроим нашего бота.</p>
+
+<p>1. Создайте пустой каталог с именем <code>twitter-bot</code> и запустите:</p>
+
+<pre><code class="language-bash">$ npm init</code></pre>
+
+<p>2. Заполните необходимую информацию для инициализации нашего проекта.</p>
+
+<p>Вот как выглядел мой файл <code>package.json</code> после инициализации моего проекта. Примечание: ваш может выглядеть немного иначе, это нормально.</p>
+
+<pre><code class="language-json">{
+  "name": "twitter-bot",
+  "version": "1.0.0",
+  "description": "Nodejs Twitter Bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmorelli25/Twitter-Bot.git"
+  },
+  "author": "Brandon Morelli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bmorelli25/Twitter-Bot/issues"
+  },
+  "homepage": "https://github.com/bmorelli25/Twitter-Bot#readme"
+}</code></pre>
+
+<p>3. Затем мы сохраним нашу необходимую зависимость, выполнив:</p>
+
+<pre><code class="language-bash">$ npm install --save twitter</code></pre>
+
+<p>4. Создайте два файла, <code>config.js</code> и <code>app.js</code></p>
+
+<p>Наш файл <code>config.js</code> будет хранить информацию о конфигурации. Файл <code>app.js</code> будет содержать код нашего бота твиттера.</p>
+
+<p>5. Давайте добавим информацию о приложении Twitter сверху в наш файл <code>config.js</code>. Замените каждое из полей ниже соответствующими данными приложения, которые вы получили в Twitter.</p>
+
+<pre><code class="language-javascript">// config.js
+
+module.exports = {
+  consumer_key: '',
+  consumer_secret: '',
+  access_token_key: '',
+  access_token_secret: ''
+}</code></pre>
+
+<p>6. Теперь мы можем запросить (<code>require</code>) две зависимости в файле <code>app.js</code>:</p>
+
+<pre><code class="language-javascript">// app.js
+
+var Twitter = require('twitter');
+var config = require('./config.js');</code></pre>
+
+<p>7. Теперь, когда у нас есть уже кое-что, пришло время собрать все воедино. Мы делаем это, передавая наши детали конфигурации в Twitter. Добавьте следующий код в <code>app.js</code>:</p>
+
+<pre><code class="language-javascript">var T = new Twitter(config);</code></pre>
+
+<p>На данный момент у нас сделаны все настройки. Детали нашего приложения (которые необходимы для взаимодействия с API Twitter) передаются в npm модуль Twitter.</p>
+
+<p>Этот модуль npm упрощает процесс взаимодействия с API Twitter. Теперь мы можем отправлять и получать запросы к API, что позволит нам совершать действия в Twitter через нашего бота!</p>
+
+<h2>Делаем бота</h2>
+
+<p>Давайте представим как работают «лайки» в Твиттере: Есть две составляющие. Сначала вы ищете твиты, а затем выбираете один и добавляете его в избранное. Давайте сначала поработаем с функцией поиска.</p>
+
+<p>Мы собираемся установить переменную <code>params</code>, которая будет содержать параметры поиска. Есть много параметров, которые мы можем использовать.</p>
+
+<pre><code class="language-javascript">var Twitter = require('twitter');
+var config = require('./config.js');
+var T = new Twitter(config);
+
+// Настройка параметров поиска
+
+var params = {
+  q: '#nodejs',
+  count: 10,
+  result_type: 'recent',
+  lang: 'en'
+}</code></pre>
+
+<p><code>q</code> является единственным обязательным параметром,который хранит наш поисковый запрос. В этом примере мы ищем твиты, содержащие <code>#nodejs</code>. Не стесняйтесь изменять его на любой запрос, который вы хотите.</p>
+
+<p>Я также использую три дополнительных параметра поиска:</p>
+
+<p><code>count</code> — укажите количество твитов, которые вы хотите вернуть</p>
+
+<p><code>result_type: 'recent'</code> — возвращает только самые последние результаты</p>
+
+<p><code>lang: 'en'</code> — возвращает только результаты на английском языке</p>
+
+<p>Теперь, когда у нас есть параметры поиска, мы подключаем их к запросу <code>get</code>, чтобы мы могли найти некоторые твиты.</p>
+
+<pre><code class="language-javascript">T.get('search/tweets', params, function(err, data, response) {
+  if(!err){
+    // This is where the magic will happen
+  } else {
+    console.log(err);
+  }
+})</code></pre>
+
+<p>Чтобы глубже понять, что здесь происходит, вам нужно прочитать документацию по API Twitter для поиска/твитов GET, но я постараюсь ниже описать базовые понятия.</p>
+
+<p>С помощью модуля Twitter <strong>npm</strong> мы можем сделать запрос get <code>‘search/tweets’</code> (поиск/твиты) и передать в <code>params</code>, который мы установили ранее. Этот запрос get возвращает обратный вызов. Если в этом обратном вызове нет ошибок, мы запустим наш код, чтобы добавить твит в избранное. Если есть ошибка, мы создадим лог и всё.</p>
+
+<p>Отлично, теперь нам просто нужно добавить код в оператор <code>if(!err)</code> выше.</p>
+
+<p>Наш get запрос возвращает массив из нескольких твитов через объект <code>data.statuses</code>. Таким образом, нам нужно пройтись по всем твитам в этом массиве и выбрать каждый из них в отдельности. Вот как мы это делаем:</p>
+
+<pre><code class="language-javascript">// Loop through the returned tweets
+    for(let i = 0; i &lt; data.statuses.length; i++){
+      // Get the tweet Id from the returned data
+      let id = { id: data.statuses[i].id_str }
+      // Try to Favorite the selected Tweet
+      T.post('favorites/create', id, function(err, response){
+        // If the favorite fails, log the error message
+        if(err){
+          console.log(err[0].message);
+        }
+        // If the favorite is successful, log the url of the tweet
+        else{
+          let username = response.user.screen_name;
+          let tweetId = response.id_str;
+          console.log('Favorited: ', `https://twitter.com/${username}/status/${tweetId}`)
+        }
+      });
+    }</code>
+</pre>
+
+<ol>
+<li>Мы создаем цикл <code>for</code> и проходим каждый твит (пока не достигнем длины <code>data.statuses</code>).</li>
+<li>Внутри нашего цикла <code>for</code> мы фиксируем идентификатор твита, используя <code>data.statuses[i].id_str</code>. Нам нужен этот идентификатор для нашего <code>post</code> запроса.</li>
+<li>Создаем post запрос <code>'favorites/create'</code> (избранное/создать). Этот роут API, который используется для добавления твита в избранное. Мы передаем наш идентификатор твита и запрос возвращает обратный вызов (колбек или callback).</li>
+<li>В нашем колбеке мы ищем ошибку. Если есть ошибка, мы фиксируем логи с сообщением об ошибке. В большинстве случаев появляется сообщение об ошибке, потому что мы пытаемся добавить в избранное твит, который мы уже добавили в избранное.</li>
+<li>Если ошибки нет, бот будет добавлять твит в избранное. В качестве дополнительного бонуса я использую возвращенный объект для создания URL нового избранного твита. Этот URL-адрес затем записывается в консоль, что позволяет легко увидеть, какие твиты предпочитает бот.</li>
+</ol>
+
+<h2>Запуск бота</h2>
+
+<p>Готово! Запустите вашего бота через командную строку:</p>
+
+<pre><code class="language-bash">$ node app.js</code></pre>
+
+<p>Вот и всё! Наш бот добавляет в избранное и записывает URL каждого твита.</p>
+
+<h2>Код бота целиком</h2>
+
+<p>Вот как выглядит итоговый файл <code>app.js</code>. Также код можно посмотреть на <a href="https://github.com/bmorelli25/Twitter-Favorite-Bot" target="_blank" rel="noreferrer noopener">GitHub</a> автора идеи, так что заходите туда, если вы хотите скачать и поиграть с ботом!</p>
+
+<pre><code class="language-javascript">var Twitter = require('twitter');
+var config = require('./config.js');
+var T = new Twitter(config);
+
+// Set up your search parameters
+var params = {
+  q: '#nodejs',
+  count: 10,
+  result_type: 'recent',
+  lang: 'en'
+}
+
+// Initiate your search using the above paramaters
+T.get('search/tweets', params, function(err, data, response) {
+  // If there is no error, proceed
+  if(!err){
+    // Loop through the returned tweets
+    for(let i = 0; i &lt; data.statuses.length; i++){
+      // Get the tweet Id from the returned data
+      let id = { id: data.statuses[i].id_str }
+      // Try to Favorite the selected Tweet
+      T.post('favorites/create', id, function(err, response){
+        // If the favorite fails, log the error message
+        if(err){
+          console.log(err[0].message);
+        }
+        // If the favorite is successful, log the url of the tweet
+        else{
+          let username = response.user.screen_name;
+          let tweetId = response.id_str;
+          console.log('Favorited: ', `https://twitter.com/${username}/status/${tweetId}`)
+        }
+      });
+    }
+  } else {
+    console.log(err);
+  }
+})</code></pre>
+
+<p>Вот список возможных улучшений и дополнений, которые мы можем сделать для нашего Twitter бота в будущем:</p>
+
+<ul>
+<li>Добавить ретвит функциональности</li>
+<li>Ответ на твиты на определенную тему / хэштег</li>
+<li>Ответить пользователям, если они подписались на вас</li>
+<li>Следить за людьми</li>
+<li>Запуск бота на сервере, а не локально</li>
+</ul>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 1 сентября 2021 в 19:25</span><br>Теги: JavaScript
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

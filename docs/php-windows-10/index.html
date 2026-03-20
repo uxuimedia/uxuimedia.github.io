@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Установка PHP на Windows 10 &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Установка PHP на Windows 10</h1>
+
+<p>Рассмотрим как установить PHP 8 и Apache 2.4 на операционную систему Windows 10 (64-bit). У пользователей Linux и macOS Apache и PHP часто предустановлены или доступны через менеджеры пакетов. Для Windows 10 требуется немного больше усилий. Приведенные ниже шаги могут работать с другими версиями Windows, PHP и Apache, но проверьте документацию по каждой зависимости для получения конкретных инструкций.</p>
+
+<h2>Почему PHP?</h2>
+
+<p>PHP остается самым распространенным и популярным языком написания сценариев на стороне сервера в веб-разработке.</p>
+
+<p>Он устанавливается большинством хостеров, имеет простую схему обучения, тесную связь с базой данных MySQL, превосходную документацию и отличную коллекцию библиотек для сокращения времени разработки.</p>
+
+<p>Возможно, PHP не идеален, но его стоит рассмотреть как вариант для вашего следующего веб-приложения. На этом языке работают Facebook, Slack, Wikipedia, MailChimp, Etsy и WordPress — система управления контентом, на которой работает <span class="back-yellow"><strong>40%</strong></span> всего Интернета.</p>
+
+<h2>Зачем устанавливать PHP локально?</h2>
+
+<p>Установка PHP на вашем компьютере для разработки позволяет вам безопасно создавать и тестировать веб-сайты и приложения, не затрагивая данные и системы на вашем живом сервере.</p>
+
+<p>Вы избегаете тем самым большинства проблем, которые могут возникнуть в случае разработки сразу на рабочем сервере.</p>
+
+<h2>Альтернативные варианты установки</h2>
+
+<p>Прежде чем мы начнем, мы можем попробовать использовать более простые варианты установки.</p>
+
+<h3>Использование пакета «Все в одном»</h3>
+
+<p>Для Windows доступны пакеты «все в одном», которые содержат Apache, PHP, MySQL и многие другие зависимости в одном установочном файле — например, XAMPP, WampServer и Web.Developer. В России и в СНГ самым популярным сервером является Openserver (официальный сайт — <em>ospanel.io</em>).</p>
+
+<p>Эти пакеты просты в использовании, но они могут не совсем соответствовать вашему рабочему серверу. Установка Apache и PHP вручную поможет вам больше узнать о системе и параметрах конфигурации.</p>
+
+<h3>Использование виртуальной машины Linux</h3>
+
+<p>Microsoft Hyper-V (поставляется в Windows 10 Professional) и <a href="https://www.virtualbox.org/" target="_blank" rel="noreferrer noopener nofollow">VirtualBox</a> — это бесплатные гипервизоры, которые эмулируют ПК, чтобы вы могли установить другую операционную систему.</p>
+
+<p>Вы можете установить любую версию Linux, а затем следовать инструкциям по установке Apache и PHP. Кроме того, такие дистрибутивы, как <a href="https://ubuntu.com/download/server" target="_blank" rel="noreferrer noopener nofollow">Ubuntu Server</a>, предоставляют их в стандартной комплектации (хотя они редко бывают последних версий).</p>
+
+<h3>Использование подсистемы Windows для Linux 2</h3>
+
+<p>WSL2 также является виртуальной машиной, но она тесно интегрирована в Windows, поэтому такие действия, как обмен файлами и разрешение localhost, выполняются без проблем. Вы можете установить несколько дистрибутивов Linux, поэтому обратитесь к соответствующим инструкциям по Apache и PHP.</p>
+
+<h3>Использование Docker</h3>
+
+<p><a href="https://www.docker.com/" target="_blank" rel="noreferrer noopener">Docker</a> создает оболочку (известную как контейнер) вокруг предварительно настроенных зависимостей приложений, таких как Apache, PHP, MySQL, MongoDB и большинства других веб-программ. Контейнеры выглядят как полноценные виртуальные машины Linux, но значительно более легковесны.</p>
+
+<p>После установки Docker Desktop на Windows 10 можно легко загрузить, настроить и запустить Apache и PHP. В настоящее время Docker считается лучшим вариантом для создания среды разработки PHP.</p>
+
+<h2>Установка Apache (необязательно)</h2>
+
+<p>Если вы все еще читаете, в следующих разделах описывается, как установить Apache и PHP непосредственно на Windows.</p>
+
+<p>PHP предоставляет встроенный веб-сервер, который можно запустить, перейдя в папку и запустив исполняемый файл PHP с параметром <code>-S</code> для установки порта localhost. Например:</p>
+
+<pre><code class="language-bash">cd \myproject
+php -S localhost:8000</code></pre>
+
+<p>Страницы PHP можно просматривать в браузере по адресу <strong>http://localhost:8000</strong>.</p>
+
+<p>Этого может быть достаточно для быстрого тестирования, но ваш действующий сервер будет использовать Apache или аналогичное программное обеспечение веб-сервера. Максимально возможная эмуляция этой среды позволит избежать ошибок при разработке.</p>
+
+<p>Чтобы установить Apache, загрузите последнюю версию ZIP-файла для Win64 с сайта <a href="https://www.apachelounge.com/download/" target="_blank" rel="noreferrer noopener nofollow">apachelounge.com</a>.</p>
+
+<p>Распакуйте содержимое папки Apache24 в корень диска <code>C:</code>. Вам также потребуется установить Visual C++ Redistributable для Visual Studio 2015-2019 (<strong>vc_redist_x64</strong>); ссылка приведена на той же странице.</p>
+
+<p>Откройте командную строку <code>cmd</code> (не PowerShell) и запустите Apache с помощью:</p>
+
+<pre><code class="language-bash">cd C:\Apache24\bin
+httpd</code></pre>
+
+<p>Возможно, вам потребуется принять исключение брандмауэра, прежде чем сервер начнет работать. Откройте <strong>http://localhost</strong> в браузере, должно появиться сообщение «Работает!» (It works!). </p>
+
+<div class="attention-blue">Примечание:
+
+<ul class="wp-block-list">
+<li>Если вам нужно изменить какие-либо настройки, файл конфигурации Apache находится по адресу <strong>C:\Apache24\conf\httpd.conf</strong>.</li>
+<li>Корневая папка веб-сервера находится по адресу <strong>C:\Apache24\htdocs</strong>. Изначально она содержит единственный файл <em>index.html</em> с сообщением «It works!».</li></ul></div>
+
+<p>Кроме того, если Apache не запускается, то, скорее всего, другое приложение занимает порт <strong>80</strong>. Skype — главный виновник, а приложение Windows 10 не позволяет вам отключить его. </p>
+
+<p>Если это произошло, отредактируйте <strong>C:\Apache24\conf\httpd.conf</strong> и измените строку <code>Listen 80</code> на <code>Listen 8080</code> или любой другой свободный порт. Перезапустите Apache и с этого момента вы сможете загружать веб-файлы по адресу <strong>http://localhost:8080</strong>.</p>
+
+<p>Сервер можно остановить с помощью <strong>Ctrl+C</strong>. Файл ReadMe в ZIP-архиве также содержит инструкции по установке Apache в качестве службы Windows.</p>
+
+<h2>Устанавливаем PHP</h2>
+
+<p>Установите PHP, выполнив следующие шаги. Обратите внимание, что существует несколько способов настройки Apache и PHP, но этот способ, возможно, самый быстрый.</p>
+
+<h3>Шаг 1: Скачиваем файлы PHP</h3>
+
+<p>Вам понадобится установщик PHP для Windows. Доступно несколько версий PHP. Убедитесь, что вы скачиваете последнюю версию ZIP-пакета PHP 8 x64 Thread Safe с сайта <a href="https://www.php.net/downloads.php" target="_blank" rel="noreferrer noopener">https://www.php.net/downloads.php</a>.</p>
+
+<p>Несмотря на то, что 8-я версия PHP вышла не так уж давно — уже можно скачивать стабильную версию.</p>
+
+<h3>Шаг 2: Извлекаем файлы</h3>
+
+<p>Создайте новую папку <strong>php</strong> в корне диска <strong>C:\</strong> и извлеките в нее содержимое ZIP-архива.</p>
+
+<p>PHP может быть установлен в любом месте вашей системы, но вам нужно будет изменить пути, указанные ниже, если не будете использовать <strong>C:\php</strong>.</p>
+
+<h3>Шаг 3: Конфигурируем php.ini</h3>
+
+<p>Конфигурационный файл PHP называется <strong>php.ini</strong>. Изначально его не существует, поэтому скопируйте содержимое <strong>C:\php\php.ini-development</strong> во вновь созданный файл <strong>C:\php\php.ini</strong>. Эта конфигурация по умолчанию обеспечивает настройку для разработки, которая сообщает обо всех ошибках и предупреждениях PHP.</p>
+
+<p>Есть несколько строк, которые вам, возможно, придется изменить в текстовом редакторе (используйте поиск, чтобы найти текущее значение). В большинстве случаев вам нужно убрать точку с запятой (<code>;</code>), чтобы раскомментировать параметр.</p>
+
+<p>Сначала включите все необходимые расширения. Это зависит от библиотек, которые вы хотите использовать, но следующие расширения должны подходить для большинства приложений:</p>
+
+<pre><code class="language-bash">extension=curl
+extension=gd
+extension=mbstring
+extension=pdo_mysql</code></pre>
+
+<p>Если вы хотите отправлять электронные письма с помощью функции PHP <code>mail()</code>, введите данные SMTP-сервера в разделе <code>[mail function]</code> (сервер вашего провайдера ISP должен подойти):</p>
+
+<pre><code class="language-bash">[mail function]
+; For Win32 only.
+; http://php.net/smtp
+SMTP = mail.myisp.com
+; http://php.net/smtp-port
+smtp_port = 25
+
+; For Win32 only.
+; http://php.net/sendmail-from
+sendmail_from = my@emailaddress.com</code></pre>
+
+<h3>Шаг 4: Добавляем C:\php в переменную окружения path</h3>
+
+<p>Чтобы Windows могла найти исполняемый файл PHP, необходимо изменить переменную окружения PATH. Нажмите кнопку «Пуск» в Windows и введите «environment», затем нажмите «Редактировать переменные окружения системы» (<strong>Edit the system environment variables</strong>). Выберите вкладку «Дополнительно» (<strong>Advanced</strong>) и нажмите кнопку «Переменные среды» (<strong>Environment Variables</strong>).</p>
+
+<p>Прокрутите вниз список <strong>System variables</strong> и нажмите <strong>Path</strong>, а затем кнопку <strong>Edit</strong>. Нажмите кнопку <strong>New</strong> и добавьте <code>C:\php</code>:</p>
+
+<div>
+<figure><img src="images/ustanovka-php-path.jpg" alt="" class="img-fluid"></figure>
+</div>
+
+<p>Обратите внимание, что в старых редакциях Windows есть одно текстовое поле, где каждый путь отделяется точкой с запятой (<code>;</code>).</p>
+
+<p>Нажимайте <strong>OK</strong>, чтобы выйти. Перезагрузка не потребуется, но вам может понадобиться закрыть и перезапустить все открытые терминалы <strong>cmd</strong>.</p>
+
+<h3>Шаг 5: Конфигурирование PHP как модуля Apache</h3>
+
+<p>Убедитесь, что Apache не запущен, и откройте его файл конфигурации <strong>C:\Apache24\conf\httpd.conf</strong> в текстовом редакторе. Добавьте следующие строки в нижнюю часть файла, чтобы установить PHP как модуль Apache (при необходимости измените расположение файлов):</p>
+
+<pre><code class="language-bash"># PHP8 module
+PHPIniDir "C:/php"
+LoadModule php_module "C:/php/php8apache2_4.dll"
+AddType application/x-httpd-php .php</code></pre>
+
+<p>По желанию измените параметр DirectoryIndex, чтобы загружать index.php вместо index.html, когда он будет найден. Первоначальная настройка такая:</p>
+
+<pre><code class="language-bash">&lt;IfModule dir_module&gt;
+    DirectoryIndex index.html
+&lt;/IfModule&gt;</code></pre>
+
+<p>Меняем на:</p>
+
+<pre><code class="language-bash">&lt;IfModule dir_module&gt;
+    DirectoryIndex index.php index.html
+&lt;/IfModule&gt;</code></pre>
+
+<p>Сохраните файл <strong><em>httpd.conf</em></strong> и проверьте изменения из командной строки <code>cmd</code>:</p>
+
+<pre><code class="language-bash">cd C:\Apache24\bin
+httpd -t</code></pre>
+
+<p>Если в вашей конфигурации нет ошибок, то должно появиться сообщение:</p>
+
+<pre><code class="language-bash">Syntax OK</code></pre>
+
+<p>Если все прошло успешно, перезапустите Apache с помощью <code>httpd</code>.</p>
+
+<h3>Шаг 6: Тестируем PHP-файл</h3>
+
+<p>Создайте новый файл с именем <em><strong>index.php</strong></em> в корневой папке веб-страницы Apache по адресу <strong><em>C:\Apache24\htdocs</em></strong> и добавьте следующий PHP-код:</p>
+
+<pre><code class="language-bash">&lt;?php
+phpinfo();
+?&gt;</code>
+</pre>
+
+<p>Откройте веб-браузер и введите адрес вашего сервера: <strong>http://localhost/</strong>. Появится страница «PHP version», показывающая различные настройки конфигурации PHP и Apache.</p>
+
+<p>Теперь вы можете создавать PHP сайты и приложения в любой подпапке <strong>C:\Apache24\htdocs</strong>. Если вам нужно работать над несколькими проектами, подумайте об определении виртуальных хостов Apache, чтобы вы могли запускать отдельные скрипты на разных доменах или портах <strong>localhost</strong>.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 2 января 2023 в 20:14</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Advanced Custom Fields (ACF) — плагин для произвольных полей в WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container-fluid">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 col-lg-3">
+			<div class="content-blocks bg-light p-3">
+				<div>
+					<b>Содержание</b>
+				</div>
+				<div>
+					<span>1</span> <a href="#O_plagine_Advanced_Custom_Fields"><span>О плагине Advanced Custom Fields</span></a>
+				</div>
+				<div>
+					<span>2</span> <a href="#Dobavlenie_polej"><span>Добавление полей</span></a>
+				</div>
+				<div>
+					<span>3</span> <a href="#Redaktirovanie_polej_v_Advanced_Custom_Fields"><span>Редактирование полей в Advanced Custom Fields</span></a>
+				</div>
+				<div>
+					<span>4</span> <a href="#Otobrazenie_znacenij"><span>Отображение значений</span></a>
+				
+					<div class="px-3 pt-2">
+						<div>
+							<span>4.1</span> <a href="#Bazovyj_primer_No_1"><span>Базовый пример № 1</span></a>
+						</div>
+						<div>
+							<span>4.2</span> <a href="#Bazovyj_primer_No_2"><span>Базовый пример № 2</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>5</span> <a href="#Otobrazenie_znacenij_dla_opredelennogo_termina"><span>Отображение значений для определенного термина</span></a>
+				</div>
+				<div>
+					<span>6</span> <a href="#Sortkody_v_ACF"><span>Шорткоды в ACF</span></a>
+				</div>
+				<div>
+					<span>7</span> <a href="#auto-embed"><span>auto-embed</span></a>
+				</div>
+				<div>
+					<span>8</span> <a href="#Ispolzovanie_uslovnyh_operatorov"><span>Использование условных операторов</span></a>
+				</div>
+				<div>
+					<span>9</span> <a href="#Rabota_so_znaceniami_massiva"><span>Работа со значениями массива</span></a>
+				</div>
+				<div>
+					<span>10</span> <a href="#Rabota_s_izobrazeniami_-_URL"><span>Работа с изображениями — URL</span></a>
+				</div>
+				<div>
+					<span>11</span> <a href="#Rabota_s_izobrazeniami_-_ID"><span>Работа с изображениями — ID</span></a>
+				</div>
+				<div>
+					<span>12</span> <a href="#Rabota_s_polem_Repeater"><span>Работа с полем Repeater</span></a>
+				</div>
+				<div>
+					<span>13</span> <a href="#Polucenie_znacenij_s_drugoj_stranicy"><span>Получение значений с другой страницы</span></a>
+				</div>
+				<div>
+					<span>14</span> <a href="#Zapros_zapisej_so_znaceniami"><span>Запрос записей со значениями</span></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Advanced Custom Fields (ACF) — плагин для произвольных полей в WordPress</h1>
+
+<p>Когда речь заходит о пользовательских полях WordPress, плагин Advanced Custom Fields или ACF является одним из самых известных.</p>
+
+<h2><span id="O_plagine_Advanced_Custom_Fields">О плагине Advanced Custom Fields</span></h2>
+
+<p>Плагин ACF облегчает работу с пользовательскими полями во всех аспектах. Плагин легкий и мощный, который позволяет настроить дополнительные произвольные поля в WordPress.</p>
+
+
+
+<p>В этом блоке руководства по произвольным полям мы разберем ряд примеров, одним из которых будет добавление картинки к тегу WordPress с помощью ACF и отображение её на сайте.</p>
+
+
+
+<p>Задача довольно тривиальная. т.е. простая, но иногда приходится немного помучиться, чтобы получить результат, который устроит без лишних циклов PHP и т.п. В этом блоке разберемся как добавить пользовательские поля в таксономии, изменить шаблон для термина таксономии под свои нужды.</p>
+
+
+
+<p>Термины могут быть такими элементами, как категории WordPress, теги или другие пользовательские таксономии, которые были добавлены на ваш сайт. Например, популярные плагины, такие как WooCommerce, добавляют пользовательские таксономии при активации.</p>
+
+
+
+<p>Дополнительную информацию о таксономиях можно найти в официальной документации <a href="https://codex.wordpress.org/Taxonomies" target="_blank" rel="noreferrer noopener">WordPress Codex</a>. У ACF существует множество функций, и все они хорошо документированы на <a href="https://www.advancedcustomfields.com/resources/#functions" target="_blank" rel="noreferrer noopener">официальном ресурсе</a> плагина.</p>
+
+
+
+<h2><span id="Dobavlenie_polej">Добавление полей</span></h2>
+
+
+
+<p>Плагин <a href="https://wordpress.org/plugins/advanced-custom-fields/" target="_blank" rel="noreferrer noopener">Advanced Custom Fields</a> позволяет очень просто добавлять пользовательские поля в термины таксономии. С этого и начнем. Пожалуйста, выполните следующие действия.</p>
+
+
+
+<ol>
+<li>На экране администратора Custom Fields нажмите кнопку <strong>Add New</strong>, чтобы создать новую группу полей.</li>
+
+
+
+<li>Добавьте поля, которые вы хотите видеть при редактировании термина таксономии.</li>
+
+
+
+<li>В разделе <strong>Locations</strong> выберите правило <strong>Taxonomy Term</strong> и выберите соответствующее значение для отображения этой группы полей</li>
+</ol>
+
+
+<div>
+<figure><img src="images/acf-dobavlenie-polei.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Скриншот выше демонстрирует добавление полей <strong>Цвета</strong> и <strong>Изображения</strong> для <strong>Категорий</strong> Вордпресса.</p>
+
+
+
+<h2><span id="Redaktirovanie_polej_v_Advanced_Custom_Fields">Редактирование полей в Advanced Custom Fields</span></h2>
+
+
+
+<p>После того как вы создали группу полей и назначили ее для отображения на экране редактирования термина таксономии, редактирование значений полей осуществляется путем перехода к соответствующей таксономии. </p>
+
+
+
+<p>Например, если вы назначили группу полей для категорий постов, перейдите в <strong>Posts -&gt; Categories</strong>.</p>
+
+
+<div>
+<figure><img src="images/acf-dobavlenie-polei-002.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>Скриншот выше показывает добавление изображение к <strong>Категории</strong> «Hiking Trails».</p>
+
+
+
+<h2><span id="Otobrazenie_znacenij">Отображение значений</span></h2>
+
+
+
+<p>Теперь переходим к самому главному — отображению данных полей на фронтенде вашего сайта.</p>
+
+
+
+<p>Настройка шаблона для термина таксономии WordPress может быть легко выполнена путем редактирования файлов <strong>category.php</strong>, <strong>tag.php</strong> или <strong>taxonomy.php</strong> в вашей теме. В зависимости от вашей темы, вы также можете использовать части шаблона или фильтры для настроек.</p>
+
+
+
+<p>Плагин Advanced Custom Fields (ACF) довольно простой, но очень функциональный. Алгоритм действия с этим плагином почти такой же как и без него:</p>
+
+
+
+<ol>
+<li>Добавляем плагин ACF через админку</li>
+
+
+
+<li>Активируем плагин</li>
+
+
+
+<li>Добавляем «Группу полей» в настройках ACF</li>
+
+
+
+<li>Добавляем произвольное поле с названием и содержимом в «Группе полей»</li>
+
+
+
+<li>Добавляем функционал вывода произвольного поля в теме WordPress</li>
+
+
+
+<li>Публикуем статью</li>
+
+
+
+<li>Проверяем запись и вывод  поля во фронтенде</li>
+</ol>
+
+
+
+<p>Здесь я не буду объяснять как устанавливать и активировать плагин, этого мы коснемся еще. После того как с плагином всё хорошо — создаем «Группу полей» и добавляем «Произвольное поле».</p>
+
+
+<div>
+<figure><img src="images/blok-proizvolnie-polya-06.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>На скриншоте выше видно, что мы создали группу полей «Поля для статей» и в этой группе мы добавили поле «Ссылка на оригинал» со слагом <code>original_link</code> и с условием:</p>
+
+
+
+<p><em><strong>Тип записи -&gt; Равно -&gt; Запись</strong></em></p>
+
+
+
+<p>Теперь при добавлении статьи мы увидим блок:</p>
+
+
+<div>
+<figure><img src="images/blok-proizvolnie-polya-07.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Добавляем значение в нужное поле и обновляем запись. Теперь остается только вывести значение данного поля на фронтенд через добавление кода в файл <strong><em>single.php</em></strong> темы WordPress.</p>
+
+
+
+<p>После того как вы создали группу полей и ввели некоторые данные, вы можете загрузить и отобразить эти данные в вашей теме.</p>
+
+
+
+<p>Все значения сохраняются как собственные <code>post_meta</code> (при сохранении в записи), и хотя вы можете использовать встроенную функцию WP <code>get_post_meta()</code>, лучше использовать соответствующую функцию ACF, такую как <code>get_field()</code>. Почему? Потому что ACF отформатирует значение в зависимости от типа поля и сделает разработку быстрее и проще!</p>
+
+
+
+<p>В ACF есть две основных функции для вывода значений полей — <code>the_field()</code> и <code>get_field()</code>. </p>
+
+
+
+<p>Чтобы получить значение поля как переменную, используйте функцию <code>get_field()</code>. Это наиболее универсальная функция, которая всегда будет возвращать значение для любого типа поля. Получение поля как переменной:</p>
+
+<pre><code class="language-php">&lt;?php
+
+$variable = get_field('field_name');
+
+// что-то дальше делаем
+
+?&gt;</code></pre>
+
+<p>Чтобы отобразить поле, используйте <code>the_field()</code> аналогичным образом, например:</p>
+
+<pre><code class="language-php">&lt;p&gt;&lt;?php the_field('field_name'); ?&gt;&lt;/p&gt;</code></pre>
+
+<p>Мы в цикле сначала проверим наличие нужного нам поля, а затем в случае его наличия выведем значение во фронтенд.</p>
+
+
+
+<pre><code class="language-php">&lt;?php while ( have_posts() ) : the post(); ?&gt; // Начало Цикла
+
+&lt;?php 
+    $originalLink = get_field('original_link');
+    if ($originalLink) {
+        echo '&lt;br&gt;&lt;small&gt;&lt;a href="' . $originalLink . '" rel="noopener nofollow" target="_blank"&gt;Ссылка на оригинал&lt;/a&gt;&lt;/small&gt;';
+    }
+
+&lt;?php endwhile; ?&gt; // Конец цикла</code></pre>
+
+
+
+<p>Все значения сохраняются как «родное» для WordPress <code>post_meta</code> (при сохранении записи), и хотя вы можете использовать «родную» функцию WP <code>get_post_meta()</code>, лучше использовать соответствующую функцию ACF, например <code>get_field()</code>. Потому что ACF отформатирует значение в зависимости от типа поля и сделает разработку быстрее и проще!</p>
+
+
+
+<p>Всё. Мы выполнили поставленную мини-задачу — создали «Произвольное поле» и вывели его на сайте для показа пользователям.</p>
+
+
+
+<h3><span id="Bazovyj_primer_No_1">Базовый пример № 1</span></h3>
+
+
+
+<p>Не забудьте просмотреть примеры кода ниже, а  вот базовый пример использования:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+
+/**
+ * Template Name: Home Page
+ */
+
+get_header(); 
+
+?&gt;
+
+&lt;div id="primary"&gt;
+	&lt;div id="content" role="main"&gt;
+
+		&lt;?php while ( have_posts() ) : the_post(); ?&gt;
+
+			&lt;h1&gt;&lt;?php the_field('custom_title'); ?&gt;&lt;/h1&gt;
+
+			&lt;img src="&lt;?php the_field('hero_image'); ?&gt;" /&gt;
+
+			&lt;p&gt;&lt;?php the_content(); ?&gt;&lt;/p&gt;
+
+		&lt;?php endwhile; // end of the loop. ?&gt;
+
+	&lt;/div&gt;&lt;!-- #content --&gt;
+&lt;/div&gt;&lt;!-- #primary --&gt;
+
+&lt;?php get_footer(); ?&gt;</code></pre>
+
+
+
+<h3><span id="Bazovyj_primer_No_2">Базовый пример № 2</span></h3>
+
+
+
+<p>В примере ниже показано, как изменить шаблон <strong>category.php</strong> из темы <strong>twentyseventeen</strong> Вордпресса и вывести изображение и цвет категории в тег <code>style</code>.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+get_header(); 
+
+
+// get the current taxonomy term
+$term = get_queried_object();
+
+
+// vars
+$image = get_field('image', $term);
+$color = get_field('color', $term);
+
+?&gt;
+&lt;style type="text/css"&gt;
+	
+	.entry-title a {
+		color: &lt;?php echo $color; ?&gt;;
+	}
+	
+	&lt;?php if( $image ): ?&gt;
+	.site-header {
+		background-image: url(&lt;?php echo $image['url']; ?&gt;);
+	}
+	&lt;?php endif; ?&gt;
+	
+&lt;/style&gt;
+&lt;div class="wrap"&gt;
+	
+&lt;?php // Remaining template removed from example ?&gt;</code></pre>
+
+
+
+<p>Мы используем для вывода функцию ACF <code>get_field()</code>.</p>
+
+
+
+<p>Ниже показано, как приведенный выше код заставляет выглядеть сайт в браузере. Обратите внимание, что изображение заголовка сайта теперь отражает изображение категории, а заголовки всех записей окрашены в зеленый цвет.</p>
+
+
+<div>
+<figure><img src="images/acf-otobrazhenie-polei.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Кроме того, хотел показать как я использую данную возможность, чтобы отобразить иконки тегов на страницах архивов тегов.</p>
+
+
+
+<p>В целом, процесс довольно простой, нам достаточно создать дополнительное поле для тегов, по такому же принципу как я описал для категорий выше. И после этого вы добавляем в файл <strong>archive.php</strong> темы WordPress следующие строчки кода.</p>
+
+
+
+<pre><code class="language-php">&lt;?php 
+	$term = get_queried_object();
+	$image = get_field('tag_image', $term);
+	$archive_title = get_the_archive_title();
+	$archive_title = preg_replace('~^[^:]+: ~', '', $archive_title);
+?&gt;
+
+&lt;img src="&lt;?php echo $image; ?&gt;" alt="&lt;?php echo $archive_title; ?&gt;" class="tag-image-archive"&gt;</code></pre>
+
+
+
+<p>Давайте немного разберемся почему мы используем все эти функции.</p>
+
+
+
+<p>Функция <code>get_queried_object()</code> устанавливает и получает текущий объект запроса (полная информация о посте, метках (тегах), рубриках и т.д.).</p>
+
+
+
+<p>Функция <code>get_field()</code> — стандартная функция ACF для получения данных дополнительного поля.</p>
+
+
+
+<p>Функия <code>get_the_archive_title()</code> нам нужна, чтобы для изображения заполнить поля <code>alt</code> и <code>title</code>.</p>
+
+
+
+<p>А функция <code>preg_replace()</code>&nbsp;— выполняет поиск и замену по регулярному выражению, нужна для того, чтобы убрать название таксономии из строки. Решение подсмотрено на сайте <a href="https://wp-kama.ru/function/get_the_archive_title" target="_blank" rel="noreferrer noopener">wp-kama.ru</a>.</p>
+
+
+
+<h2><span id="Otobrazenie_znacenij_dla_opredelennogo_termina">Отображение значений для определенного термина</span></h2>
+
+
+
+<p>Все функции шаблона могут быть использованы для загрузки значений из термина таксономии, однако для определения цели термина требуется второй параметр. Это аналогично передаче параметра <code>$post_id</code> для нацеливания на конкретный объект поста.</p>
+
+
+
+<p>Существует 3 различных стиля <code>$post_id</code>, которые перечислены ниже.</p>
+
+
+
+<div class="table-responsive"><table class="table table-stripped"><tbody><tr><td><strong>Пример</strong></td><td><strong>Формат</strong></td><td><strong>Описание</strong></td></tr><tr><td><code>'category_123'</code></td><td><code>$taxonomy . '_' . $term_id</code></td><td>Строка, содержащая имя таксономии и идентификатор термина</td></tr><tr><td><code>'term_123'</code></td><td><code>'term_' . $term_id</code></td><td>Строка, содержащая слово ‘term’ и ID термина. Добавлено в версии 5.5.0</td></tr><tr><td><code>WP_Term</code></td><td></td><td>Объект термина. Вы можете получить объект термина с помощью многих функций WP, таких как <code>get_term()</code></td></tr></tbody></table></div>
+
+
+
+<h2><span id="Sortkody_v_ACF">Шорткоды в ACF</span></h2>
+
+
+
+<p>Есть ли у Advanced Custom Fields шорткоды?</p>
+
+
+
+<p>Да, вы можете использовать его так же, как функцию <code>the_field()</code>. Выглядит это примерно так:</p>
+
+
+
+<pre><code class="language-php">[acf field="{$field_name}"]</code></pre>
+
+
+
+<p>Вы также можете указать <code>$post_id</code>, из которого нужно получить значение.</p>
+
+
+
+<pre><code class="language-php">[acf field="{$field_name}" post_id="{$post_id}"]</code></pre>
+
+
+
+<h2><span id="auto-embed">auto-embed</span></h2>
+
+
+
+<p>При редактировании WYSIWYG-поля в термине таксономии функция автовыборки (автовставки) может не работать. Это связано с кодом в ядре WordPress, который ограничивает функциональность автосохранения только записями.</p>
+
+
+
+<p>Эта проблема переносится на фронт-энд и не позволяет конвертировать URL-адреса встраивания (youtube, vimeo и т.д.) в воспроизводимые объекты встраивания.</p>
+
+
+
+<p>В качестве текущего обходного пути для фронт-энда, используйте этот код в верхней части вашего шаблона (скорее всего, <strong>category.php</strong> или аналогичный).</p>
+
+
+
+<p>Файл <strong>category.php</strong>:</p>
+
+
+
+<pre><code class="language-php">&lt;?php 
+
+// vars
+$queried_object = get_queried_object(); 
+$taxonomy = $queried_object-&gt;taxonomy;
+$term_id = $queried_object-&gt;term_id;  
+
+$GLOBALS['wp_embed']-&gt;post_ID = $taxonomy . '_' . $term_id;</code></pre>
+
+
+
+<p>Этот код установит пользовательский <code>post_ID</code> и позволит WP загрузить встраиваемый объект.</p>
+
+
+
+<h2><span id="Ispolzovanie_uslovnyh_operatorov">Использование условных операторов</span></h2>
+
+
+
+<p><code>get_field</code> возвращает <code>false</code> если (<code>value == "" || value == null || value == false</code>)</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+
+if(get_field('field_name'))
+{
+	echo '&lt;p&gt;' . get_field('field_name') . '&lt;/p&gt;';
+}
+
+?&gt;</code></pre>
+
+
+
+<h2><span id="Rabota_so_znaceniami_massiva">Работа со значениями массива</span></h2>
+
+
+
+<p>«checkbox, select, relationship, repeater»</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+
+$values = get_field('field_name');
+if($values)
+{
+	echo '&lt;ul&gt;';
+
+	foreach($values as $value)
+	{
+		echo '&lt;li&gt;' . $value . '&lt;/li&gt;';
+	}
+
+	echo '&lt;/ul&gt;';
+}
+
+// always good to see exactly what you are working with
+var_dump($values);</code></pre>
+
+
+
+<h2><span id="Rabota_s_izobrazeniami_-_URL">Работа с изображениями — URL</span></h2>
+
+
+
+<p>Используем вывод поля в виде URL для изображения:</p>
+
+
+
+<pre><code class="language-php">&lt;img src="&lt;?php the_field('image_test'); ?&gt;" alt="" /&gt;</code></pre>
+
+
+
+<h2><span id="Rabota_s_izobrazeniami_-_ID">Работа с изображениями — ID</span></h2>
+
+
+
+<p>Используя идентификатор (ID), вы можете получить любой размер кадрирования изображения и даже получить имя файла.</p>
+
+
+
+<pre><code class="language-php">&lt;?php $image = wp_get_attachment_image_src(get_field('image_test'), 'full'); ?&gt;
+&lt;img src="&lt;?php echo $image[0]; ?&gt;" alt="&lt;?php echo get_the_title(get_field('image_test')) ?&gt;" /&gt;</code></pre>
+
+
+
+<h2><span id="Rabota_s_polem_Repeater">Работа с полем Repeater</span></h2>
+
+
+
+<p>Доступ к repeater можно получить с помощью <code>get_field</code> или <code>the_repeater_field</code> / <code>the_sub_field</code>.</p>
+
+
+
+<pre><code class="language-php">&lt;?php if( have_rows('repeater_field_name') ): ?&gt;
+ 
+    &lt;ul&gt;
+ 
+    &lt;?php while( have_rows('repeater_field_name') ): the_row(); ?&gt;
+ 
+        &lt;li&gt;sub_field_1 = &lt;?php the_sub_field('sub_field_1'); ?&gt;, sub_field_2 = &lt;?php the_sub_field('sub_field_2'); ?&gt;, etc&lt;/li&gt;
+        
+        &lt;?php 
+        
+        $sub_field_3 = get_sub_field('sub_field_3'); 
+        
+        // do something with $sub_field_3
+        
+        ?&gt;
+        
+    &lt;?php endwhile; ?&gt;
+ 
+    &lt;/ul&gt;
+ 
+&lt;?php endif; ?&gt;</code></pre>
+
+
+
+<p>Случайно выбираем строку поля repeater:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+
+$rows = get_field('repeater_field_name');
+$row_count = count($rows);
+$i = rand(0, $row_count - 1);
+
+echo $rows[ $i ]['sub_field_name'];</code></pre>
+
+
+
+<h2><span id="Polucenie_znacenij_s_drugoj_stranicy">Получение значений с другой страницы</span></h2>
+
+
+
+<p>Получаем в Advanced Custom Fields значения полей с другой страницы:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+
+$other_page = 12;
+
+?&gt;
+&lt;p&gt;&lt;?php the_field('field_name', $other_page); ?&gt;&lt;/p&gt;
+&lt;?php
+
+// get variable
+$variable = get_field('field_name', $other_page);
+
+// repeater field: note that the_sub_field and get_sub_field don't need a post id parameter
+if( have_rows('repeater_field_name', $other_page) ): ?&gt;
+ 
+    &lt;ul&gt;
+ 
+    &lt;?php while( have_rows('repeater_field_name', $other_page) ): the_row(); ?&gt;
+    
+        &lt;li&gt;sub_field_1 = &lt;?php the_sub_field('sub_field_1'); ?&gt;, sub_field_2 = &lt;?php the_sub_field('sub_field_2'); ?&gt;, etc&lt;/li&gt;
+        
+        &lt;?php 
+        
+        $sub_field_3 = get_sub_field('sub_field_3'); 
+        
+        // do something with $sub_field_3
+        
+        ?&gt;
+        
+    &lt;?php endwhile; ?&gt;
+ 
+    &lt;/ul&gt;
+ 
+&lt;?php endif; ?&gt;</code></pre>
+
+
+
+<h2><span id="Zapros_zapisej_so_znaceniami">Запрос записей со значениями</span></h2>
+
+
+
+<p>Пример поиска <code>Events</code> (тип поста), где <code>location</code> (пользовательское поле — select) равно <code>Melbourne</code> (значение). Много интересного по <a href="http://codex.wordpress.org/Template_Tags/get_posts" target="_blank" rel="noreferrer noopener">ссылке</a>.</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+
+$posts = get_posts(array(
+	'numberposts' =&gt; -1,
+	'post_type' =&gt; 'event',
+	'meta_key' =&gt; 'location',
+	'meta_value' =&gt; 'melbourne'
+));
+
+if($posts)
+{
+	echo '&lt;ul&gt;';
+
+	foreach($posts as $post)
+	{
+		echo '&lt;li&gt;&lt;a href="' . get_permalink($post-&gt;ID) . '"&gt;' . get_the_title($post-&gt;ID) . '&lt;/a&gt;&lt;/li&gt;';
+	}
+
+	echo '&lt;/ul&gt;';
+}</code></pre>
+
+
+
+<p>Материал планируется дополнить.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 5 февраля 2023 в 16:18</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>
