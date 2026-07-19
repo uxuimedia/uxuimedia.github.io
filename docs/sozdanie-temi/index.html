@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Создание темы WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container-fluid">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 col-lg-3">
+			<div class="content-blocks bg-light p-3">    
+				<div>
+					<b>Содержание</b>
+				</div>
+				<div>
+					<span>1</span> <a href="#Sozdanie_temy_WordPress_nacalo"><span>Создание темы WordPress: начало</span></a>
+				</div>
+				<div>
+					<span>2</span> <a href="#Trebuemye_fajly_temy"><span>Требуемые файлы темы</span></a>
+				</div>
+				<div>
+					<span>3</span> <a href="#Sozdanie_papki_s_temoj"><span>Создание папки с темой</span></a>
+				</div>
+				<div>
+					<span>4</span> <a href="#Sozdanie_fajla_stylecss"><span>Создание файла style.css</span></a>
+				</div>
+				<div>
+					<span>5</span> <a href="#Sozdanie_fajla_indexphp"><span>Создание файла index.php</span></a>
+				</div>
+				<div>
+					<span>6</span> <a href="#Ustanovka_i_aktivacii_temy"><span>Установка и активации темы</span></a>
+				</div>
+				<div>
+					<span>7</span> <a href="#Razresennye_tegi"><span>Разрешенные теги</span></a>
+				</div>
+				<div>
+					<span>8</span> <a href="#Standartnyj_cikl_WordPress"><span>Стандартный цикл WordPress</span></a>
+				</div>
+				<div>
+					<span>9</span> <a href="#Fajl_functionsphp"><span>Файл functions.php</span></a>
+				</div>
+				<div>
+					<span>10</span> <a href="#Dobavlenie_logotipa_v_temu"><span>Добавление логотипа в тему</span></a>
+					<div class="px-3 pt-2">
+						<div>
+							<span>10.1</span> <a href="#Dobavlenie_podderzki_polzovatelskih_logotipov_v_vasu_temu"><span>Добавление поддержки пользовательских логотипов в вашу тему</span></a>
+						</div>
+						<div>
+							<span>10.2</span> <a href="#Otobrazenie_polzovatelskogo_logotipa_v_vasej_teme"><span>Отображение пользовательского логотипа в вашей теме</span></a>
+						</div>
+						<div>
+							<span>10.3</span> <a href="#Polzovatelskie_tegi_sablona_logotipa"><span>Пользовательские теги шаблона логотипа</span></a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<span>11</span> <a href="#Testovye_dannye"><span>Тестовые данные</span></a>
+				</div>
+				<div>
+					<span>12</span> <a href="#Polucenie_URI_kataloga_temy"><span>Получение URI каталога темы</span></a>
+				</div>
+				<div>
+					<span>13</span> <a href="#Get-parametry_v_WordPress"><span>Get-параметры в WordPress</span></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Создание темы WordPress</h1>
+
+<p>В этом руководстве мы рассмотрим как создать тему WordPress с нуля, что для этого нужно и как темы размещают в репозитории WordPress.org. В самом начале мы создадим папку первой темы, добавим описание, сделаем превью и выведем «Hello World», а дальше постепенно всё будет немного усложняться.</p>
+
+<h2><span id="Sozdanie_temy_WordPress_nacalo">Создание темы WordPress: начало</span></h2>
+
+
+
+<p>Пусть вас не пугают первые шаги — создание темы WordPress процесс не сложный и нам надо разобраться лишь в небольшом объеме информации. Но на данном этапе мы должны:</p>
+
+
+
+<ol>
+<li>понимать что такое сервер, </li>
+
+
+
+<li>знать основы HTML и CSS, </li>
+
+
+
+<li>понимать PHP на начальном уровне,</li>
+
+
+
+<li>ориентироваться в том, как создаются сайты. </li>
+</ol>
+
+
+
+<p>Прежде чем погрузиться в то, как создать тему WordPress, мы будем считать, что вы установили на локальный сервер WordPress версии старше 5.0 и на вашем компьютере есть удобный редактор кода. Вы можете на первом этапе выбрать любой из бесплатных редакторов или IDE (я отдельно отметил те, которые рекомендую):</p>
+
+
+
+<ol>
+<li>VS Code (рекомендую),</li>
+
+
+
+<li>PHPStorm,</li>
+
+
+
+<li>Sublime Text 3 (рекомендую),</li>
+
+
+
+<li>Brackets,</li>
+
+
+
+<li>Notepad++.</li>
+</ol>
+
+
+
+<p>Предварительные знания и нужные программы мы обсудили и пора переходить с созданию первой темы.</p>
+
+
+
+<p>Итак, когда мы переходим в корень нашего сайта с установленным движком WordPress, то мы видим некоторые файлы и три папки:</p>
+
+
+
+<ul>
+<li><strong>wp-admin</strong></li>
+
+
+
+<li><strong>wp-content</strong></li>
+
+
+
+<li><strong>wp-includes</strong></li>
+</ul>
+
+
+
+<div class="attention-red">Внимание! Мы не будем работать с папками <strong>wp-admin</strong> и <strong>wp-includes</strong>, т.к. это папки ядра WordPress (далее также — WP или Вордпресс). Никакие изменения в эти папки и файлы внутри мы не вносим.</div>
+
+
+
+<p>Кроме того, в корне есть еще набор файлов, которые мы не будем изменять. А наша основная папка — это <strong><em>wp-content</em></strong>. Именно в ней мы будем в основном работать и в ней находятся подпапки, которые создаются разработчиками тем и плагинов. Кстати, о плагинах, — в ближайшее время я сделаю единый материал про разработку плагинов WordPress. Следите за обновлениями на сайте.</p>
+
+
+
+<p>Мы переходим в папку <strong><em>wp-content</em></strong> и внутри мы наконец-то видим те папки с которыми мы можем работать — <strong>themes</strong> и <strong>plugins</strong>. Вторая папка содержит установленные в WordPress плагины или, как их еще называют, модули, а вот папка <strong>themes</strong> — это то, что нам нужно.</p>
+
+
+
+<p>Папка <strong>themes</strong> содержит все темы (шаблоны), которые могут быть использованы на сайте. После установки WordPress разных версий вы можете увидеть внутри папки с базовыми темами, которые иду по умолчанию:</p>
+
+
+
+<ol>
+<li>Twenty Twenty-One</li>
+
+
+
+<li>Twenty Twenty-Two</li>
+
+
+
+<li>Twenty Twenty-Three</li>
+</ol>
+
+
+
+<p>Самая поздняя базовая тема WordPress — это Twenty Twenty-Three. Кстати, данные темы выполнены очень качественно и можно создать тему WordPress, которая будет являться дочерней темой от базовой, но это мы обсудим в рамках новой статьи.</p>
+
+
+
+<h2><span id="Trebuemye_fajly_temy">Требуемые файлы темы</span></h2>
+
+
+
+<p>Единственные файлы, необходимые для работы темы WordPress из коробки, — это файл <strong>index.php</strong> для отображения списка постов и файл <strong>style.css</strong> для оформления содержимого.</p>
+
+
+
+<p>И по большому счету — это всё!</p>
+
+
+
+<p>Если этих файлов нет, а в админке WordPress (административная панель) мы перейдем во вкладку <strong><em>Внешний вид -&gt; Темы</em></strong>, то увидим нашу тему внизу в блоке «Поврежденные темы».</p>
+
+
+
+<p>WP выдаст нам предупреждение — «<strong><em>Таблица стилей не найдена</em></strong>«. Так сделали создатели WordPress, что информация о теме должна содержаться в файле стилей этой темы и он считается основным.</p>
+
+
+
+<p>После этого WP выдаст новое предупреждение о том, что не найден еще один файл <strong>index.php</strong>, если мы не создали этот файл и не поместили в папку темы.</p>
+
+
+
+<p>Создаем в папке файл <strong>index.php</strong>. Если снова перейдем во <strong><em>Внешний вид -&gt; Темы</em></strong>, то увидим, что всё хорошо и WP отобразит нашу новую тему среди остальных тем. Но об этом мы поговорим далее.</p>
+
+
+
+<div class="attention-yellow"><strong>Важное замечание</strong>! Многие начинающие разработчики WordPress путают понятия <strong>шаблон</strong> и <strong>тема</strong>. Нужно понимать, что в контексте WordPress слово <strong>тема</strong> используется для внешнего вида всего сайта, а слово <strong>шаблон</strong> отражает различные варианты отображения разных сущностей страниц, записей и таксономий в рамках темы WordPress.</div>
+
+
+
+<p>Когда вы перейдете на более продвинутый уровень разработки и ваши темы станут более объемными и сложными, вам будет проще разбить вашу тему на множество отдельных файлов (называемых файлами шаблонов). Например, большинство тем WordPress также включают в себя:</p>
+
+
+
+<ul>
+<li><code>header.php</code></li>
+
+
+
+<li><code>index.php</code></li>
+
+
+
+<li><code>sidebar.php</code></li>
+
+
+
+<li><code>footer.php</code></li>
+</ul>
+
+
+
+<p>Мы рассмотрим создание отдельных файлов позже, а пока давайте создадим и запустим вашу первую тему!</p>
+
+
+
+<div class="attention-blue"><strong>Примечание</strong>. Следующие шаги предполагают, что вы уже установили и настроили среду разработки — IDE или редактор кода, про которые мы говорили выше.</div>
+
+
+
+<h2><span id="Sozdanie_papki_s_temoj">Создание папки с темой</span></h2>
+
+
+
+<p>Сначала создайте новую папку на своем локальном или уже на рабочем сервере и назовите ее, например, <strong>my-first-theme</strong>. В неё будут помещены все файлы вашей темы.</p>
+
+
+<div>
+<figure><img src="images/getting-started-your-first-theme-01.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Название важно, т.к. необходимо создать тему WordPress с уникальным именем, чтобы при добавлении в дальнейшем в репозиторий не возникло проблем.</p>
+
+
+
+<h2><span id="Sozdanie_fajla_stylecss">Создание файла style.css</span></h2>
+
+
+
+<p>Вы можете использовать любой базовый текстовый редактор на вашем компьютере для создания нового файла <strong><em>style.css</em></strong>. Даже простой блокнот подойдет. Если вы работаете на компьютере под управлением Windows, используйте <strong>Notepad</strong> (Блокнот), а если на Mac — <strong>TextEdit</strong>.</p>
+
+
+
+<p>Скопируйте и вставьте следующий код в только что созданный файл <strong><em>style.css</em></strong>:</p>
+
+
+
+<pre><code class="language-php">/*
+Theme Name: My First WordPress Theme
+*/
+ 
+body {
+background: #21759b;
+}</code></pre>
+
+
+
+<p>Мы должны поместить этот файл стилей в папку <strong>my-first-theme</strong> на локальном сервере или на рабочем сервере вашего сайта, т.е. в: <strong>wp-content/themes/my-first-theme</strong>.</p>
+
+
+
+<p>Основная информация в данном файле это строка <code>Theme Name</code>. Кроме этой строки можно указывать и другие — автора, версию и т.п. Вот пример как может выглядеть начало файла <em><strong>style.css</strong></em>:</p>
+
+
+
+<pre><code class="language-php">/*
+Theme Name: Twenty Twenty
+Theme URI: https://wordpress.org/themes/twentytwenty/
+Author: the WordPress team
+Author URI: https://wordpress.org/
+Description: Our default theme for 2020 is designed to take full advantage of the flexibility of the block editor. Organizations and businesses have the ability to create dynamic landing pages with endless layouts using the group and column blocks. The centered content column and fine-tuned typography also makes it perfect for traditional blogs. Complete editor styles give you a good idea of what your content will look like, even before you publish. You can give your site a personal touch by changing the background colors and the accent color in the Customizer. The colors of all elements on your site are automatically calculated based on the colors you pick, ensuring a high, accessible color contrast for your visitors.
+Tags: blog, one-column, custom-background, custom-colors, custom-logo, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, block-styles, wide-blocks, accessibility-ready
+Version: 1.3
+Requires at least: 5.0
+Tested up to: 5.4
+Requires PHP: 7.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: twentytwenty
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/</code></pre>
+
+
+
+<h2><span id="Sozdanie_fajla_indexphp">Создание файла index.php</span></h2>
+
+
+
+<p>Теперь создайте файл с именем <strong><em>index.php</em></strong> и поместите его в папку вашей темы, добавив в него следующий код:</p>
+
+
+
+<pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="&lt;?php bloginfo( 'charset' ); ?&gt;"&gt;
+&lt;title&gt;&lt;?php wp_title( '|', true, 'right' ); ?&gt;&lt;/title&gt;
+&lt;link rel="stylesheet" href="&lt;?php echo esc_url( get_stylesheet_uri() ); ?&gt;" type="text/css" /&gt;
+&lt;?php wp_head(); ?&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;&lt;?php bloginfo( 'name' ); ?&gt;&lt;/h1&gt;
+&lt;h2&gt;&lt;?php bloginfo( 'description' ); ?&gt;&lt;/h2&gt;
+ 
+&lt;?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?&gt;
+ 
+&lt;h3&gt;&lt;?php the_title(); ?&gt;&lt;/h3&gt;
+ 
+&lt;?php the_content(); ?&gt;
+&lt;?php wp_link_pages(); ?&gt;
+&lt;?php edit_post_link(); ?&gt;
+ 
+&lt;?php endwhile; ?&gt;
+ 
+&lt;?php
+if ( get_next_posts_link() ) {
+next_posts_link();
+}
+?&gt;
+&lt;?php
+if ( get_previous_posts_link() ) {
+previous_posts_link();
+}
+?&gt;
+ 
+&lt;?php else: ?&gt;
+ 
+&lt;p&gt;No posts found. :(&lt;/p&gt;
+ 
+&lt;?php endif; ?&gt;
+&lt;?php wp_footer(); ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+
+<p>Это второй по важности файл темы WP. Пример выше включает в себя шапку (header) и подвал (footer) сайта, т.к. пока мы хотим создать самую элементарную и нашу первую тему WordPress.</p>
+
+
+
+<p>Вообще, создание темы WordPress подразумевает наличие отдельных файлов для подвала и шапки сайта — footer.php и header.php.</p>
+
+
+
+<h2><span id="Ustanovka_i_aktivacii_temy">Установка и активации темы</span></h2>
+
+
+
+<p>Скопируйте вашу новую тему в папку <strong>wp-content/themes</strong> в вашей среде разработки и активируйте ее для просмотра и тестирования, если, конечно, вы не создавали всё сразу на сервере.</p>
+
+
+
+<p>Теперь, когда вы скопировали папку в каталог <strong>themes</strong>, перейдите в <strong>Admin</strong> -&gt; <strong>Appearance</strong> -&gt; <strong>Themes</strong> (<em>Внешний вид -&gt; Темы</em>), чтобы активировать ее.</p>
+
+
+<div>
+<figure><img src="images/getting-started-your-first-theme-02.png" alt="" class="img-fluid"></figure></div>
+
+
+<p>В каталоге установленных тем вы увидите свою первую тему и кнопку «Активировать». Жмем эту кнопку.</p>
+
+
+
+<p>Но мы сразу можем заметить, что нет превью для темы, т.е. нет картинки, которая демонстрирует тему, а кроме того, если мы попытаемся перейти на страницу самой темы, то там не будет описания темы.</p>
+
+
+
+<p>Это описание WP берет из файла стилей темы — <strong><em>style.css</em></strong>. Я не буду долго описывать процесс заполнения информации о теме, мы для примера возьмем вариант из базовой тему движка Twenty Twenty:</p>
+
+
+
+<pre><code class="language-php">/*
+Theme Name: Twenty Twenty
+Text Domain: twentytwenty
+Version: 1.5
+Requires at least: 4.7
+Requires PHP: 5.2.4
+Description: Our default theme for 2020 is designed to take full advantage of the flexibility of the block editor. Organizations and businesses have the ability to create dynamic landing pages with endless layouts using the group and column blocks. The centered content column and fine-tuned typography also makes it perfect for traditional blogs. Complete editor styles give you a good idea of what your content will look like, even before you publish. You can give your site a personal touch by changing the background colors and the accent color in the Customizer. The colors of all elements on your site are automatically calculated based on the colors you pick, ensuring a high, accessible color contrast for your visitors.
+Tags: blog, one-column, custom-background, custom-colors, custom-logo, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, block-styles, wide-blocks, accessibility-ready
+Author: the WordPress team
+Author URI: https://wordpress.org/
+Theme URI: https://wordpress.org/themes/twentytwenty/
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+All files, unless otherwise stated, are released under the GNU General Public
+License version 2.0 (http://www.gnu.org/licenses/gpl-2.0.html)
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned
+ with others.
+*/</code></pre>
+
+
+
+<p>Как видно из примера — нам нужно заполнить ряд полей типа <code>Theme Name</code>, <code>Text Domain</code> и т.д.</p>
+
+
+
+<p>Мы копируем данный код и вставляем в файл <strong>style.css</strong> нашей темы, после чего меняем <em><strong>Ключ -&gt; Значение</strong></em> на свои данные.</p>
+
+
+
+<p>После внесения изменений мы можем убедиться, что WordPress добавил описание и информацию о теме.</p>
+
+
+<div>
+<figure><img src="images/sozdaem-wp-temu-2.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Далее нам нужно добавить картинку-превью для нашей темы, которая будет видна во вкладке <strong>Темы</strong>.</p>
+
+
+
+<p>Превьюшку можно добавить и в самом конце после создания темы.</p>
+
+
+
+<p>Картинка должна находиться в папке с нашей темой и называться <strong>screenshot.png</strong>. Размер превью должен быть 1200 на 900 пикселей.</p>
+
+
+
+<p>После этого можно нажать «Активировать» и наша тема станет основной. Перейдя на главную страницу сайта мы увидим белый экран, если в файлах <strong>index.php</strong> и <strong>style.css</strong> у нас ничего нет, но в нашем случае всё будет хорошо.</p>
+
+
+
+<p>Поздравляем — вы только что создали свою первую тему WordPress!</p>
+
+
+
+<p>Если вы активируете вашу новую тему и просмотрите ее в браузере, вы должны увидеть что-то вроде этого:</p>
+
+
+<div>
+<figure><img src="images/getting-started-your-first-theme-03.png" alt="Так выглядит ваша первая тема во фронтенде" class="img-fluid"><figcaption>Так выглядит ваша первая тема во фронтенде</figcaption></figure></div>
+
+
+<p>Ладно, это не самая красивая тема, конечно, но это отличное начало!</p>
+
+
+
+<p>Можно было в index.php вообще почти ничего не добавлять и оставить только строку:</p>
+
+
+
+<pre><code class="language-php">&lt;h1&gt;Hello World!&lt;/h1&gt;
+// или &lt;h1&gt;Привет Мир!&lt;/h1&gt;</code></pre>
+
+
+
+<p> И тогда на главной странице сайта мы увидим:</p>
+
+
+<div>
+<figure><img src="images/sozdaem-wp-temu-3.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Тем не менее, на данный момент можно сказать, что мы смогли создали свою первую тему WordPress. Она не идеальна, но мы можем теперь её начать усложнять.</p>
+
+
+
+<p>Хотя вашей первой теме может не хватать функциональности и элементов дизайна, которые есть в других темах, основные строительные блоки темы WordPress, которые мы только что создали выше, все те же.</p>
+
+
+
+<p>Помните, что главное здесь — не зацикливаться на том, как все эти другие штуки делаются сейчас, а понять основные принципы создания тем WordPress, которые выдержат испытание временем, независимо от того, как меняется код или структура файлов шаблона со временем.</p>
+
+
+
+<p>Все веб-сайты, независимо от того, как они создаются, нуждаются в общих элементах: заголовках, основных областях содержания, меню, боковых панелях, нижних колонтитулах и тому подобном. Вы поймете, что создание тем WordPress — это еще один способ создания сайта.</p>
+
+
+
+<p>Начиная с этой базовой темы, вы начнете изучать строительные блоки, из которых можно создать более сложную тему.</p>
+
+
+
+<p>Со временем мы углубимся в темы и обсудим шаблоны и другие файлы, из которых состоит большинство тем, а также PHP, используемый для создания динамических тем, в том числе:</p>
+
+
+
+<ul>
+<li>теги шаблонов,</li>
+
+
+
+<li>циклы,</li>
+
+
+
+<li>функции темы,</li>
+
+
+
+<li>условные теги,</li>
+
+
+
+<li>и многое другое</li>
+</ul>
+
+
+
+<h2><span id="Razresennye_tegi">Разрешенные теги</span></h2>
+
+
+
+<p>Когда вы хотите создать тему WordPress, то в файле стилей <strong><em>style.css</em></strong> вы можете добавить определенные теги описания темы, но добавлять можно не любые теги, а только определенные.</p>
+
+
+
+<p>Ниже приведу список тегов, а затем немного поясню, что и зачем.</p>
+
+
+
+<pre><code class="language-php">{"Layout":["grid-layout","one-column","two-columns","three-columns","four-columns","left-sidebar","right-sidebar","wide-blocks"],"Features":["accessibility-ready","block-patterns","block-styles","buddypress","custom-background","custom-colors","custom-header","custom-logo","custom-menu","editor-style","featured-image-header","featured-images","flexible-header","footer-widgets","front-page-post-form","full-site-editing","full-width-template","microformats","post-formats","rtl-language-support","sticky-post","template-editing","theme-options","threaded-comments","translation-ready"],"Subject":["blog","e-commerce","education","entertainment","food-and-drink","holiday","news","photography","portfolio"]}</code></pre>
+
+
+
+<p>Впервые я столкнулся с этим при создании первой темы. WordPress выдал мне предупреждение: <em>«Found wrong tag, remove from your style.css header»</em>.</p>
+
+
+
+<p>Оказалось, что я не могу использовать теги типа Javascript или Bootstrap. Мне пришлось удалить данные теги и в файле стилей темы я оставил только:</p>
+
+
+
+<pre><code class="language-php">Tags: blog, news</code></pre>
+
+
+
+<p>Мне было достаточно этих тегов, но вам может понадобиться больше тегов и тогда придется воспользоваться списком разрешенных тегов выше.</p>
+
+
+
+<p>Список тегов можно найти на сайте WordPress — <a href="https://api.wordpress.org/themes/info/1.1/?action=feature_list" target="_blank" rel="noreferrer noopener">https://api.wordpress.org/themes/info/1.1/?action=feature_list</a>.</p>
+
+
+
+<h2><span id="Standartnyj_cikl_WordPress">Стандартный цикл WordPress</span></h2>
+
+
+
+<p>Сниппет ниже — это стандартный цикл WordPress по выводу записей на сайте. Знание этого цикла — является базовым при создании темы. Можно сказать, что всё начинается с него. Данный цикл используется для вывода записей, архивов, тегов и т.п.</p>
+
+
+
+<pre><code class="language-php">&lt;?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?&gt;
+
+// здесь вывод статей, тегов и т.п.
+
+&lt;?php endwhile; ?&gt;
+
+&lt;?php else :
+
+    _e( 'Простите, здесь пока ничего нет.', 'textdomain' );
+
+endif; ?&gt;</code></pre>
+
+
+
+<p>Например, данный цикл применяется в файлах темы, например, в архивах (<strong><em>archive.php</em></strong>) или в файле одной записи (<strong><em>single.php</em></strong>).</p>
+
+
+
+<p>Вот пример цикла для вывода постов определенной категории:</p>
+
+
+
+<pre><code class="language-php">&lt;?php query_posts('cat=5'); ?&gt;
+&lt;?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?&gt;
+   &lt;?php the_content(); ?&gt;
+&lt;?php endwhile; endif; ?&gt;</code></pre>
+
+
+
+<p>Если вы используете данный цикл, например, как дополнительный на странице, который запускается перед основным циклом на вашей странице, то не забудьте сбросить цикл, иначе он нарушит основной цикл.</p>
+
+
+
+<pre><code class="language-php">&lt;?php wp_reset_query(); ?&gt;</code></pre>
+
+
+
+<p>Пример ниже демонстрирует, как скрыть отображение определенной категории или категорий. В данном случае исключаются записи из категорий с ID 3 и 8. Этот пример отличается от примера выше тем, что он вносит изменения в сам запрос.</p>
+
+
+
+<pre><code class="language-php">&lt;?php $query = new WP_Query( 'cat=-3,-8' ); ?&gt;
+ &lt;?php if ( $query-&gt;have_posts() ) : while ( $query-&gt;have_posts() ) : $query-&gt;the_post(); ?&gt;
+
+ &lt;div class="post"&gt;
+ 
+ &lt;!-- Display the Title as a link to the Post's permalink. --&gt;
+ &lt;h2&gt;&lt;a href="&lt;?php the_permalink() ?&gt;" rel="bookmark" title="Permanent Link to &lt;?php the_title_attribute(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h2&gt;
+
+ &lt;!-- Display the date (November 16th, 2009 format) and a link to other posts by this posts author. --&gt;
+ &lt;small&gt;&lt;?php the_time( 'F jS, Y' ); ?&gt; by &lt;?php the_author_posts_link(); ?&gt;&lt;/small&gt;
+ 
+  &lt;div class="entry"&gt;
+  	&lt;?php the_content(); ?&gt;
+  &lt;/div&gt;
+
+  &lt;p class="postmetadata"&gt;&lt;?php esc_html_e( 'Posted in' ); ?&gt; &lt;?php the_category( ', ' ); ?&gt;&lt;/p&gt;
+ &lt;/div&gt; &lt;!-- closes the first div box --&gt;
+
+ &lt;?php endwhile; 
+ wp_reset_postdata();
+ else : ?&gt;
+ &lt;p&gt;&lt;?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?&gt;&lt;/p&gt;
+ &lt;?php endif; ?&gt;</code></pre>
+
+
+
+<h2><span id="Fajl_functionsphp">Файл functions.php</span></h2>
+
+
+
+<p>Файл <strong><em>functions.php</em></strong> является важной составляющей темы WP. В нем зачастую добавляется основной функционал темы. В этом файле мы пишем функции для работы сайта, через него добавляем стили и скрипты и многое другое.</p>
+
+
+
+<p>Файл должен находиться на одном уровне с уже созданными файлами <strong><em>style.css</em></strong> и <strong><em>index.php</em></strong>.</p>
+
+
+
+<p>Когда вы захотите усложнить тему, то обязательно будете использовать данный файл. В следующих материалах мы будем усложнять нашу тему, но ниже на примере работы с логотипом темы мы поймем как и в каких целях используется <strong><em>functions.php</em></strong>.</p>
+
+
+
+<h2><span id="Dobavlenie_logotipa_v_temu">Добавление логотипа в тему</span></h2>
+
+
+
+<p>Использование пользовательского (кастомного) логотипа позволяет владельцам сайтов загружать изображения, которые может размещать в шапке сайта и не только.</p>
+
+
+
+<p>Логотип можно загрузить из раздела <strong>Appearance</strong> -&gt; <strong>Header</strong> в панели администратора. Но прежде, поддержка пользовательского логотипа должна быть добавлена в вашу тему с помощью <code>add_theme_support()</code>, а уже затем вызвана в вашей теме с помощью <code>the_custom_logo()</code>.</p>
+
+
+
+<p>Пользовательский логотип необязателен, но авторы тем должны использовать эту функцию, если они включают логотипы в свои темы WordPress.</p>
+
+
+
+<h3><span id="Dobavlenie_podderzki_polzovatelskih_logotipov_v_vasu_temu">Добавление поддержки пользовательских логотипов в вашу тему</span></h3>
+
+
+
+<p>Чтобы включить использование пользовательского логотипа в вашей теме, добавьте следующий код в файл <strong><em>functions.php</em></strong> темы, о котором мы уже сказали выше:</p>
+
+
+
+<pre><code class="language-php">add_theme_support( 'custom-logo' );</code></pre>
+
+
+
+<p>При включении поддержки пользовательских логотипов вы можете настроить пять параметров, передавая аргументы функции <code>add_theme_support()</code> с помощью массива:</p>
+
+
+
+<pre><code class="language-php">function themename_custom_logo_setup() {
+    $defaults = array(
+        'height'               =&gt; 100,
+        'width'                =&gt; 400,
+        'flex-height'          =&gt; true,
+        'flex-width'           =&gt; true,
+        'header-text'          =&gt; array( 'site-title', 'site-description' ),
+        'unlink-homepage-logo' =&gt; true, 
+    );
+ 
+    add_theme_support( 'custom-logo', $defaults );
+}
+ 
+add_action( 'after_setup_theme', 'themename_custom_logo_setup' );</code></pre>
+
+
+
+<p>Хук <code>after_setup_theme</code> используется для того, чтобы поддержка пользовательских логотипов была зарегистрирована после загрузки темы.</p>
+
+
+
+<ul>
+<li><strong>height</strong><br>Ожидаемая высота логотипа в пикселях. Пользовательский логотип может также использовать встроенные размеры изображений, такие как <code>thumbnail</code>, или зарегистрируйте пользовательский размер с помощью <code>add_image_size()</code>.</li>
+
+
+
+<li><strong>width</strong><br>Ожидаемая ширина логотипа в пикселях. Пользовательский логотип может также использовать встроенные размеры изображения, например, миниатюру, или зарегистрируйте собственный размер с помощью функции <code>add_image_size()</code>.</li>
+
+
+
+<li><strong>flex-height</strong><br>Следует ли разрешить гибкую высоту.</li>
+
+
+
+<li><strong>flex-width</strong><br>Разрешить ли гибкую ширину.</li>
+
+
+
+<li><strong>header-text</strong><br>Класс(ы) элементов, которые необходимо скрыть. Сюда можно передать массив имен классов для всех элементов, составляющих текст заголовка, который может быть заменен логотипом.</li>
+
+
+
+<li><strong>unlink-homepage-logo</strong><br>Если параметр <code>unlink-homepage-logo</code> имеет значение <code>true</code>, изображения логотипа, вставленные с помощью <code>get_custom_logo()</code> или <code>the_custom_logo()</code>, больше не будут ссылаться на главную страницу, когда посетители находятся на этой странице. Чтобы сохранить стиль, заданный связанному изображению, изображение логотипа без ссылки находится внутри тега <code>span</code> с тем же классом <code>custom-logo-link</code>.</li>
+</ul>
+
+
+
+<h3><span id="Otobrazenie_polzovatelskogo_logotipa_v_vasej_teme">Отображение пользовательского логотипа в вашей теме</span></h3>
+
+
+
+<p>Пользовательский логотип можно отобразить в теме с помощью функции <code>the_custom_logo()</code>. Но рекомендуется обернуть код в вызов функции <code>function_exists()</code>, чтобы сохранить обратную совместимость со старыми версиями WordPress, как это сделано ниже:</p>
+
+
+
+<pre><code class="language-php">if ( function_exists( 'the_custom_logo' ) ) {
+    the_custom_logo();
+}</code></pre>
+
+
+
+<p>Обычно логотипы добавляются в файл <strong><em>header.php</em></strong> темы, но могут быть размещены и в другом месте, как, например, в нашем случае, когда у нас пока только <em><strong>index.php</strong></em>.</p>
+
+
+
+<p>Если вы хотите получить URL текущего логотипа (или использовать собственную разметку) вместо разметки по умолчанию, вы можете использовать следующий код:</p>
+
+
+
+<pre><code class="language-php">$custom_logo_id = get_theme_mod( 'custom_logo' );
+$logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+ 
+if ( has_custom_logo() ) {
+    echo '&lt;img src="' . esc_url( $logo[0] ) . '" alt="' . get_bloginfo( 'name' ) . '"&gt;';
+} else {
+    echo '&lt;h1&gt;' . get_bloginfo('name') . '&lt;/h1&gt;';
+}</code></pre>
+
+
+
+<h3><span id="Polzovatelskie_tegi_sablona_logotipa">Пользовательские теги шаблона логотипа</span></h3>
+
+
+
+<p>Для управления отображением пользовательского логотипа во внешнем интерфейсе можно использовать эти три тега шаблона:</p>
+
+
+
+<ul>
+<li><code>get_custom_logo()</code> — Возвращает разметку для пользовательского логотипа.</li>
+
+
+
+<li><code>the_custom_logo()</code> — Отображает разметку для пользовательского логотипа.</li>
+
+
+
+<li><code>has_custom_logo()</code> — Возвращает булево значение <strong><em>true/false</em></strong>, установлен ли пользовательский логотип или нет.</li>
+</ul>
+
+
+
+<p>Это был пример добавления в тему дополнительного функционала через <em><strong>functions.php</strong></em>.</p>
+
+
+
+<h2><span id="Testovye_dannye">Тестовые данные</span></h2>
+
+
+
+<p>Если мы хотим создать тему WordPress и понять как будет отображаться в ней содержимое, то без тестовых данных нам никуда. </p>
+
+
+
+<p>Выше мы уже создали папку для темы, сделали описание темы и даже вывели «<em>Hello World</em>».</p>
+
+
+
+<p>Теперь импортируем тестовые <strong>записи</strong> и <strong>страницы</strong> для того, чтобы дорабатывать тему WP было удобно и наглядно. Когда создаешь первую тему без записей и страниц — довольно неудобно смотреть на такую тему в браузере, не очевидны многие моменты с внешним видом. Но для этого также придумано решение.</p>
+
+
+
+<p>Для загрузки тестовых данных мы сперва должны скачать XML-файл с сайта WordPress.org.</p>
+
+
+
+<p>1. Переходим на WordPress.org на страницу <a href="https://codex.wordpress.org/Theme_Unit_Test" target="_blank" rel="noreferrer noopener">Theme Unit Test</a></p>
+
+
+
+<p>2. Находим строку:</p>
+
+
+
+<pre><code class="language-php">Or Download a copy from https://raw.githubusercontent.com/WPTT/theme-unit-test/master/themeunittestdata.wordpress.xml</code></pre>
+
+
+
+<p>3. Нажимаем на ссылку и скачиваем XML.</p>
+
+
+
+<p>Дальше импортируем XML в наш WordPress.</p>
+
+
+
+<p>1. Переходим в «Инструменты» (<strong>Tools</strong>)</p>
+
+
+
+<p>2. Переходим в «Импорт» (<strong>Import</strong>)</p>
+
+
+
+<p>3. Выбираем файл и импортируем данные</p>
+
+
+
+<p>Иногда WordPress может сообщить о том, что необходимо установить плагин для импорта данных, в таком случае мы просто жмем «Установить сейчас» (<strong>Install now</strong>) и после уже импортируем все данные из скачанного XML-файла.</p>
+
+
+
+<p>После импорта у нас на сайте появятся записи, страницы, комментарии, благодаря которым нам будет легче работать с внешним видом нашей темы.</p>
+
+
+
+<p>Перед тем как закончить этот материал я покажу еще пару небольших моментов, которые часто пригождаются при создании темы WordPress.</p>
+
+
+
+<h2><span id="Polucenie_URI_kataloga_temy">Получение URI каталога темы</span></h2>
+
+
+
+<p>Иногда при создании темы нам нужно вставить где-либо какое-то изображение, которое лежит внутри папки самой темы. Это легко сделать функцией <code>get_template_directory_uri()</code>. Ниже пример использования данной функции.</p>
+
+
+
+<pre><code class="language-php">&lt;?php echo get_template_directory_uri(); ?&gt;
+
+// Пример
+
+&lt;img src="&lt;?php echo get_template_directory_uri(); ?&gt;/images/logo.png" width="" height="" alt="" /&gt;</code></pre>
+
+
+
+<h2><span id="Get-parametry_v_WordPress">Get-параметры в WordPress</span></h2>
+
+
+
+<p>Напоследок, давайте рассмотрим как в WP можно загрузить отдельный файл шаблона при задании определенного GET-параметра. Это будет интересно начинающим PHP-разработчикам.</p>
+
+
+
+<p>Допустим, мы хотим создать страницу с информацией об аккаунте. При задании параметра <code>account</code> должен загружаться, например, <strong><em>account.php</em></strong> вместо <strong><em>index.php</em></strong>.</p>
+
+
+
+<p>Адрес (URL) будет выглядеть примерно так:</p>
+
+
+
+<pre><code class="language-php">example.com?account=user_name</code></pre>
+
+
+
+<p>Довольно простое решение этой проблемы возможно путем добавления в functions.php темы следующего кода:</p>
+
+
+
+<pre><code class="language-php">add_action( 'template_include', 'account_page_template' );
+
+function account_page_template( $template ) {
+
+    if( isset( $_GET[ 'account' ] ) ) {
+
+        return locate_template( array( 'account.php' ) );
+
+    }
+
+    return $template;
+
+}</code></pre>
+
+
+
+<p>Но поскольку кажется вполне естественным использовать какую-либо структуру постоянных ссылок для таких вещей в WordPress, то вот ниже часть окончательного кода, которая делает возможными структуры URL-адресов, такие как <em>example.com/account/user_name</em>:</p>
+
+
+
+<pre><code class="language-php">// Register to query vars
+
+add_filter( 'query_vars', 'add_query_vars');
+
+function add_query_vars( $vars ) {
+
+    $vars[] = 'account';
+
+    return $vars;
+}
+
+
+// Add rewrite endpoint
+
+add_action( 'init', 'account_page_endpoint' );
+
+function account_page_endpoint() {
+
+    add_rewrite_endpoint( 'account', EP_ROOT );
+
+}
+
+
+// Load template
+
+add_action( 'template_include', 'account_page_template' );
+
+function account_page_template( $template ) {
+
+    if( get_query_var( 'account', false ) !== false ) {
+
+        return locate_template( array( 'account.php' ) );
+
+    }
+
+    return $template;
+
+}</code></pre>
+
+
+
+<p>В шаблоне <strong><em>acccount.php</em></strong> вы можете получить значение параметра следующим образом:</p>
+
+
+
+<pre><code class="language-php">$user_name = get_query_var( 'account', false );</code></pre>
+
+
+
+<p>Вот и всё.</p>
+
+
+
+<p>Подведем небольшие итоги — теперь мы знаем как создать тему WordPress, понимаем какие файлы нужны, как выводить информацию на сайт и даже где брать и как использовать тестовые данные. Желаю вам развиваться в этой теме и дальше, а я постараюсь в следующих уроках рассказать уже более сложные вещи про создание тем.</p>
+
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 9 февраля 2023 в 00:29</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

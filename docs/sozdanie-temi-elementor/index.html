@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Разработка темы, совместимой с Elementor &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Разработка темы, совместимой с Elementor</h1>
+
+<p>Я работаю программистом WordPress с 2010 года. У меня многолетний опыт в проектировании и разработке тем WordPress. В прошлом я разрабатывал темы с использованием опций темы, кастомайзера и виджетов.</p>
+
+<p>Однако такие темы показались мне слишком статичными и сложными в использовании для конечных пользователей. Поэтому я начал создавать темы, совместимые с плагином для создания страниц Elementor. В этой статье я поделюсь своим опытом и расскажу о ключевых подходах, необходимых для разработки тем WordPress, совместимых с Elementor.</p>
+
+<h2>1. Начало работы</h2>
+
+<p>Мы можем начать со стартовой темы, такой как <a href="https://underscores.me/" target="_blank" rel="noreferrer noopener">Underscores</a>. Это лучшая стартовая тема, принятая wordpress.org, ThemeForest и другими торговыми площадками. Underscores генерирует все необходимые нам файлы, такие как index, 404, части шаблона и другие папки/файлы, необходимые для стандартных тем WordPress.</p>
+
+<ul>
+<li>Создайте/разработайте свою тему, как обычную тему WordPress, следуя <a href="https://make.wordpress.org/themes/handbook/review/required/">необходимым</a> и <a href="https://make.wordpress.org/themes/handbook/review/recommended/">рекомендованным</a> правилам официальной команды по рассмотрению тем WordPress.</li>
+<li>Импортируйте данные <a href="https://codex.wordpress.org/Theme_Unit_Test">Theme Unit Test</a> и проверьте, все ли элементы стилизованы и работают правильно.</li>
+<li>Инструкции по импорту демо-данных вы найдете на странице <a href="https://codex.wordpress.org/Theme_Unit_Test">Кодекса</a>.</li>
+<li>Проверьте свою тему с помощью плагина <a href="https://wordpress.org/plugins/theme-check/">Theme Check</a>.</li>
+</ul>
+
+<h2>2. Обеспечение совместимости с Elementor</h2>
+
+<p>Чтобы сделать вашу тему совместимой с плагином Elementor для создания страниц, вам нужно позаботиться о нескольких вещах, которые описаны ниже.</p>
+
+<h3>Не используйте класс контейнера</h3>
+
+<p>Большинство тем используют класс контейнера (<code>.container</code>) в своей теме. Если вы используете контейнер внутри основного содержимого темы, удалите его, если используется шаблон Elementor.</p>
+
+<p>Обычно мы используем класс контейнера после основного содержимого следующим образом:</p>
+
+<pre><code class="language-html">&lt;div id="content" class="site-content"&gt;
+    &lt;div class="container"&gt;</code></pre>
+
+<p>Если страница/пост использует шаблон Elementor, вам нужно удалить класс контейнера, как показано ниже.</p>
+
+<pre><code class="language-php">&lt;?php  
+if( !is_page_template('elementor_header_footer')) ){ ?&gt;
+    &lt;div class="container"&gt;
+    &lt;?php 
+} ?&gt;</code></pre>
+
+<p>В приведенном выше коде мы загружаем контейнер, если шаблон не является шаблоном Elementor.</p>
+
+<p>Аналогичным образом добавьте то же условие в закрывающий тег контейнера <code>div</code>, который выглядит следующим образом:</p>
+
+<pre><code class="language-php">&lt;?php  
+if( !is_page_template('elementor_header_footer')) ){ ?&gt;
+    &lt;/div&gt;
+    &lt;?php 
+} ?&gt;</code></pre>
+
+<h3>Убираем пробелы</span></h3>
+
+<p>Большинство дизайнеров тем используют отступы (<code>padding</code>) от контента темы. Вы можете удалить отступы от контента, если страница является шаблоном Elementor.</p>
+
+<p>В файле style.css вы можете добавить CSS для шаблона Elementor, как показано ниже:</p>
+
+<pre><code class="language-css">.elementor-template-full-width #content {
+    padding: 0;
+}</code></pre>
+
+<h2>3. Сделайте стили переопределяемыми</h2>
+
+<p>Очень важно сделать так, чтобы стили вашей основной темы легко переопределялись стилями Elementor. Например, не используйте <code>!important</code> в CSS вашей темы.</p>
+
+<pre class="language-css"><code>#content p {
+    font-size: 16px !important;
+}
+
+#page #content .widget-area .widget .title {
+    color: #555555;
+}</code></pre>
+
+<p>Избегайте использования <code>!important</code> или длинного селектора стиля. Вы можете стилизовать вышеупомянутые элементы, как показано ниже:</p>
+
+<pre><code class="language-css">p {
+    font-size: 16px ;
+}
+
+.widget .title {
+    color: #555555;
+}</code></pre>
+
+<h2>4. Проверяем шаблоны и элементы Elementor</h2>
+
+<p>Elementor поставляется с двумя типами шаблонов, <strong>Elementor Canvas</strong> (канваз) и <strong>Elementor Full Width</strong> (во всю ширину). Создайте новую страницу и назначьте ей шаблон Elementor Canvas или Elementor Full Width. Нажмите на кнопку <em>«Редактировать с помощью Elementor»</em> в верхней части раздела редактирования страницы.</p>
+
+<div>
+<figure><img src="images/edit-with-elementor.png" alt="" class="img-fluid"></figure>
+</div>
+
+<p>Перетащите каждый элемент Elementor и проверьте его на работоспособность. Elementor поставляется с различными элементами, которые выделены на скриншоте ниже красным цветом. Вы можете найти их в левой части окна редактирования страницы. Если вам нужно разработать тему WordPress, совместимую с Elementor, вам нужно проверить и протестировать все эти элементы по очереди.</p>
+
+<div>
+<figure>
+	<img src="images/elementor-elements.png" alt="Элементы Elementor" class="img-fluid">
+	<figcaption>Элементы Elementor</figcaption>
+</figure>
+</div>
+
+<h2>5. Определение локаций</h2>
+
+<p>Прежде чем сделать тему совместимой с Elementor, необходимо учесть несколько моментов:</p>
+
+<p>Сначала вам нужно зарегистрировать местоположение в <strong>functions.php</strong>. Местоположения разбиты на группы: <em>Header</em>, <em>Footer</em>, <em>Single</em>, <em>Archive</em>. Чтобы зарегистрировать все локации:</p>
+
+<pre><code class="language-php">function theme_prefix_register_elementor_locations( $elementor_theme_manager ) {
+
+     $elementor_theme_manager-&gt;register_all_core_location();
+
+}
+add_action( 'elementor/theme/register_locations', 'theme_prefix_register_elementor_locations' );</code></pre>
+
+<p>Во-вторых, вывод местоположения в теме. Для этого мы используем <code>elementor_theme_do_location()</code>. Пример, отображение местоположения архива:</p>
+
+<pre><code class="language-php">&lt;?php
+get_header();
+
+// Elementor `archive` location
+if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'archive' ) ) {
+    get_template_part( 'template-parts/archive' );
+}
+
+get_footer();</code></pre>
+
+<p>И, как было сказано ниже, убедитесь, что вы удалили контейнер (<code>.container</code>), если используете шаблон Elementor:</p>
+
+<pre><code class="language-php">&lt;?php  
+      if( !is_page_template('elementor_header_footer')) ){ ?&gt;
+         &lt;div class="container"&gt;
+    &lt;?php 
+    } ?&gt;</code></pre>
+
+<p>Не забывайте всегда использовать условные теги для проверки в случае, если Elementor не установлен, иначе он будет выбрасывать ошибки. Подробнее: <a href="https://developers.elementor.com/theme-locations-api/" target="_blank" rel="noreferrer noopener">Elementor Theme location API</a>.</p>
+
+<p>Если вы являетесь разработчиком тем WordPress, то разработать темы WordPress, совместимые с Elementor, или заставить существующую тему идеально работать с Elementor не так уж и сложно. Я попытался объяснить метод, который я использую для разработки тем WordPress, совместимых с Elementor.</p>
+
+<p>Однако этот метод может быть применим не ко всем. Если вам нужна помощь в создании темы, совместимой с Elementor, или если вы хотите разработать тему WordPress, совместимую с Elementor, с нуля, обращайтесь ко мне.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 1 февраля 2024 в 18:05</span><br>Теги: PHP, WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

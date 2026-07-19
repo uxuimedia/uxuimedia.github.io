@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Использование MySQLi для работы с БД &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Использование MySQLi для работы с БД</h1>
+
+<p><strong>MySQLi</strong>&nbsp;(MySQL Improved) — расширение MySQL, которое добавляет новые функции в интерфейс базы данных MySQL. MySQLi может быть как процедурным, так и объектно-ориентированным.</p>
+
+<h2>Подключение к БД</h2>
+
+<div class="attention-red"><strong>Внимание</strong>! Оригинальные функции <code>mysql_</code> устарели и не рекомендуются к использованию, так как они небезопасны и больше не поддерживаются и не разрабатываются.</div>
+
+<div class="attention-blue"><a href="https://www.php.net/manual/en/book.mysqli.php" target="_blank" rel="noreferrer noopener">Официальная документация MySQLi</a></div>
+
+<p>Выполните следующие действия, чтобы использовать MySQLi для подключения PHP-скрипта к MySQL:</p>
+
+<p>1. Перейдите в «Диспетчер файлов» (<strong>File Manager</strong>)</p>
+
+<div>
+<figure><img src="images/php-mysql-03.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>2. Переходим в <strong>public_html</strong>. Почти везде используется такая структура папок.</p>
+
+<div>
+<figure><img src="images/php-mysql-04.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>3. Создайте новый файл, щелкнув на соответствующий значок в верхнем меню. Вы можете нажать правой кнопкой мыши и выбрать «<em>Новый файл</em>«.</p>
+
+<div>
+<figure><img src="images/php-mysql-05.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>4. Сохраните файл как <strong>databaseconnect.php</strong>. Вы можете заменить имя на любое другое, просто убедитесь, что оно использует <strong>.php</strong> в качестве расширения.</p>
+
+<p>5. Двойным щелчком мыши откройте файл и скопируйте в него строки кода, которые ниже. Измените первые четыре значения ниже <code>&lt;?php</code> с учетными данными, которые вы сохранили ранее.</p>
+
+<pre><code class="language-php">&lt;?php
+$servername = "localhost";
+ // имя хоста
+$database = "databasename";
+ // имя БД
+$username = "username";
+ // имя пользователя БД
+$password = "password";
+ // пароль, созданный для пользователя БД
+// создание соединения
+$conn = mysqli_connect($servername, $username, $password, $database);
+// проверка соединения
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+echo "Connected successfully";
+mysqli_close($conn);</code></pre>
+
+<p>Основным методом, используемым в этом скрипте, является <code>mysqli_connect()</code>. Это внутренняя PHP-функция для установления нового соединения с сервером MySQL.</p>
+
+<p>В начале кода мы видим несколько объявлений переменных и значений, присваиваемых этим переменным. </p>
+
+<p>Обычно нам нужны четыре из них, чтобы установить правильное подключение к базе данных: <code>$servername</code>, <code>$database</code>, <code>$username</code> и <code>$password</code>. В коде мы устанавливаем данные нашей базы данных в качестве значений для этих переменных, чтобы они могли быть переданы в функцию.</p>
+
+<p>Если соединение не удается, выполняется функция <code>die()</code>. Это, по сути, «убивает» (прекращает работу) наш скрипт и дает нам сообщение об ошибке соединения, которое мы установили. По умолчанию, ошибка соединения MySQL скажет, что соединение не удалось, а затем появится точное сообщение об ошибке, описывающее проблему.</p>
+
+<p>С другой стороны, если подключение MySQL будет успешным, то вместо этого код напечатает «Connected successful» (рус. — соединения успешно).</p>
+
+<p>Последняя часть кода — <code>mysqli_close</code>, которая просто закроет соединение с базой данных вручную. Если не указать, то соединения MySQL закроются сами по себе после завершения работы скрипта.</p>
+
+<h2>Вставка данных</h2>
+
+<p>Сначала вам нужно установить соединение с базой данных. После этого можно приступать к выполнению MySQL-запроса <code>INSERT</code>. Вот полный пример PHP-кода с основными методами подключения и вставки:</p>
+
+<pre><code class="language-php">&lt;?php
+$servername = "mysql.hostinger.co.uk";
+$database = "u266072517_name";
+$username = "u266072517_user";
+$password = "buystuffpwd";
+
+// Create connection
+
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+// Check connection
+
+if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
+}
+ 
+echo "Connected successfully";
+ 
+$sql = "INSERT INTO Students (name, lastname, email) VALUES ('Test', 'Testing', 'Testing@tesing.com')";
+if (mysqli_query($conn, $sql)) {
+      echo "New record created successfully";
+} else {
+      echo "Error: " . $sql . "&lt;br&gt;" . mysqli_error($conn);
+}
+mysqli_close($conn);</code></pre>
+
+<p>Первая часть кода (строки 3-18) предназначена для фактического подключения к базе данных. Я не буду повторять эту часть снова, однако, если вы хотите знать, что означает каждая строка кода, то вам нужно вернуться в начало этого руководства.</p>
+
+<p>Итак, начнем со строки 19:</p>
+
+<pre><code class="language-php">$sql = "INSERT INTO Students (name, lastname, email) VALUES ('Test', 'Testing', 'Testing@tesing.com')";</code></pre>
+
+<p>Это самая важная строка PHP-кода, поскольку она вставляет данные в базу данных MySQL. <code>INSERT INTO</code> — это оператор, который добавляет данные в указанную таблицу БД. В этом примере мы добавляем данные в таблицу <strong>Students</strong>.</p>
+
+<p>Далее, между скобками, у нас есть имена столбцов таблицы, в которые мы хотим добавить значения: <code>(name, lastname, email)</code>. Данные будут добавлены в указанном порядке. Если мы напишем <code>(email, lastname, name)</code>, то значения будут добавлены в неправильном порядке.</p>
+
+<p>Следующая часть — это выражение <code>VALUES</code>. Здесь мы указываем наши значения для вставки в ранее указанные столбцы. Таким образом, каждый столбец представляет определенное значение. Например, в нашем случае это будет так: </p>
+
+<p><strong>name = Test</strong>, <strong>lastname = Testing</strong>, <strong>email = Testing@testing.com</strong></p>
+
+<p>Еще стоит упомянуть, что мы только что выполнили SQL-запрос с использованием кода PHP. SQL-запросы должны быть заключены в кавычки. В нашем примере все, что находится между кавычками и написано после <code>$sql =</code>, является запросом SQL.</p>
+
+<p>Следующая часть кода (20 — 22 строки) проверяет успешность нашего запроса:</p>
+
+<pre><code class="language-php">if (mysqli_query($conn, $sql)) {
+     echo "New record created successfully";
+}</code></pre>
+
+<p>Программа просто выводит сообщение об успешном выполнении запроса, который мы выполнили.</p>
+
+<p>А в последней части (22 — 24 строки) выводится другое сообщение в случае, если наш запрос не был успешным:</p>
+
+<pre><code class="language-php">else {
+     echo "Error: " . $sql . "&lt;br&gt;" . mysqli_error($conn);
+}</code></pre>
+
+<p>Программа выдаст нам SQL-сообщение об ошибке в случае, если что-то не так.</p>
+
+<h2>Решение проблем</h2>
+
+<p>Если отображается сообщение об ошибке MySQLi, мы можем использовать следующие методы, чтобы исправить это. Например, давайте сделаем одну синтаксическую ошибку в нашем коде, если мы это сделаем, мы увидим что-то похожее на это:</p>
+
+<pre><code class="language-jsstacktrace">Connect successfully
+Error: INSERT INTO students {name, lastname, email} VALUES ('Test', 'Testing', 'Testing@testing.com')
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{name, lastname, email} VALUES ('Test', 'Testing', 'Test@testingcom')' at line 1"</code></pre>
+
+<p>Как видите, первая часть кода в порядке, соединение установлено успешно, но наш SQL-запрос привел к ошибке.</p>
+
+<pre><code class="language-jsstacktrace">"Error: INSERT INTO Students {name, lastname, email} VALUES ('Thom', 'Vial', 'thom.v@some.com') You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{name, lastname, email} VALUES ('Thom', 'Vial', 'thom.v@some.com')' at line 1"</code></pre>
+
+<p>Здесь есть синтаксическая ошибка, которая, к сожалению, привела к сбою нашего скрипта. Ошибка была здесь:</p>
+
+<pre><code class="language-php">$sql = "INSERT INTO Students {name, lastname, email} VALUES ('Thom', 'Vial', 'thom.v@some.com')";</code></pre>
+
+<p>Мы использовали фигурные скобки вместо простых скобок. Так как это некорректно, это привело к тому, что наш скрипт выдал синтаксическую ошибку.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 5 февраля 2023 в 14:12</span><br>Теги: MySQL
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

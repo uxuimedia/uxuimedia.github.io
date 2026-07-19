@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Свойство transition в CSS &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Свойство transition в CSS</h1>
+
+<p>Свойство <code>transition</code> (переход) позволяет элементам изменять значения в течение определенного периода времени, анимируя изменения свойств.</p>
+
+<p><code>transition</code> — это краткосрочное действие для которого есть четыре связанных с переходом свойств:</p>
+
+<pre><code class="language-css">.example {
+    transition: [transition-property] [transition-duration] [transition-timing-function] [transition-delay];
+}</code></pre>
+
+<p>Ниже простой пример, который меняет цвет фона элемента <code>&lt;div&gt;</code> при наведении (<code>hover:</code>):</p>
+
+<pre><code class="language-css">div {
+  transition: background-color 0.5s ease;
+  background-color: red;
+}
+div:hover {
+  background-color: green;
+}</code></pre>
+
+<p>При наведении указателя мыши на <code>&lt;div&gt;</code> потребуется полсекунды, чтобы изменить цвет с красного на зеленый.</p>
+
+<p>Вы можете указать конкретное свойство, как мы это делали выше, или использовать значение <code>all</code> для ссылки на свойства перехода.</p>
+
+<pre><code class="language-css">div {
+  transition: all 0.5s ease;
+  background: red;
+  padding: 10px;
+}
+div:hover {
+  background: green;
+  padding: 20px;
+}</code></pre>
+
+<p>В этом примере выше, и к фону (background) и к отступу (padding) будет применен переход (transition), благодаря значению “all” использованному в свойстве <code>transition-property</code>.</p>
+
+<p>Вы можете разделять наборы значений запятыми, чтобы выполнять разные переходы для разных свойств:</p>
+
+<pre><code class="language-css">div {
+  transition: background 0.2s ease,
+              padding 0.8s linear;
+}</code></pre>
+
+<p>По большей части порядок значений не имеет значения — если только не указана задержка. Если вы указываете задержку, то сначала необходимо указать ее продолжительность.</p>
+
+<p>Первое значение, которое браузер распознает как действительное значение времени, всегда будет представлять собой продолжительность.</p>
+
+<p>Любое последующее действительное значение времени будет использоваться как задержка.</p>
+
+<p>Некоторые свойства не могут меняться, так как они не являются анимируемыми свойствами. Для того, чтобы понять какие свойства можно анимировать, а какие нет — лучше всего сверять с официальной <a href="https://www.w3.org/TR/css-transitions-1/#animatable-properties" target="_blank" rel="noreferrer noopener">Документацией</a>.</p>
+
+<div class="attention-blue"><strong>Информация</strong>. Указав переход для элемента, вы определяете, что переход будет происходить в обоих направлениях. То есть, когда стили элемента изменяются, например, при наведении курсора, то его свойства изменяются согласно <code>transition</code>, а когда курсор убираются, то и стили возвращаются к первоначальному состоянию с таким же переходом.</div>
+
+<p>Например, следующий пример показывает как происходит переход при наведении мыши, но не срабатывает, когда курсор убирается.</p>
+
+<p>Это происходит потому, что переход был перемещен в селектор состояния <code>:hover</code>, и в селекторе нет соответствующего перехода, который нацелен непосредственно на элемент без состояния <code>:hover</code>.</p>
+
+<p>Для совместимости во всех поддерживаемых браузерах необходимы префиксы производителя со стандартным синтаксисом, объявленным последним:</p>
+
+<pre><code class="language-css">.example {
+    -webkit-transition: background-color 500ms ease-out 1s;
+    -moz-transition: background-color 500ms ease-out 1s;
+    -o-transition: background-color 500ms ease-out 1s;
+    transition: background-color 500ms ease-out 1s;
+}</code></pre>
+
+<p>IE10 (первая стабильная версия IE с поддержкой перехода) не требует префикса <code>-ms-</code>.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 29 декабря 2021 в 22:16</span><br>Теги: CSS
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

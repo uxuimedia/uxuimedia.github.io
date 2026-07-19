@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Правильная работа со шрифтами Google Fonts &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->  
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Правильная работа со шрифтами Google Fonts</h1>
+
+<p>Многие в своих веб-проектах используют Google Fonts. На этой странице по <a href="https://fonts.google.com/" target="_blank" rel="noreferrer noopener nofollow">ссылке</a> можно выбрать нужный шрифт, скопировать <code>link</code> и стиль для вашего CSS.</p>
+
+<p>Но тут есть нюанс, для ускорения работы сайта не всегда хочется иметь стороннее обращение к другим сайтам. И возникает ситуация, когда пользователь открывает сайт и видит сначала один шрифт (например, Arial), а после этого он меняется на другой (например, Roboto). Такие прыгающие шрифты мало кому понравятся.</p>
+
+<p>Самый удобный вариант, а тем более, если у вас стоит кеш-плагины или вы используете CDN — это скачивание шрифтов в нужных форматах и установка их на сайт. И вот здесь у новичков возникает много вопросов — как скачать шрифт с Гугла и т.п.</p>
+
+<p>Австрийский программист <a href="https://mranftl.com/" target="_blank" rel="noreferrer noopener nofollow">Марио Ранфтель</a> сделал очень удобный инструмент под названием Google Webfonts Helper (<a href="https://gwfh.mranftl.com/fonts" target="_blank" rel="noreferrer noopener nofollow">ссылка</a>). Репозиторий проекта на GitHub по этой <a href="https://github.com/majodev/google-webfonts-helper" target="_blank" rel="noreferrer noopener nofollow">ссылке</a>. Благодаря этому инструменту стало очень удобно выбирать шрифты Google, скачивать их и устанавливать к себе на сайт. </p>
+
+<p>Ниже я пройду по шагам установки шрифта Roboto на один из моих сайтов.</p>
+
+<p>1. Сначала мы переходим на сайт <a href="https://gwfh.mranftl.com/fonts" target="_blank" rel="noreferrer noopener nofollow">google-webfonts-helper</a>:</p>
+
+<div>
+<figure><img src="images/google-webfont-helper-1.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>2. Далее мы должны выбрать наш шрифт в поисковой строке сверху слева, например, Roboto.</p>
+
+<div>
+<figure><img src="images/google-webfont-helper-2.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>3. После того как нам сервис показал варианты шрифтов в левой колонке, мы кликаем на нужный нам шрифт. В моем случае я выбрал <em><strong>Roboto</strong></em>, потому что данный шрифт является одним из самых удобных, популярных и очень быстрых шрифтов Гугл.</p>
+
+<div>
+<figure><img src="images/google-webfont-helper-3.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>4. Далее мы должны выбрать нужные нам параметры шрифта. Сначала мы выбираем язык, ставим галочку напротив Кириллицы. Латиница стоит по умолчанию, но ее можно не выбирать, если сайт только на русском языке (что очень редко бывает).</p>
+
+<div>
+<figure><img src="images/google-webfont-helper-4.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>5. Затем мы выбираем стили нашего шрифта (наклон, ширину).</p>
+
+<div>
+<figure><img src="images/google-webfont-helper-5.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Этот шаг довольно важный, т.к. здесь вы должны для себя определиться с тем, что вам нужно. Для понимания — <code>regular</code> — это шрифт шириной (толщиной) 400. А вот italic — наклонный шрифт 400. Также в примере выше я выбрал 700 и 700italic- это классический жирный шрифт, который является простым <code>bold</code>.</p>
+
+<p>6. Следующим шагом нам предлагается скопировать стили, которые сформировались автоматически после выбора начертания шрифтов. Но здесь есть важный (!) нюанс — на этом шаге ниже окна стилей есть поле <code>Customize folder prefix (optional):</code>. В этом поле мы должны указать адрес, где будут находиться скачанные файлы нашего шрифта относительно адреса сайта.</p>
+
+<div>
+<figure><img src="images/google-webfont-helper-6.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Например, если вы хотите разместить шрифты по адресу <code>site.ru/fonts/</code>, то вам нужно в этом поле оставить <code>/fonts/</code> и удалить две точки, которые стоят по умолчанию. После удаления точек можно спокойно копировать стили в ваш файл .CSS на вашем сайте.</p>
+
+<p>7. Теперь осталось ниже нажать кнопку <strong>Download Files</strong> и начнется процесс скачивания необходимых файлов всех шрифтов.</p>
+
+<p>Последний этап — разархивировать архив, и скопировать все файлы в папку на сайте, которая находится по адресу <code>site.ru/fonts/</code>. После чего не забудьте очистить кеш сайта и браузера.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 30 марта 2022 в 12:27</span><br>Теги: CSS, HTML
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

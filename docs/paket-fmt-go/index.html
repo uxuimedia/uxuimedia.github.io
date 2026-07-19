@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Пакет fmt в Go &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Пакет fmt в Go</h1>
+
+<p><code>fmt</code> — один из основных пакетов языка программирования Go и основном он используется для вывода информации в терминал. У пакета fmt есть и более широкое назначение — он помогает нам форматировать данные, поэтому его иногда называют пакетом формата.</p>
+
+<h2>Функции в пакете Go <code>fmt</code></h2>
+
+<p>Пакет состоит из трех наборов функций, основанных на их использовании. Функции, используемые для форматирования и вывода данных на печать различными способами и в различных случаях:</p>
+
+<ul>
+<li><code>Println()</code></li>
+<li><code>Print()</code></li>
+<li><code>Printf()</code></li>
+</ul>
+
+<p>Функции, которые только форматируют данные и ничего не выводят</p>
+
+<ul>
+<li><code>Sprint()</code></li>
+<li><code>Sprintln()</code></li>
+<li><code>Sprintf()</code></li>
+</ul>
+
+<p>И функция для чтения пользовательского ввода с терминала</p>
+
+<ul>
+<li><code>Scan()</code></li>
+</ul>
+
+<h2>Функции, используемые для форматирования и вывода данных различными способами и в различных случаях</h2>
+
+<p>Пакет Go <code>fmt</code> предоставляет две тесно связанные функции для форматирования строки, выводимой в терминал.</p>
+
+<h3>.Print()</h3>
+
+<p>Если аргументы являются строками, он объединяет их без интервалов и выводит результат в консоль.</p>
+
+<pre><code class="language-go">fmt.Print("My", "name", "is", "Lukman")
+
+// Выведет: MynameisLukman</code></pre>
+
+<p>Если ни один из аргументов не является строкой, функция <code>Print</code> добавляет между ними пробелы.</p>
+
+<pre><code class="language-go">fmt.Print(10, 20)
+
+// 10 20</code></pre>
+
+<h3>.Println()</h3>
+
+<p>Наоборот, всегда добавляет пробел между аргументами и добавляет новую строку или перенос строки в конце.</p>
+
+<pre><code class="language-go">fmt.Println("My", "name", "is", "Lukman")
+
+fmt.Println("new", "line")
+
+// My name is Lukman
+// new line</code></pre>
+
+<h3>.Printf()</h3>
+
+<p>Функция Go <code>Printf()</code> в <code>fmt</code> обеспечивает пользовательское форматирование строки с помощью одного или нескольких параметров. Параметр — это место для именованного значения (константы или переменной), которое должно быть отформатировано в соответствии с этими условиями:</p>
+
+<ul>
+<li><code>%v</code> представляет именованное значение в формате по умолчанию</li>
+<li><code>%d</code> предполагает, что именованное значение будет целочисленного типа</li>
+<li><code>%f</code> означает, что именованная величина имеет тип float</li>
+<li><code>%T</code> представляет тип для именованного значения</li>
+</ul>
+
+<p>Но в отличие от <code>.Println()</code> и <code>.Printf()</code> не добавляет новую строку к отформатированной строке.</p>
+
+<pre><code class="language-go">name := "Lukman"
+fmt.Printf("My name is %v", name)
+// My name is Lukman
+
+age := 90
+fmt.Printf("I am %d years old", age)
+// I am 90 years old</code></pre>
+
+<h2>Функции, которые только форматируют данные и ничего не выводят</h2>
+
+<p>В отличие от функций <code>.Print()</code> и <code>.Println()</code>, пакет <code>fmt</code> предоставляет другие функции, которые не выводят строки, а форматируют их: <code>fmt.Sprint()</code> и <code>fmt.Sprintln()</code>.</p>
+
+<h3>fmt.Sprint()</h3>
+
+<pre><code class="language-go">user := "Kenny"
+Feedback := "Nice book!"
+userFeedback := fmt.Sprint(user, "feedback on your book is", feedback)
+
+fmt.Print(userFeedback)
+// Вывод: Kenny feedback on your book is Nice book!</code></pre>
+
+<p>Присмотритесь к <code>userFeedback</code>, и вы увидите, что вызов <code>fmt.Sprint()</code> ничего не выводит. Скорее, он возвращает значение, которое мы храним в <code>userFeedback</code>. Когда возвращается значение, это означает, что функция выполнила какие-то вычисления и возвращает вычисленное значение. После этого мы можем использовать возвращенное значение для дальнейшего использования. Мы отформатировали одну строку, соединив четыре отдельные строки. Чтобы увидеть значение <code>userFeedback</code>, мы должны использовать оператор <code>print</code>.</p>
+
+<h3>fmt.Sprintln()</h3>
+
+<p><code>fmt.Sprintln()</code> работает так же, как <code>fmt.Sprint()</code>, но автоматически включает пробелы между аргументами (так же, как <code>fmt.Println()</code> и <code>fmt.Print()</code>):</p>
+
+<pre><code class="language-go">quote = fmt.Sprintln("see here,", "no spaces!")
+fmt.Print(quote) 
+
+// Prints: see here, no spaces!</code></pre>
+
+<p>Несмотря на то что мы не добавили пробел в конце фразы <em>«see here»</em> или пробел в начале фразы <em>«no spaces!»</em>, цитата конкатенируется с пробелом между ними: <em>«see here, no spaces!»</em>.</p>
+
+<h3>fmt.Sprintf()</h3>
+
+<p>Когда нам нужно интерполировать строку, без её вывода, мы можем использовать <code>fmt.Sprintf()</code>.</p>
+
+<p>Как и <code>fmt.Printf()</code>, <code>fmt.Sprintf()</code> также может использовать параметры:</p>
+
+<pre><code class="language-go">user := "userA"
+winner := fmt.Sprintf("The winner is… %v!", user)
+
+fmt.Print(answer) 
+
+// Вывод: The winner is is… userA!</code></pre>
+
+<p><code>fmt.Sprintf()</code> работает аналогично <code>fmt.Printf()</code>, главное отличие в том, что <code>fmt.Sprintf()</code> возвращает свое значение, а не выводит его!</p>
+
+<h2>Функция чтения пользовательского ввода</h2>
+
+<p>Функция Go <code>fmt.Scan()</code> сканирует пользовательский ввод с терминала и извлекает текст, разделенный пробелами, в последовательные аргументы. Новая строка считается пробелом. Эта функция ожидает передачи адреса каждого аргумента.</p>
+
+<pre><code class="language-go">package main
+import "fmt"
+
+func main() {
+  var name string
+  var age int
+  fmt.Println("What's your name?")
+  fmt.Scan(&amp;name)
+
+  fmt.Println("and what's your age?")
+  fmt.Scan(&amp;age)
+
+  fmt.Printf("%v is %d years old!", name, age)
+}
+
+//$ What's your name?
+//$ Lukman
+//$ now what's your age?
+//$ 90
+//$ Lukman is 90 years old!</code></pre>
+
+<p>Мы рассмотрели семь функций, открываемых пакетом Go <code>fmt</code>, и теперь вы можете полностью использовать пакет <code>fmt</code> в своих Go-приложениях.</p>
+
+<p>Теперь пришло время использовать всю мощь Go, желаю вам отличных проектов на Go!</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 2 сентября 2024 в 22:04</span><br>Теги: Go
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Дата и время в PHP &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Дата и время в PHP</h1>
+
+<p>В этой статье мы будем учиться работать с датами и временем в языке программирования PHP.</p>
+
+<h2>Преобразование даты в timestamp</h2>
+
+<p>Рассмотрим методы преобразования даты в метку времени (timestamp) в PHP.</p>
+
+<h3>Использование функции <code>strtotime()</code></h3>
+
+<p>Встроенная функция <code>strtotime()</code> преобразует дату во временную метку Unix. Временная метка Unix — это общее количество секунд, отсчитываемое от эпохи Unix (1 января 1970 года). Правильный синтаксис для использования этой функции следующий:</p>
+
+<pre><code class="language-php">strtotime($dateString, $timeNow);</code></pre>
+
+<p>Эта функция имеет два параметра. <code>$dateString</code> — это строка даты/времени, которая должна соответствовать допустимому формату PHP. Это обязательный параметр. Другой параметр <code>$timeNow</code> является необязательным, это метка времени, которая используется для вычисления относительных дат. Текущее время <code>now</code> является значением по умолчанию, если второй параметр опущен.</p>
+
+<pre><code class="language-php">&lt;?php
+$timestamp = strtotime("23-04-2020");
+echo "The timestamp is $timestamp.";
+</code></pre>
+
+<p>Дата здесь представлена в формате <code>"d-m-Y"</code>. Мы передали только один параметр, так как он преобразует <code>date</code> в <code>Unix timestamp</code> (временную метку Unix).</p>
+
+<p>Вывод:</p>
+
+<pre><code class="language-bash">The timestamp is 1587600000.</code></pre>
+
+<h3>Использование функции strptime()</h3>
+
+<p>Это еще одна функция для преобразования даты в <code>timestamp</code> Unix. Она не преобразует <code>date</code> непосредственно в <code>timestamp</code>. Она возвращает массив, в котором указаны секунды, минуты, часы и некоторые другие данные. Мы можем использовать эти данные для преобразования <code>date</code> в <code>timestamp</code>.</p>
+
+<pre><code class="language-php">strptime($dateString, $format);</code></pre>
+
+<p>Она имеет два обязательных параметра. <code>$dateString</code> — это строка даты, а <code>$format</code> — формат для парсинга <code>$dateString</code>.</p>
+
+<pre><code class="language-php">&lt;?php
+$array = strptime('23-04-2020', '%d-%m-%Y');
+$timestamp = mktime(0, 0, 0, $array['tm_mon']+1, $array['tm_mday'], $array['tm_year']+1900);
+echo "The timestamp is $timestamp.";</code></pre>
+
+<p>Вывод:</p>
+
+<pre><code class="language-bash">The timestamp is 1587600000.</code></pre>
+
+<p>После создания массива функция <code>mktime()</code> преобразует <code>date</code> в <code>timestamp</code>.</p>
+
+<p>Синтаксис функции <code>mktime()</code> следующий:</p>
+
+<pre><code class="language-php">mktime(hour, minute, second, month, day, year, is_dst)</code></pre>
+
+<p><code>is_dst</code> определяет, является ли дата-время переходом на летнее время, но удален из PHP 7.0.0.</p>
+
+<div class="attention-red"><strong>Предупреждение</strong>!
+
+<p>Мы прибавим <code>1</code> к <code>$array['tm_mon']</code> и затем используем сумму в качестве параметра <code>month</code> в <code>mktime</code>, поскольку <code>$array['tm_mon']</code> начинается с <code>0</code>, или, другими словами, <code>$array['tm_mon']</code> января равен <code>0</code>.</p></div>
+
+<h3>Использование функции getTimestamp()</h3>
+
+<p>Метод <code>getTimestamp()</code> объекта <code>DateTime</code> — это простой метод преобразования даты в timestamp. Он имеет другой способ представления <code>date_timestamp_get()</code>, который является представлением процедурного стиля.</p>
+
+<pre><code class="language-php">$datetimeObject-&gt;getTimestamp();</code></pre>
+
+<p>Мы создадим объект <code>Datetime</code> для вызова этой функции. Это объектно-ориентированный стиль вызова функции.</p>
+
+<pre><code class="language-php">&lt;?php
+$date = new DateTime('2020-04-23');
+$timestamp = $date-&gt;getTimestamp();
+echo "The timestamp is $timestamp.";</code></pre>
+
+<p>Объект <code>$date</code> класса <code>Datetime</code> вызвал метод <code>getTimestamp()</code> для преобразования <code>date</code> (даты) в <code>Unix timestamp</code>.</p>
+
+<p>Вывод:</p>
+
+<pre><code class="language-php">The timestamp is 1587600000.</code></pre>
+
+<h3>Использование функции format()</h3>
+
+<p>Мы также можем использовать метод <code>format()</code> в <code>DateTime</code> для преобразования даты в метку времени. Этот метод имеет другое представление <code>date_format()</code>, которое является представлением функции <code>format()</code> в процедурном стиле.</p>
+
+<pre><code class="language-php">$datetimeObject-&gt;format("U");</code></pre>
+
+<p>Чтобы преобразовать дату в метку времени, формат, который мы передадим в виде строки, будет <code>"U"</code>.</p>
+
+<pre><code class="language-php">&lt;?php
+$dateObject = new DateTime('2020-04-23');
+$timestamp = $dateObject-&gt;format("U");
+echo "The timestamp is $timestamp.";</code></pre>
+
+<p>Объект <code>$dateObject</code> класса <code>Datetime</code> вызвал функцию <code>format()</code> для преобразования даты в временную метку Unix.</p>
+
+<p>Вывод:</p>
+
+<pre><code class="language-bash">The timestamp is 1587600000.</code></pre>
+
+<h2>Последний день месяца в PHP</h2>
+
+<p>В PHP уже есть встроенные функции, которые помогут получить последнюю дату заданного месяца.</p>
+
+<p>Функции <code>DateTime</code> и <code>strtotime</code> наиболее полезны в этом сценарии, хотя хорошо известно и документировано, что <code>strtotime</code> не будет работать точно или давать правильные результаты после 2038 года. Однако <code>strtotime</code> отлично подходит для преобразования дат.</p>
+
+<p>Обе функции используют формат <code>t</code>, который, согласно официальному руководству, возвращает количество дней в месяце от заданной даты. Обратите внимание, что ключом к получению последнего дня месяца является буква <code>t</code>, которая возвращает количество дней в данном месяце.</p>
+
+<h3>DateTime в PHP для получения последней даты месяца</h3>
+
+<p>Это лучший метод, который можно использовать для получения последней даты месяца как в будущем, так и в прошлом. Параметры, передаваемые в функцию <code>format()</code>, — <code>Y</code>, <code>m</code> и <code>t</code>. Эти константы определены в PHP.</p>
+
+<p>Полное числовое представление года, состоящее из 4 цифр, обозначается буквой <code>Y</code>, например, 2020. Числовое представление месяца, с ведущими нулями, обозначается буквой <code>m</code> — это от <code>01</code> до <code>12</code>. А количество дней в данном месяце обозначается буквой <code>t</code>.</p>
+
+<p>Это лучший вариант, если используемая версия PHP старше 5.3.</p>
+
+<pre><code class="language-php">$L = new DateTime( '2020-02-01' ); 
+echo $L-&gt;format( 'Y-m-t' );</code></pre>
+
+<p>В приведенном выше коде функция <code>DateTime</code> получает дату и, используя символы формата <code>Y-m-t</code>, получает последнее число месяца в указанной дате.</p>
+
+<h3><code>strtotime()</code> в PHP для получения последней даты месяца</h3>
+
+<p><code>strtotime()</code> является лучшим вариантом для PHP версий до 5.2.</p>
+
+<pre><code class="language-php">$date = "2020-01-15";
+echo date("Y-m-t", strtotime($date));</code></pre>
+
+<h2>Получение текущего года в PHP</h2>
+
+<p>Рассмотрим методы для получения текущего года, используя функцию <code>date()</code>, функцию <code>strftime()</code>, метод <code>format()</code> в объекте <code>DateTime</code>.</p>
+
+<h3>Использование функции date() для получения текущего года в PHP</h3>
+
+<p>Для получения текущего года мы можем использовать встроенную функцию <code>date()</code>. Она возвращает текущую дату с заданным форматом. Ее синтаксис выглядит следующим образом:</p>
+
+<pre><code class="language-php">date($format, $timestamp);</code></pre>
+
+<p>Параметр <code>$format</code> говорит о конечном формате даты, который будет отображаться. Он имеет несколько вариаций. Он должен быть строкой.</p>
+
+<p>Параметр <code>$timestamp</code> является необязательным. Он указывает конкретную временную метку и отображает дату соответствующим образом. Если временная метка не передана, то по умолчанию используется текущая дата.</p>
+
+<pre><code class="language-php">&lt;?php
+$Date = date("d-m-Y");  
+echo "The current date is $Date.";
+echo "\n";
+$Year = date("Y");
+echo "The current year is $Year.";
+echo "\n";
+$Year2 = date("y");
+echo "The current year in two digits is $Year2.";</code></pre>
+
+<p>Формат <code>"d-m-Y"</code> вернет полную дату с 4-значным значением года. Формат <code>"Y"</code> вернет 4-значное значение года. Формат <code>"y"</code> вернет 2-значное значение года. Вы можете изменить его в соответствии с вашими требованиями.</p>
+
+<p><strong>Вывод</strong>:</p>
+
+<pre><code class="language-php">The current date is 20-04-2020.
+The current year is 2020.
+The current year in two digits is 20.</code></pre>
+
+<h3>Использование функции strftime() для получения текущего года в PHP</h3>
+
+<p>Другая встроенная функция PHP — strftime() также может вернуть строку даты или времени в заданном формате. Она имеет другой формат для вариантов даты и времени.</p>
+
+<pre><code class="language-php">strftime($format, $timestamp);</code></pre>
+
+<p>Параметр <code>$format</code> сообщает о формате даты или времени. Он представляет собой строку.</p>
+
+<p>Параметр <code>$timestamp</code> является необязательной переменной, которая сообщает о временной метке <strong>UNIX</strong>. Это целое число. Если параметр не указан, функция возвращает текущую дату или время.</p>
+
+<pre><code class="language-php">&lt;?php
+$Date = strftime("%d-%m-%Y");  
+echo "The current date is $Date.";
+echo "\n";
+$Year = strftime("%Y"); 
+echo "The current year is $Year.";
+echo "\n";
+$Year2 = strftime("%y"); 
+echo "The current year in two digits is $Year2.";</code></pre>
+
+<div class="attention-yellow"><strong>Внимание</strong>! Мы можем получить текущий год в 4-значном значении, используя формат <code>"%Y"</code>, и в 2-значном значении, используя формат <code>"%y"</code>.</div>
+
+<p><strong>Вывод</strong>:</p>
+
+<pre><code class="language-bash">The current date is 20-04-2020.
+The current year is 2020.
+The current year in two digits is 20.</code></pre>
+
+<h3>Использование объекта DateTime для получения текущего года в PHP</h3>
+
+<p>В PHP функция <strong>DateTime</strong> <code>format()</code> используется для отображения даты в заданном формате.</p>
+
+<pre><code class="language-php">$ObjectName = new DateTime();
+$ObjectName-&gt;format($format);</code></pre>
+
+<p>Параметр <code>$format</code> задает формат даты.</p>
+
+<pre><code class="language-php">&lt;?php
+$Object = new DateTime();  
+$Date = $Object-&gt;format("d-m-Y");  
+echo "The current date is $Date.";
+echo "\n";
+$Year = $Object-&gt;format("Y"); 
+echo "The current year is $Year.";
+echo "\n";
+$Year2 = $Object-&gt;format("y"); 
+echo "The current year in two digits is $Year2.";</code></pre>
+
+<p>Вывод — дата с указанным форматом.</p>
+
+<p><strong>Вывод</strong>:</p>
+
+<pre><code class="language-bash">The current date is 20-04-2020.
+The current year is 2020.
+The current year in two digits is 20.</code></pre>
+
+<h2>Преобразование DateTime в строку</h2>
+
+<p>Преобразовать DateTime в строку в PHP довольно просто, для этого существуют такие полезные функции, как <code>format()</code> класса <code>DateTime</code>, <code>date_format()</code>, использование предопределенных форматов или <code>list()</code>.</p>
+
+<h3>Использование метода format() класса DateTime</h3>
+
+<p>В PHP есть класс <code>DateTime</code> для управления датой и временем. Он доступен с версии PHP 5.2.</p>
+
+<p>Некоторые причины, по которым стоит использовать <code>DateTime</code> вместо традиционных функций PHP для управления датами:</p>
+
+<ul>
+<li>Способен обрабатывать больше форматов строк</li>
+<li>Проще, чем другие функции</li>
+<li>Интерфейс инкапсулирует внутреннюю логику с чистым интерфейсом для использования</li>
+</ul>
+
+<p>Одним из полезных методов класса <code>DateTime</code> является <code>format()</code>, он возвращает отформатированную строку даты в соответствии с заданным форматом.</p>
+
+<p><strong>Пример</strong></p>
+
+<pre><code class="language-php">$theDate = new DateTime('2020-03-08');
+echo $stringDate = $theDate-&gt;format('Y-m-d H:i:s');
+
+//output: 2020-03-08 00:00:00</code></pre>
+
+<p><code>$stringDate</code> — это строка с заданным форматом.</p>
+
+<div class="attention-blue"><strong>Примечание</strong>. <code>DateTime-&gt;format()</code> на самом деле не поддерживает микросекунды.</div>
+
+<h3>Использование метода date_format()</h3>
+
+<p>Метод <code>date_format()</code> вернет новый объект <code>DateTime</code> и отформатирует его в соответствии с заданным форматом.</p>
+
+<p><strong>Пример</strong></p>
+
+<pre><code class="language-php">$date = date_create_from_format('d M, Y', '08 Mar, 2020');
+echo $newFormat = date_format($date,"Y/m/d H:i:s");
+
+//output: 2020/03/08 00:00:00</code></pre>
+
+<p>Согласно предоставленному формату, функция <code>date_create_from_format()</code> используется для парсинга строки времени. Эта функция принимает три параметра: <code>format</code>, <code>time</code> и <code>timezone</code> (необязательно).</p>
+
+<p>В приведенном примере функция <code>date_format()</code> обрабатывает созданную дату для преобразования ее в строку.</p>
+
+<h3>Использование предопределенных форматов в файле date_d.php</h3>
+
+<p>Список предопределенных форматов:</p>
+
+<pre><code class="language-php">define ('DATE_ATOM', "Y-m-d\TH:i:sP");
+define ('DATE_COOKIE', "l, d-M-y H:i:s T");
+define ('DATE_ISO8601', "Y-m-d\TH:i:sO");
+define ('DATE_RFC822', "D, d M y H:i:s O");
+define ('DATE_RFC850', "l, d-M-y H:i:s T");
+define ('DATE_RFC1036', "D, d M y H:i:s O");
+define ('DATE_RFC1123', "D, d M Y H:i:s O");
+define ('DATE_RFC2822', "D, d M Y H:i:s O");
+define ('DATE_RFC3339', "Y-m-d\TH:i:sP");
+define ('DATE_RSS', "D, d M Y H:i:s O");
+define ('DATE_W3C', "Y-m-d\TH:i:sP");</code></pre>
+
+<p><strong>Пример</strong></p>
+
+<pre><code class="language-php">$dateFormat = new DateTime(); // this will return current date
+echo $stringDate = $date-&gt;format(DATE_ATOM);
+
+//output: 2020-03-08T12:54:56+01:00</code></pre>
+
+<p>В приведенном выше примере используется один из предопределенных форматов, поэтому нет необходимости предоставлять его.</p>
+
+<h3>Использование функции <code>list()</code></h3>
+
+<p>Функция <code>list()</code> может быть использована для присвоения значений списку переменных за одну операцию, но работает только с числовыми массивами. Когда массиву присваивается несколько значений, первый элемент массива будет присвоен первой переменной, и так далее, до конца количества переменных. При этом количество переменных не может быть больше длины числового массива.</p>
+
+<p><strong>Пример</strong></p>
+
+<pre><code class="language-php">$date = explode("/",date('d/m/Y/h/i/s')
+list($day,$month,$year,$hour,$min,$sec) = $date);
+echo $month.'/'.$day.'/'.$year.' '.$hour.':'.$min.':'.$sec;
+
+//output: 03/08/2020 02:01:06</code></pre>
+
+<p>Используя функцию <code>list()</code>, вы можете легко использовать <code>$day</code>, <code>$month</code>, <code>$year</code>, <code>$hour</code>, <code>$min</code> и <code>$sec</code> в качестве переменной.</p>
+
+<h2>Разница между двумя датами</h2>
+
+<p>Существует несколько способов вычисления разницы между двумя датами с помощью PHP. Я покажу, как вычислять разницу дат при использовании PHP версий младше 5.3 и более надежный метод для PHP версий старше 5.3.</p>
+
+<h3>Использование функции strtotime() для вычисления разницы между двумя датами для PHP версии ниже 5.3</h3>
+
+<p>Функция <code>strtotime()</code> преобразует две даты в UNIX-время и вычисляет по ним количество секунд. Исходя из этого, легче вычислять различные методы, использующие секунды. Функция принимает строковый параметр на английском языке, который показывает описание даты-времени.</p>
+
+<p><strong>Пример</strong></p>
+
+<pre><code class="language-php">$firstDate = "2019-01-01";
+$secondDate = "2020-03-04";
+
+$dateDifference = abs(strtotime($secondDate) - strtotime($firstDate));
+
+$years  = floor($dateDifference / (365 * 60 * 60 * 24));
+$months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+$days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
+
+echo $years." year,  ".$months." months and ".$days." days";
+
+// выведет: 1 year, 2 months and 3 days</code></pre>
+
+<div class="attention-blue"><strong>Справка</strong>. Функция <code>abs()</code> — возвращает абсолютное значение (модуль) числа.</div>
+
+<p>В приведенном выше примере для получения разницы двух дат используется несколько функций, таких как <code>abs()</code>, <code>floor()</code> и, главным образом, <code>strtotime()</code>.</p>
+
+<p>Функция <code>strtotime()</code> получает значение секунд UNIX для дат и использует <code>abs()</code> для получения абсолютного значения первой даты.</p>
+
+<p>Функция <code>floor()</code> используется для округления секунд до ближайшего целого числа.</p>
+
+<p>Чтобы получить год, умножьте 365 дней на 60 минут, 60 секунд и 24 часа, затем разделите на разность.</p>
+
+<p>Чтобы получить месяцы, умножьте 30 дней на 60 минут, 60 секунд и 24 часа и разделите на разность разности дат, умноженной на год и 365 дней, 60 минут, 60 секунд и 24 часа.</p>
+
+<p>Затем, чтобы получить разницу дней, умножьте 60 минут, 60 секунд и 24 часа, затем разделите ее на разницу разницы дат, произведение года, 365 дней, 60 минут, 60 секунд и 24 часа и произведения месяцев, 30 дней, 60 минут и 60 секунд и 24 часа.</p>
+
+<p>Наконец, сложите все это в переменную, чтобы вывести окончательную разницу.</p>
+
+<h3>Использование объектов DateTime() и DateInterval() для PHP 5.3 и старше</h3>
+
+<p>Этот метод представляет собой объектно-ориентированный стиль для получения разницы между двумя датами, он также является самым простым, так как не требует ручного вычисления дат, и рекомендован, так как относится к самой новой версии PHP.</p>
+
+<p><strong>Пример</strong></p>
+
+<pre><code class="language-php">$firstDate  = new DateTime("2019-01-01");
+$secondDate = new DateTime("2020-03-04");
+$intvl = $firstDate-&gt;diff($secondDate);
+
+echo $intvl-&gt;y . " год, " . $intvl-&gt;m." месяца и ".$intvl-&gt;d." день"; 
+echo "\n";
+// Общее количество дней
+echo $intvl-&gt;days . " дней ";
+
+// вывод: 1 год, 2 месяца и 1 день
+//        428 дней</code></pre>
+
+<p>В приведенном примере, в отличие от использования функции <code>strtotime()</code> и других функций и вычислений, объекты <code>DateTime()</code> и <code>DateInterval()</code> упростили задачу.</p>
+
+<p>Сначала объявляем даты с помощью <code>new DateTime()</code>. Затем получаем целочисленное значение разницы с помощью <code>DateInterval()</code> объекта <code>diff()</code> от первой даты и передаем вторую дату в качестве параметра.</p>
+
+<p>И наконец, для получения года используем объект <code>y</code>. Для получения месяцев используем <code>m</code>, а для дня — <code>d</code>.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 12 января 2023 в 21:02</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

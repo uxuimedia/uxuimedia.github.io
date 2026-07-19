@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Основы ООП (Объектно-Ориентированного Программирования) &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Основы ООП (Объектно-Ориентированного Программирования)</h1>
+
+<p>Изучим основы объектно-ориентированного программирование (ООП) на языке PHP, классы, методы, объекты и т.п. Это один из самых важных разделов не только в PHP, но и в целом в рамках программирования на любом языке.</p>
+
+<h2>Что нам нужно?</h2>
+
+<p>Для изучения Объектно-Ориентированного Программирования (ООП) нам нужно иметь под рукой удобный редактор кода и сервер для работы PHP. Я использую для работы с кодом Sublime Text 3, Notepad++ и Visual Studio Code. </p>
+
+<p>Для полноценной работы с PHP я использую сервер Openserver (ospanel.io).</p>
+
+<p>Кроме того мы будем частенько заглядывать в официальную документацию PHP на, собственно, <a href="https://www.php.net/manual/ru/oop5.intro.php" target="_blank" rel="noreferrer noopener nofollow">официальном сайте.</a></p>
+
+<h2>Знакомство с ООП в PHP</h2>
+
+<p>Язык PHP включает в себя такое понятие как объектная модель, которая содержит в себе классы, объекты, метода и т.д. О многих вещах мы поговорим ниже.</p>
+
+<p>Класс — это шаблон кода для создания объектов одного класса. По сути, класс является формальным описанием объекта. Или, говоря простым языком, это схема или чертеж по которому потом создаются объекты.</p>
+
+<p>Например, чертеж дома — это класс, а сам дом, построенный по этому чертежу — объект.</p>
+
+<p>Каждый объект может обладать своими собственными свойствами и методами, которые мы рассмотрим далее в курсе.</p>
+
+<p>Но вкратце, свойства — это переменные, а методы — это функции.</p>
+
+<h2>Классы и объекты</h2>
+
+<p>Немного про классы и объекты мы поговорили, давайте подготовим проект для работы. Создадим два файла и папку:</p>
+
+<div>
+<figure><img src="images/php-oop-001.jpg" alt="" class="img-fluid"></figure>
+</div>
+
+<p>Как видно со скриншота выше мы создали файлы <em>index.php</em>, <em>FirstClass.php</em> и папку <strong><em>classes</em></strong>.</p>
+
+<p>В файле <em>index.php</em> подключим наш файл в котором будем работать с классом:</p>
+
+<pre><code class="language-php">&lt;?php 
+
+require_once 'classes/FirstClass.php';</code>
+</pre>
+
+<div class="attention-blue"><strong>Примечание</strong>. Очень настоятельно рекомендуется:
+
+<ul>
+<li>один класс помещать в отдельный файл,</li>
+<li>имя класса должно совпадать с именем класса,</li>
+<li>имена классов должны быть написаны в CamelCase, точнее PascalCase.</li>
+</ul></div>
+
+<p>Все это описывается в базовом стандарте PSR — <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md" target="_blank" rel="noreferrer noopener">https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md</a>.</p>
+
+<p>Кроме того, согласно стандарту:</p>
+
+<ul>
+<li>Константы класса ДОЛЖНЫ быть объявлены во всех верхних регистрах с разделителями подчеркивания.</li>
+<li>Имена методов ДОЛЖНЫ быть объявлены в camelCase.</li>
+<li>Нельзя использовать <a href="https://www.php.net/manual/ru/reserved.php" target="_blank" rel="noreferrer noopener">зарезервированные слова</a></li>
+</ul>
+
+<p>Данное руководство по ссылке выше намеренно избегает каких-либо рекомендаций относительно использования имен свойств $StudlyCaps, $camelCase или $under_score.</p>
+
+<p>Пример:</p>
+
+<pre><code class="language-php">&lt;?php
+namespace Vendor\Model;
+
+class Foo
+{
+    const VERSION = '1.0';
+    const DATE_APPROVED = '2012-06-01';
+
+    private $StudlyCapsProp = null;
+    protected $camelCaseProp = null;
+    public $under_score_prop = null;
+
+    public function fooBar()
+    {
+
+    }
+}</code>
+</pre>
+
+<p>Но давайте вернемся к нашему курсу и создадим наш первый класс:</p>
+
+<pre><code class="language-php">&lt;?php 
+
+class FirstClass
+{
+	
+}</code>
+</pre>
+
+<p>Создадим теперь объект из этого класса или экземпляр класса:</p>
+
+<pre><code class="language-php">&lt;?php 
+
+class FirstClass
+{
+
+}
+
+// создаем объект класса
+new FirstClass; // или new FirstClass();
+
+// можно присвоить переменной
+$newObject = new FirstClass;</code></pre>
+
+<h2>Модификаторы доступа</h2>
+
+<p>Здесь я забегаю немного вперед и сразу хочу поговорить про такую терминологию как «модификаторы доступа».</p>
+
+<p>Это ключевые слова&nbsp;<code>public</code>,&nbsp;<code>protected</code>&nbsp;или&nbsp;<code>private</code> определяют область видимости свойства. Лучше уже на данном этапе знать о том, что существуют данные ключевые слова. Тогда будет проще изучать свойства и методы классов далее.</p>
+
+<div class="attention-blue"><strong>Из документации PHP</strong>. Доступ к свойствам и методам класса, объявленным как <strong><em>public</em></strong> (общедоступный), разрешён отовсюду. Модификатор <strong><em>protected</em></strong> (защищённый) разрешает доступ самому классу, наследующим его классам и родительским классам. Модификатор <strong><em>private</em></strong> (закрытый) ограничивает область видимости так, что только класс, где объявлен сам элемент, имеет к нему доступ.</div>
+
+<p>Подробнее о модификаторах мы поговорим дальше в курсе.</p>
+
+<h2>Свойства объектов</h2>
+
+<p>Свойство класса/объекта, простыми словами, — это переменная описанная в классе. Эта формулировка не до конца верна, но немного упрощает понимание понятия свойства.</p>
+
+<p>Создадим по канонам всех классических туториалов класс <code>Car</code>:</p>
+
+<pre><code class="language-php">&lt;?php 
+
+class Car
+{
+	
+}</code>
+</pre>
+
+<p>И далее определим свойство класса, держа в голове, что мы уже знаем про модификаторы доступа, о которых поговорили выше.</p>
+
+<p>Добавим свойства для нашей машины — цвет, количество колес, и скорость.</p>
+
+<pre><code class="language-php">&lt;?php 
+
+class Car
+{
+	public $color;
+	public $wheels;
+	public $speed;
+}</code>
+</pre>
+
+<p> Добавим еще бренд и значения некоторых свойств по умолчанию:</p>
+
+<pre><code class="language-php">&lt;?php 
+
+class Car
+{
+	public $color;
+	public $wheels = 4;
+	public $speed = 120;
+	public $brand;
+}</code>
+</pre>
+
+<p>Все, наш класс готов, свойства созданы и теперь можем создать объект этого класса <code>bmw</code> и вывести подтверждение на экран:</p>
+
+<pre><code class="language-php">&lt;?php 
+
+
+require_once 'classes/Car.php'; // подключение файла с классом Car
+
+$bmw = new Car; // создание нового объекта
+
+var_dump($bmw); // вывод информации об объекте</code>
+</pre>
+
+<p>Напоминаю, что у нас класс <code>Car</code> находится в отдельном файле в папке <strong>classes</strong>, а подключение файла с классом и создание нового объекта происходит в файле <em>index.php</em>.</p>
+
+<p>Есть еще один отличный лайфхак для удобной работы с выводом данных, который можно использовать при работе с массивами и объектами. Мы создадим небольшую функцию <code>deb</code> (от слова debug) в папке <strong>includes</strong> и подключим ее в файле <em>index.php</em>:</p>
+
+<pre><code class="language-php">&lt;?php 
+
+function deb($data){
+	echo '&lt;pre&gt;' . print_r($data, 1) . '&lt;/pre&gt;';
+}</code></pre>
+
+<p>А файл <em>index.php</em> теперь выглядит так:</p>
+
+<pre><code class="language-php">&lt;?php 
+
+require_once 'includes/functions.php';
+require_once 'classes/Car.php';
+
+$bmw = new Car;
+
+deb($bmw);</code>
+</pre>
+
+<p>В браузере мы видим удобное отображение нашего объекта:</p>
+
+<pre><code class="language-php">Car Object
+(
+    [color] =&gt; 
+    [wheels] =&gt; 4
+    [speed] =&gt; 120
+    [brand] =&gt; 
+)</code></pre>
+
+<p>Значения для свойств объекта мы можем добавлять вне класса, не обязательно значения определять внутри класса. Но свойство должно иметь модификатор доступа — <code>public</code>.</p>
+
+<p>Давайте поменяем скорость для нашего объекта класса <code>Car</code>. Делается это простым способом:</p>
+
+<pre><code class="language-php">$bmw-&gt;speed = 180;</code></pre>
+
+<p>Давайте также определим цвет машины и название бренда, после чего выведем всё на экран:</p>
+
+<pre><code class="language-php">$bmw-&gt;speed = 180;
+$bmw-&gt;color = 'Black';
+$bmw-&gt;brand = 'BMW';
+
+deb($bmw); // функция удобного вывода на экран, которую мы определили ранее</code>
+</pre>
+
+<p>При обращении к свойству знак доллара ($) мы не ставим. Таким образом мы можем создать множество объектов. Например, создадим второй объект этого класса и определим его свойства:</p>
+
+<pre><code class="language-php">$vaz = new Car;
+
+$vaz-&gt;speed = 100;
+$vaz-&gt;color = 'Silver';
+$vaz-&gt;brand = 'VAZ';
+
+deb($vaz);</code></pre>
+
+<p>Кроме уже созданных свойств мы можем добавлять свойства для объекта, которых нет в классе. Допустим мы хотим создать свойство «год выпуска» для объекта $vaz:</p>
+
+<pre><code class="language-php">$vaz = new Car;
+
+$vaz-&gt;speed = 100;
+$vaz-&gt;color = 'Silver';
+$vaz-&gt;brand = 'VAZ';
+
+$vaz-&gt;year = '1999'; // добавили год к объекту
+
+deb($vaz);</code>
+</pre>
+
+<div class="attention-red"><strong>Важно</strong>! Такой метод добавления свойства к объекту — не рекомендуется.</div>
+
+<p>Давайте теперь посмотрим как мы можем вывести информацию про наши созданные объекты на веб-страницу, чтобы пользователям было удобно читать все данные.</p>
+
+<pre><code class="language-php">echo "Марка машины: {$vaz-&gt;brand}" . "&lt;br&gt;";
+echo "Цвет машины: {$vaz-&gt;color}" . "&lt;br&gt;";
+echo "Скорость машины: {$vaz-&gt;speed}" . "&lt;br&gt;";
+echo "Колес: {$vaz-&gt;wheels}" . "&lt;br&gt;";
+
+// можно и так
+echo "Колес: $vaz-&gt;wheels" . "&lt;br&gt;";</code>
+</pre>
+
+<p>В PHP если имя переменной заключено в двойные (не одинарные!) кавычки, то переменная интерполируется, что мы видим в выводе на страницу:</p>
+
+<pre><code class="language-php">Марка машины: VAZ
+Цвет машины: Silver
+Скорость машины: 100
+Колес: 4</code></pre>
+
+<p>Важное замечание стоит сделать, что с версии PHP 5.6 мы можем при определении свойств в значениях использовать выражения (2 + 2), конкатенацию ( ‘Hi’ . ‘ John’ ) и т.д.</p>
+
+<h2>Методы объектов</h2>
+
+<p>Кроме свойств объектов, о которых мы поговорили выше, у объектов могут быть методы. Если простыми словами, то методы помогают объектам выполнять разные задачи и производить действия.</p>
+
+<p>Объявление методов схожи с объявлением свойств. Мы должны использовать модификаторы доступа.</p>
+
+<p>Определим метод, который выводит информацию об объекте, в нашем случае о машинах.</p>
+
+<pre><code class="language-php">&lt;?php 
+
+class Car
+{
+	public $color;
+	public $wheels;
+	public $speed;
+	public $brand;
+
+	public function getCarInfo(){
+
+	}
+}</code></pre>
+
+<p>Не совсем верно называть функции методами, но если отбросить все домыслы, то это вполне так. В целом, при объявлении метода модификатор можно не указывать, тогда метод будет по умолчанию <code>public</code>. При объявлении свойств модификатор нужен обязательно.</p>
+
+<p>Обращаемся к методам мы также как и к свойствам объекта.</p>
+
+<pre><code class="language-php">echo $vaz-&gt;getCarInfo()</code></pre>
+
+<p>Итак, мы объявили метод и давайте разместим в него ту часть кода, где выводится информация о машине. Но вместо созданного объекта мы будем использовать специальный оператор или псевдопеременную <code>$this</code>:</p>
+
+<pre><code class="language-php">&lt;?php 
+
+class Car
+{
+	public $color;
+	public $wheels;
+	public $speed;
+	public $brand;
+
+	public function getCarInfo(){
+		return "Марка машины: {$this-&gt;brand}&lt;br&gt;
+			Цвет машины: {$this-&gt;color}&lt;br&gt;
+			Скорость машины: {$this-&gt;speed}&lt;br&gt;
+			Колес: {$this-&gt;wheels}&lt;br&gt;";
+	}
+}</code>
+</pre>
+
+<p> Если внутри класса мы хотим обратиться к свойству или методу мы должны использовать <code>$this</code>.</p>
+
+<p><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-cyan-bluish-gray-color">Материал дополняется…</mark></p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 16 января 2023 в 17:09</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Ошибки и журнал ошибок в PHP &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Ошибки и журнал ошибок в PHP</h1>
+
+<p>Изучаем основные ошибки с которыми встречаются разработчики на языке программирования PHP и что такое журнал ошибок.</p>
+
+<h2>Журнал ошибок</h2>
+
+<p>Журнала ошибок PHP — файл, отвечающий за регистрацию ошибок сайта и указания, в какой строке код требует исправления. Многие сообщения об ошибках не содержат подробных сведений о том, что следует делать для их устранения. По этой причине рекомендуется использовать&nbsp;<strong>PHP error log</strong>&nbsp;файл.</p>
+
+<p>Для того, чтобы работать с ошибками в PHP нам для начала нужно будет понимать какая конфигурация PHP используется для сайта на сервере. Эта конфигурация известна под названием&nbsp;<strong>phpinfo</strong>.</p>
+
+<p>Вы сможете проверить соответствуют ли ваши конфигурации PHP требованиям какого-либо программного обеспечения, которое вы хотите запустить на своем сервере.</p>
+
+<p>Ниже рассмотрим как создать файл&nbsp;<strong>phpinfo</strong>, а также как проверить его подробную информацию с помощью инструментов, представленных в панели управления хостингом.</p>
+
+<h2>Создание phpinfo</h2>
+
+<p>В случае, если ваша хостинговая платформа не предлагает упомянутую встроенную функцию PHP Info, вам не о чем беспокоиться. Вы можете достичь той же цели, создав файл <strong>phpinfo</strong> в вашей директории <strong>public_html</strong>.</p>
+
+<p>Этот файл будет доступен через браузер и покажет вам ту же самую подробную информацию.</p>
+
+<p>Вам понадобится доступ к вашим файлам <strong>public_html</strong>. Здесь мы будем использовать файловый менеджер (<strong>File Manager</strong>) хостинга Beget в качестве примера.</p>
+
+<p>1. Перейдите в «Файловый менеджер»</p>
+
+
+<div>
+<figure><img src="images/php-error-log-1.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>2. Переходим в <strong>public_html</strong> нужного сайта:</p>
+
+<div>
+<figure><img src="images/php-error-log-2.jpg" alt="" class="img-fluid"></figure></div>
+
+<p> 3. Нажмите кнопку «<em><strong>Новый файл</strong></em>».</p>
+
+<div>
+<figure><img src="images/php-error-log-3.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>4. Назовите ваш файл <strong>phpinfo.php</strong> и нажмите <strong>Ок</strong>.</p>
+
+<div>
+<figure><img src="images/php-error-log-4.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>5. Найдите новый файл <strong>phpinfo</strong> в каталоге, затем щелкните правой кнопкой мыши и нажмите «Правка».</p>
+
+<p>6. Теперь скопируйте и вставьте следующий код в текстовый редактор и нажмите «Сохранить».</p>
+
+<pre><code class="language-php">&lt;?php
+    phpinfo();
+?&gt;</code></pre>
+
+<p>Такого же результата можно добиться с помощью любого текстового редактора на вашем компьютере.</p>
+
+<p>Создайте файл <strong>phpinfo.php</strong>, выполнив те же действия, что и ранее, а затем загрузите файл в папку <strong>public_html</strong> вашего сервера через FTP-клиент.</p>
+
+<h2>Проверка phpinfo</h2>
+
+<p>Нам нужно после создания <strong>phpinfo</strong> проверить информацию в нем. Есть пара способов, которые нам в этом помогут.</p>
+
+<h3>Проверка с помощью панели управления хостингом</h3>
+
+<p>Для примера мы будем использовать панель от одного хостинг-провайдера. Благодаря большинству панелей управления вы сможете легко проверить информацию о PHP с помощью инструмента PHP Info. </p>
+
+<p>После входа в систему, как правило, нам нужно перейти во вкладку <strong>Advanced -&gt; PHP Info</strong> (Дополнительно -&gt; PHP Info).</p>
+
+<div>
+<figure><img src="images/php-error-log.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Затем вы будете перенаправлены на страницу с подробной информацией о текущей версии PHP, модулях, значениях и т.д. Прокрутите вниз для просмотра более подробной информации.</p>
+
+<p>Если вы хотите найти данные о конкретном модуле или функции, вы можете использовать сочетание клавиш<strong> CTRL + F</strong> (<strong>CMD + F</strong> для MacOS), чтобы открыть функцию поиска в вашем браузере.</p>
+
+<h3>Проверка информации PHP с помощью браузера</h3>
+
+<p>У вас уже должен быть файл <strong>phpinfo.php</strong> в каталоге <strong>public_html</strong>. Итак, осталось только получить доступ к этому файлу, добавив <strong>/phpinfo.php</strong> в конце вашего доменного имени.</p>
+
+<p>Вы должны увидеть нечто подобное когда доступ к файлу осуществляется через любой браузер:</p>
+
+<div>
+<figure><img src="images/php-error-log-5.jpg" alt="" class="img-fluid"></figure></div>
+
+<div class="attention-yellow"><strong>Замечание</strong>. Если Вы не хотите, чтобы Ваша страница <strong>phpinfo</strong> постоянно отображалась, Вы можете легко отключить файл, дав ему другое имя — <strong>phpinfo.php_disabled</strong>, например.</div>
+
+<h2>Включение ведения журнала ошибок</h2>
+
+<p>Перед настройкой кода и параметров убедитесь, что на вашем хостинг-аккаунте включена функция регистрации ошибок PHP.</p>
+
+<p>Откройте информацию о PHP, нажмите <strong>CTRL + F</strong> и найдите значение <strong>log_errors</strong>.</p>
+
+<div>
+<figure><img src="images/php-error-log-6.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Если значение установлено в <strong>Off</strong>, есть несколько способов его включить в зависимости от вашей хостинг-платформы.</p>
+
+<p>Ниже рассмотрим как включить регистрацию ошибок, настроив некоторые параметры в панели управления хостинг-провайдера и отредактировав файл <strong>.htaccess</strong>.</p>
+
+<h3>Метод 1. Использование Панель Управления</h3>
+
+<p>Самый простой способ активировать протоколирование ошибок PHP — через Панель управления (<strong>File Manager</strong>).</p>
+
+<p>1. Войдите в Панель и найдите инструмент «Конфигурации PHP», расположенный в разделе «Дополнительно».</p>
+<p>2. Перейдите на вкладку «Параметры PHP» и установите флажок log_errors. Нажмите «Сохранить».</p>
+
+<div>
+<figure><img src="images/php-error-log-7.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Журнал ошибок будет автоматически создан в вашем каталоге <strong>public_html</strong>.</p>
+
+<h3>Метод 2. Редактирование файла .htaccess</h3>
+
+<p>Если вы не можете найти в Панели управления хостинга эту опцию, что ведение журнала ошибок PHP также можно включить, отредактировав файл <strong>.htaccess</strong>. </p>
+
+<p>1. Создайте файл <strong>error_log.txt</strong> в каталоге <strong>public_html</strong>. Все ошибки будут записаны в этот файл.</p>
+<p>2. Откройте <strong>.htaccess</strong> и вставьте следующее:</p>
+
+<pre><code class="language-php">php_flag log_errors on
+php_value error_reporting 32767
+php_value error_log "error_log.txt"</code></pre>
+
+<p>3. Нажмите «Сохранить». Теперь вы успешно включили ведение журнала ошибок PHP.</p>
+
+<p>Когда вы перепроверяете информацию о PHP, локальное значение должно быть включено, в то время как главное значение все еще выключено. Однако, не обращайте внимания на главное значение, так как оно переопределяется локальным значением.</p>
+
+<div>
+<figure><img src="images/php-error-log-8.jpg" alt="" class="img-fluid"></figure></div>
+
+<h2>Изучаем журнал ошибок</h2>
+
+<p>Теперь, когда вы активировали регистрацию ошибок PHP, любая PHP-ошибка, произошедшая на вашем сайте, будет записана в файл журнала ошибок.</p>
+
+<p>Чтобы проверить, работает ли он, добавьте дополнительный символ в свой код и обновите сайт. После этого с помощью Файлового менеджера откройте лог-файл ошибки и проверьте, нет ли новых записей:</p>
+
+<div>
+<figure><img src="images/php-error-log-9.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Вот несколько примеров распространенных ошибок, которые могут помочь вам проанализировать записи журнала.</p>
+
+<pre><code class="language-php">PHP Parse error:  syntax error, unexpected ‘2’ (T_LNUMBER), expecting ‘)’ in /home/u802426761/domains/username/public_html/wp-config.php on line 54</code></pre>
+
+<p>Означает, что в вашем коде есть синтаксическая ошибка. Чтобы устранить эту проблему, проверьте файл и номер строки, указанный в сообщении.</p>
+
+<pre><code class="language-php">PHP Fatal error: Call to undefined function get_header() in /var/www/username/public/blog/wp-content/themes/theme/index.php on line 1</code></pre>
+
+<p>Предупреждает, что страница index.php пытается вызвать несуществующую функцию. Проверьте правильность названия функции.</p>
+
+<pre><code class="language-php">Fatal error: Maximum execution time of 30 seconds exceeded in /home/username/domains/domain.com/public_html/wp-includes/class-phpmailer.php on line 737</code></pre>
+
+<p>Может быть решена модификацией max_execution_time через конфигурацию PHP или <strong>.htaccess</strong> файл.</p>
+
+<p>В этом кратком уроке вы познакомились с двумя методами включения логирования ошибок PHP: настройка параметров в Панели управления и редактирование файла <strong>.htaccess</strong>.</p>
+
+<p>Используя эту возможность, вы будете знать, что не так с вашим сайтом, когда он неожиданно ломается.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 17 января 2023 в 03:05</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

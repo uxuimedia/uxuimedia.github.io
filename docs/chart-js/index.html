@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Библиотека Chart.js &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Библиотека Chart.js</h1>
+
+<p><a href="https://www.chartjs.org/" target="_blank" rel="noreferrer noopener nofollow">Chart.js</a> — это универсальная библиотека, позволяющая создавать графики JavaScript за пару минут.</p>
+
+<h2>О библиотеке</h2>
+
+<p>Она имеет множество опций, с помощью которых вы можете настроить любые ваши графики. В этом уроке мы рассмотрим, как настроить библиотеку Chart.js, какие у нее есть опции и чего можно добиться с ее помощью.</p>
+
+<p>Если у вас есть сайт или приложение с большим количеством данных, то скорее всего эти данные рано или поздно захочется визуализировать, чтобы пользователи смогли лучше понять их смысл.</p>
+
+<p>В некоторых случаях нам могут быть полезны таблицы, например, для сравнения цен или характеристик, но большинство других данных легче демонстрировать в виде визуализации. Библиотеки JavaScript, такие как Chart.js, позволяют создавать различные типы диаграмм, такие как линейные, круговые и т.п.</p>
+
+<p>Мы создадим две диаграммы: гистограмму, показывающую продолжительность жизни в шести странах, и диаграмму пончиков/пирожков, показывающую рекомендуемый дневной рацион.</p>
+
+<h2>Добавление на страницу</h2>
+
+<p>Вы можете установить Chart.js разными способами. Если вы хотите хранить всю библиотеку локально, вы можете установить ее с помощью менеджера пакетов <code>npm</code>, используя следующую команду:</p>
+
+<pre><code class="language-bash">npm install chart.js --save</code></pre>
+
+<p>Когда модуль будет установлен, добавьте минифицированную версию в нижнюю часть HTML-страницы перед закрывающим тегом <code>&lt;/body&gt;</code> следующим образом:</p>
+
+<pre><code class="language-html">&lt;body&gt;
+     &lt;!-- HTML content --&gt;
+     &lt;script src="node_modules/chart.js/dist/Chart.bundle.min.js"&gt;&lt;/script&gt;
+     &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+
+<p>Ваш пользовательский сценарий будет помещен в файл script.js. Кроме того, вы можете добавить скрипты на свою страницу с помощью <a href="https://www.chartjs.org/docs/latest/getting-started/integration.html#common-js" target="_blank" rel="noreferrer noopener nofollow">загрузчиков модулей</a>, таких как CommonJS или Webpack.</p>
+
+<p>Если вы не хотите хранить библиотеку Chart.js локально, вы можете добавить ее из <a href="https://cdnjs.com/libraries/Chart.js" target="_blank" rel="noreferrer noopener nofollow">CDN</a> с помощью следующего кода:</p>
+
+<pre><code class="language-html">&lt;body&gt;
+     &lt;!-- HTML content --&gt;
+     &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"&gt;&lt;/script&gt;
+     &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+
+<p>Или вы можете клонировать последнюю версию Chart.js прямо из <a href="https://github.com/chartjs/Chart.js/" target="_blank" rel="noreferrer noopener nofollow">репозитория GitHub</a>. Однако обратите внимание, что репозиторий GitHub не поставляется с предварительно собранной версией релиза, поэтому вам придется самостоятельно <a href="https://www.chartjs.org/docs/latest/developers/contributing.html#building-and-testing" target="_blank" rel="noreferrer noopener nofollow">собрать библиотеку в один файл</a>.</p>
+
+<h2>Настройка HTML</h2>
+
+<p>С помощью Chart.js вы можете добавить диаграммы JavaScript на HTML-страницу, используя элемент <code>&lt;canvas&gt;</code>. В HTML-файле добавьте следующий код внутри тега <code>&lt;body&gt;</code> (над тегами <code>&lt;script&gt;</code>):</p>
+
+<pre><code class="language-html">&lt;div class="container"&gt;
+     &lt;canvas id="myChart" width="600" height="400"&gt;&lt;/canvas&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Chart.js разместит ваш график внутри элемента <code>&lt;canvas&gt;</code>. Хотя график будет создан с помощью JavaScript, он появится на вашей странице в виде файла изображения PNG.</p>
+
+<p>Теперь вам нужно добавить вашу пользовательскую конфигурацию в файл <em><strong>script.js</strong></em>. </p>
+
+<p>Ниже покажу, как создать два вида диаграмм: вертикальную столбчатую диаграмму и диаграмму в виде пончика (или круга). Однако вы можете использовать ту же логику с любыми другими типами диаграмм. В <a href="https://www.chartjs.org/samples/latest/" target="_blank" rel="noreferrer noopener nofollow">документации Chart.js</a> вы можете ознакомиться со всеми доступными типами диаграмм.</p>
+
+<h2>Столбчатая диаграмма</h2>
+
+<p>На нашей столбчатой диаграмме будет показана ожидаемая продолжительность жизни по странам, взятая с сайта World Population Review. На ней будут показаны шесть стран с самой высокой продолжительностью жизни, а именно:</p>
+
+<div class="table-responsive mb-3 mb-md-4"><table class="table teble-stripped"><thead><tr><th>Страна</th><th>Country</th><th>Ожидаемая продолжительность жизни</th></tr></thead><tbody><tr><td>Гонконг</td><td>Hong Kong</td><td>84.308</td></tr><tr><td>Макао</td><td>Macau</td><td>84.188</td></tr><tr><td>Япония</td><td>Japan</td><td>84.118</td></tr><tr><td>Швейцария</td><td>Switzerland</td><td>83.706</td></tr><tr><td>Испания</td><td>Spain</td><td>83.5</td></tr><tr><td>Сингапур</td><td>Singapore</td><td>83.468</td></tr></tbody></table></div>
+
+<p>Мы создадим вертикальную гистограмму с интерактивными всплывающими подсказками, которые будут показывать точные данные, когда пользователь наведет курсор на гистограмму. Однако обратите внимание, что с помощью Chart.js можно создать и горизонтальную гистограмму. На демонстрации gif ниже вы можете увидеть, как будет выглядеть наша диаграмма:</p>
+
+<div>
+<figure><img src="images/vertical-bar-chart.gif" alt="" class="img-fluid"></figure></div>
+
+<p>Chart.js требует две переменные: одну, которая фиксирует HTML-элемент (<code>ctx</code> в примере ниже), и одну, которая хранит пользовательский объект Chart (<code>myChart</code> ниже). Нам нужно добавить названия стран в качестве значения свойства <code>labels</code>. И определить данные (ожидаемая продолжительность жизни в годах) как значение свойства <code>data</code> массива <code>datasets</code>.</p>
+
+<p>Следующий код помещаем в пользовательский файл <strong><em>script.js</em></strong>:</p>
+
+<pre><code class="language-javascript">// Vertical bar chart
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Hong Kong', 'Macau', 'Japan', 'Switzerland', 'Spain', 'Singapore'],
+        datasets: [{
+            label: 'Life expectancy',
+            data: [84.308, 84.188, 84.118, 83.706, 83.5, 83.468],
+            backgroundColor: [
+                'rgba(216, 27, 96, 0.6)',
+                'rgba(3, 169, 244, 0.6)',
+                'rgba(255, 152, 0, 0.6)',
+                'rgba(29, 233, 182, 0.6)',
+                'rgba(156, 39, 176, 0.6)',
+                'rgba(84, 110, 122, 0.6)'
+            ],
+            borderColor: [
+                'rgba(216, 27, 96, 1)',
+                'rgba(3, 169, 244, 1)',
+                'rgba(255, 152, 0, 1)',
+                'rgba(29, 233, 182, 1)',
+                'rgba(156, 39, 176, 1)',
+                'rgba(84, 110, 122, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        legend: {
+            display: false
+        },
+        title: {
+            display: true,
+            text: 'Life Expectancy by Country',
+            position: 'top',
+            fontSize: 16,
+            padding: 20
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 75
+                }
+            }]
+        }
+    }
+});</code></pre>
+
+<p>Документация по Chart.js действительно хороша, поэтому вы можете найти все параметры, которые мы использовали выше (backgroundColor, borderColor, borderWidth и т.д.) на странице <a href="https://www.chartjs.org/docs/latest/charts/bar.html" target="_blank" rel="noreferrer noopener nofollow">Bar</a>.</p>
+
+<h2>Пончиковая диаграмма</h2>
+
+<p>Теперь давайте создадим пончиковую диаграмму с помощью библиотеки Chart.js. Она будет показывать распределение рекомендуемого дневного рациона в соответствии со следующим набором данных StatCrunch:</p>
+
+<div class="table-responsive"><table class="table table-stripped"><tbody><tr><td>Dairy</td><td>27.92%</td></tr><tr><td>Fruits</td><td>17.53%</td></tr><tr><td>Lean meats</td><td>14.94%</td></tr><tr><td>Vegetables</td><td>26.62%</td></tr><tr><td>Whole grains</td><td>12.99%</td></tr></tbody></table></div>
+
+<p>Здесь мы не хотим показывать интерактивную подсказку, а отображаем метки данных и значения поверх графика следующим образом:</p>
+<div>
+<figure><img src="images/chartjs-doughnut-chart.jpg" alt="" class="img-fluid"></figure></div>
+
+<h2>Плагин Data Labels</h2>
+
+<p>Поскольку в Chart.js нет возможности отображения меток поверх графиков, нам необходимо использовать плагин Chart.js Data Labels. Chart.js позволяет разработчикам расширять функциональность по умолчанию путем <a href="https://www.chartjs.org/docs/latest/developers/plugins.html" target="_blank" rel="noreferrer noopener nofollow">создания плагинов</a>. В настоящее время на <a href="https://github.com/chartjs" target="_blank" rel="noreferrer noopener nofollow">GitHub</a> доступно пять плагинов Chart.js для следующих функций:</p>
+
+<ol>
+<li>data labels (мы будем использовать этот),</li>
+<li>zoom,</li>
+<li>annotation,</li>
+<li>financial charting,</li>
+<li>deferring initial chart updates.</li>
+</ol>
+
+<p>Плагин Chart.js Data Labels имеет довольно хорошую документацию; вы можете найти все, что вам может понадобиться. Вы можете установить его с помощью менеджера пакетов <code>npm</code>, используя команду ниже, или добавить последнюю версию библиотеки из CDN.</p>
+
+<pre><code class="language-bash">npm install chartjs-plugin-datalabels --save</code></pre>
+
+<h2>Пользовательский JavaScript</h2>
+
+<p>JavaScript использует тот же элемент <code>&lt;canvas&gt;</code>, что и раньше, или, если вы хотите сохранить оба графика, вы можете добавить новый холст в HTML с другим <code>ID</code>:</p>
+
+<pre><code class="language-html">&lt;div class="container"&gt;
+     &lt;canvas id="myChart" width="600" height="400"&gt;&lt;/canvas&gt;
+&lt;/div&gt;</code></pre>
+
+<p>В JavaScript мы теперь определяем тип графика как пончиковый. Остальная часть кода следует той же логике, что и раньше. Мы добавляем данные в качестве значений свойств <code>labels</code> и <code>dataset</code> объекта данных.</p>
+
+<pre><code class="language-javascript">// Doughnut chart
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Dairy', 'Fruits', 'Lean meats', 'Vegetables', 'Whole grains'],
+        datasets: [{
+            data: [27.92, 17.53, 14.94, 26.62, 12.99],
+            backgroundColor: ['#e91e63', '#00e676', '#ff5722', '#1e88e5', '#ffd600'],
+            borderWidth: 0.5 ,
+            borderColor: '#ddd'
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            text: 'Recommended Daily Diet',
+            position: 'top',
+            fontSize: 16,
+            fontColor: '#111',
+            padding: 20
+        },
+        legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+                boxWidth: 20,
+                fontColor: '#111',
+                padding: 15
+            }
+        },
+        tooltips: {
+            enabled: false
+        },
+        plugins: {
+            datalabels: {
+                color: '#111',
+                textAlign: 'center',
+                font: {
+                    lineHeight: 1.6
+                },
+                formatter: function(value, ctx) {
+                    return ctx.chart.data.labels[ctx.dataIndex] + '\n' + value + '%';
+                }
+            }
+        }
+    }
+});</code></pre>
+
+<p>Как вы можете видеть выше, мы добавили настройки плагинов Data Labels в свойство <code>options.plugin</code> пончикового графика. Метод <code>formatter()</code> помещает метки данных (например, «Whole grains 12.99%») поверх нашего графика.</p>
+
+<h2>Круговая диаграмма</h2>
+
+<p>Поскольку Chart.js является действительно универсальным плагином, вы можете легко превратить приведенный выше набор данных в круговую диаграмму. </p>
+
+<p>Пончиковые и круговые диаграммы предназначены для представления распределения данных, поэтому они имеют одинаковые настройки. Единственное, что вам нужно изменить в коде, — это тип диаграммы:</p>
+
+<pre><code class="language-javascript">// Pie chart
+var myChart = new Chart(ctx, {
+    type: 'pie',
+
+    /* остальная часть кода остается прежней */
+});</code></pre>
+
+<p>Это тот же набор данных, представленный в виде круговой диаграммы:</p>
+
+<div>
+<figure><img src="images/chartjs-pie-chart-js.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Вы также можете выбрать отображение только процентов, отредактировав метод <code>formatter()</code> следующим образом:</p>
+
+<pre><code class="language-javascript">formatter: function(value) {
+      return value + '%';
+}</code></pre>
+
+<p>Получаем:</p>
+
+<div>
+<figure><img src="images/chart-js-pie-chart-percent.jpg" alt="" class="img-fluid"></figure></div>
+
+<h2>Другие типы</h2>
+
+<p>С помощью Chart.js можно создавать множество других типов графиков, таких как <a href="https://www.chartjs.org/docs/latest/charts/line.html" target="_blank" rel="noreferrer noopener nofollow">линейные</a>, <a href="https://www.chartjs.org/docs/latest/charts/radar.html" target="_blank" rel="noreferrer noopener nofollow">радарные</a>, <a href="https://www.chartjs.org/docs/latest/charts/polar.html" target="_blank" rel="noreferrer noopener nofollow">полярные</a>, <a href="https://www.chartjs.org/docs/latest/charts/bubble.html" target="_blank" rel="noreferrer noopener nofollow">пузырьковые</a>, <a href="https://www.chartjs.org/docs/latest/charts/scatter.html" target="_blank" rel="noreferrer noopener nofollow">рассеянные</a>, <a href="https://www.chartjs.org/docs/latest/charts/area.html" target="_blank" rel="noreferrer noopener nofollow">зональные</a> и <a href="https://www.chartjs.org/docs/latest/charts/mixed.html" target="_blank" rel="noreferrer noopener nofollow">смешанные</a>. В документации также есть страница <strong>Samples</strong> (<a href="https://www.chartjs.org/samples/latest/" target="_blank" rel="noreferrer noopener nofollow">Примеры</a>), где вы можете найти живые примеры всех типов графиков.</p>
+
+<p>Хотя вы не можете напрямую получить JavaScript-код примеров, вы можете получить доступ к нему с помощью инструментов разработчика вашего браузера (в большинстве браузеров вам нужно нажать клавишу <strong>F12</strong>). Обратите внимание, однако, что в живых примерах используются переменные, отличные от тех, что мы использовали в статье (что рекомендуется официальной документацией), поэтому вам придется немного повозиться с кодом:</p>
+
+<div>
+<figure><img src="images/chart-js-samples-code.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Добавление визуализации данных на HTML-страницу может помочь пользователям понять ваши данные. Это может быть особенно полезно на образовательных сайтах, в панелях управления и на целевых страницах.</p>
+
+<p>В этом руководстве я показал вам, как создавать различные виды диаграмм, а именно столбчатые, пончиковые и круговые диаграммы, используя библиотеку Chart.js. Если вы хотите узнать больше о визуализации данных, то подписывайтесь на новости и оставляйте комментарии.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 29 декабря 2021 в 23:02</span><br>Теги: JavaScript
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

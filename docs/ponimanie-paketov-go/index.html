@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Понимание пакетов в Go &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Понимание пакетов в Go</h1>
+
+<p>Будь вы опытным разработчиком Golang или только начинаете работать с Golang, вы, вероятно, часто слышали слова «пакет» (<strong>package</strong>) и «модуль» (<strong>module</strong>) или, по крайней мере, сталкивались с ними в каком-нибудь материале.</p>
+
+<p>Поначалу мне было сложно разобраться с этими двумя понятиями, но не в том, каковы их определения, а в том, что они означают для экосистемы, в которой вы будете работать, создавая/прописывая программы на Golang.</p>
+
+<p>В этой статье мы поговорим о том, что такое пакеты в языке программирования Go (Golang) и о нескольких важных концепциях, связанных с ними.</p>
+
+<h2>Пакеты — Packages</h2>
+
+<p>Пакет — это файл или группа файлов с пространством имен и некоторым кодом или связанным с ним кодом. Это означает, что пакет может находиться в одном файле, например <code>math.go</code>, или в нескольких файлах, таких как <code>add.go</code>, <code>subctract.go</code>, <code>multiply.go</code>, то есть во многих файлах или в одном файле, например, с именем <code>package math</code>.</p>
+
+<p>Пакет будет иметь окружающий каталог, например:</p>
+
+<figure><img src="images/go-packages-01.jpg" alt="" class="img-fluid"></figure>
+
+<p>Содержимое файла <strong>math.go</strong> может выглядеть примерно так:</p>
+
+<figure><img src="images/go-packages-02.jpg" alt="Весь код нашего математического пакета находится в одном файле" class="img-fluid"><figcaption>Весь код нашего математического пакета находится в одном файле</figcaption></figure>
+
+<p>Если мы решили разбить этот математический пакет на несколько файлов, мы можем создать три файла <strong>add.go</strong>, <strong>subctract.go</strong>, <strong>multiply.go</strong> со следующим содержимым…</p>
+
+<p><strong>add.go</strong> из пакета <code>math</code>:</p>
+
+<figure><img src="images/go-packages-03-add.jpg" alt="" class="img-fluid"></figure>
+
+<p><strong>subtract.go</strong> из пакета <code>math</code>:</p>
+
+<figure><img src="images/go-packages-03-substract.jpg" alt="" class="img-fluid"></figure>
+
+<p><strong>multiply.go</strong> из пакета <code>math</code>:</p>
+
+<figure><img src="images/go-packages-03-multiply.jpg" alt="" class="img-fluid"></figure>
+
+<p>Взглянув на все три результирующих файла, вы, возможно, уже заметили общий знаменатель — все они используют одно и то же пространство имен пакета <code>math</code>. Конечно, вы, скорее всего, никогда не встретите человека, делающего что-то подобное, если только он не разбивает очень большие файлы на несколько файлов. Понимание концепции общего пространства имен очень важно для того, о чем мы будем говорить дальше.</p>
+
+<h2>Экспортируемые и локальные функции/методы</h2>
+
+<p>Идея написания пакетов в Golang заключается в создании модульных фрагментов кода, которыми можно делиться в своих проектах или с другими разработчиками для использования в их собственных проектах. Так держать, Golang! Мне нравится твоя щедрая натура.</p>
+
+<p>Для того чтобы это произошло, и чтобы это произошло безопасно, мы можем захотеть раскрыть некоторые части нашего кода как внешние API, которые будут использоваться, а также сохранить некоторые аспекты пакета более скрытыми и не такими доступными. Некоторые языки предоставляют такие конструкции, как <code>public</code>, <code>private</code>, <code>protected</code>, чтобы помочь в этом, но в Golang концепции публичных (<code>public</code>) и частных (<code>private</code>) API вытекают из того, как мы называем наши функции, методы и свойства. Давайте рассмотрим пример.</p>
+
+<figure><img src="images/go-packages-04.jpg" alt="Иллюстрация экспортируемых и локальных функций" class="img-fluid"><figcaption>Иллюстрация экспортируемых и локальных функций</figcaption></figure>
+
+<p>Если посмотреть на иллюстрацию выше, у нас есть две функции, названные одинаково, с одним отличием: одна из них — <code>multiply</code> со строчной буквы, а другая начинается с прописной <code>Multiply</code>, и это тонкое различие является отличием между локальной и экспортируемой функцией в Golang. </p>
+
+<p>Вы можете гадать, кто из них кто Вы можете быть правы, судя по их структуре, но, тем не менее, в Golang, когда вы называете что-то полностью строчными буквами, это локализовано и не может быть доступно вне этого пакета (помните, что такое пакет? посмотрите еще раз?). С другой стороны, все, что начинается с заглавной буквы, может быть доступно как внутри, так и вне пакета, в котором оно было определено/объявлено.</p>
+
+<p>Так что если мы опубликовали наш пакет сегодня (мы рассмотрим публикацию пакетов в ближайшее время), мы можем импортировать этот математический пакет и получить доступ к <code>Multiply</code>, но попытка получить доступ к <code>multiply</code> определенно вызовет ошибку!</p>
+
+<figure><img src="images/go-packages-05.jpg" alt="Попытка получить доступ к экспортированной и неэкспортированной функции из пакета math" class="img-fluid"><figcaption>Попытка получить доступ к экспортированной и неэкспортированной функции из пакета math</figcaption></figure>
+
+<p>В то время как мы можем получить доступ к <code>multiply</code> в том же пространстве имен, даже в другом файле!</p>
+
+<figure><img src="images/go-packages-06.jpg" alt="" class="img-fluid"></figure>
+
+<p>Эти концепции могут стать разницей между красиво и творчески структурированным кодом на Go и беспорядочными программами. Следует отметить, что <code>math</code> здесь использовалось как иллюстративное имя пакета, НЕ ИСПОЛЬЗУЙТЕ ЕГО в реальных или игровых приложениях, так как в Golang уже есть встроенный математический пакет, и это наверняка приведет к нежелательному поведению (но вы можете попробовать, если вам интересно).</p>
+
+<h2>Резюме</h2>
+
+<ul>
+<li>Пакет можно представить как файл, имеющий имя (вверху) и содержащий некоторый связанный код</li>
+<li>Это также может быть группа файлов с одним и тем же пространством имен <code>package</code>, содержащих связанный код</li>
+<li>Не разбивайте преждевременно пакеты на несколько файлов, если только это не крайне необходимо, например, если файлом трудно управлять, или если у вас есть динамически генерируемый код во время выполнения (мы обсудим генерацию кода в ближайшее время) и т. д. Кроме того, даже если вы разделите пакеты на разные файлы, они должны находиться в одной директории, иначе вы испортите импорт в дальнейшем.</li>
+<li>В Golang понятия приватных и публичных функций, методов и типов подразумеваются в зависимости от того, как вы называете эти конструкции. Если они начинаются с заглавной буквы, то к ним могут обращаться пакеты, не входящие в текущий пакет, если со строчной буквы, то они становятся «приватными» (<code>private</code>) и недоступными/неприкосновенными за пределами текущего пакета.</li>
+</ul>
+
+<p>Вот и все! Поехали, поехали, поехали Вы узнали немного Golang сегодня, спасибо вам большое, что следите за нами! В моей следующей статье мы рассмотрим модули и то, как они связаны с концепцией пакетов, до скорой встречи.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 29 августа 2024 в 00:32</span><br>Теги: Go
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

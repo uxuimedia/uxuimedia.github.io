@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Темные темы &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->  
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Uzabila</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Темные темы</h1>
+
+<p>Темные темы стали очень востребованными за последние несколько лет. Apple и Google сделали темную тему неотъемлемой частью пользовательских интерфейсов многих своих проектов — от Youtube до браузера.</p>
+
+<h2>Избегайте абсолютного черного</h2>
+
+<p>Я на многих сайтах создавал темные темы, которые стали удобным дополнением при переключении из редактора кода в браузер.</p>
+
+<p>Сниженная яркость темной темы обеспечивает безопасность в темной время дня и может свести к минимуму напряжение глаз. Ниже основные советы, которых следует придерживаться при разработке темной темы WordPress, но все это подойдет и другим сайтам или приложениям.</p>
+
+<div>
+<figure><img src="images/temnie-temi-site.png" alt="" class="img-fluid"></figure></div>
+
+<p>Темная тема не обязательно должна быть с использованием белого текста на черном фоне. На самом деле, этот сильный контраст может быть болезненным для глаз.</p>
+
+
+<p>Безопаснее использовать темно-серый цвет в качестве основного цвета поверхности для компонентов, чем истинно черный (#<strong>000000</strong>). Темно-серые поверхности снижают напряжение глаз — светлый текст на темно-серой поверхности имеет меньший контраст, чем светлый текст на черной поверхности.</p>
+
+<p>Темно-серые поверхности могут выражать более широкий диапазон цвета, высоты и глубины, потому что легче увидеть тени на серой поверхности (вместо абсолютно черной).</p>
+
+<p>Material Design (материальный дизайн) рекомендует <strong>#121212</strong> в качестве темного цвета поверхности темы.</p>
+
+<div>
+<figure><img src="images/temnaia-tema.jpg" alt="" class="img-fluid"></figure></div>
+
+<h2>Избегайте использования насыщенных цветов</h2>
+
+<p>Насыщенные цвета, которые отлично смотрятся на светлых поверхностях, могут визуально вибрировать на темных поверхностях, что затрудняет их чтение. Обесцвечивайте основные цвета, чтобы добиться достаточного контраста на темной поверхности.</p>
+
+<div>
+<figure><img src="images/temnaia-tema-02.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Используйте более светлые тона (цвета в диапазоне 200–50), потому что они лучше читаются на темных поверхностях. Более светлые варианты не сделают пользовательский интерфейс менее выразительным, но они помогут вам сохранить соответствующий контраст, не вызывая напряжения глаз.</p>
+
+<div>
+<figure><img src="images/temnaia-tema-03.jpg" alt="" class="img-fluid"></figure></div>
+
+<h2>Соответствие стандартам доступности цветовой контрастности</h2>
+
+<p>Убедитесь, что ваш контент остается удобочитаемым в темном режиме.</p>
+
+<p>Темные поверхности темы должны быть достаточно темными, чтобы отображался белый текст. Google Material Design рекомендует использовать уровень контрастности не менее <strong>15,8:1</strong> между текстом и фоном.</p>
+
+<p>Используйте инструменты цветового контраста, чтобы проверить коэффициент контрастности.</p>
+
+<h2>Используйте «верхние» цвета для текста</h2>
+
+<p>Здесь я немного поясню. «Верхние» цвета — это цвета, которые появляются «поверх» всех компонентов и ключевых поверхностей.</p>
+
+<p>Обычно они используются для текста.</p>
+
+<p>Цвет по умолчанию для темной темы — чистый белый <strong>#FFFFFF</strong>. Но #FFFFFF — яркий цвет, и он визуально «вибрирует» на темном фоне. Вот почему Google Material Design рекомендует использовать более темный светлый цвет:</p>
+
+<ol>
+<li>Текст с высоким акцентом должен иметь непрозрачность <strong>87%</strong>.</li>
+<li>Текст со средней интенсивностью использует непрозрачность <strong>60%</strong>.</li>
+<li>Отключенный (disabled) текст использует непрозрачность <strong>38%</strong>.</li>
+</ol>
+
+<div class="attention-blue"><strong>Совет</strong>. Светлый текст на темном фоне может выглядеть более жирным, чем темный на светлом. Поэтому, возможно, вы захотите использовать более легкий вес шрифта для темного режима.</div>
+
+<div>
+<figure><img src="images/temnaia-tema-04.jpg" alt="" class="img-fluid"></figure></div>
+
+<h2>Учитывайте эмоциональный аспект вашего дизайна</h2>
+
+<p>Когда дело доходит до разработки темной темы для существующего приложения, вы, вероятно, захотите передать тот же спектр эмоций в темном режиме. Но лучше этого не делать. Зачем? Так как:</p>
+
+<div class="attention-yellow"><strong>Внимание</strong>! Цвета на самом деле воспринимаются по-разному в зависимости от их фона.</div>
+
+<p>Это означает, что темная тема не может передавать те же эмоции, как и светлая тема. В результате темные и светлые темы всегда будут вызывать разные эмоции. Вместо того, чтобы пытаться исправить это, гораздо лучше использовать это для индивидуальности вашего продукта.</p>
+
+<div class="attention-yellow">Темный режим (не всегда) должен быть производным от существующей светлой темы.</div>
+
+<div>
+<figure><img src="images/temnaya-tema-7.gif" alt="" class="img-fluid"></figure></div>
+
+<h2>Глубина коммуникации</h2>
+
+<p>Подобно дизайну светлой темы, когда дело доходит до создания пользовательского интерфейса темной темы, важно создать иерархию и выделить важные элементы в макете.</p>
+
+<p>Слои или возвышение над поверхностью (elevation) — это инструмент, который мы используем для передачи иерархии элементов, как в реальной жизни. Объект над другими оставляет тень на тех, что ниже.</p>
+
+<p>В светлом режиме мы используем тени для выражения высоты или подъема над поверхностью. Чем выше становится поверхность, тем шире тень, которую она отбрасывает. Такой подход не работает в темной теме — трудно увидеть тень на темном фоне. Лучше подсветить поверхность каждого уровня.</p>
+
+<div class="attention-blue"><strong>Справка</strong>. В темных темах, построенных с использованием Material Design, приподнятые поверхности и компоненты окрашиваются с помощью оверлеев. Чем выше возвышенность поверхности, тем светлее становится эта поверхность.</div>
+
+<p>Чем выше слой, тем более светлая поверхность.</p>
+
+<div>
+<figure><img src="images/temnaya-tema-8.gif" alt="" class="img-fluid"></figure></div>
+
+<p>Еще один пример.</p>
+
+<div>
+<figure><img src="images/temnaia-tema-07.jpg" alt="" class="img-fluid"></figure></div>
+
+<h2>Разрешите пользователям переключаться из обычного в темный режим</h2>
+
+<p>Заманчиво позволить системе решать, когда включать или выключать темную тему. Однако такое дизайнерское решение может привести к плохому UX. Поступая так, вы берете на себя управление у пользователя и заставляете систему решать за него.</p>
+
+<p>Поэтому лучше не использовать автоматическое включение темной темы. Разрешите пользователям включать (или выключать) темную тему с помощью пользовательского интерфейса. Пользователи должны иметь возможность выбирать режим вручную в зависимости от их собственных потребностей.</p>
+
+<div>
+<figure><img src="images/temnaia-tema-08.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Проверьте свой дизайн в светлых и в темных режимах.</p>
+
+<p>Посмотрите, как ваш пользовательский интерфейс выглядит в обоих случаях, и при необходимости измените дизайн, чтобы он соответствовал каждому из них. Попробуйте протестировать продукт после захода солнца и при освещении лампами накаливания.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 30 апреля 2022 в 12:27</span><br>Теги: CSS, HTML
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">Uzabila</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

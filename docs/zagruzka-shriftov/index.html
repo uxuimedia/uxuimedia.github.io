@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Правильная загрузка шрифтов на сайт &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Правильная загрузка шрифтов на сайт</h1>
+
+<p>Веб-шрифты великолепны и делают Интернет более красивым пространством, однако их загрузка может быть медленной, что приводит к нежелательным побочным эффектам, которые в англоязычном интернете называют FOIT (Flash of Invisible Text), т.е. мерцающий или невидимый текст.</p>
+
+<h2>Что такое FOIT?</h2>
+
+<p>Часто этот эффект можно увидеть на своем сайте, особенно при мобильном подключении. С помощью некоторых действий, ряда ресурсов, немного JavaScript и CSS, может получиться это исправить.</p>
+
+<p>FOIT является результатом тайм-аута браузера, когда текст отображается шрифтом по умолчанию после попытки загрузки веб-шрифта. </p>
+
+<p>При попытке загрузить веб-шрифт браузер скрывает текст в течение некоторого периода времени, обычно несколько секунд, но известно, что это может дойти и до 30 секунд. </p>
+
+<p>Вот как выглядела FOIT на моем сайте, когда я загружал шрифты с правилами CSS <code>@font-face</code>:</p>
+
+<div>
+<figure><img src="images/foit-web-fonts-1.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Обратите внимание, что при загрузке страницы текст становится невидимым в кадрах 2 и 3 (тип устанавливается в Helvetica в кадре 1 и в Roboto в кадре 4), что делает содержимое страницы нечитаемым. </p>
+
+<p>Хотя во многих случаях FOIT длился всего 2–4 секунды, это определенно заметно. Я также столкнулся с наихудшим сценарием, когда контент постоянно невидим.</p>
+
+<p>Цель здесь — как можно быстрее донести контент до пользователей за счет FOUT (Flash of Unstyled Text) и визуальных изменений, которые происходят, когда становится доступным шрифт.</p>
+
+<h2>Определяем момент загрузки шрифтов</h2>
+
+<p>Именно здесь появляется Font Load Events, которое предназначено именно для этого. Брэм Стейн создал <a href="https://github.com/bramstein/fontfaceobserver" target="_blank" rel="noreferrer noopener nofollow">Font Face Observer</a>, облегченный (2.7KB минимизированный, 1.1KB gzip) полифилл для API событий шрифтов, чтобы вы могли определить, были ли и когда загружены шрифты.</p>
+
+<p>В качестве альтернативы я мог бы использовать полнофункциональный загрузчик шрифтов, такой как <a href="https://github.com/typekit/webfontloader" target="_blank" rel="noreferrer noopener nofollow">Web Font Loader</a> от Google и Typekit, но я решил пойти с Font Face Observer в пользу его веса и подхода.</p>
+
+<p>Загружайте свои шрифты, как обычно (будь то пользовательские правила <code>@font-face</code> в вашем CSS или используя службу шрифтов, такую как Google Fonts или Typekit). Затем настройте Font Face Observer для каждого семейства шрифтов:</p>
+
+<pre><code class="language-javascript">var observer = new FontFaceObserver("Font Name", {
+  weight: 400
+});
+
+observer.check().then(function() {
+  console.log("Font is available");
+}, function() {
+  console.log("Font is not available");
+});</code></pre>
+
+<p><code>check()</code> начинает наблюдать за загрузкой шрифта, а <code>then()</code> обрабатывает обратный вызов, когда он завершается (что делается через <a href="https://promisesaplus.com/" target="_blank" rel="noreferrer noopener nofollow">Promise</a>).</p>
+
+<p>Насчет Font Face Observer следует отметить, что по умолчанию он перестает работать, если загрузка шрифта превышает 3 секунды. Вы можете изменить продолжительность тайм-аута, передав целое число в миллисекундах в качестве второго параметра <code>check()</code>:</p>
+
+<pre><code class="language-javascript">observer.check(null, 5000).then(function() {
+  console.log("Font is available");
+}, function() {
+  console.log("Font is not available after waiting 5 seconds");
+});</code></pre>
+
+<p>Узнайте больше о том, как использовать Font Face Observer, прочитав его <a href="https://github.com/bramstein/fontfaceobserver#readme" target="_blank" rel="noreferrer noopener nofollow">документацию</a>.</p>
+
+<h2>Прогрессивная загрузка шрифтов с помощью Font Events</h2>
+
+<p>Используя события шрифта (font events) с Font Face Observer, укажите резервный шрифт для <code>body</code> при загрузке шрифтов, а затем добавьте класс в <code>&lt;html&gt;</code> после завершения загрузки шрифтов.</p>
+
+<pre><code class="language-css">body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.fonts-loaded body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+}</code></pre>
+
+<p>Javascript:</p>
+
+<pre><code class="language-javascript">var roboto = new FontFaceObserver("Roboto", {
+  weight: 400
+});
+
+roboto.check().then(function() {
+  document.getElement.className += "fonts-loaded";
+});</code></pre>
+
+<p>Вы также можете подключить это к нескольким семействам шрифтов и/или к свойству <code>weight</code>, что я смог выяснить с помощью умных людей из <a href="http://www.filamentgroup.com/" target="_blank" rel="noreferrer noopener nofollow">Filament Group</a> и их <a href="http://www.filamentgroup.com/lab/font-events.html" target="_blank" rel="noreferrer noopener nofollow">публикации</a>, написанной Скоттом Джелом:</p>
+
+<pre><code class="language-javascript">var roboto400 = new FontFaceObserver("Roboto", {
+  weight: 400
+});
+var roboto500 = new FontFaceObserver("Roboto", {
+  weight: 500
+});
+var roboto700 = new FontFaceObserver("Roboto", {
+  weight: 700
+});
+
+Promise.all([
+  roboto400.check(),
+  roboto500.check(),
+  roboto700.check()
+]).then(function() {
+  document.documentElement.className += " fonts-loaded";
+});</code></pre>
+
+<p>Этот метод также использует Promise. Имейте в виду, что если вы не используете автономную версию Font Face Observer (которая поставляется вместе с полифиллом Promise), обязательно включите ее отдельно.</p>
+
+<p>Результат? Никаких признаков FOIT!</p>
+
+<div>
+<figure><img src="images/foit-web-fonts-2.jpg" alt="" class="img-fluid"></figure></div>
+
+<p>Вы можете видеть, что хотя Roboto был доступен только в 3-м кадре, текст был виден все время.</p>
+
+<p>Ещё одно замечание о Font Face Observer — если соединение крайне медленное и он перестаёт проверять загрузку шрифта, приведённое выше решение приведёт к тому, что документ останется в резервном состоянии (в этом случае текст останется установленным в <code>Helvetica, Arial, sans-serif</code>).</p>
+
+<p>Мы можем использовать ловушку, чтобы дать элементу <code>html</code> уникальное имя класса для обработки тайм-аута.</p>
+
+<pre><code class="language-javascript">Promise.all([
+  roboto400.check(),
+  roboto500.check(),
+  roboto700.check()
+]).then(function() {
+  document.documentElement.className += " fonts-loaded";
+}, function() {
+  document.documentElement.className += " fonts-unavailable";
+});</code></pre>
+
+<h2>Локальные шрифты</h2>
+
+<p>Загрузив шрифты с правилами @font-face и событиями шрифтов, мы устранили FOIT, но пользователь все равно заметит FOUT (Flash of Unstyled Text). </p>
+
+<p>Идеальной ситуацией является правильный стиль текста в момент загрузки, что требует от пользователя локальной установки шрифта. </p>
+
+<p>Несмотря на то, что есть лишь небольшая вероятность того, что пользователь может установить его, мы можем работать над решением, чтобы приспособиться к идеальной ситуации, пытаясь ссылаться на локальный шрифт и используя запасные шрифты, если он не справится с FOUT, и все это при одновременном устранении FOIT.</p>
+
+<p>Наряду с решением, представленным выше, давайте также создадим пользовательское имя семейства шрифтов <code>font-family</code>, используя пользовательское правило <code>@font-face</code>, которое ссылается на локальный шрифт в <code>src</code>. Затем включим это имя в качестве первого из стека семейства шрифтов <code>font-family</code>. Строка внутри <code>local(")</code> должна быть именем семейства шрифтов и/или именем PostScript.</p>
+
+<pre><code class="language-css">@font-face {
+  font-family: "RobotoLocal";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"),
+       local("Roboto-Regular");
+}
+
+body {
+  font-family: "RobotoLocal", Helvetica, Arial, sans-serif;
+}
+
+.fonts-loaded body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+}</code></pre>
+
+<p>Это гарантирует, что локальный шрифт будет использоваться до завершения события шрифта (font even), если локальный шрифт доступен, и если он доступен, мы исключили как FOIT, так и FOUT.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 29 декабря 2021 в 22:07</span><br>Теги: CSS, HTML
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

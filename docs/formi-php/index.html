@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Формы на PHP &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->  
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Формы на PHP</h1>
+
+<p>Обычным требованием практически на любом сайте является наличие какой-либо формы, будь то форма обратной связи или, например, форма подписки или калькулятор.</p>
+
+<h2>Простая форма обратной связи</h2>
+
+<p>В этой статье мы создадим PHP-скрипт, который будет посылать электронное письмо при отправке веб-формы пользователем сайта, разберемся как всё работает технически.</p>
+
+<p>Веб-форма состоит из двух частей:</p>
+
+<ol>
+<li>HTML код формы. Приведенный ниже HTML-код отображает стандартную форму в веб-браузере.</li>
+<li>PHP-скрипт для работы с отправкой формы. Скрипт получает отправленную форму и посылает электронное письмо.</li>
+</ol>
+
+<p>HTML код для электронной формы:</p>
+
+<pre><code class="language-html">&lt;form method="post" name="myemailform" action="form-to-email.php"&gt;
+    Enter Name: &lt;input type="text" name="name"&gt;
+    Enter Email Address: &lt;input type="text" name="email"&gt;
+    Enter Message: &lt;textarea name="message"&gt;&lt;/textarea&gt;
+    &lt;input type="submit" value="Send Form"&gt;
+&lt;/form&gt;</code></pre>
+
+<p>Форма содержит следующие поля:</p>
+
+<ul>
+<li>имя, </li>
+<li>адрес электронной почты,</li>
+<li>сообщение.</li>
+</ul>
+
+<p>Имя и адрес электронной почты — это однострочные поля ввода текста, тогда как «сообщение» — это поле текстовой области (многострочный ввод текста). В форме могут быть разные типы полей ввода.</p>
+
+<p>При нажатии кнопки отправки форма будет отправлена на «form-to-email.php» методом POST.</p>
+
+<h2>Доступ к данным отправленной формы в PHP-скрипте</h2>
+
+<p>После того, как посетитель вашего сайта отправил форму, браузер отправляет данные для заполнения формы в скрипт, упомянутый в атрибуте <code>action</code> формы.Для текущей формы был указан файл — <strong>form-to-email.php</strong>.</p>
+
+<p>Так как у нас есть метод отправки формы, упомянутый как <code>POST</code> в форме — <code>method='post'</code>, то мы можем получить доступ к данным для отправки формы через массив <code>$_POST[]</code> в PHP скрипте.</p>
+
+<p>Следующий код получает значения, отправленные для полей: имя, электронная почта и сообщение.</p>
+
+<pre><code class="language-php">&lt;?php
+  $name = $_POST['name'];
+  $visitor_email = $_POST['email'];
+  $message = $_POST['message'];
+?&gt;
+</code></pre>
+
+<p>Мы присваиваем переменным значения из глобального массива <code>$_POST</code> после отправки данных из формы.</p>
+
+<h2><span>Составление сообщения электронной почты</span></h2>
+
+<p>Теперь мы можем использовать указанные выше переменные PHP для составления сообщения электронной почты.</p>
+
+<p>Используем код:</p>
+
+<pre><code class="language-php">&lt;?php
+    $email_from = 'yourname@yourwebsite.com';
+    $email_subject = "New Form submission";
+    $email_body = "You have received a new message from the user $name.\n". "Here is the message:\n $message".
+?&gt;</code></pre>
+
+<p>Адрес <code>>from</code>, тема и тело электронного сообщения составлены в приведенном выше коде. Обратите внимание на то, как составлено тело сообщения с использованием переменных.</p>
+
+<p>Если посетитель сайта <b>Anthony</b> отправит форму, электронное сообщение будет выглядеть следующим образом:</p>
+
+<p><em>«You have received a new message from the user Anthony. Here is the message: Hi, Thanks for your great site. I love your site. Thanks and Bye. Anthony.»</em></p>
+
+<p>Мы использовали двойные кавычки, поэтому переменная <code>$name</code> заменяется своим значением, что называется интерполяцией.</p>
+
+<h2>Отправка электронного письма</h2>
+
+<p>Функция PHP для отправки электронной почты — <code>mail()</code>.</p>
+
+<pre><code>mail(to,subject,message,headers)</code></pre>
+
+<div class="attention-blue">Официальная документация: <a href="https://www.php.net/manual/ru/function.mail.php" target="_blank" rel="noreferrer noopener">mail()</a></div>
+
+<p>Из документации:</p>
+
+<pre><code class="language-php">mail ( string $to , string $subject , string $message , array|string $additional_headers = [] , string $additional_params = "" ) : bool</code></pre>
+
+<p>Параметр заголовков (<strong>headers</strong>) предоставляет дополнительные параметры почты (например, адрес отправителя, копия, скрытая копия и т.д.).</p>
+
+<p>Код для отправки электронного письма:</p>
+
+<pre><code class="language-php">&lt;?php
+  $to = "yourname@yourwebsite.com";
+  $headers = "From: $email_from \r\n";
+  $headers .= "Reply-To: $visitor_email \r\n";
+  mail($to,$email_subject,$email_body,$headers);
+ ?&gt;</code></pre>
+
+<p>Обратите внимание, что мы поместили ваш адрес электронной почты в параметр ‘<strong>From</strong>‘, а адрес электронной почты посетителя — в параметр ‘<strong>Reply-To</strong>‘. В параметре ‘<strong>From</strong>‘ должно быть указано происхождение письма. Если вы поместите адрес электронной почты посетителя в параметр ‘<strong>From</strong>‘, некоторые почтовые серверы могут отклонить сообщение, думая, что вы выдаете себя за кого-то.</p>
+
+<h2>Отправка электронного письма более чем одному получателю</h2>
+
+<p>Если вы хотите отправить письмо нескольким получателям, то просто добавьте их в переменную <code>$to</code>.</p>
+
+<pre><code class="language-php">&lt;?php
+  $to = "name1@website-name.com, name2@website-name.com,name3@website-name.com";
+  mail($to,$email_subject,$email_body,$headers);
+?&gt;</code></pre>
+
+<p>Вы также можете использовать параметры CC (копия) и BCC (скрытая копия). Электронные письма CC и BCC добавляются в параметр «заголовки» (<code>headers</code>).</p>
+
+<p>Пример кода:</p>
+
+<pre><code class="language-php">&lt;?php
+$to = "name1@website-name.com, name2@website-name.com,name3@website-name.com";
+$headers = "From: $email_from \r\n";
+$headers .= "Reply-To: $visitor_email \r\n";
+$headers .= "Cc: someone@domain.com \r\n";
+$headers .= "Bcc: someoneelse@domain.com \r\n";
+mail($to,$email_subject,$email_body,$headers);
+?&gt;</code></pre>
+
+<h2>Защита формы от инъекций</h2>
+
+<p>Спамеры ищут удобные в использовании формы для рассылки спама. Они используют скрипт обработчика форм в качестве «реле». Что они делают, так это отправляют форму с манипулируемыми значениями форм.</p>
+
+<p>Чтобы обезопасить нашу форму от таких атак, мы должны проверить данные отправленной формы.</p>
+
+<p>Все значения, которые идут в параметре ‘headers’ должны быть проверены на наличие <code>\r</code> или <code>\n</code>. Хакеры вставляют эти символы и добавляют свой код, чтобы обмануть функцию.</p>
+
+<p>Вот обновленный код:</p>
+
+<pre><code class="language-php">&lt;?php
+function IsInjected($str)
+{
+    $injections = array('(\n+)',
+           '(\r+)',
+           '(\t+)',
+           '(%0A+)',
+           '(%0D+)',
+           '(%08+)',
+           '(%09+)'
+           );
+               
+    $inject = join('|', $injections);
+    $inject = "/$inject/i";
+    
+    if(preg_match($inject,$str))
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+}
+
+if(IsInjected($visitor_email))
+{
+    echo "Bad email value!";
+    exit;
+}
+?&gt;</code>
+</pre>
+
+<p>Как правило, любое значение, используемое в заголовке, следует проверять с помощью приведенного выше кода.</p>
+
+<p>Лучше, чтобы полная проверка могла быть выполнена с помощью скрипта проверки формы PHP, но об этом мы поговорим в следующих статьях.</p>
+
+<!-- NEW -->
+
+<h2>Форма E-mail подписки</h2>
+
+<p>Часто при создании сайтов и перед выпуском в релиз нужно сделать страницу на которой пользователь может оставить e-mail и подписаться на новости.</p>
+
+<p>Хочется, чтобы людям, которые заинтересованы в подписке, мы могли отправить электронное письмо, когда сайт будет запущен.</p>
+
+<p>Существует куча больших PHP почтовых систем, но они очень сложны и требуют много времени, а нам нужно работать над другими вещами. Есть простой способ сделать форму e-mail подписки с использованием языка PHP.</p>
+
+<p>На нужной странице мы вставляем такой код формы:</p>
+
+<pre><code class="language-html">&lt;!-- Форма e-mail подписки --&gt;
+&lt;form action="form/form.php" method="post"&gt;
+    &lt;input name="email" class="email" type="text" placeholder="Введите свой e-mail..."&gt;
+    &lt;button type="submit" class="btn_email"&gt;Отправить&lt;/button&gt;
+&lt;/form&gt;
+&lt;!-- End Форма e-mail подписки --&gt;</code></pre>
+
+<p>Отдельно создаем файл <strong>form.php</strong>, который поместим в папку <strong>form</strong>:</p>
+
+<pre><code class="language-php">&lt;?php
+$to = "office@site.com";
+$from = "no-reply@site.com";
+
+$headers = "From: " . $from . "\r\n";
+
+$subject = "New subscription";
+$body = "New user subscription: " . $_POST['email'];
+
+
+if( filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) )
+{ 
+    if (mail($to, $subject, $body, $headers, "-f " . $from))
+    {
+        echo 'Your e-mail (' . $_POST['email'] . ') has been added to our mailing list!';
+    }
+    else
+    {
+       echo 'There was a problem with your e-mail (' . $_POST['email'] . ')';   
+    }
+}
+else
+{
+   echo 'There was a problem with your e-mail (' . $_POST['email'] . ')';   
+}</code></pre>
+
+<p>Вышеуказанный скрипт будет посылать вам письмо с информацией о новой подписке, но вы можете расширить его, сделав вставку в базу данных, подтверждение подписки и т.д. Эти моменты мы постепенно будем разбирать в этом руководстве далее.</p>
+
+<p>Кроме того, хорошо бы сделать проверку данных в поле, в которое подписчик вводит электронное письмо, но для быстрой проверки каких-либо гипотез отлично подойдет и этот вариант.</p>
+
+<p>В дальнейшем мы будем разбирать различные формы, созданные с помощью языка программирования PHP — формы подписки, обратной связи, калькуляторы и многое другое. Подписывайтесь на новости.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 16 января 2023 в 17:15</span><br>Теги: HTML, PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

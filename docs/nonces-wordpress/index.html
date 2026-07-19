@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Одноразовые числа (nonces) в WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Одноразовые числа (nonces) в WordPress</h1>
+
+<p>Рассмотрим что такое одноразовые числа Nonces, их использование в WordPress и цель применения.</p>
+
+<h2><span id="V_cem_sut">В чем суть?</span></h2>
+
+
+
+<p>Когда вы входите в WordPress, вам назначается куки-файл (cookie), — маленький файл, который живет в вашем браузере и действует как ваш «закулисный пропуск» в админ панель WordPress. </p>
+
+
+
+<p>Это предотвращает несанкционированный доступ неавторизованных лиц к административной панели и совершение плохих поступков. У них нет куки, поэтому они останавливаются у двери «вышибалой». </p>
+
+
+
+<p>Ваш куки привязан к учетной записи пользователя, которая связана с системой возможностей WordPress, которая контролирует то, что вы можете и чего не можете делать в админ панели. Это аутентификация: проверка того, что лицо, выполняющее действия администратора, уполномочено на это.</p>
+
+
+
+<h2><span id="Neobhodimost_zasitit_vas_ot_seba">Необходимость защитить вас от себя</span></h2>
+
+
+
+<p>Скажем, что вы вошли в систему WordPress. Вы можете кликать по ссылкам и отправлять формы, которые делают что-то в вашем блоге. Такие вещи, как изменение опций, удаление публикаций, создание пользователей и т.д. Что произойдет, если кто-то создаст ссылку или форму, которая укажет на Вашего администратора WordPress и попытается сделать что-то вредоносное?</p>
+
+
+
+<p>Ну, если неавторизованное лицо отправит форму или нажмет на ссылку, ничего не произойдет. Они получают отказ браузера, потому что у них нет куки-файла для входа в систему. Но что, если вас обманули с этой ссылкой?</p>
+
+
+
+<p>«Вышибала» впускает вас, и действие выполняется. У вас есть разрешение, но у вас не было намерения. Вы не хотели нажимать на ссылку, которая бы удалила сообщение. Вас обманули! Чтобы защитить себя от этого, WordPress должен убедиться, что вы намерены делать то, что делаете.</p>
+
+
+
+<h2><span id="HTTP_REFERER_-_eto_staryj_sposob">HTTP_REFERER — это старый способ</span></h2>
+
+
+
+<p>В прошлом WordPress делал следующее: он проверял, что страница, которую вы просматривали до начала действия, была страницей администратора WordPress.</p>
+
+
+
+<p>То есть вы уже были внутри … ссылка или форма, по которой вы щелкнули, не были вредоносными; это было частью администратора WordPress. WordPress сделал это, проверив значение <strong>HTTP_REFERER</strong>, которое отправил ваш браузер.</p>
+
+
+
+<h2><span id="Nedostatki_HTTP_REFERER">Недостатки HTTP_REFERER</span></h2>
+
+
+
+<p>У HTTP_REFERER есть проблемы. Во-первых, его можно подделать с помощью JavaScript в каком-нибудь популярном браузере. Во-вторых, некоторые брандмауэры или прокси удаляют эту информацию. Подмена означает, что это не безопасно.</p>
+
+
+
+<p>Удаление реферера означает, что некоторые пользователи не смогут выполнять действия в своей учетной записи администратора WordPress. Я устал от того, что люди жалуются на то, что не могут использовать админ панель WordPress, и опасаются последствий для безопасности.</p>
+
+
+
+<p>Я разместил это сообщение в списке WP-Hackers, после чего последовала большая дискуссия. Я предложил альтернативный метод проверки намерений и начиная с WordPress 2.0.3, эта система была реализована.</p>
+
+
+
+<h2><span id="Nonces_-_eto_put_vpered">Nonces — это путь вперед</span></h2>
+
+
+
+<p>Одноразовый номер — это число, используемое один раз, и оно используется для целей верификации намерений в WordPress.</p>
+
+
+
+<p>Думайте о nonces как о пароле, который меняется каждый раз, когда он используется. Реализация WordPress технически не является одноразовой, потому что электронный ключ меняется только каждые 12 часов и действует в течение 24 часов (то есть действительный ключ и предпоследний ключ действительны), но это достаточно близко.</p>
+
+
+
+<p>Идея проста: мы проверяем, что запрос пользователя является преднамеренным, убеждаясь, что запрос происходит изнутри администратора WordPress. И мы делаем это, предоставляя им часть информации (nonce) при запросе первой страницы. Когда действие выполняется, часть информации передается и проверяется. Одноразовые номера могут быть заблокированы разными способами.</p>
+
+
+
+<p>Они уникальны для установки WordPress, для пользователя WordPress, для действия, для объекта действия и для времени действия (24 часа). Это означает, что если что-то из этого изменится, одноразовое число будет недействительным.</p>
+
+
+
+<p>Поэтому, если вы (каким-то образом) перехватите одноразовое число, используемое мной, у вас, прежде всего, будет только 24 часа, чтобы использовать этот ключ, чтобы попытаться обмануть меня. И вы сможете использовать этот ключ только для того, чтобы обманом заставить меня в моем блоге выполнить определенное действие для определенного элемента.</p>
+
+
+
+<p>Таким образом, даже если у вас есть одноразовый номер, используемый для удаления сообщения, в худшем случае вы можете обмануть меня в удалении этого конкретного сообщения. Одноразовый номер бесполезен для любой другой цели.</p>
+
+
+
+<h2><span id="Nonces_ispolzujte_ih_v_svoih_plaginah">Nonces: используйте их в своих плагинах</span></h2>
+
+
+
+<p>Авторы плагинов, слушайте. Для предотвращения обратной совместимости при появлении диалогового окна «Вы уверены?», когда пользователи, не зависящие от <strong>HTTP_REFERER</strong>, взаимодействуют с вашими плагинами (особенно страницами опций), вам нужно добавить nonce-возможности в ваши плагины. Но не волнуйтесь — это легко.</p>
+
+
+
+<h2><span id="Zasita_form_cerez_nonce">Защита &lt;form&gt; через nonce</span></h2>
+
+
+
+<p>Чтобы защитить <code>&lt;form&gt;</code> с помощью одноразового числа, просто используйте функцию <code>wp_nonce_field()</code> внутри (я бы сделал это сразу после открывающего тега). Для обратной совместимости используйте <code>function_exists()</code> для условного выполнения кода.</p>
+
+
+
+<p>Строка, которую вы передаете функции, должна быть уникальной для вашего плагина. Используйте следующую договоренность: <code>plugin-name-action_object</code>.</p>
+
+
+
+<p>Итак, если мой плагин называется «cool plugin» и действие, которое выполняет форма — «update options», а объект — «advanced options», я бы сделал: <code>cool-plugin-update-options_advanced</code>.</p>
+
+
+
+<p>Часть «объект» не требуется, но если у вас есть несколько форм, защитите каждую с помощью другого объекта для обеспечения наивысшего уровня защиты.</p>
+
+
+
+<pre><code class="language-php">&lt;form ...&gt;
+&lt;?php
+if ( function_exists('wp_nonce_field') ) 
+	wp_nonce_field('plugin-name-action_' . $your_object); 
+?&gt;</code></pre>
+
+
+
+<h2><span id="Zasite_ssylok_s_pomosu_nonce">Защите ссылок с помощью nonce</span></h2>
+
+
+
+<p>Если вы выполняете действия, основанные на кликах по ссылкам, вы можете добавить одноразовые числа (nonces) в свои ссылки с помощью <code>wp_nonce_url()</code>, который принимает два параметра.</p>
+
+
+
+<p>Первый — это URL-адрес ссылки, второй — ваш одноразовый ключ. Обратите внимание на использование <code>function_exists()</code> для обратной совместимости:</p>
+
+
+
+<pre><code class="language-php">&lt;?php
+$link = 'your-url.php';
+$link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url($link, 'plugin-name-action_' . $your_object) : $link;
+?&gt;
+
+&lt;a href="&lt;?php echo $link; ?&gt;"&gt;link&lt;/a&gt;</code></pre>
+
+
+
+<h2><span id="Verifikacia_nonces">Верификация nonces</span></h2>
+
+
+
+<p>На сервере перед выполнением действия, защищенного одноразовым числом, просто вызовите это:</p>
+
+
+
+<pre><code class="language-php">&lt;?php check_admin_referer('plugin-name-action_' . $your_object); ?&gt;</code></pre>
+
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 14 августа 2022 в 00:16</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

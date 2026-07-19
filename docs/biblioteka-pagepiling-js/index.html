@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Библиотека pagePiling.js &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Библиотека pagePiling.js</h1>
+
+<p>pagePiling.js — это библиотека, которая позволяет накладывать разделы сайта один на другой и открывать их с помощью прокрутки или по URL-адресу.</p>
+
+<h2>Введение</h2>
+
+<p>Основная суть библиотеки pagePiling.js — возможность создать лендинг в котором переключение между основными разделами происходит на основе полноэкранного слайдера или скролла.</p>
+
+<p>Т.е. данное исполнение сайта или лендинга можно назвать полноэкранным скроллом или фиксированным скроллом страницы (англ. — fixed scroll).</p>
+
+<p><a href="https://github.com/alvarotrigo/pagePiling.js" target="_blank" rel="noreferrer noopener nofollow">pagePiling.js на GitHub</a></p>
+
+<p><a href="https://alvarotrigo.com/pagePiling/" target="_blank" rel="noreferrer noopener nofollow">Демонстрация</a></p>
+
+<h2>Совместимость</h2>
+
+<p><strong>pagePiling.js</strong> полностью функционирует во всех современных браузерах, а также в некоторых старых, таких как Internet Explorer 8, 9, Opera 12 и др. Он работает как в браузерах с поддержкой CSS3, так и в тех, в которых ее нет, что делает его идеальным для совместимости со старыми браузерами.</p>
+
+<p>Он также разработан для работы на сенсорных устройствах, таких как мобильные телефоны или планшеты.</p>
+
+<h2>Использование</h2>
+
+<p>Как вы можете видеть в файлах примера, вам необходимо включить JavaScript файл <strong>jquery.pagepiling.js</strong> (или минифицированную версию <strong>jquery.pagepiling.min.js</strong>) и css-файл <strong>jquery.pagepiling.css</strong> плагина, а также <strong>jQuery</strong>. </p>
+
+<p>Опционально вы можете добавить библиотеку <strong>jQuery UI</strong>, если хотите использовать другие эффекты анимации, кроме тех, что включены в библиотеку jQuery, а именно линейный или свинг-эффект.</p>
+
+<h3>Установка с помощью bower</h3>
+
+<p>Как вариант, вы можете установить pagePiling.js с помощью bower: Terminal:</p>
+
+<pre><code class="language-bash">bower install pagepiling.js</code></pre>
+
+<h3>Включение файлов</h3>
+
+<pre><code class="language-html">&lt;link rel="stylesheet" type="text/css" href="jquery.pagepiling.css" /&gt;
+
+&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="jquery.pagepiling.js"&gt;&lt;/script&gt;</code></pre>
+
+<h3>Опциональное использование CDN</h3>
+
+<p>Если вы предпочитаете использовать CDN для загрузки необходимых файлов, pagePiling.js находится на <a href="https://cdnjs.com/libraries/pagePiling.js" target="_blank" rel="noreferrer noopener nofollow">CDNJS</a>.</p>
+
+<h3>Требуемая структура HTML</h3>
+
+<p>Каждый раздел будет определен с помощью <code>div</code>, содержащего класс <code>section</code>. Активным разделом по умолчанию будет первый раздел, который принимается за главную страницу.</p>
+
+<pre><code class="language-html">&lt;div id="pagepiling"&gt;
+	&lt;div class="section"&gt;Some section&lt;/div&gt;
+	&lt;div class="section"&gt;Some section&lt;/div&gt;
+	&lt;div class="section"&gt;Some section&lt;/div&gt;
+	&lt;div class="section"&gt;Some section&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Инициализация</h3>
+
+<p>Все, что вам нужно сделать, это вызвать плагин внутри функции <code>$(document).ready</code>:</p>
+
+<pre><code class="language-javascript">$(document).ready(function() {
+	$('#pagepiling').pagepiling();
+});</code></pre>
+
+<p>Более сложная инициализация со всеми установленными опциями может выглядеть следующим образом:</p>
+
+<pre><code class="language-javascript">$(document).ready(function() {
+	$('#pagepiling').pagepiling({
+	    menu: null,
+        direction: 'vertical',
+        verticalCentered: true,
+        sectionsColor: [],
+        anchors: [],
+        scrollingSpeed: 700,
+        easing: 'swing',
+        loopBottom: false,
+        loopTop: false,
+        css3: true,
+        navigation: {
+            'textColor': '#000',
+            'bulletsColor': '#000',
+            'position': 'right',
+            'tooltips': ['section1', 'section2', 'section3', 'section4']
+        },
+       	normalScrollElements: null,
+        normalScrollElementTouchThreshold: 5,
+        touchSensitivity: 5,
+        keyboardScrolling: true,
+        sectionSelector: '.section',
+        animateAnchor: false,
+
+		//events
+		onLeave: function(index, nextIndex, direction){},
+		afterLoad: function(anchorLink, index){},
+		afterRender: function(){},
+	});
+});</code></pre>
+
+<h3>Доступ к разделам</h3>
+
+<p>Для создания ссылок на определенный раздел вы можете использовать обычную URL-ссылку, если вы используете pagePiling.js с якорными ссылками (используя опцию <code>anchors</code>), то вы сможете использовать якорные ссылки также для перехода непосредственно к определенному разделу.</p>
+
+<p>Например: http://alvarotrigo.com/pagePiling/#page2</p>
+
+<div class="attention-yellow"><strong>Будьте осторожны</strong>! Теги <code>data-anchor</code> не могут иметь то же значение, что и любой элемент ID на сайте (или элемент NAME для IE).</div>
+
+<h3>Использование меню</h3>
+
+<p>Чтобы связать меню с активным разделом, необходимо воспользоваться опцией <code>menu</code> и использовать якорные ссылки (#), как описано в разделе опций данной докумментации.</p>
+
+<p>Создание прокручиваемого раздела</p>
+
+<p>Если вы хотите иметь раздел с большим содержимым и создать полосу прокрутки для этого раздела, вы можете сделать это, добавив класс <code>pp-scrollable</code> к этому разделу:</p>
+
+<pre><code class="language-html">&lt;div class="section pp-scrollable"&gt;&lt;/div&gt;</code></pre>
+
+<h2>Опции</h2>
+
+<ul>
+<li><code>verticalCentered</code>: (по умолчанию <code>true</code>) Вертикальное центрирование содержимого внутри разделов.</li>
+<li><code>scrollingSpeed</code>: (по умолчанию <code>700</code>) Скорость в миллисекундах для переходов прокрутки.</li>
+<li><code>sectionsColor</code>: (по умолчанию none) Определяет свойство CSS background-color для каждого раздела: Пример:</li>
+</ul>
+
+<pre><code class="language-javascript">$('#pagepiling').pagepiling({
+    sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+});</code></pre>
+
+<ul>
+<li><code>anchors</code>: (по умолчанию <code>[]</code>) Определяет якорные ссылки (#example), которые будут отображаться в URL для каждого раздела. При использовании якорей навигация вперед и назад будет также возможна через браузер. Эта опция также позволяет пользователям делать закладки на определенный раздел. <strong>Будьте внимательны!</strong> Если вы используете якоря, они не могут иметь то же значение, что и любой элемент ID на сайте (или элемент NAME для IE).</li>
+</ul>
+
+<div class="attention-yellow"><strong>Важно</strong>! Важно понимать, что значения в массиве опций anchors напрямую соотносятся с элементом с классом .section по его положению в разметке.</div>
+
+<ul>
+<li><code>easing</code>: (по умолчанию <code>swing</code>) Определяет эффект перехода, который будет использоваться для вертикальной прокрутки. Для использования любого другого перехода, кроме <code>swing</code> и <code>linear</code>, требуется <a href="http://jqueryui.com/" target="_blank" rel="noreferrer noopener nofollow">jQuery UI</a>. Вместо этого можно использовать другие библиотеки.</li>
+<li><code>loopTop</code>: (по умолчанию <code>false</code>) Определяет, должна ли прокрутка вверх в первой секции прокручиваться до последней или нет.</li>
+<li><code>loopBottom</code>: (по умолчанию <code>false</code>) Определяет, должна ли прокрутка вниз в последней секции прокручиваться до первой или нет.</li>
+<li><code>css3</code>: (по умолчанию <code>true</code>). Определяет, использовать ли JavaScript или CSS3 преобразования для прокрутки внутри разделов. Полезно для ускорения перемещения на планшетных и мобильных устройствах с браузерами, поддерживающими CSS3. Если этот параметр установлен в <code>true</code> и браузер не поддерживает CSS3, то вместо этого будет использоваться запасной вариант jQuery.</li>
+<li><code>normalScrollElements</code>: (по умолчанию <code>null</code>) Если вы хотите избежать автопрокрутки при прокрутке над некоторыми элементами, вам нужно использовать именно эту опцию. (полезно для карт, прокручиваемых div и т.д.) Для этого требуется строка с селекторами jQuery для этих элементов. (Например: <code>normalScrollElements: '#element1, .element2'</code>)</li>
+<li><code>normalScrollElementTouchThreshold</code>: (по умолчанию <code>5</code>) Определяет порог для количества переходов вверх по дереву html-узлов pagePiling будет проверять, соответствует ли <code>normalScrollElements</code>, чтобы разрешить функцию прокрутки div-ов на сенсорном устройстве. (Например: <code>normalScrollElementTouchThreshold: 3</code>)</li>
+<li><code>keyboardScrolling</code>: (по умолчанию <code>true</code>) Определяет, можно ли перемещаться по содержимому с помощью клавиатуры.</li>
+<li><code>touchSensitivity</code>: (по умолчанию <code>5</code>) Определяет процент от ширины/высоты окна браузера и расстояние, на которое нужно провести пальцем для перехода к следующему разделу.</li>
+<li><code>animateAnchor</code>: (по умолчанию <code>true</code>) Определяет, будет ли загрузка сайта при указании якоря (#) прокручиваться с анимацией до места назначения или будет загружаться непосредственно на указанный раздел.</li>
+<li><code>direction</code>: (по умолчанию <code>vertical</code>) Определяет, будет ли прокрутка вертикальной или горизонтальной.</li>
+<li><code>menu</code>: (по умолчанию <code>false</code>) Селектор может быть использован для указания меню, которое будет связано с разделами. Таким образом, при прокрутке разделов будет активироваться соответствующий элемент в меню с использованием класса <code>active</code>. При этом меню не создается, а просто добавляется класс <code>active</code> к элементу данного меню с соответствующими якорными ссылками. Для того чтобы связать элементы меню с разделами, необходимо использовать HTML 5 data-tag (<code>data-menuanchor</code>) с теми же якорными ссылками, которые используются в разделах. Пример:</li>
+</ul>
+
+<pre><code class="language-html">&lt;ul id="myMenu"&gt;
+    &lt;li data-menuanchor="firstPage" class="active"&gt;&lt;a href="#firstPage"&gt;First section&lt;/a&gt;&lt;/li&gt;
+    &lt;li data-menuanchor="secondPage"&gt;&lt;a href="#secondPage"&gt;Second section&lt;/a&gt;&lt;/li&gt;
+    &lt;li data-menuanchor="thirdPage"&gt;&lt;a href="#thirdPage"&gt;Third section&lt;/a&gt;&lt;/li&gt;
+    &lt;li data-menuanchor="fourthPage"&gt;&lt;a href="#fourthPage"&gt;Fourth section&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<pre><code class="language-javascript">$('#pagepiling').pagepiling({
+    anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+    menu: '#myMenu'
+});</code></pre>
+
+<div class="attention-blue"><strong>Примечание</strong>! Элемент меню должен быть размещен вне обертки pagePiling (в примере выше <code>id="pagepiling"</code>), чтобы избежать проблем при использовании <code>css3:true</code>. В противном случае он будет добавлен к <code>body</code> самим плагином.</div>
+
+<ul>
+<li><code>navigation</code>: (по умолчанию <code>false</code>) Если установить значение <code>true</code>, то будет отображаться панель навигации, состоящая из маленьких кружков.</li>
+<li><code>sectionSelector</code>: (по умолчанию <code>.section</code>) Определяет селектор jQuery, используемый для секций плагина. Иногда его нужно менять, чтобы избежать проблем с другими плагинами, использующими те же селекторы, что и pagePiling.js.</li>
+</ul>
+
+<h2>Методы</h2>
+
+<h4>moveSectionUp()</h4>
+
+<p>Прокручивает один раздел вверх:</p>
+
+<pre><code class="language-javascript">$.fn.pagepiling.moveSectionUp();</code></pre>
+
+<h4>moveSectionDown()</h4>
+
+<p>Прокручивает один раздел вниз:</p>
+
+<pre><code class="language-javascript">$.fn.pagepiling.moveSectionDown();</code></pre>
+
+<h4>moveTo(section)</h4>
+
+<p>Прокручивает страницу до указанного раздела.</p>
+
+<pre><code class="language-javascript">/* Прокрутка до раздела с якорной ссылкой `firstSection`  */
+$.fn.pagepiling.moveTo('firstSection');
+</code></pre>
+
+<pre><code class="language-javascript">// Прокрутка до 3-го раздела на сайте
+$.fn.pagepiling.moveTo(3);
+
+// Что то же самое, что
+$.fn.pagepiling.moveTo(3);</code></pre>
+
+<h4>setAllowScrolling(boolean)</h4>
+
+<p>Добавляет или удаляет возможность прокрутки разделов с помощью колеса мыши/трекпада или сенсорных жестов (по умолчанию эта функция активна).</p>
+
+<pre><code class="language-javascript">$.fn.pagepiling.setAllowScrolling(false);</code></pre>
+
+<h4>setKeyboardScrolling(boolean)</h4>
+
+<p>Добавляет или убирает возможность прокрутки разделов с помощью стрелок клавиатуры (по умолчанию эта функция активна).</p>
+
+<pre><code class="language-javascript">$.fn.pagepiling.setKeyboardScrolling(false);</code></pre>
+
+<h4>setScrollingSpeed(milliseconds)</h4>
+
+<p>Определяет скорость прокрутки в миллисекундах.</p>
+
+<pre><code class="language-javascript">$.fn.pagepiling.setScrollingSpeed(700);</code></pre>
+
+<h2>Обратные вызовы</h2>
+
+<h4>afterLoad (anchorLink, index)</h4>
+
+<p>Обратный вызов, выполняемый после загрузки разделов, после завершения прокрутки. Параметры:</p>
+
+<ul>
+<li><code>anchorLink</code>: якорьСсылка, соответствующая разделу.</li>
+<li><code>index</code>: индекс раздела. Начиная с 1.</li>
+</ul>
+
+<p>В случае, если в плагине не определены anchorLinks, параметр <code>index</code> будет единственным, который можно использовать.</p>
+
+<p>Пример:</p>
+
+<pre><code class="language-javascript">$('#pagepiling').pagepiling({
+		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+
+		afterLoad: function(anchorLink, index){
+			//использование index
+			if(index == 3){
+				alert("Section 3 ended loading");
+			}
+
+			//использование anchorLink
+			if(anchorLink == 'secondPage'){
+				alert("Section 2 ended loading");
+			}
+		}
+	});</code>
+</pre>
+
+<h4>onLeave (index, nextIndex, direction)</h4>
+
+<p>Этот обратный вызов запускается, когда пользователь покидает раздел, при переходе к новому разделу.</p>
+
+<p>Параметры:</p>
+
+<ul>
+<li><code>index</code>: индекс покидаемого раздела. Начиная с 1.</li>
+<li><code>nextIndex</code>: индекс раздела назначения. Начиная с 1.</li>
+<li><code>direction</code>: будет принимать значения <code>up</code> или <code>down</code> в зависимости от направления прокрутки.</li>
+</ul>
+
+<p>Пример:</p>
+
+<pre><code class="language-javascript">$('#pagepiling').pagepiling({
+		onLeave: function(index, nextIndex, direction){
+			//после покидания раздела 2
+			if(index == 2 &amp;&amp; direction =='down'){
+				alert("Идем в раздел 3!");
+			}
+
+			else if(index == 2 &amp;&amp; direction == 'up'){
+				alert("Идем в раздел 1!");
+			}
+		}
+	});</code>
+</pre>
+
+<h4>afterRender()</h4>
+
+<p>Этот обратный вызов выполняется сразу после генерации структуры страницы. Это обратный вызов, который можно использовать для инициализации других плагинов или запуска любого кода, требующего готовности документа (поскольку этот плагин изменяет DOM для создания результирующей структуры).</p>
+
+<p>Пример:</p>
+
+<pre><code class="language-javascript">$('#pagepiling').pagepiling({
+		afterRender: function(){
+			alert("The resulting DOM structure is ready");
+		}
+	});</code></pre>
+
+<h2>Лицензия</h2>
+
+<p>(The MIT License)</p>
+
+<p>Copyright (c) 2014 Alvaro Trigo &lt;alvaro@alvarotrigo.com&gt;</p>
+
+<p>Настоящим предоставляется бесплатное разрешение любому лицу, получившему копию данного программного обеспечения и сопутствующих файлов документации («Программное обеспечение»), работать с Программным обеспечением без ограничений, включая, без ограничения, права на использование, копирование, изменение, объединение, публикацию, распространение, сублицензирование и/или продажу копий Программного обеспечения, а также разрешать лицам, которым предоставляется Программное обеспечение, делать это при соблюдении следующих условий:</p>
+
+<p>Вышеуказанное уведомление об авторском праве и данное уведомление о разрешении должны быть включены во все копии или существенные части Программного обеспечения.</p>
+
+<p>ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, ЯВНЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ ГАРАНТИЯМИ ТОВАРНОГО СОСТОЯНИЯ, ПРИГОДНОСТИ ДЛЯ КОНКРЕТНОЙ ЦЕЛИ И НЕНАРУШЕНИЯ ПРАВ. НИ ПРИ КАКИХ ОБСТОЯТЕЛЬСТВАХ АВТОРЫ ИЛИ ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ ОТВЕТСТВЕННОСТИ ЗА ЛЮБЫЕ ПРЕТЕНЗИИ, УБЫТКИ ИЛИ ДРУГИЕ ОБЯЗАТЕЛЬСТВА, БУДЬ ТО ПО ДОГОВОРУ, В РЕЗУЛЬТАТЕ ПРАВОНАРУШЕНИЯ ИЛИ ИНЫМ ОБРАЗОМ, ВОЗНИКАЮЩИЕ ИЗ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ, В СВЯЗИ С НИМ ИЛИ В РЕЗУЛЬТАТЕ ЕГО ИСПОЛЬЗОВАНИЯ ИЛИ ДРУГИХ ОПЕРАЦИЙ С НИМ.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 29 мая 2022 в 23:18</span><br>Теги: JavaScript
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Перевод (локализация) темы WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Перевод (локализация) темы WordPress</h1>
+
+<p>В этом блоке мы поговорим о том, как сделать перевод WordPress сайт или по-другому локализацию темы. </p>
+
+
+
+<h2><span id="Pro_perevod_WordPress">Про перевод WordPress</span></h2>
+
+
+
+<p>Здесь главное не перепутать, мы не будем говорить о дублировании контента сайта на разные языки. Мы будем говорить исключительно о том, как при разработке темы подготовить ее к переключению языков в панели администратора WordPress.</p>
+
+
+
+<p>Для перевода записей на другие языки существует много методов и различных плагинов, но это тема отдельного материала, который я постараюсь опубликовать в ближайшее время. А в этой статье мы поговорим именно про локализацию.</p>
+
+
+
+<p>Любому разработчику тем WordPress рекомендуется всегда локализовать свои темы, чтобы они были готовы к переводу со стороны клиента. Это довольно простой процесс, хотя и трудоемкий, и позволит людям со всего мира наслаждаться вашей темой на их родном языке.</p>
+
+
+
+<p>На данный момент пользователи ожидают, что все премиум-темы WordPress локализованы и готовы к переводу. Это означает, что они включают файлы <strong>.po</strong> и <strong>.mo</strong> и соответствующий код, необходимый для перевода.</p>
+
+
+
+<p>Ниже я опишу различные шаги, необходимые для того, чтобы сделать локализацию и последующего перевод темы WordPress. Надеюсь, что смогу объяснить всё самым доступным способом, чтобы вы смогли сделать все правильно с самого начала.</p>
+
+
+
+<h2><span id="Funkcia_load_theme_textdomain">Функция load_theme_textdomain</span></h2>
+
+
+
+<p>Первым шагом, когда вы хотите сделать перевод WordPress темы — является включение в файл <strong><em>functions.php</em></strong> функции, которая будет искать в каталоге вашей темы файл локализации locale.mo и загружать его (где locale — текущий язык, т.е., например, pt_BR.mo). </p>
+
+
+
+<p>Подробнее об этом есть в <a href="https://codex.wordpress.org/I18n_for_WordPress_Developers" target="_blank" rel="noreferrer noopener">кодексе WordPress</a>.</p>
+
+
+
+<p>1. Добавляем следующую функцию в файл <strong>functions.php</strong> вашей темы:</p>
+
+
+
+<pre><code class="language-php">load_theme_textdomain( 'framework', get_template_directory() . '/lang' );</code></pre>
+
+
+
+<p>2. Измените <code>framework</code> на свое значение, которое вам нужно, обычно здесь используется название вашей темы.</p>
+
+
+
+<p>3. Измените путь к шаблону. Вместо <code>/lang</code>  укажите папку, где вы будете хранить файлы <strong>.po</strong> и <strong>.mo</strong>.</p>
+
+
+
+<h2><span id="Lokalizacia_temy">Локализация темы</span></h2>
+
+
+
+<p>Следующим шагом будет редактирование файлов темы для замены всех текстовых строк на функции. Данный шаг сделает перевод WordPress темы автоматическим при смене языка в панели администратора.</p>
+
+
+
+<p>Для этого нужно изменить весь текст, используемый в теме, на функции, чтобы инструменты перевода знали, какой текст нужно заменить при переводе.</p>
+
+
+
+<p><strong>1. Заменяем echo функции</strong></p>
+
+
+
+<p>Вместо использования функций echo для показа текста</p>
+
+
+
+<pre><code class="language-php">&lt;?php echo 'Some string'; ?&gt;</code></pre>
+
+
+
+<p>Используйте функцию <code>_e(' ')</code>:</p>
+
+
+
+<pre><code class="language-php">&lt;?php _e( 'Some string', 'framework' ); ?&gt;</code></pre>
+
+
+
+<p><strong>2. Заменяем «голые» строки</strong></p>
+
+
+
+<p>Вместо «голых строк»</p>
+
+
+
+<pre><code class="language-php">&lt;?php echo '&lt;h2&gt;Some string&lt;/h2&gt;'; ?&gt;</code></pre>
+
+
+
+<p>Используйте функцию <code>_(' ')</code>:</p>
+
+
+
+<pre><code class="language-php">&lt;?php echo '&lt;h2&gt;' . __('Some string', 'framework') . '&lt;/h2&gt;'; ?&gt;</code></pre>
+
+
+
+<p><strong>3. Изменяем обычный текст</strong></p>
+
+
+
+<p>Вместо обычного текста</p>
+
+
+
+<pre><code class="language-php">Hi I am Text</code></pre>
+
+
+
+<p>Используем функцию <code>_e(' ')</code>:</p>
+
+
+
+<pre><code class="language-php">&lt;?php _e('Hi I am Text','framework')</code></pre>
+
+
+
+<h2><span id="Fajly_po_i_mo">Файлы .po и .mo</span></h2>
+
+
+
+<p>Дальше создаем файлы .po и .mo и добавляем текстовый домен в файл <strong><em>functions.php</em></strong>.</p>
+
+
+
+<p>Теперь, когда ваша тема готова, вы можете создать файлы <strong>.po</strong> и <strong>.mo</strong>, которые используются для перевода WordPress темы. </p>
+
+
+
+<p>В этом руководстве я использую программу <a href="https://poedit.net/" target="_blank" rel="noreferrer noopener">Poedit</a>.</p>
+
+
+
+<p>1. Откройте Poedit и перейдите в <strong>File –&gt; New Catalog</strong></p>
+
+
+
+<p>2. Введите <strong>Name</strong> (имя) для информации о вашем проекте (подойдет название вашей темы)</p>
+
+
+<div>
+<figure><img height="340" src="images/perevod-wordpress-01.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>3. Перейдите на вкладку <strong>Paths</strong> (пути) и введите путь к файлам, которые нужно перевести. Лично я помещаю свои файлы <strong>.po</strong> и <strong>.mo</strong> в папку <code>lang</code> в моей теме, поэтому мой базовый путь — <code>../</code>.</p>
+
+
+<div>
+<figure><img src="images/perevod-wordpress-02.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>4. Перейдите на вкладку <strong>Keywords</strong> (ключевые слова) и введите <code>_</code> и <code>_e</code> для ключевых слов (они были использованы в шаге 2 локализации темы)</p>
+
+
+<div>
+<figure><img src="images/pereveod-wordpress-03.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>5. Теперь сохраните файл <strong>.po</strong> по умолчанию в папке <strong><em>lang</em></strong> вашей темы.</p>
+
+
+<div>
+<figure><img src="images/pereveod-wordpress-04.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<h2><span id="Perevod_po_i_sozdanie_mo">Перевод .po и создание .mo</span></h2>
+
+
+
+<p>Если вы продаете тему или раздаете ее бесплатно, вы можете просто включить стандартные файлы <strong>.po</strong> и <strong>.mo</strong> и все готово.</p>
+
+
+
+<p>Однако, если вы хотите перевести свою тему, вам придется отредактировать файл <strong>default.po</strong>, чтобы добавить свой перевод WordPress терминов и сохранить это для дальнейшего использования.</p>
+
+
+
+<p><strong>1. Переводим файл default.po</strong></p>
+
+
+
+<p>Чтобы перевести файл default.po, достаточно открыть его в <strong><em>Poedit</em></strong> и ввести перевод для каждого значения — нажмите на строку текста и введите перевод, как показано на рисунке ниже:</p>
+
+
+<div>
+<figure><img src="images/pereveod-wordpress-05.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p><strong>2. Сохраняем новый файл с переводом</strong></p>
+
+
+
+<p>Теперь вам нужно сохранить переведенный файл .po, используя определенное соглашение об именах.</p>
+
+
+
+<p>Соглашение об именах основано на коде языка (например, <strong>pt</strong> для португальского), за которым следует код страны (например, <strong>_BR</strong> для Бразилии). Таким образом, файл на бразильском португальском языке будет называться <strong>pt_BR.mo</strong>. См. по ссылкам полный список <a href="http://www.gnu.org/software/gettext/manual/html_chapter/gettext_16.html#Language-Codes" target="_blank" rel="noreferrer noopener">кодов языков</a> и <a href="http://www.gnu.org/software/gettext/manual/html_chapter/gettext_16.html#Country-Codes" target="_blank" rel="noreferrer noopener">кодов стран</a>, чтобы точно определить свой регион.</p>
+
+
+
+<p>Пример названия файлов перевода на португальский язык:</p>
+
+
+
+<pre><code class="language-php">pt_BR.po
+pt_BR.mo</code></pre>
+
+
+
+<p>Как показано в примере, при сохранении файла <strong>.po</strong> программа <strong><em>PoEdit</em></strong> автоматически создаст для вас файлы <strong>.po</strong> и <strong>.mo</strong>.</p>
+
+
+
+<p><strong>3. Добавляем новый .mo файл в языковую папку темы</strong></p>
+
+
+
+<p>Файл <strong>.mo</strong>, созданный в пункте 2 этого шага, нужно поместить в папку <code>/lang</code> вашей темы (или туда, куда вы указали в шаге 1 этого руководства).</p>
+
+
+
+<h2><span id="Menaem_azyk_na_sajte">Меняем язык на сайте</span></h2>
+
+
+
+<p>Теперь просто перейдите в <strong>Settings</strong> -&gt; <strong>General</strong> (Настройки -&gt; Общие) и измените опцию <strong>Site Language</strong> (Язык сайта).</p>
+
+
+
+<p>Если вы все сделали правильно, на вашем сайте должны отображаться все тексты и переведенные строки, которые вы создали в шаге 4 путем нахождения и замены строк по умолчанию в вашей теме, на новом выбранном языка.</p>
+
+
+
+<p>Перевод WordPress темы задача не сложная, но зачастую довольно трудоемкая, т.к. основное время может занять сам процесс проверки всех строк в теме и перевода всех этих строк в программе <strong>PoEdit</strong>.</p>
+
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 9 февраля 2023 в 19:03</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

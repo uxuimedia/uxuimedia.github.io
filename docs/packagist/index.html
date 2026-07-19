@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Packagist &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Packagist</h1>
+
+<p>WordPress Packagist является зеркальным отражением каталогов плагинов и тем WordPress в качестве репозитория Composer.</p>
+
+<h2><span id="Adro_WordPress">Ядро WordPress</span></h2>
+
+<p>Смотрите <a href="https://github.com/fancyguy/webroot-installer" target="_blank" rel="noreferrer noopener nofollow">fancyguy/webroot-installer</a> или <a href="https://github.com/johnpbloch/wordpress" target="_blank" rel="noreferrer noopener nofollow">johnpbloch/wordpress</a> для установки самого WordPress с помощью Composer.</p>
+
+<p>Внести свой вклад или получите поддержку: посетите страницу <strong>Packagist</strong> на <a href="https://github.com/outlandishideas/wpackagist" target="_blank" rel="noreferrer noopener">GitHub</a>.</p>
+
+<h2><span id="Ispolzuem_Composer">Используем Composer</span></h2>
+
+
+
+<p>Зачем нам использовать Composer?</p>
+
+
+
+<blockquote class="blockquote">
+<p>«Composer — это инструмент для управления зависимостями в PHP. Он позволяет вам объявить зависимые библиотеки, необходимые вашему проекту, и он установит их в ваш проект за вас.»</p>
+<cite>— getcomposer.org</cite></blockquote>
+
+
+
+<ul>
+<li>Избегание фиксации плагинов и тем в системе контроля исходного кода.</li>
+
+
+
+<li>Избегание необходимости использовать подмодули git.</li>
+
+
+
+<li>Управление библиотеками проектов WordPress и не-WordPress с помощью одних и тех же инструментов.</li>
+
+
+
+<li>В перспективе может использоваться для управления зависимостями между плагинами.</li>
+</ul>
+
+<p><a class="btn btn-primary bnt-lg" href="https://wpackagist.org/" target="_blank" rel="noreferrer noopener">Официальный сайт</a></p>
+
+
+
+<h2><span id="Rabota_Repozitoria_WordPress_Packagist">Работа Репозитория WordPress Packagist</span></h2>
+
+
+
+<p>Как работает репозиторий?</p>
+
+
+
+<ol>
+<li>Каждый час сканирует репозиторий <strong>WordPress Subversion</strong> на наличие плагинов и тем. Выполните поиск и нажмите <strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">↺</mark></strong>, чтобы сделать доступными все новые версии.</li>
+
+
+
+<li>Находит <code>tags</code> для каждого обновленного пакета и сопоставляет их с версиями.</li>
+
+
+
+<li>Для плагинов добавляет <code>trunk</code> в качестве dev-версии.</li>
+
+
+
+<li>Пересобирает <strong>JSON</strong>-файлы пакета composer.</li>
+</ol>
+
+
+
+<h2><span id="Ispolzovanie_Packagist">Использование Packagist</span></h2>
+
+
+
+<p>Как использовать WordPress Packagist?</p>
+
+
+
+<ol>
+<li>Добавьте репозиторий в ваш <strong>composer.json</strong></li>
+
+
+
+<li>Добавьте нужные плагины и темы в соответствии с вашими требованиями, используя <code>wpackagist-plugin</code> или <code>wpackagist-theme</code> в качестве имени поставщика.</li>
+
+
+
+<li>Выполните <code>$ composer.phar update</code></li>
+
+
+
+<li>Пакеты устанавливаются в <code>wp-content/plugins/</code> или <code>wp-content/themes/</code> (если иное не указано в <code>installer-paths</code>).</li>
+</ol>
+
+
+
+<p><strong>Пример</strong></p>
+
+
+
+<pre><code class="language-json">{
+    "name": "acme/brilliant-wordpress-site",
+    "description": "My brilliant WordPress site",
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "require": {
+        "aws/aws-sdk-php":"*",
+        "wpackagist-plugin/akismet":"dev-trunk",
+        "wpackagist-plugin/wordpress-seo":"&gt;=7.0.2",
+        "wpackagist-theme/hueman":"*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Acme": "src/"
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "wp-content/mu-plugins/{$name}/": [
+                "wpackagist-plugin/akismet"
+            ],
+            "wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
+    }
+}</code></pre>
+
+
+
+<p>Выше пример файла <strong>composer.json</strong>, который добавляет репозиторий Wpackagist и включает последнюю версию Akismet (установленную как обязательный плагин), как минимум версию 3.9 Captcha и последнюю тему Hueman вместе с Amazon Web Services SDK из основного репозитория <a href="https://packagist.org/" target="_blank" rel="noreferrer noopener">Packagist</a>.</p>
+
+
+
+<p>Старый префикс поставщика <code>wpackagist</code> теперь удален в пользу <code>wpackagist-plugin</code>.</p>
+
+
+
+<h2><span id="Izvestnye_problemy_repozitoria">Известные проблемы репозитория</span></h2>
+
+
+
+<ul>
+<li>Требуется Composer 1.0.0-alpha7 или более новая версия для работы с  WordPress Packagist.</li>
+
+
+
+<li>Строки версий, которые Composer не может разобрать, игнорируются. Все плагины имеют как минимум trunk-сборку.</li>
+
+
+
+<li>Темы не имеют версии trunk. Рекомендуется использовать <code>"*"</code> в качестве требуемой версии.</li>
+
+
+
+<li>Даже если пакеты присутствуют в SVN, они не будут доступны, если они не опубликованы на <a href="https://wordpress.org/plugins/" target="_blank" rel="noreferrer noopener">wordpress.org</a>. Попробуйте <a href="https://wpackagist.org/search" target="_blank" rel="noreferrer noopener">поискать</a> ваш плагин, прежде чем сообщать об ошибке.</li>
+
+
+
+<li>Вы также можете проверить наличие <a href="https://github.com/outlandishideas/wpackagist/issues" target="_blank" rel="noreferrer noopener nofollow">открытых проблем</a>.</li>
+</ul>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 17 января 2023 в 16:35</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

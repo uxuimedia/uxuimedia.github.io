@@ -1,0 +1,1084 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Установка WordPress на Linux &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container-fluid">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 col-lg-3">
+			<div class="content-blocks bg-light p-3">
+				<div>
+					<b>Содержание</b>
+				</div>
+				<div>
+					<span>1</span> <a href="#SSH_podklucenie"><span>SSH подключение</span></a>
+				</div>
+				<div>
+					<span>2</span> <a href="#Nginx"><span>Nginx</span></a>
+				</div>
+				<div>
+					<span>3</span> <a href="#Paketnye_menedzery_Linux"><span>Пакетные менеджеры Linux</span></a>
+				</div>
+				<div>
+					<span>4</span> <a href="#Ustanovka_pervoj_programmy"><span>Установка первой программы</span></a>
+				</div>
+				<div>
+					<span>5</span> <a href="#Ustanovka_Midnight_Commander"><span>Установка Midnight Commander</span></a>
+				</div>
+				<div>
+					<span>6</span> <a href="#Goracie_klavisi_Midnight_Commander"><span>Горячие клавиши Midnight Commander</span></a>
+				</div>
+				<div>
+					<span>7</span> <a href="#Ustanovka_Nginx_MySQL_i_PHP"><span>Установка Nginx, MySQL и PHP</span></a>
+				</div>
+				<div>
+					<span>8</span> <a href="#Demony_Linux"><span>Демоны Linux</span></a>
+				</div>
+				<div>
+					<span>9</span> <a href="#Nastrojka_Nginx_pod_WordPress"><span>Настройка Nginx под WordPress</span></a>
+				</div>
+				<div>
+					<span>10</span> <a href="#Nastrojka_PHP-FPM"><span>Настройка PHP-FPM</span></a>
+				</div>
+				<div>
+					<span>11</span> <a href="#Nastrojka_MySQL"><span>Настройка MySQL</span></a>
+				</div>
+				<div>
+					<span>12</span> <a href="#Ustanovka_WordPress"><span>Установка WordPress</span></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Установка WordPress на Linux</h1>
+
+<p>Рассмотрим как развернуть WordPress на Linux на сервере или на виртуальной машине для начинающих.</p>
+
+
+
+<h2><span id="SSH_podklucenie">SSH подключение</span></h2>
+
+
+
+<p>Для того, чтобы начать настраивать WordPress на Linux в первую очередь мы должны подключиться к серверу или к виртуальной машине через SSH — протокол шифрования, через который мы получаем доступ к серверу.</p>
+
+
+
+<p>Для подключения мы будем использовать программу <a href="https://www.putty.org/" target="_blank" rel="noreferrer noopener nofollow">PuTTy</a>. Думаю, что большинство пользователей работает в Windows, поэтому инструкция будет для этой ОС.</p>
+
+
+
+<p>После запуска программы мы вводим необходимый IP адрес сервера. После попадаем в окно терминала и вводим последовательно логин и пароль.</p>
+
+
+
+<div class="attention-red"><strong>Важно</strong>! При вводе пароля в PuTTy вы не будете видеть набираемый текст, курсор не будет двигаться, но пароль всё-равно вводится. После просто нажмите ввод.</div>
+
+
+
+<p>Давайте пройдемся по шагам немного подробнее:</p>
+
+
+
+<p>Скачиваем <strong>.exe</strong>-файл:</p>
+
+
+<div>
+<figure><img src="images/ssh-1-0.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Запускаем:</p>
+
+
+<div>
+<figure><img src="images/ssh-1-1.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Разрешаем добавить ключ сервера в кеш:</p>
+
+
+<div>
+<figure><img src="images/ssh-1-2.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Видим запрос логина и пароля для сервера. Вводим логин и пароль, который получили при установке:</p>
+
+
+<div>
+<figure><img src="images/ssh-1-3.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>После ввода логина и пароля мы видим окно консоли (терминала):</p>
+
+
+<div>
+<figure><img src="images/ssh-1-5.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Большинство современных веб-серверов используют Nginx. Ранее был Apache, но сайты работали медленнее и тратилось много ресурсов.</p>
+
+
+
+<p>По сути, сервер отдает по <strong>http/https</strong> нужные файлы, после чего браузеры их интерпретируют и отображают пользователю.</p>
+
+
+<div>
+<figure><img src="images/ssh-1-6.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Изначально веб-сервер, а тем более браузер, не знают про PHP и дру. языки программирования. Сам браузер работает с HTML, CSS, Javascript.</p>
+
+
+
+<p>Как сказано выше — Apache до Nginx использовался почти на всех веб-серверах, но Апач съедал много ресурсов. Nginx работает в связке с PHP-FPM.</p>
+
+
+
+<p>Апач до сих пор используется и под него есть огромное количество разных модулей, но для большинства проектов, которым не нужна лишняя функциональность, больше подойдет Nginx или lighthttpd.</p>
+
+
+
+<h2><span id="Nginx">Nginx</span></h2>
+
+
+
+<p>Продолжаем настраивать WordPress на Linux. В нашем случае мы остановимся на Nginx, разработанный Игорем Сысоевым http-proxy-сервер. Создатель сервера называет его proxy-сервером, а не web-сервером, как принято многими.</p>
+
+
+
+<p>У Nginx асинхронная событийная архитектура и он сам по себе не выполняет никаких «тяжелых» процессов. Таким образом, он быстрее обрабатывает запросы и потребляет меньше ресурсов.</p>
+
+
+
+<p>В то время как Apache обрабатывает один запрос пользователя, Nginx обрабатывает множество, даже тысячи запросов. Т.е. для этого proxy-сервера всё примерно выглядит так:</p>
+
+
+
+<ol class="wp-block-list">
+<li>Получает запрос пользователя</li>
+
+
+
+<li>Отправляет его на backend (например php-fpm)</li>
+
+
+
+<li>В то время как backend занят Nginx обрабатывать остальные запросы пользователей</li>
+
+
+
+<li>После обработки запроса и отправки ответа php-fpm Nginx передаст ответ назад пользователю</li>
+</ol>
+
+
+<div>
+<figure><img src="images/ssh-1-7.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Как уже выше было написано — мы будем использовать пакет PHP-FPM, который считается посредником между сервером и программным обеспечением, которое будет работать с интерпретатором (PHP-FPM) через FastCGI.</p>
+
+
+
+<p>PHP-FPM решает много задач и является полноценным менеджером, он может работать с выполнением процессов, ограничениями, утечками памяти и т.д. Сам процесс выглядит так:</p>
+
+
+
+<ol class="wp-block-list">
+<li>Пользователь вводит адрес сайта</li>
+
+
+
+<li>Запрос перехватывает Nginx</li>
+
+
+
+<li>Nginx передает запрос php-fpm</li>
+
+
+
+<li>php-fpm запускает PHP</li>
+
+
+
+<li>PHP подключается к Базе Данных и забирает всё что нужно</li>
+
+
+
+<li>php-fpm возвращает данные Nginx</li>
+
+
+
+<li>Nginx отправляет всё в браузер пользователю</li>
+</ol>
+
+
+
+<h2><span id="Paketnye_menedzery_Linux">Пакетные менеджеры Linux</span></h2>
+
+
+
+<p>Обычно рассматривают две версии Linux для работы — Redhat / Centos и Debian / Ubuntu. Кроме того, нужно понимать, что в нашей ОС существует система репозиториев или пакетов.</p>
+
+
+
+<p>Пакеты находятся на сервере и ОС знает как они зависят друг от друга. Указанные выше версии используют разные системы пакетов и разные репозитории.</p>
+
+
+
+<p>В репозиториях хранятся разные пакеты под разные цели и бывают они официальные и не официальные. В Linux можно подключить несколько репозиториев одновременно, в которых разные нужные пакеты для работы.</p>
+
+
+
+<p>За всё это отвечают пакетные менеджеры:</p>
+
+
+
+<ol class="wp-block-list">
+<li>В Redhat / Centos — это <strong>YUM</strong></li>
+
+
+
+<li>В Debian / Ubuntu — это <strong>Apt</strong></li>
+</ol>
+
+
+
+<p>Пакетный менеджер помогает с подключением к репозиторию, скачиванием и установкой нужного пакета. У менеджера много возможных функций.</p>
+
+
+
+<p>Для установки можем использовать следующую команду:</p>
+
+
+
+<pre><code class="language-bash">$ apt-get install &lt;название&gt;</code></pre>
+
+
+
+<p>для debian / ubuntu или для redhat / centos:</p>
+
+
+
+<pre><code class="language-bash">$ yum install</code></pre>
+
+
+
+<p>В нашем случае мы используем <strong>Centos 8</strong> вместе с <strong>yum</strong> и <strong>dnf</strong>.</p>
+
+
+
+<h2><span id="Ustanovka_pervoj_programmy">Установка первой программы</span></h2>
+
+
+
+<p>Основной пользователь Linux — это пользователь с именем <strong>root</strong>. Делать всё от имени <strong>root</strong> не безопасно. Чтобы работать не под root мы используем команду <strong>sudo</strong>.</p>
+
+
+
+<p>Команда <strong>sudo</strong> позволяет передать права на запуск команд с правами <strong>root</strong> пользователям. Это может быть одна команда или любые команды, предоставить можно всё что угодно, но быть нужно здесь очень осторожным.</p>
+
+
+
+<p>На данном этапе мы будем работать под <strong>root</strong>. </p>
+
+
+
+<p>После подключения к серверу по SSH мы установим первую программу <strong>wget</strong> такой командой:</p>
+
+
+
+<pre><code class="language-bash">$ yum install wget</code></pre>
+
+
+
+<p>Справку по команде можно посмотреть другой командой:</p>
+
+
+
+<pre><code class="language-bash">$ man wget</code></pre>
+
+
+
+<h2><span id="Ustanovka_Midnight_Commander">Установка Midnight Commander</span></h2>
+
+
+
+<p>Далее мы установим Midnight Commander, который упростит работу в Линуксе.</p>
+
+
+
+<div class="attention-blue">GNU <strong>Midnight Commander</strong> — файловый менеджер с текстовым интерфейсом, который напоминает Norton Commander для UNIX-подобных операционных систем, Microsoft Windows и Windows NT, OS/2, Mac OS X.</div>
+
+
+<div>
+<figure><img src="images/ssh-1-8.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Программа находится в официальных репозиториях CentOS, поэтому установка ее без проблем не вызовет:</p>
+
+
+
+<pre><code class="language-bash">$ dnf install mc</code></pre>
+
+
+
+<p>В более старых версиях вы можете установить midnight commander centos с помощью диспетчера пакетов yum:</p>
+
+
+
+<pre><code class="language-bash">$ yum install mc</code></pre>
+
+
+
+<p>Вы можете запустить программу, просто набрав в терминале <strong>mc</strong>. Чтобы сделать интерфейс черно-белым, используйте параметр <code>-b</code>: <strong>mc-b</strong>. Чтобы отключить поддержку мыши, опция <code>-d</code>: <strong>mc-d</strong>. </p>
+
+
+
+<p>Для редактирования файла в mc необходимо использовать параметр -e: <strong>mc-e</strong>. Чтобы удалить программу так же, как вы ее установили:</p>
+
+
+
+<pre><code class="language-bash">$ dnf remove mc</code></pre>
+
+
+
+<p>Также мы установим дополнительно текстовый редактор <strong>nano</strong>. Командой ниже можно установить сразу два редактора:</p>
+
+
+
+<pre><code class="language-bash">$ yum install mc nano</code></pre>
+
+
+
+<h2><span id="Goracie_klavisi_Midnight_Commander">Горячие клавиши Midnight Commander</span></h2>
+
+
+
+<p>Текущий объект — файл или каталог на котором установлен курсор.</p>
+
+
+
+<p><strong>Alt+Enter</strong>, <strong>Esc+Enter</strong> — Вставить текущий объект в командную строку.<br><strong>Alt+p</strong>, <strong>Esc+p</strong> — Вернуть предыдущую выполненную командную строку.<br><strong>Alt+n</strong>, <strong>Esc+n</strong> — Вернуть последующую выполненную командную строку.<br><strong>Alt+a</strong>, <strong>Esc+a</strong> — Посылает в командную строку результат выполнения команды <code>pwd</code> (полный путь до текущего каталога).<br><strong>Alt+c</strong>, <strong>Esc+c</strong> — Вызывается меню быстрой смены текущего каталога на активной панели.<br><strong>Alt+h</strong>, <strong>Esc+h</strong> — Вызов меню последних выполненных команд.<br><strong>Insert</strong> — Выделение текущего объекта.<br><strong>Ctrl+\</strong> — Вызывается меню часто используемых каталогов.<br><strong>F3</strong> — Просмотр файла.<br><strong>Shift+F3</strong> — Просмотр файла raw без учета расширения.<br><strong>Shift+F4</strong> — Создает новый файл.<br><strong>Ctrl+o</strong> — Скрытие панелей.<br><strong>Ctrl+s</strong> — Быстрый поиск файла или каталога.<br><strong>(Ctrl+x)+t</strong> (нажимаем <strong>Ctrl+x</strong> затем отпускаем и нажимаем <strong>t</strong>) — Вставка всех выделенных объектов в командную строку.<br><strong>(Ctrl+x)+c</strong> (нажимаем <strong>Ctrl+x</strong> затем отпускаем и нажимаем <strong>c</strong>) — Просмотр/правка прав доступа текущего объекта.<br><strong>(Ctrl+x)+o</strong> (нажимаем <strong>Ctrl+x</strong> затем отпускаем и нажимаем <strong>o</strong>) — Просмотр/правка владельца/группы для текущего объекта.<br><strong>(Ctrl+x)+l</strong> (нажимаем <strong>Ctrl+x</strong> затем отпускаем и нажимаем <strong>l</strong>) — Создать жесткую ссылку с текущего объекта.<br><strong>(Ctrl+x)+s</strong> (нажимаем <strong>Ctrl+x</strong> затем отпускаем и нажимаем <strong>s</strong>) — Создает символьную ссылку symlink для текущего объекта.<br><strong>(Ctrl+x)+(Ctrl+s)</strong> (нажимаем <strong>Ctrl+x</strong> затем отпускаем и нажимаем <strong>Ctrl+s</strong>) — Редактировать symlink.<br><strong>(Ctrl+x)+j</strong> (нажимаем <strong>Ctrl+x</strong> затем отпускаем и нажимаем <strong>j</strong>) — Показываем все фоновые задачи.<br><strong>(Ctrl+x)+q</strong> (нажимаем <strong>Ctrl+x</strong> затем отпускаем и нажимаем <strong>q</strong>) — Быстрый просмотр содержимого файла на второй панели.<br><strong>(Ctrl+x)+i</strong> (нажимаем <strong>Ctrl+x</strong> затем отпускаем и нажимаем <strong>i</strong>) — Быстрый просмотр информации о текущем объекте на второй панели.<br><strong>Esc+(Shift+?)</strong> — Вызывается меню расширенного поиска файлов.<br><strong>Alt+o</strong> — неактивная панель переходит в каталог на который указывает активная панель.</p>
+
+
+
+<h2><span id="Ustanovka_Nginx_MySQL_i_PHP">Установка Nginx, MySQL и PHP</span></h2>
+
+
+
+<p>Устанавливаем nginx:</p>
+
+
+
+<pre><code class="language-bash">$ yum install -y nginx</code></pre>
+
+
+
+<p>Эта команда находит программу и скачивает её из официального репозитория самостоятельно.</p>
+
+
+
+<p>Теперь устанавливаем систему управления базами данных (СУБД):</p>
+
+
+
+<pre><code class="language-bash">$ yum install -y mariadb-server</code></pre>
+
+
+
+<p>Под базой данных многие называют СУБД MySQL, что не совсем корректно. В свое время компания Oracle выкупила компанию Sun, где разрабатывалась MySQL, но сделала для этого OpenSource продукта свою ветку под названием MariaDB.</p>
+
+
+
+<p>Далее переходим к установке PHP (7.2) и всех дополнительных модулей:</p>
+
+
+
+<pre><code class="language-bash">$ dnf install php php-fpm php-zip php-mysqli php-curl php-gd php-mbstring php-xml php-xmlrpc</code></pre>
+
+
+
+<p>Проверить версию PHP можно командой:</p>
+
+
+
+<pre><code class="language-bash">$ php -v</code></pre>
+
+
+
+<p>Мы должны увидеть нечто подобное:</p>
+
+
+<div>
+<figure><img src="images/ssh-1-9.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Запуск всех установленных сервисов проверяем командой:</p>
+
+
+
+<pre><code class="language-bash">$ systemctl status nginx</code></pre>
+
+
+
+<p>Что выведет:</p>
+
+
+<div>
+<figure><img src="images/ssh-1-10.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<h2><span id="Demony_Linux">Демоны Linux</span></h2>
+
+
+
+<p>Здесь мы сделаем маленькое отступление и поговорим про демонов Линукс. Но не про мистических, а про daemon («демон») Linux.</p>
+
+
+
+<p>«Демон» простыми словами — это сервис в Линукс, аналогичный Windows. «Демон» — это постоянно запущенная программа.</p>
+
+
+
+<p>В Линуксе есть менеджер инициализации <strong>systemd</strong>, который и отвечает за все процессы «демона» — запуск, мониторинг, остановку. Менеджер также перезапускает процессы, если они по какой-то причине остановились.</p>
+
+
+
+<p>Ручное управление «демонами» не рекомендуется, трудоёмко и сложно.</p>
+
+
+
+<p>Утилита <strong>systemctl</strong> (выше) используется как посредник между пользователем и менеджером инициализации <strong>systemd</strong>, через которую можно запускать, останавливать, смотреть статус «демона».</p>
+
+
+
+<p>Следующими тремя командами мы проверим запущены ли нужные нам сервисы:</p>
+
+
+
+<pre><code class="language-bash">$ systemctl status mariadb
+$ systemctl status nginx
+$ systemctl status php-fpm</code></pre>
+
+
+
+<p>В терминале увидим это:</p>
+
+
+<div>
+<figure><img src="images/ssh-1-11.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>В окне терминала мы видим сообщение <code>Inactive (Dead)</code>, что говорит нам о том, что сервисы не запущены на данный момент.</p>
+
+
+
+<p>Чтобы всё заработало мы используем другие три команды:</p>
+
+
+
+<pre><code class="language-bash">$ systemctl start nginx
+$ systemctl start mariadb
+$ systemctl start php-fpm</code></pre>
+
+
+
+<p>Также хорошо бы ввести еще три команды, чтобы включить автозагрузку нужных нам сервисов:</p>
+
+
+
+<pre><code class="language-bash">$ systemctl enable nginx
+$ systemctl enable mariadb
+$ systemctl enable php-fpm</code></pre>
+
+
+
+<p>Мы увидим такой вывод — <code>active (running)</code>:</p>
+
+
+<div>
+<figure><img src="images/ssh-1-12.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<h2><span id="Nastrojka_Nginx_pod_WordPress">Настройка Nginx под WordPress</span></h2>
+
+
+
+<p>Основные нужные нам сервисы и «демоны» установлены и запущены.</p>
+
+
+
+<p>На данном этапе мы можем переходить к настройке Nginx под нашу CMS WordPress (CMS — это «система управления контентом»).</p>
+
+
+
+<p>Основной конфигурационный файл Nginx находится под адресу: <strong>/etc/nginx/nginx.conf</strong>. Нам нужно посмотреть что есть в этом файле. Это мы можем сделать командой cat:</p>
+
+
+
+<pre><code class="language-bash">$ cat /etc/nginx/nginx.conf</code></pre>
+
+
+
+<p>В терминале увидим:</p>
+
+
+<div>
+<figure><img src="images/ssh-1-13.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Для редактирования файлов мы уже устанавливали удобный файловый менеджер  Midnight Commander (см.выше). Это менеджер мы запускаем, чтобы начать редактирование файлов: <strong>mc</strong>.</p>
+
+
+<div>
+<figure><img src="images/ssh-1-14.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>После запуска менеджера мы оказываемся в корневой директории нашего сервера (/). Далее мы переходим в <strong>/etc/nginx</strong>.</p>
+
+
+<div>
+<figure><img src="images/ssh-1-15.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Мы также можем использовать командную строку для перехода между директориями, для этого есть команда <code>cd</code> после которой надо ввести нужный нам адрес из любого места:</p>
+
+
+
+<pre><code class="language-bash">$ cd /etc/nginx</code></pre>
+
+
+
+<p>Теперь открываем файл <strong>nginx.conf</strong> в Midnight Commander клавишей <strong>F4</strong>, после чего увидим вопрос про выбор редактора.</p>
+
+
+<div>
+<figure><img src="images/ssh-1-16.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Начинающие разработчики часто используют <strong>nano</strong>, тогда как более продвинутые используют <strong>vim</strong> (или vi). Освоение <strong>vim</strong> дело не простое, но он позволяет делать много сложных вещей и нравится профессиональным разработчикам.</p>
+
+
+
+<p>Редактор nano проще и процесс работы в нем сравним с классическим блокнотом. Далее мы жмем 1 и <strong>Enter</strong>.</p>
+
+
+<div>
+<figure><img src="images/ssh-1-17.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Для каждого сайта лучше создавать свой конфигурационный файл, а потом использовать удобную строку <code>include</code>.</p>
+
+
+
+<p>Nginx создаст единый большой конфигурационный файл и подгрузит в него всё содержимое папки <strong>/etc/nginx/conf.d/*conf</strong>.</p>
+
+
+
+<p>Закрываем <strong>nginx.conf</strong> сочетанием клавиш <strong>Ctrl-X</strong> и заходим в <strong>conf.d</strong>.</p>
+
+
+
+<p>Скачивание файлы возможно через горячие клавиши Midnight Commander, которые мы приводили раньше. Скачиваем конфиг сайта и редактируем его:</p>
+
+
+
+<pre><code class="language-bash">$ sudo wget /static/files/mywordpresswww.conf</code></pre>
+
+
+<div>
+<figure><img src="images/ssh-1-18.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<div class="attention-yellow"><strong>Внимание</strong>! Для выполнения консольной команды выходить из Midnight Commander не нужно, нажмите <strong>Ctrl+o</strong> и мы в консоли.</div>
+
+
+
+<p>Для редактирования жмем <strong>F4</strong>.</p>
+
+
+
+<p><code>server_name</code> нужен серверу для распределения входящих запросов, т.е. для какого сайта они сделаны.</p>
+
+
+<div>
+<figure><img src="images/ssh-1-19.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Далее нам нужно создать папку для нашего сайта, а путь указываем в конфигурационном файле.</p>
+
+
+<div>
+<figure><img src="images/ssh-1-20.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Сохраняем файл и выходим из файлового менеджера — <strong>Ctrl-X</strong> и далее жмем ‘<strong>Y</strong>‘ и <strong>Enter</strong>.</p>
+
+
+<div>
+<figure><img src="images/ssh-1-21.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>…</p>
+
+
+<div>
+<figure><img src="images/ssh-1-22.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Выходим из менеджера, жмем F10 и проверяем правильность настройки:</p>
+
+
+
+<pre><code class="language-bash">$ nginx -t</code></pre>
+
+
+<div>
+<figure><img src="images/ssh-1-23.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Далее обновленный конфиг. файл загружаем в память nginx командой:</p>
+
+
+
+<pre><code class="language-bash">$ systemctl reload nginx</code></pre>
+
+
+
+<p>После этого создаем новую директорию на сервере командой:</p>
+
+
+
+<pre><code class="language-bash">$ mkdir -p /var/www/mywordpress.ru/</code></pre>
+
+
+
+<p>Предоставляем nginx права на чтение командой chown, которая передаст права пользователю и группе под название nginx, которых он сам создал при установке:</p>
+
+
+
+<pre><code class="language-bash">$ chown -R nginx:nginx /var/www/</code></pre>
+
+
+
+<div class="attention-blue"><strong>Справка</strong>. В Линукс любой пользователь обязательно принадлежит какой-либо группе.</div>
+
+
+
+<h2><span id="Nastrojka_PHP-FPM">Настройка PHP-FPM</span></h2>
+
+
+
+<p>Мы закончили с настройкой Nginx и переходим к настройке PHP-FPM, о котором мы говорили ранее — «посреднике» между PHP и пользователем. </p>
+
+
+
+<p>Конфиг PHP-FPM находится в директории: <strong>/etc/php-fpm.d/</strong>. Переходим в него:</p>
+
+
+
+<pre><code class="language-bash">$ cd /etc/php-fpm.d/</code></pre>
+
+
+
+<p>Далее удаляем стандартный файл и создаем свой. Скачиваем файл конфига:</p>
+
+
+
+<pre><code class="language-bash">$ sudo wget /static/files/mywordpressphp.conf</code></pre>
+
+
+
+<p>Проверяем:</p>
+
+
+
+<pre><code class="language-bash">$ systemctl reload php-fpm</code></pre>
+
+
+
+<p>Перезапускаем <strong>php-fpm</strong>:</p>
+
+
+
+<pre><code class="language-bash">$ systemctl restart php-fpm</code></pre>
+
+
+
+<p>Теперь нужно всё проверить. Создаем в каталоге сайта файл по адресу: <strong>/var/www/mywordpress.ru</strong>. Для этого нам поможет команда touch:</p>
+
+
+
+<pre><code class="language-bash">$ touch /var/www/ubuntu-wordpress.ru/index.php
+$ nano /var/www/ubuntu-wordpress.ru/index.php</code></pre>
+
+
+
+<p>В файле пишем:</p>
+
+
+
+<pre><code class="language-bash">&lt;?php
+ 
+phpinfo();
+ 
+phpinfo(INFO_MODULES);
+ 
+?&gt;</code></pre>
+
+
+<div>
+<figure><img src="images/ssh-1-24.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Теперь нужно зайти на сайт либо через интернет (если всё производится на рабочем сервере) либо на виртуальной машине.</p>
+
+
+<div>
+<figure><img src="images/ssh-1-25.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>По картинке видно, что всё хорошо.</p>
+
+
+
+<h2><span id="Nastrojka_MySQL">Настройка MySQL</span></h2>
+
+
+
+<p>Нам нужна база данных для работы нашего WordPress сайт. Существует огромное количество разных систем управления Базами Данных (СУБД). </p>
+
+
+
+<p>Самые популярные для небольших проектов — это MySQL и PostgreSQL. Но почти все сайта на Вордпрессе работают с MySQL.</p>
+
+
+
+<p>Подключаемся к <strong>mysq</strong>l с паролем, который был задан в процессе установки ранее ( у нас был — Pge0ISgvxUoh):</p>
+
+
+
+<pre><code class="language-bash">$ mysql -uroot -p</code></pre>
+
+
+
+<p>Теперь создадим базу данных для нашего WordPress:</p>
+
+
+
+<pre><code class="language-bash">create database wp_mysitedb;</code></pre>
+
+
+<div>
+<figure><img src="images/ssh-1-26.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>После создадим пользователя <strong>wpuser1</strong> с паролем <strong>samplepassword</strong>:</p>
+
+
+
+<pre><code class="language-bash">CREATE USER 'wpuser1'@'localhost' IDENTIFIED BY 'samplepassword';</code></pre>
+
+
+
+<p>После <strong>@</strong> указываем адрес с которого вы будете подключаться к БД. Обычно это localhost — виртуальный IP адрес 127.0.0.1.</p>
+
+
+
+<p>Если у вас есть софт, и весь софт находятся на одном компьютере, то взаимодействие происходит через localhost. Но если БД на одном сервере, а веб-сервер на другом, то нужно создавать пользователя <em>wpuser1@&lt;адрес с которого обращается веб сервер&gt;</em>.</p>
+
+
+
+<p>Теперь пользователю <strong>wpuser1</strong> нужно предоставить права на чтение и запись в созданную базу данных:</p>
+
+
+
+<pre><code class="language-bash">GRANT ALL PRIVILEGES ON wp_mysitedb. * TO 'wpuser1'@'localhost';</code></pre>
+
+
+
+<p>Затем нам нужно применить все настройки:</p>
+
+
+
+<pre><code class="language-bash">FLUSH PRIVILEGES;</code></pre>
+
+
+<div>
+<figure><img src="images/ssh-1-27.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Здесь желательно скопировать куда-нибудь имя созданной базы, пароль и имя пользователя. Пригодится позже.</p>
+
+
+
+<p>Выходи из MySQL командой <strong>quit</strong>.</p>
+
+
+
+<h2><span id="Ustanovka_WordPress">Установка WordPress</span></h2>
+
+
+
+<p>Для начала скачиваем WordPressс с официального сайта в виде архива по ссылке <strong>https://ru.wordpress.org/download/ </strong>или <strong>https://ru.wordpress.org/latest-ru_RU.tar.gz</strong>.</p>
+
+
+
+<p>Установка WordPress очень простая и просто почти везде жмем «Далее». Переходим в каталог /var/www/mywordpress.ru/ командой:</p>
+
+
+
+<pre><code class="language-bash">$ cd /var/www/mywordpress.ru/</code></pre>
+
+
+
+<p>Скачаем в него архив с WordPress командой:</p>
+
+
+
+<pre><code class="language-bash">$ sudo wget https://ru.wordpress.org/latest-ru_RU.tar.gz</code></pre>
+
+
+
+<div class="attention-yellow"><strong>Важно</strong>! В Linux нет «расширений» у файлов как в Windows.</div>
+
+
+
+<p>Распакуем архив командой:</p>
+
+
+
+<pre><code class="language-bash">$ tar -xzvf latest-ru_RU.tar.gz</code></pre>
+
+
+
+<p>Расширение tar.gz говорит о том,  что этот файл является архивом, который запакован Tar и который просто собирает несколько файлов в один без сжатия, а далее сжимается архиватором Gzip. </p>
+
+
+
+<p>Tar сам запускает gzip и для этого мы указали ключ <strong>-z</strong>. Ключ <strong>-x</strong> говорит команде <code>tar</code>, что мы распаковываем, а не запаковываем, а ключ <strong>-f</strong> говорит Tar вывести результат распаковки на экран. Если его убрать, то он молча распакует архив и всё.</p>
+
+
+
+<p>Все должно распаковаться в папку <strong>wordpress</strong>, что можно проверить командой:</p>
+
+
+
+<pre><code class="language-bash">$ ls -l</code></pre>
+
+
+<div>
+<figure><img src="images/ssh-1-28.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Далее копируем содержимое папки wordpress командой копирования <code>cp</code> в каталог <code>/var/www/mywordpress.ru</code>:</p>
+
+
+
+<pre><code class="language-bash">$ sudo cp -rp wordpress/* /var/www/mywordpress.ru/</code></pre>
+
+
+
+<p>Ключ <strong>-r</strong> говорит о том, что надо скопировать рекурсивнно (т.е. все что лежит внутри), ключ <strong>-p</strong> говорит сохранить все права на файл не перезаписывая их, а звездочка в конце <code>wordpress/*</code> говорит, что надо сначала скопировать именно файлы внутри папки wordpress.</p>
+
+
+
+<p>Команда без звездочки: </p>
+
+
+
+<pre><code class="language-bash">sudo cp -rp wordpress/* /var/www/mywordpress.ru/</code></pre>
+
+
+
+<p>попробует скопировать папку <code>wordpress</code> в <code>/var/www/mywordpress.ru/</code> и выдаст ошибку, т.к. такая папка уже существует.</p>
+
+
+<div>
+<figure><img src="images/ssh-1-29.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Следующей командой проверяем скопированные файлы:</p>
+
+
+
+<pre><code class="language-bash">$ ls -l</code></pre>
+
+
+
+<p>Далее нужно дать nginx права на эту папку на чтение и исполнение того, что в ней содержится (мы уже делали нечто подобное ранее).</p>
+
+
+
+<p>Теперь в браузере (можно Chrome или другой) вводим DNS адрес сайта или виртуальной машины:</p>
+
+
+<div>
+<figure><img src="images/ssh-1-30.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Жмем “Вперёд!” и заполняем на следующей странице данные <strong>mysql</strong> — название базы данных, имя пользователя и пароль (всё это мы скопировали ранее, чтобы как раз сейчас использовать):</p>
+
+
+<div>
+<figure><img src="images/ssh-1-31.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Жмем «Отправить».</p>
+
+
+
+<p>На следующей странице завершаем настройку, заполнив оставшиеся поля среди которых имя сайта и пароль от админки:</p>
+
+
+<div>
+<figure><img src="images/ssh-1-32.jpg" alt="" class="img-fluid"></figure></div>
+
+
+<p>Сама админка сайта изначально находится по адресу:</p>
+
+
+
+<p><strong>&lt;имя_сайта&gt;/wp-admin</strong></p>
+
+
+
+<p>На этом всё, установка WordPress на Linux прошла, движок настроен и работает. Далее разработчики могут приступить к использованию этой установки WordPress.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 3 сентября 2022 в 15:22</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

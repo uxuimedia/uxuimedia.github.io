@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Основные типы данных &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Основные типы данных</h1>
+
+<p>Типы данных — это обозначение языком программирования типа хранимых значений.</p>
+
+<p>В Go встроено несколько основных типов данных. В этом уроке рассматриваются булевы, числовые и строковые типы данных в языке программирования Go (Golang). Более подробную информацию можно найти в <a href="https://golang.org/ref/spec#Boolean_types" target="_blank" rel="noreferrer noopener">документации</a> Go.</p>
+
+<h2>Булевый тип данных</h2>
+
+<p>Булевы значения могут быть либо <code>false</code> (эквивалент <strong>0</strong>), либо <code>true</code> (эквивалент <strong>1</strong>). Хотя в принципе для их хранения требуется всего 1 бит, в Go для удобства используется байт.</p>
+
+<div class="table-responsive"><table class="table">
+<thead>
+<tr>
+<th align="left">Data type</th>
+<th align="right">Number of bits</th>
+<th align="right">Minimum value</th>
+<th align="right">Maximum value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">bool</td>
+<td align="right">8</td>
+<td align="right"><code class="noClass">false</code></td>
+<td align="right"><code class="noClass">true</code></td>
+</tr>
+</tbody>
+</table></div>
+
+<h2>Числовые типы данных</h2>
+
+<p>В Go есть три категории числовых типов данных:</p>
+
+<ul>
+<li>Целое число (целые числа)</li>
+<li>Плавающая точка (числа с дробной частью)</li>
+<li>Комплексные (мнимые числа)</li>
+</ul>
+
+<h3>Целые числа</h3>
+
+<p>Представляют собой целые числа. Целочисленные типы данных имеют различную длину и могут быть знаковыми или беззнаковыми:</p>
+
+<div class="table-responsive"><table class="table">
+<thead>
+<tr>
+<th align="left">Data type</th>
+<th align="right">Number of bits</th>
+<th align="right">Minimum value</th>
+<th align="right">Maximum value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">int8</td>
+<td align="right">8</td>
+<td align="right">-128</td>
+<td align="right">127</td>
+</tr>
+<tr>
+<td align="left">int16</td>
+<td align="right">16</td>
+<td align="right">-32,768</td>
+<td align="right">32,767</td>
+</tr>
+<tr>
+<td align="left">int32</td>
+<td align="right">32</td>
+<td align="right">-2,147,483,648</td>
+<td align="right">2,147,483,647</td>
+</tr>
+<tr>
+<td align="left">int64</td>
+<td align="right">64</td>
+<td align="right">-9,223,372,036,854,775,808</td>
+<td align="right">9,223,372,036,854,775,807</td>
+</tr>
+<tr>
+<td align="left">uint8</td>
+<td align="right">8</td>
+<td align="right">0</td>
+<td align="right">255</td>
+</tr>
+<tr>
+<td align="left">uint16</td>
+<td align="right">16</td>
+<td align="right">0</td>
+<td align="right">65,535</td>
+</tr>
+<tr>
+<td align="left">uint32</td>
+<td align="right">32</td>
+<td align="right">0</td>
+<td align="right">4,294,967,295</td>
+</tr>
+<tr>
+<td align="left">uint64</td>
+<td align="right">64</td>
+<td align="right">0</td>
+<td align="right">18,446,744,073,709,551,615</td>
+</tr>
+</tbody>
+</table></div>
+
+<p>Существуют также псевдонимы для некоторых из перечисленных типов данных:</p>
+
+<ul>
+<li><code>byte</code>: псевдоним для <code>uint8</code></li>
+<li><code>rune</code>: псевдоним для <code>int32</code> (представляет собой точку кода Unicode (в свободном смысле — «символ»))</li>
+<li><code>int</code>: псевдоним для <code>int32</code> или <code>int64</code> в зависимости от платформы</li>
+<li><code>uint</code>: псевдоним для <code>uint32</code> или <code>uint64</code> в зависимости от платформы.</li>
+</ul>
+
+<p>Большинство современных компьютеров — это 64-битные системы. В таких системах <code>int</code> и <code>uint</code> будут 64-битными целыми числами. В других (старых или специализированных) 32-битных системах <code>int</code> и <code>uint</code> будут иметь размер 32 бита.</p>
+
+<h3>Числа с плавающей точкой</h3>
+
+<p>Они представляют собой числа, которые могут иметь дробную часть. У них нет минимального или максимального значения, но они имеют разные уровни точности представления чисел.</p>
+
+<div class="table-responsive"><table class="table">
+<thead>
+<tr>
+<th align="left">Data type</th>
+<th align="right">Number of bits</th>
+<th align="left">Precision</th>
+<th align="right">Exponent length</th>
+<th align="right">Fraction length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">float32</td>
+<td align="right">32</td>
+<td align="left"><a href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format#IEEE_754_single-precision_binary_floating-point_format:_binary32" target="_blank" rel="noopener">single</a></td>
+<td align="right">8</td>
+<td align="right">23</td>
+</tr>
+<tr>
+<td align="left">float64</td>
+<td align="right">64</td>
+<td align="left"><a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format#IEEE_754_double-precision_binary_floating-point_format:_binary64" target="_blank" rel="noopener">double</a></td>
+<td align="right">11</td>
+<td align="right">52</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="attention-blue"><strong>Подсказка</strong>
+<p>Типы данных с плавающей точкой — это двоичные числа. При хранении десятичных чисел они могут давать ошибки округления. Для приложений, требующих гарантированной точности для десятичных значений (например, валюты), смотрите пакет <a href="https://godoc.org/github.com/shopspring/decimal" target="_blank" rel="noreferrer noopener">decimal</a>.</p></div>
+
+<h3>Комплексные числа</h3>
+
+<p>Это числа с <a href="https://en.wikipedia.org/wiki/Complex_number" target="_blank" rel="noreferrer noopener">мнимой частью</a>. Они полезны для вычислений в двумерном пространстве и вычислений с квадратными корнями.</p>
+
+<div class="table-responsive"><table class="table">
+<thead>
+<tr>
+<th align="left">Data type</th>
+<th align="right">Number of bits</th>
+<th align="left">Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">complex64</td>
+<td align="right">64</td>
+<td align="left">complex numbers with float32 real and imaginary parts</td>
+</tr>
+<tr>
+<td align="left">complex128</td>
+<td align="right">128</td>
+<td align="left">complex numbers with float64 real and imaginary parts</td>
+</tr>
+</tbody>
+</table></div>
+
+<h2>Строки</h2>
+
+<p>Строки Go — это «фрагмент байта, доступный только для чтения», то есть непрерывная последовательность байтов — целых чисел <code>uint8</code>.</p>
+
+<p>Важно отметить, что это могут быть произвольные байты. Они не обязательно должны быть точками кода Юникода и не обязательно должны быть закодированы в UTF-8 или любой другой кодировке. Тем не менее, библиотечные функции Go предполагают, что строки закодированы в UTF-8. Подробнее об этом читайте в <a href="https://blog.golang.org/strings" target="_blank" rel="noreferrer noopener">официальном блоге</a> Go.</p>
+
+<div class="table-responsive"><table class="table">
+<thead>
+<tr>
+<th align="left">Data type</th>
+<th align="left">Content</th>
+<th align="left">Length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">string</td>
+<td align="left">bytes (uint8)</td>
+<td align="left">0 to maximum int value</td>
+</tr>
+</tbody>
+</table></div>
+
+<h2>Краткие выводы</h2>
+
+<p>Go предлагает несколько встроенных типов данных. Каждый из них подходит для разных случаев использования:</p>
+
+<ul>
+<li><code>bool</code> для булевой логики (истинные и ложные значения)</li>
+<li>подписанные и беззнаковые целые числа разного размера для быстрой и экономичной арифметики с целыми числами</li>
+<li>два уровня точности для чисел с дробной частью</li>
+<li>две различные длины для комплексных чисел</li>
+<li>строка <code>string</code> для последовательностей байтов.</li>
+</ul>
+
+<p>Такой уровень специализации (особенно числовых типов данных) поначалу может показаться непомерно сложным и требует понимания типов и диапазонов данных, с которыми будет работать приложение. Компромиссом является возможность создавать более быстро работающие программы, которые требуют меньше памяти по сравнению с аналогичными программами на языках с более мягкой системой типов.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 9 сентября 2024 в 22:50</span><br>Теги: Go
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

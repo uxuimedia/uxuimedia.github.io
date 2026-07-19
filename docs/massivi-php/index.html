@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Массивы в PHP &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Массивы</h1>
+
+<p>Статья в которой мы учимся и разбираем практические вопросы работы с массивами в языке программирования PHP.</p>
+
+<h2>Что такое массив</h2>
+
+<p>Массивы — это мощный тип данных в PHP. А умение быстро определять размер массива — полезный навык.</p>
+
+<p>В этой статье я дам вам краткий обзор того, как работают массивы, а затем я расскажу, как получить размер массивов PHP.</p>
+
+<p>Прежде чем мы углубимся в определение размера массива, нам нужно убедиться, что мы понимаем, что такое массив. <a href="https://www.php.net/manual/ru/language.types.array.php" target="_blank" rel="noreferrer noopener">Массив в PHP</a> — это тип переменной, который позволяет хранить более одного фрагмента данных.</p>
+
+<p>Например, если вы храните простую строку, вы должны использовать строковый тип PHP:</p>
+
+<pre><code class="language-php">$heading = 'PHP Array Length Tutorial';</code></pre>
+
+<p>Однако, если вы хотите хранить еще несколько фрагментов отдельных данных, вы можете рассмотреть возможность использования дополнительных строковых переменных.</p>
+
+<pre><code class="language-php">$heading = 'PHP Array Length Tutorial';
+$subheading = 'How to get an array size';
+$author = 'Jonathan Bossenger'</code></pre>
+
+<p>Это все хорошо, но что, если вам нужно сохранить больше данных и быстро вызвать любой из этих элементов в другом месте вашего кода? Вот здесь и пригодится массив. Вы по-прежнему можете хранить отдельные фрагменты данных, но с использованием одной переменной.</p>
+
+<pre><code class="language-php">$post_data = array(
+    'PHP Array Length Tutorial',
+    'How to get an array size',
+    'Jonathan Bossenger'
+);</code></pre>
+
+<p>На каждый элемент в этом массиве можно ссылаться по его числовому ключу. Таким образом, вместо того, чтобы вызывать отдельные переменные, вы можете ссылаться на один элемент массива по его числовому ключу.</p>
+
+<pre><code class="language-php">echo $post_data[0];</code></pre>
+
+<p>В PHP ключи массива начинаются с 0 (нуля).</p>
+
+<p>Для еще большего контроля массивы также позволяют вам определять свои собственные ключи массива, используя строки.</p>
+
+<pre><code class="language-php">$post_data = array(
+    'heading' =&gt; 'PHP Array Length Tutorial',
+    'subheading' =&gt; 'How to get an array size',
+    'author' =&gt; 'Jonathan Bossenger'
+);</code></pre>
+
+<p>Это позволяет вам также ссылаться на элемент массива по его строковому ключу.</p>
+
+<pre><code class="language-php">echo $post_data['heading'];</code></pre>
+
+<p>Вы также можете определять массивы, используя новую нотацию коротких массивов, которая похожа на JavaScript:</p>
+
+<pre><code class="language-php">$post_data = [
+    'heading' =&gt; 'PHP Array Length Tutorial',
+    'subheading' =&gt; 'How to get an array size',
+    'author' =&gt; 'Jonathan Bossenger'
+];</code></pre>
+
+<p>Массивы также могут быть вложенными, образуя более сложные переменные массива:</p>
+
+<pre><code class="language-php">$post_data = [
+    'heading' =&gt; 'PHP Array Length Tutorial',
+    'subheading' =&gt; 'How to get an array size',
+    'author' =&gt; [
+        'name' =&gt; 'Jonathan Bossenger',
+        'twitter' =&gt; 'jon_bossenger',
+    ]
+];</code>
+</pre>
+
+<p>И вы можете вызвать конкретное значение массива, используя его вложенный ключ:</p>
+
+<pre><code class="language-php">echo $post_data['author']['name'];</code></pre>
+
+<p>Однако, если вы регулярно делаете это, вы можете подумать об использовании <a href="https://www.php.net/manual/ru/language.types.object.php" target="_blank" rel="noreferrer noopener">объектов</a>, а не массивов.</p>
+
+<p>Массивы полезны, если вам нужно быстро собрать, а затем использовать различные фрагменты связанных данных в функции или передать эти данные другой функции.</p>
+
+<p>Помещая эти фрагменты данных в массив, вы определяете меньше переменных, и это может облегчить чтение и понимание вашего кода в дальнейшем. Также намного проще передать одну переменную массива другой функции, чем передать несколько строк.</p>
+
+<pre><code class="language-php">$post_data = [
+    'heading' =&gt; 'PHP Array Length Tutorial',
+    'subheading' =&gt; 'How to get an array size',
+    'author' =&gt; [
+        'name' =&gt; 'Jonathan Bossenger',
+        'twitter' =&gt; 'jon_bossenger',
+    ]
+];
+
+$filtered_post_data = filter_post_data($post_data)</code>
+</pre>
+
+<h2>Список функций</h2>
+
+<p>Ниже в формате шпаргалки привожу <strong>Функции</strong> для работы с массивами в PHP и <strong>Описание</strong> этих функций.</p>
+
+<p><strong>implode</strong></p>
+
+<p>Объединяет элементы массива в строку</p>
+
+<p><strong>explode</strong><a class="no-border" rel="noreferrer noopener" href="https://www.php.net/manual/ru/function.explode.php" target="_blank"></a></p>
+
+<p>Разбивает строку с помощью разделителя (строку в массив)</p>
+
+<p><strong>array_chunk</strong></p>
+
+<p>Разбивает массив на несколько меньших массивов заданного размера</p>
+
+<p><strong>array_combine</strong></p>
+
+<p>Создает массив из двух заданных массивов — массива индексов элементов и массива значений</p>
+
+<p><strong>array_count_values</strong></p>
+
+<p>Формирует массив, индексами которого являются значения заданного массива, а значениями — число повторений соответствующего значения в заданном массиве</p>
+
+<p><strong>array_diff</strong></p>
+
+<p>Формирует массив из тех элементов первого заданного массива, которые отсутствуют в остальных заданных в качестве аргументов функции массива</p>
+
+<p><strong>array_fill</strong></p>
+
+<p>Заполняет массив заданным значением</p>
+
+<p><strong>array_intersect</strong></p>
+
+<p>Формирует массив из элементов, которые присутствуют во всех заданных массивах</p>
+
+<p><strong>array_key_exists</strong></p>
+
+<p>Проверяет наличие заданного индекса в массиве</p>
+
+<p><strong>array_keys</strong></p>
+
+<p>Возвращает массив из индексов заданного массива</p>
+
+<p><strong>array_merge</strong></p>
+
+<p>Объединяет несколько массивов в один</p>
+
+<p><strong>array_multisort</strong></p>
+
+<p>Выполняет сортировку многомерного массива или нескольких одномерных массивов</p>
+
+<p><strong>array_pad</strong></p>
+
+<p>Дополняет массив до заданного количества элементов заданным значением</p>
+
+<p><strong>array_pop</strong></p>
+
+<p>Возвращает последний элемент массива, одновременно удаляя элемент из массива</p>
+
+<p><strong>array_push</strong></p>
+
+<p>Добавляет заданные элементы в конец массива</p>
+
+<p><strong>array_rand</strong></p>
+
+<p>Выбирает один или несколько случайно взятых элементов из массива</p>
+
+<p><strong>array_reduce</strong></p>
+
+<p>Осуществляет последовательное применение заданной функции к элементам массива, формируя итоговое значение</p>
+
+<p><strong>array_reverse</strong></p>
+
+<p>Производит обращение массива — первый элемент становится последним, второй — предпоследним и т.д.</p>
+
+<p><strong>array_search</strong></p>
+
+<p>Ищет заданный элемент в массиве и возвращает соответствующим ему индекс</p>
+
+<p><strong>array_shift</strong></p>
+
+<p>Возвращает первый элемент массива, одновременно удаляя его из массива с перенумерацией числовых индексов</p>
+
+<p><strong>array_slice</strong></p>
+
+<p>Вырезает из массива подмассив заданной длины, начиная с указанного элемента</p>
+
+<p><strong>array_sum</strong></p>
+
+<p>Вычисляет сумму всех элементов массива</p>
+
+<p><strong>array_unique</strong></p>
+
+<p>Удаляет дублирующиеся значения из массива</p>
+
+<p><strong>array_unshift</strong></p>
+
+<p>Добавляет один или несколько элементов в начало массива с перенумерацией числовых индексов</p>
+
+<p><strong>array_walk</strong></p>
+
+<p>Вызывает заданную функцию последовательно для каждого элемента массива</p>
+
+<p><strong>array_walk_recursive</strong></p>
+
+<p>Рекурсивно применяет пользовательскую функцию к каждому элементу массива</p>
+
+<p><strong>array</strong></p>
+
+<p>Создает массив из заданных значений или пар индекс — значение</p>
+
+<p><strong>arsort</strong></p>
+
+<p>Сортирует массив по убыванию его значений, сохраняя индексы неизменными</p>
+
+<p><strong>assort</strong></p>
+
+<p>Сортирует массив по возрастанию его значений, сохраняя индексы неизменными</p>
+
+<p><strong>krsort</strong></p>
+
+<p>Сортирует массив по убыванию его индексов</p>
+
+<p><strong>ksort</strong></p>
+
+<p>Сортирует массив по возрастанию его индексов</p>
+
+<p><strong>sort</strong></p>
+
+<p>Сортирует массив по возрастанию значений его элементов с перенумерацией его индексов</p>
+
+<p><strong>usort</strong></p>
+
+<p>Сортирует массив с использование заданной функции сравнения элементов массива</p>
+
+<p><strong>rsort</strong></p>
+
+<p>Сортирует массив по убыванию значений его элементов с перенумерацией его индексов</p>
+
+<p><strong>natcasesort</strong></p>
+
+<p>Сортирует массив естественным образом без учета регистра массива</p>
+
+<p><strong>natsort</strong></p>
+
+<p>Сортирует массив естественным образом с учетом регистра символов</p>
+
+<p><strong>count</strong></p>
+
+<p>Возвращает количество элементов в массиве</p>
+
+<p><strong>current</strong></p>
+
+<p>Возвращает значение текущего элемента массива</p>
+
+<p><strong>each</strong></p>
+
+<p>Возвращает текущие индекс и значение элемента массива и продвигает указатели на следующий элемент</p>
+
+<p><strong>in_array</strong></p>
+
+<p>Проверяет, присутствует ли заданное значение в массиве</p>
+
+<p><strong>key</strong></p>
+
+<p>Возвращает индекс текущего элемента массива</p>
+
+<p><strong>list</strong></p>
+
+<p>Присваивает значения из массива списку переменных</p>
+
+<p><strong>pos</strong></p>
+
+<p>Синоним функции current</p>
+
+<p><strong>reset</strong></p>
+
+<p>Устанавливает внутренний указатель на первый элемент массива</p>
+
+<p><strong>shuffle</strong></p>
+
+<p>Переставляет элементы массива случайным образом</p>
+
+<p><strong>sizeof</strong></p>
+
+<p>Синоним функции count</p>
+
+<h2>Определяем первый и последний элемент в цикле foreach</h2>
+
+<p>Цикл <code>foreach()</code> в PHP используется для прохождения в цикле по блоку кода для каждого элемента массива. Разберемся как использовать цикл <code>foreach()</code> и как получить первый и последний элементы массива.</p>
+
+<h3>Синтаксис PHP foreach()</h3>
+
+<p>Цикл <code>foreach()</code> в основном используется для итерации по каждому значению массива.</p>
+
+<p>Пример цикла <code>foreach()</code>:</p>
+
+<pre><code class="language-php">foreach($array as $key =&gt; $value){
+    // Код пишем сюда
+}</code></pre>
+
+<p>Значения параметров <code>foreach()</code>:</p>
+
+<ul>
+<li><code>$array</code> — это должен быть корректный массив для использования в цикле; если переданный массив не корректен или является строкой, возвращается ошибка вида: (<strong><em>Warning: Invalid argument supplied for foreach()</em></strong>)</li>
+<li><code>$key</code> — это ключ элемента на каждой итерации</li>
+<li><code>$value</code> — значение элемента на каждой итерации</li>
+</ul>
+
+<h3>Получаем первый и последний элемент в цикле foreach() в PHP</h3>
+
+<p>Существует несколько подходов к получению первого и последнего элемента в цикле с помощью PHP, и они различаются для разных версий языка.</p>
+
+<p>Первый — это использование счетчика (работает для всех версий PHP), второй — использование функций <code>array_key_first()</code> и <code>array_key_last()</code> для версии PHP 7.3 и старше.</p>
+
+<h3>Использование счетчика в цикле foreach</h3>
+
+<p>Добавление целочисленной переменной и размещение счетчика в нижней части цикла foreach().</p>
+
+<p>Пример:</p>
+
+<pre><code class="language-php">$array  = array("dog", "rabbit", "horse", "rat", "cat");
+$x = 1;
+$length = count($array);
+
+foreach($array as $animal){
+    if($x === 1){
+        //first item
+        echo $animal; // output: dog
+    }else if($x === $length){
+        echo $animal; // output: cat
+    }
+    $x++;
+}</code>
+</pre>
+
+<p>В приведенном выше примере список животных хранится в виде массива <code>$array</code>.</p>
+
+<p>Затем устанавливаем <code>$x</code> равным 1, чтобы запустить счетчик.</p>
+
+<p>Используем функцию <code>count()</code> для определения общей длины массива. Итерация счетчика была размещена в нижней части цикла foreach() для выполнения условия получения первого элемента и выглядит так: <code>$x++;</code>.</p>
+
+<p>Чтобы получить последний элемент, проверьте, равен ли <code>$x</code> общей длине массива. Если это так, то будет получен последний элемент.</p>
+
+<h3>Использование array_key_first() и array_key_last() в цикле PHP</h3>
+
+<p>В последних версиях PHP получение первого и последнего элемента в массиве может быть как никогда эффективным.</p>
+
+<p>Пример:</p>
+
+<pre><code class="language-php">$array  = array("dog", "rabbit", "horse", "rat", "cat");
+foreach($array as $index =&gt; $animal) {
+    if ($index === array_key_first($array))
+        echo $animal; // output: dog
+
+    if ($index === array_key_last($array))
+        echo $animal; // output: cat
+}</code></pre>
+
+<p>В приведенном выше примере <code>array_key_first()</code> получает ключ первого элемента массива, в данном случае это <strong>0</strong>.</p>
+
+<p>Затем <code>array_key_last()</code> получает последний ключ массива, в данном случае <strong>5</strong>.</p>
+
+<p>Если просмотреть массив, то элемент, который находится в ключе <strong>0</strong>, — это собака, которая является первой, а в ключе <strong>5</strong> — это кошка, которая является последним элементом.</p>
+
+<h3>Изменение последнего элемента массива get_the_terms в WordPress</h3>
+
+<p>В WordPress бывают ситуации когда нужно определить последний элемент массива <code>get_the_terms</code>. Например, если нам надо перебрать все таксономии и после каждой таксономии поставить запятую. Но нам нужна запятая во всех кроме последней таксономии.</p>
+
+<p>Способы, которые были показаны выше можно объединить и получим следующий сниппет для нашего случая:</p>
+
+<pre><code class="language-php">&lt;?php
+	$cur_terms = get_the_terms( $post-&gt;ID, 'types' );
+	$x = 0;
+	if( is_array( $cur_terms ) ){
+		foreach( $cur_terms as $cur_term ){
+
+			if ($x === array_key_last($cur_terms)) {
+				echo '&lt;a href="'. get_term_link( $cur_term-&gt;term_id, $cur_term-&gt;taxonomy ) .'"&gt;'. $cur_term-&gt;name .'&lt;/a&gt;' . '';
+			} else {							
+				echo '&lt;a href="'. get_term_link( $cur_term-&gt;term_id, $cur_term-&gt;taxonomy ) .'"&gt;'. $cur_term-&gt;name .'&lt;/a&gt;' . ', ';
+			}
+			$x++;
+		}
+	}</code>
+</pre>
+
+<p>Важно, что <code>get_the_terms</code> возвращает массив объектов. По этой причине мы используем счетчик и сравниваем его с <code>array_key_last()</code>.</p>
+
+<p>В примере выше видно, что если счетчик равен <code>array_key_last()</code>, то запятая после таксономии не ставится.</p>
+
+<h2>Размер массива</h2>
+
+<p>Обычно, когда мы говорим о размере массива, мы говорим о том, сколько элементов существует в этом массиве. Есть два распространенных способа получить размер массива.</p>
+
+<p>Самый популярный способ — использовать функцию PHP <code>count()</code>. Как сказано в названии функции, <code>count()</code> вернет количество элементов массива. Но то, как мы используем функцию <code>count()</code>, зависит от структуры массива.</p>
+
+<p>Давайте посмотрим на два примера массивов, которые мы определили ранее.</p>
+
+<pre><code class="language-php">$post_data = array(
+	'heading' =&gt; 'PHP Array Length Tutorial',
+	'subheading' =&gt; 'How to get an array size',
+	'author' =&gt; 'Jonathan Bossenger'
+);
+
+echo count($post_data);</code>
+</pre>
+
+<p>В этом примере <code>count($post_data)</code> приведет к <strong>3</strong>. Это связано с тем, что в этом массиве есть 3 элемента: «заголовок», «подзаголовок» и «автор». Но как насчет нашего второго примера вложенного массива?</p>
+
+<pre><code class="language-php">$post_data = [
+	'heading' =&gt; 'PHP Array Length Tutorial',
+	'subheading' =&gt; 'How to get an array size',
+	'author' =&gt; [
+		'name' =&gt; 'Jonathan Bossenger',
+		'twitter' =&gt; 'jon_bossenger',
+	]
+];
+echo count($post_data);</code>
+</pre>
+
+<p>Вы не поверите, но в этом примере <code>count($post_data)</code> также вернет <strong>3</strong>. Это связано с тем, что по умолчанию функция <code>count()</code> считает только элементы массива верхнего уровня.</p>
+
+<p>Если вы посмотрите на <a href="https://www.php.net/manual/ru/function.count.php" target="_blank" rel="noreferrer noopener">определение функции</a>, вы увидите, что оно принимает два аргумента — массив для подсчета и <code>mode</code>. Значением по умолчанию для этого режима является предопределенная константа <code>COUNT_NORMAL</code>, которая сообщает функции, что она должна подсчитывать только элементы массива верхнего уровня.</p>
+
+<p>Если вместо этого мы передадим предопределенную константу <code>COUNT_RECURSIVE</code>, она пройдет через все уровни вложенности и будет их также считать.</p>
+
+<pre><code class="language-php">$post_data = [
+	'heading' =&gt; 'PHP Array Length Tutorial',
+	'subheading' =&gt; 'How to get an array size',
+	'author' =&gt; [
+		'name' =&gt; 'Jonathan Bossenger',
+		'twitter' =&gt; 'jon_bossenger',
+	]
+];
+echo count($post_data, COUNT_RECURSIVE);</code></pre>
+
+<p>Теперь результатом <code>count($post_data, COUNT_RECURSIVE)</code> будет, как и ожидалось, <strong>5</strong>.</p>
+
+<p>«Но подождите!» — слышу ваше недоумение. «Вы упомянули, что есть другой способ?».</p>
+
+<p>Да, вы можете использовать еще одну функцию — <a href="https://www.php.net/manual/ru/function.sizeof.php" target="_blank" rel="noreferrer noopener">sizeof()</a>. Однако <code>sizeof()</code> — это просто псевдоним <code>count()</code>, и многие люди правильно предполагают, что <code>sizeof()</code> вернет использование памяти массивом.</p>
+
+<p>Поэтому лучше использовать <code>count()</code>, которая является более подходящим названием для того, что вы делаете — подсчета элементов в массиве.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 16 января 2023 в 22:53</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

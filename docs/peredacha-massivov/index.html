@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Передача многомерных массивов из PHP в JavaScript &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Передача многомерных массивов из PHP в JavaScript</h1>
+
+<p>Ранее мы продемонстрировали, как функция <code>json_encode</code> может быть использована для передачи массивов PHP в строки JSON и массивы JavaScript. В данной статье мы продолжим демонстрацию с многомерными массивами. Один массив имеет числовой индекс, два других — смешанный числовой и ассоциативный.</p>
+
+<h2>Вывод в Javascript</h2>
+
+<p>Независимо от того, является ли ваш массив PHP одноуровневым или многоуровневым, имеет ли он числовой индекс или ассоциативный, следующие команды, помещенные в скриптовые теги, выведут его в JavaScript:</p>
+
+<pre><code class="language-javascript">var ar = &lt;?php echo json_encode($ar) ?&gt;;</code></pre>
+
+<p>Скорее всего, вы захотите использовать <code>JSON.parse</code> от JavaScript для обработки результатов <code>json_encode</code> от PHP, в этом случае вместо него вы будете использовать следующее, как показано в одном из примеров ниже:</p>
+
+<pre><code class="language-javascript">var ar = JSON.parse( '&lt;?php echo json_encode($ar) ?&gt;' );</code></pre>
+
+<p>Для приведенных ниже примеров массивов сначала я покажу массив в PHP, затем включаем сегмент JavaScript, где для вывода используется <code>json_encode</code>, затем показываю вывод (закомментированный). И наконец, показываю синтаксис, используемый для доступа к полученным элементам массива или свойствам объекта в JavaScript.</p>
+
+<h2>Пример первого массива</h2>
+
+<p>Первый пример массива имеет два уровня, оба с числовым индексом.</p>
+
+<pre><code class="language-php">&lt;?php
+// PHP array
+$products = array(
+    // product abbreviation, product name, unit price
+    array('choc_cake', 'Chocolate Cake', 15),
+    array('carrot_cake', 'Carrot Cake', 12),
+    array('cheese_cake', 'Cheese Cake', 20),
+    array('banana_bread', 'Banana Bread', 14)
+);
+?&gt;
+&lt;script type="text/javascript"&gt;
+// pass PHP array to JavaScript array
+var products = &lt;?php echo json_encode( $products ) ?&gt;;
+
+// result seen through view source
+// var products = [["choc_cake","Chocolate Cake",15],["carrot_cake","Carrot Cake",12],["cheese_cake","Cheese Cake",20],["banana_bread","Banana Bread",14]];
+
+// how to access elements in multi-dimensional array in JavaScript
+alert( products[0][1] ); // Chocolate Cake
+&lt;/script&gt;</code></pre>
+
+<p>Числовые индексированные массивы PHP по умолчанию выводятся <code>json_encode</code> как литералы массивов в JavaScript. Ассоциативные массивы PHP выводятся как литералы объектов.</p>
+
+<p>Ниже показано, как получить доступ к элементам в многомерном числовом индексированном массиве:</p>
+
+<pre><code class="language-javascript">alert( products[0][1] ); // Chocolate Cake</code></pre>
+
+<p>Когда вы выводите массив PHP в JavaScript, вы можете увидеть результат с помощью команды меню браузера View Source. Он отображается выше в закомментированной строке:</p>
+
+<pre><code class="language-javascript">// var products = [["choc_cake","Chocolate Cake",15],["carrot_cake","Carrot Cake",12], ...</code></pre>
+
+<p>Обратите внимание, что вывод <code>json_encode</code> не содержит пробелов. Вы можете включить дополнительный параметр <code>JSON_PRETTY_PRINT</code>, чтобы включить пробелы и возвраты каретки в вывод для более удобного просмотра. Следующий пример демонстрирует это.</p>
+
+<h2>Пример второго массива</h2>
+
+<p>В данном примере PHP массив смешанный, с числовым индексом на внешнем уровне и ассоциативным индексом на втором уровне:</p>
+
+<pre><code class="language-php">&lt;?php
+// PHP array
+$books = array(
+    array(
+        "title" =&gt; "Professional JavaScript",
+        "author" =&gt; "Nicholas C. Zakas"
+    ),
+    array(
+        "title" =&gt; "JavaScript: The Definitive Guide",
+        "author" =&gt; "David Flanagan"
+    ),
+    array(
+        "title" =&gt; "High Performance JavaScript",
+        "author" =&gt; "Nicholas C. Zakas"
+    )
+);
+?&gt;</code></pre>
+
+<p>В выводе <code>json_encode</code> внешний уровень является литералом массива, а второй уровень образуют литералы объектов. Этот пример демонстрирует использование опции <code>JSON_PRETTY_PRINT</code> с <code>json_encode</code> для более читабельного вывода, как показано в комментариях к коду ниже:</p>
+
+<pre><code class="language-javascript">&lt;script type="text/javascript"&gt;
+// pass PHP array to JavaScript 
+var books = &lt;?php echo json_encode($books, JSON_PRETTY_PRINT) ?&gt;;
+
+// output using JSON_PRETTY_PRINT
+/* var books = [ // outer level array literal
+    { // second level object literals
+        "title": "Professional JavaScript",
+        "author": "Nicholas C. Zakas"
+    },
+    {
+        "title": "JavaScript: The Definitive Guide",
+        "author": "David Flanagan"
+    },
+    {
+        "title": "High Performance JavaScript",
+        "author": "Nicholas C. Zakas"
+    }
+]; */
+
+// how to access 
+console.log( books[1].author ); // David Flanagan
+&lt;/script&gt;</code></pre>
+
+<p>Ниже показано, как получить доступ к свойству в массиве объектов:</p>
+
+<pre><code class="language-javascript">// to access author of 2nd book
+console.log( books[1].author ); // David Flanagan</code></pre>
+
+<h2>Пример третьего массива</h2>
+
+<p>Массив PHP для этого примера также является смешанным. Внешний уровень ассоциативный, внутренний уровень смешанный, большинство записей имеют числовой индекс, за исключением подмассива <code>vegetables</code>:</p>
+
+<pre><code class="language-php">&lt;?php
+$food_groups = array(
+    'meat' =&gt; array(),
+    'vegetables' =&gt; array(
+        'leafy' =&gt; array('collard greens', 'kale', 'chard', 'spinach', 'lettuce'),
+        'root' =&gt; array('radish', 'turnip', 'potato', 'beet'),
+        'other' =&gt; array('brocolli', 'green beans', 'corn', 'tomatoes')
+    ),
+    'grains' =&gt; array('bread', 'rice', 'oatmeal'),
+    'legumes' =&gt; array('kidney beans', 'lentils', 'split peas'),
+    'fruits' =&gt; array('apple', 'raspberry', 'pear', 'banana'),
+    'sweets' =&gt; array('cookies', 'brownies', 'cake', 'pie'),
+);
+?&gt;</code></pre>
+
+<p>Этот пример демонстрирует использование <code>JSON.parse</code> на выходе <code>json_encode</code>. Для этого теги PHP заключены в одинарные кавычки:</p>
+
+<pre><code class="language-javascript">&lt;script type="text/javascript"&gt;
+// using JSON.parse with json_encode
+var food_groups = JSON.parse( '&lt;?php echo json_encode($food_groups) ?&gt;' );
+
+// JSON_PRETTY_PRINT not used since it would trigger error with JSON.parse
+
+/* output manually formatted so you can read it
+{
+    "meat":[],
+    "vegetables":{
+        "leafy":["collard greens","kale","chard","spinach","lettuce"],
+        "root":["radish","turnip","potato","beet"],
+        "other":["brocolli","green beans","corn","tomatoes"]
+    },
+    "grains":["bread","rice","oatmeal"],
+    "legumes":["kidney beans","lentils","split peas"],
+    "fruits":["apple","raspberry","pear","banana"],
+    "sweets":["cookies","brownies","cake","pie"]
+}
+*/
+
+// demonstrating access
+console.log( food_groups['vegetables']['leafy'][0] ); // collard greens
+console.log( food_groups.sweets[1] ); // brownies
+&lt;/script&gt;</code></pre>
+
+<p>Мы не можем использовать <code>JSON_PRETTY_PRINT</code> с <code>JSON.parse</code>, так как это приведет к ошибке JavaScript: <strong>unterminated string literal</strong>.</p>
+
+<p>Ниже показан доступ к свойствам объекта и элементам массива. Обратите внимание, что для свойств объекта можно использовать синтаксис точки или квадратные скобки:</p>
+
+<pre><code class="language-javascript">alert( food_groups['vegetables']['leafy'][0] ); // collard greens
+alert( food_groups.sweets[1] ); // brownies</code></pre>
+
+<p>В приведенном выше примере нет необходимости использовать <code>JSON.parse</code>. Средства доступа, продемонстрированные с помощью <strong>console.log</strong> и <strong>alerts</strong>, были бы одинаковыми независимо от того, использовался ли <code>JSON.parse</code> или нет. Так как же узнать, когда и нужно ли использовать JSON.parse? Читайте в следующих статьях, чтобы получить дополнительную информацию по этому вопросу.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 5 января 2022 в 14:36</span><br>Теги: JavaScript, PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

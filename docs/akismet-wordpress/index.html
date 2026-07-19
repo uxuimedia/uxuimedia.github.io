@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Akismet в WordPress &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Akismet в WordPress</h1>
+
+<p>Рассмотрим популярный плагин Akismet, что он из себя представляет, для чего используется и какие функции в нем присутствуют. Кроме того распишу процесс установки и настройки плагина.</p>
+
+
+
+<h2><span id="Cto_eto_za_plagin_i_dla_cego_on_nuzen">Что это за плагин и для чего он нужен?</span></h2>
+
+
+
+<p>Akismet — это широко известный всеми пользователями плагин с обширными функциями для фильтрации спама и контроля сообщений пользователей. Фильтрация происходит как в комментариях, так и сообщениях на чьей-либо странице.</p>
+
+
+
+<p>К примеру, если рассмотреть социальную сеть, то становится понятно что рассылка спама негативно скажется на самом впечатлении пользователей как о самой социальной сети, так и о странице пользователя, ведь присутствие спама на чьей-то странице уже может навести на не самые приятные мысли.</p>
+
+
+
+<p>Разработчиками являются те же люди, что разработали <em>WordPress.com</em>, что сразу показывает высокий уровень организации самого плагина, не позволяя в нем усомниться. Этот плагин сразу идёт в комплекте, при загрузке WordPress, что довольно удобно, ведь администратору сайта не придётся беспокоиться об этом и тратить свое время на установку этого плагина.</p>
+
+
+
+<p>Возможности данной программы и вправду обширны, и хорошо подходят для регулирования как комментариев пользователей, так и контроля за спамом. </p>
+
+
+
+<h2><span id="Osnovnye_funkcii">Основные функции</span></h2>
+
+
+
+<p>Ниже приведены основные функции данного приложения.</p>
+
+
+
+<h3><span id="Proverka_kommentariev">Проверка комментариев</span></h3>
+
+
+
+<p>Раз уж пошёл разговор о возможностях, то первым делом стоит упомянуть главную функцию Akismet — проверку комментариев. </p>
+
+
+
+<p>К примеру, если взять какой-нибудь гипотетически существующий сайт (блог), на котором рекламируются услуги какого-либо ютубера или блогера, то люди там, что логично, способны оставлять свои комментарии касательно услуг этого человека. </p>
+
+
+
+<p>Так, если этот сайт написан на WordPress и на нем стоит этот плагин, то тогда комментарии, которые были отправлены в абсолютно любое время, будут сканироваться данным плагином. Если в этом комментарии будут найдены, так сказать, намёки на флуд или сам факт присутствия какой-либо рекламы, то плагин автоматически отфильтрует, то есть удалит или не позволит отправить этот комментарий.</p>
+
+
+
+<h3><span id="Proverka_istorii_statusa">Проверка истории статуса</span></h3>
+
+
+
+<p>Сейчас же речь пойдёт о параметре комментария, который вряд-ли известен многим пользователям, ведь это напрямую связано с IT-сферой, то есть разработкой сайтов, вёрсткой и т.д. Речь идёт о статусе комментария.</p>
+
+
+
+<p>Так, в этом статусе можно будет увидеть, является ли этот комментарий перехваченным нашим плагином, или был ли он очищен Akismet. Кроме этого, в статусе комментария можно будет увидеть, занесён ли комментарий в спам самим администратором или же этого не произошло.</p>
+
+
+
+<h3><span id="Soderzimoe_kommentaria_i_url_vnutri_nego">Содержимое комментария и url внутри него</span></h3>
+
+
+
+<p>Для начала, стоит кратко сказать о том, что такое url. Url — это ссылка, т.е. это обычная ссылка на какой-либо сайт, в большинстве случаев (иногда на что-то другое, например, на картинку).</p>
+
+
+
+<p>Основная функция заключается в том, что Akismet фильтрует комментарии, в которых находятся вредоносные ссылки (или простым языком спам).</p>
+
+
+
+<h3><span id="Udalenie_nenuznyh_kommentariev">Удаление ненужных комментариев</span></h3>
+
+
+
+<p>Ещё одна функция, которая присутствует в Akismet — это функция удаления. То есть плагин производит полную блокировка спама, нагружающего диск на компьютере или сервере, тем самым происходит освобождение памяти от ненужного мусора и увеличение быстродействия сайта.</p>
+
+
+
+<h2><span id="Process_ustanovki_i_nastrojki_plagina">Процесс установки и настройки плагина</span></h2>
+
+
+
+<p>Процесс установки не особо сложен, если немного разобраться. Для начала, сам плагин необходимо установить из админ-панели WordPress.</p>
+
+
+
+<p>После того, как установка и активация будет произведена, необходимо будет настроить свою учетную запись. </p>
+
+
+
+<p>Стоит упомянуть, что Akismet можно использовать как бесплатно, так и по платной подписке. Пользователь выбирает подписку, после чего оплачивает её или продолжает работу с бесплатной версией.</p>
+
+
+
+<p>В конце этой процедуры администратор получает ключ и нажимает на кнопку «<em>автоматически сохраните ваш ключ</em>«.</p>
+
+
+
+<p>После этого пользователь переходит на страницу, где всё, что ему остается сделать — это принять изменения. После этого настройка плагина будет завершена, и это дополнение начнёт свою работу.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 11 мая 2023 в 18:57</span><br>Теги: WordPress
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

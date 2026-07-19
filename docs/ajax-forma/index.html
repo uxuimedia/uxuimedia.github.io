@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Обратная форма связи с Ajax (+PHP) &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Обратная форма связи с Ajax (+PHP)</h1>
+
+<p>Рассмотрим как создается обратная форма на Ajax и PHP для отправки данных с сайта на почту.</p>
+
+<h2>Введение</h2>
+
+<p>Главной особенностью многих сайтов является контактная форма, можно сказать, что основная суть сайтов в вебе — взаимодействие с пользователями по средствам этих форм. Стандартные формы работают отлично, но мы можем сделать их более приятными и отзывчивыми. Обратная форма на AJAX для отправки данных будет работать в фоновом режиме.</p>
+
+<div>
+<figure><img src="images/contact-form-ajax.jpg" alt="Внешне обратная форма на Ajax не отличается от обычных форм" class="img-fluid"><figcaption>Внешне обратная форма на Ajax не отличается от обычных форм</figcaption></figure></div>
+
+<p>Кроме того, мы будем использовать jQuery, чтобы упростить код JavaScript и простой почтовый скрипт PHP для обработки отправки данных формы на электронную почту.</p>
+
+<p>Этот материал основан на статье от команды <em>TreeHouse.com</em>, которую я дополнил немного от себя. Все необходимые файлы можно будет скачать в конце статьи.</p>
+
+<p>Про саму технологию Ajax (Asynchronous Javascript and XML — «асинхронный JavaScript и XML») вы можете прочитать в <a href="https://ru.wikipedia.org/wiki/AJAX" target="_blank" rel="noreferrer noopener">Википедии</a>.</p>
+
+<h2>Создаем HTML-форму</h2>
+
+<p>Любая обратная форма на Ajax начинается с HTML формы, которая будет собирать данные от пользователя.</p>
+
+<p>Назначьте вашему идентификатору (ID) <code>ajax-contact</code> вашей формы <code>&lt;form&gt;</code>, установите <code>post</code> атрибут для <code>method</code> и <code>mailer.php</code> как атрибут <code>action</code>. В целом, это обычная форма на языке разметки HTML и здесь вы не найдете чего-то необычного.</p>
+
+<pre><code class="language-html">&lt;form id="ajax-contact" method="post" action="mailer.php"&gt;
+    &lt;div class="field"&gt;
+        &lt;label for="name"&gt;Name:&lt;/label&gt;
+        &lt;input type="text" id="name" name="name" required&gt;
+    &lt;/div&gt;
+
+    &lt;div class="field"&gt;
+        &lt;label for="email"&gt;Email:&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" required&gt;
+    &lt;/div&gt;
+
+    &lt;div class="field"&gt;
+        &lt;label for="message"&gt;Message:&lt;/label&gt;
+        &lt;textarea id="message" name="message" required&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;div class="field"&gt;
+        &lt;button type="submit"&gt;Send&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code>
+</pre>
+
+<p>Мы создали простую форму, в которой есть поля для сбора имени пользователя, адреса электронной почты и текста сообщения.</p>
+
+<p>Обратите внимание, что каждое из полей формы имеет атрибут <code>required</code> (необходимый). В браузерах, поддерживающих валидацию форм HTML5, это предотвратит отправку формы до тех пор, пока все поля не будут заполнены.</p>
+
+<p>Затем вам нужно создать элемент <code>&lt;div&gt;</code>, который будет использоваться для отображения пользователю сообщений об успехах и ошибках. Создайте этот элемент над <code>&lt;form&gt;</code> в HTML-разметке и присвойте ему идентификатор <code>form-messages</code>. </p>
+
+<p>Так как наша обратная форма на Ajax в этот <code>&lt;div&gt;</code> мы будем записывать сообщения и выводить их пользователю на экран:</p>
+
+<pre><code class="language-html">&lt;div id="form-messages"&gt;&lt;/div&gt;</code></pre>
+
+<p>Далее, скачиваем архив с файлами в конце статьи и копируем файл <strong>style.css</strong> в каталог вашего проекта. Также необходимо добавить элемент <code>&lt;link&gt;</code>, который подключит эту таблицу стилей.</p>
+
+<pre><code class="language-html">&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+
+<p>Наконец, нужно создать два элемента <code>&lt;script&gt;</code>, которые ссылаются на файлы <strong>jquery-2.1.0.min.js</strong> и <strong>app.js</strong>. Добавьте их непосредственно перед закрывающим тегом <code>&lt;/body&gt;</code>.</p>
+
+<pre><code class="language-html">&lt;script src="jquery-2.1.0.min.js"&gt;&lt;/script&gt;
+&lt;script src="app.js"&gt;&lt;/script&gt;</code></pre>
+
+<p>Важно, чтобы вы сначала загрузили файл jquery-2.1.0.min.js, так как код внутри app.js требует jQuery.</p>
+
+<p>Это весь HTML, который вам понадобится в этой статье. Далее давайте посмотрим на JavaScript.</p>
+
+<p>Еще одно замечание — в TreeHouse использовали старый jQuery, и ошибок у вас не возникнет, если вы повторите все действия, описанные в статье. Но ниже я поясню как обновить jQuery и сделать так, чтобы работал код.</p>
+
+<h2>Отправка формы с использованием Ajax</h2>
+
+<p>Т.к. наша обратная форма на AJAX, то мы не можем без JavaScript. Создайте новый файл в каталоге вашего проекта с именем <strong>app.js</strong>. Он будет содержать весь код, отвечающий за отправку данных формы с использованием AJAX.</p>
+
+<p>Скопируйте следующий код в файл <strong>app.js</strong>.</p>
+
+<pre><code class="language-javascript">$(function() {
+    // Get the form.
+    var form = $('#ajax-contact');
+
+    // Get the messages div.
+    var formMessages = $('#form-messages');
+
+    // TODO: The rest of the code will go here...
+});</code></pre>
+
+<p>Здесь мы создали две новые переменные, <code>form</code> и <code>formMessages</code>, которые ссылаются на соответствующие элементы в вашей HTML-разметке.</p>
+
+<p>Затем нужно создать элемент отслеживания событий, который будет перехватывать отправление формы <code>submit</code>. Вы можете сделать это, используя метод <code>submit</code> jQuery.</p>
+
+<pre><code class="language-javascript">// Set up an event listener for the contact form.
+$(form).submit(function(event) {
+    // Stop the browser from submitting the form.
+    event.preventDefault();
+
+    // TODO
+});</code></pre>
+
+<p>Здесь вы передали функцию методу <code>submit</code>, которая будет выполняться при отправке пользователем контактной формы. Вы также сказали браузеру не отправлять форму, как это обычно происходит через метод <code>preventDefault</code> для события.</p>
+
+<p>Далее вам нужно сериализовать данные формы. При этом данные, введенные пользователем в форму, будут преобразованы в строку ключ/значение, которая может быть отправлена с помощью AJAX-запроса. Используйте метод jQuery <code>serialize</code> для сериализации данных формы, а затем сохраните результат в переменной под названием <code>formData</code>.</p>
+
+<pre><code class="language-javascript">// Serialize the form data.
+var formData = $(form).serialize();</code></pre>
+
+<p>Теперь вы готовы написать код, который отвечает за отправку данных формы на сервер и обработку ответа. Скопируйте следующий код в ваш <strong>app.js</strong> файл:</p>
+
+<pre><code class="language-javascript">// Submit the form using AJAX.
+$.ajax({
+    type: 'POST',
+    url: $(form).attr('action'),
+    data: formData
+})</code></pre>
+
+<p>Здесь вы используете ajax-метод jQuery для создания нового AJAX-запроса. Вы передали объект методу ajax, который содержит ряд свойств, используемых для настройки запроса. </p>
+
+<p>Свойство <code>type</code> определяет метод HTTP, который будет использоваться для запроса, в нашем случае <code>POST</code>. Свойство <code>url</code> — это местоположение скрипта, в который будут отправляться данные формы.</p>
+
+<p>Вы заполнили это свойство, извлекая атрибут <code>action</code> формы. Наконец, свойство <code>data</code> было заполнено с помощью переменной <code>formData</code>, которую вы создали ранее.</p>
+
+<p>Далее вам нужно обработать успешный ответ от сервера. Скопируйте следующий код непосредственно после закрывающей скобки вызова AJAX. Обратите внимание, что я намеренно пропустил точку с запятой:</p>
+
+<pre><code class="language-javascript">.done(function(response) {
+    // Make sure that the formMessages div has the 'success' class.
+    $(formMessages).removeClass('error');
+    $(formMessages).addClass('success');
+
+    // Set the message text.
+    $(formMessages).text(response);
+
+    // Clear the form.
+    $('#name').val('');
+    $('#email').val('');
+    $('#message').val('');
+})</code></pre>
+
+<p>Этот выполненный метод будет вызван в случае успешного завершения запроса.</p>
+
+<p>Здесь сначала необходимо убедиться, что элемент <code>formMessages</code> имеет класс <code>success</code>, а затем задать текстовое содержимое этого элемента, используя данные, возвращаемые скриптом <strong>mailer</strong>. В конце вы очищаете значения каждого из полей формы.</p>
+
+<p>Последний кусочек JavaScript, который нужно написать, управляет тем, что должно произойти в случае ошибки. Скопируйте следующий блок кода в <strong>app.js</strong>:</p>
+
+<pre><code class="language-javascript">.fail(function(data) {
+    // Make sure that the formMessages div has the 'error' class.
+    $(formMessages).removeClass('success');
+    $(formMessages).addClass('error');
+
+    // Set the message text.
+    if (data.responseText !== '') {
+        $(formMessages).text(data.responseText);
+    } else {
+        $(formMessages).text('Oops! An error occured and your message could not be sent.');
+    }
+});</code></pre>
+
+<p>Метод <code>fail</code> (сбой) вызывается, если почтовый скрипт возвращает ошибку.</p>
+
+<p>Сначала убедитесь, что элемент <code>formMessages</code> имеет класс <code>error</code>. Затем проверяется, не вернул ли AJAX-запрос какой-либо <code>responseText</code>. Если да, то вы используете этот текст для установки содержимого элемента <code>formMessages</code>; в противном случае используйте общее сообщение об ошибке.</p>
+
+<p>Это завершает создание HTML и JavaScript кода, которые необходимы для построения обратной формы на AJAX. Далее вы узнаете о скрипте почтового сервера, который отвечает за обработку данных формы и отправку электронного письма.</p>
+
+<h2>Создание почтового PHP-скрипта</h2>
+
+<p>Несмотря на то, что работает наша обратная форма на AJAX мы также будем использовать PHP. Пришло время написать скрипт отправки формы на PHP, который будет обрабатывать данные формы.</p>
+
+<p>Этот простой скрипт отвечает за проверку правильности данных формы и отправку электронного письма. Если произойдет ошибка, сценарий почтовой программы ответит соответствующим кодом состояния, чтобы был выполнен JavaScript-код, который вы написали ранее, в обратном вызове при <code>fail</code>.</p>
+
+<p>Создайте новый файл с именем <strong>mailer.php</strong> и скопируйте в него следующий код:</p>
+
+<pre><code class="language-php">&lt;?php
+
+    // Only process POST reqeusts.
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Get the form fields and remove whitespace.
+        $name = strip_tags(trim($_POST["name"]));
+				$name = str_replace(array("\r","\n"),array(" "," "),$name);
+        $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+        $message = trim($_POST["message"]);
+
+        // Check that data was sent to the mailer.
+        if ( empty($name) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            // Set a 400 (bad request) response code and exit.
+            http_response_code(400);
+            echo "Oops! There was a problem with your submission. Please complete the form and try again.";
+            exit;
+        }
+
+        // Set the recipient email address.
+        // FIXME: Update this to your desired email address.
+        $recipient = "hello@example.com";
+
+        // Set the email subject.
+        $subject = "New contact from $name";
+
+        // Build the email content.
+        $email_content = "Name: $name\n";
+        $email_content .= "Email: $email\n\n";
+        $email_content .= "Message:\n$message\n";
+
+        // Build the email headers.
+        $email_headers = "From: $name &lt;$email&gt;";
+
+        // Send the email.
+        if (mail($recipient, $subject, $email_content, $email_headers)) {
+            // Set a 200 (okay) response code.
+            http_response_code(200);
+            echo "Thank You! Your message has been sent.";
+        } else {
+            // Set a 500 (internal server error) response code.
+            http_response_code(500);
+            echo "Oops! Something went wrong and we couldn't send your message.";
+        }
+
+    } else {
+        // Not a POST request, set a 403 (forbidden) response code.
+        http_response_code(403);
+        echo "There was a problem with your submission, please try again.";
+    }
+
+?&gt;</code>
+</pre>
+
+<p>Этот скрипт начинается с проверки того, что запрос был отправлен методом <code>POST</code>. Если это не так, скрипт вернет код состояния HTTP <strong>403</strong> (запрещено) и сообщение об ошибке.</p>
+
+<p>После того, как вы установили, что используется правильный HTTP-метод, вы извлекаете данные формы в три переменные <code>$name</code>, <code>$email</code> и <code>$message</code>. Вы также здесь используете метод PHP <code>trim</code>, чтобы вырезать любые нежелательные пробелы.</p>
+
+<p>Далее вы проверяете, чтобы убедиться, что ни одна из этих переменных не пуста. Если одна или несколько переменных пустые, установите код ответа на <strong>400</strong> (плохой запрос) и верните браузеру сообщение об ошибке.</p>
+
+<p>Теперь, когда вы определили, что данные в порядке, вы готовите письмо, сначала создавая переменную с получателем письма. Затем вы создаете переменные для темы, содержимого письма и, наконец, заголовка письма.</p>
+
+<div class="attention-red"><strong>Внимание</strong>! Установка заголовков электронной почты не является обязательной. При этом электронное письмо будет выглядеть так, как если бы оно было отправлено лицом, заполнившим форму. Однако важно отметить, что манипулирование такими заголовками также может привести к тому, что некоторые почтовые клиенты будут помечать письмо как спам.</div>
+
+<p>Стандартная функция <code>mail</code> PHP прекрасно подойдет для целей это статьи, но есть более надежные способы отправки электронной почты с использованием PHP.</p>
+
+<p>В принципе, на этом всё, обратная форма на AJAX и PHP должна работать. Откройте ваш HTML-файл в веб-браузере и протестируйте форму. Для полноценной работы вам нужно будет использовать веб-сервер с поддержкой PHP и функцию <code>mail</code>, чтобы все работало правильно.</p>
+
+<h2>Обновление jQuery</h2>
+
+<p>В первой версии данного урока был использован старый jQuery версии 2.1.0. Если вы используете новую версию, то в файле app.js нужно поменять:</p>
+
+<pre><code class="language-javascript">$(function()</code></pre>
+
+<p>на</p>
+
+<pre><code class="language-javascript">jQuery(function ($)</code></pre>
+
+<p>При этом JS будет нормально работать с jQuery вплоть до версии 3.5.1.</p>
+
+<h2>HTML для Bootstrap</h2>
+
+<p>Если у вас сайт на Bootstrap, то, например, для 3-й версии вы можете использовать HTML форму подобную этой:</p>
+
+<pre><code class="language-html">&lt;div class="container-fluid grey-back"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="container"&gt;
+            &lt;div class="col-lg-6 col-lg-offset-3"&gt;
+            &lt;div id="form-messages"&gt;&lt;/div&gt;
+            &lt;form id="ajax-contact" method="post" action="/mailer.php"&gt;
+                &lt;div class="form-group"&gt;
+                    &lt;input type="email" id="email" name="email" class="form-control input-lg" placeholder="Ваш email" required&gt;
+                &lt;/div&gt;
+                &lt;div class="form-group"&gt;
+                    &lt;button type="submit" class="btn btn-lg btn-primary"&gt;Отправить&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+
+<p>Это лишь пример с одним полем для ввода электронной почты. По аналогии добавьте нужные вам формы, используя стандартные теги Bootstrap.</p>
+
+<p>Теперь точно всё готово! Наслаждайтесь.</p>
+
+<p>Из этой статьи блога вы узнали, как создается обратная форма на AJAX и PHP для связи со скриптом почтового сервера. Мы использовали jQuery для упрощения кода JavaScript, но вы могли бы достичь того же результата со стандартным JavaScript.</p>
+
+<p>Использование AJAX в рамках ваших веб-сайтов позволяет улучшить пользовательский опыт в ряде различных областей, а не только в контактных формах. В следующий раз, когда вы будете создавать сайт, спросите себя, как AJAX может помочь создать более комфортные условия для ваших пользователей.</p>
+
+<div class="attention-zip"><a href="images/ajax-php-form.zip">Скачать все файлы .zip</a></div>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 23 июля 2020 в 22:34</span><br>Теги: JavaScript, PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>

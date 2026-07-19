@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16x16.png">
+	<link rel="manifest" href="../../assets/icons/site.webmanifest">
+	<link rel="mask-icon" href="../../assets/icons/safari-pinned-tab.svg" color="#787878">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/prism.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Переменные в PHP (+WordPress) &#8212; SergeiErmilov</title>
+  </head>
+<body class="position-relative">
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+
+		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->   
+
+<!-- navbar section -->
+<section class="navbar-section">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
+				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
+				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../about/">Обо мне</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../services/">Услуги</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../portfolio/">Портфолио</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../docs/">Доки</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../terms/">Термины</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="../../tools/">Инструменты</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="../../book/">Книга</a>
+					</li>
+		
+					<li class="nav-item">
+						<a class="nav-link" href="../../contacts/">Контакты</a>
+					</li>
+			</div>
+		</div>
+	</nav>
+</section>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+
+<div class="container">
+	<div class="row mb-3 mb-md-4 mb-lg-5">
+		<div class="col-12 single-content-column">
+			<p><a href="../" class="link-secondary">Доки</a></p>
+			<h1 class="fw-600">Переменные в PHP (+WordPress)</h1>
+
+<p>Рассмотрим что такое переменные (<strong>variables</strong>) в языке программирования PHP и их использование. Кроме того мы поговорим о переменных сразу с практической точки зрения на примерах использования переменных в разных CMS (например, WordPress).</p>
+
+<h2>Знакомство с переменными в PHP и WP</h2>
+
+<p>Вы, наверное, уже видели код, который включает знак <strong>$</strong> (доллар) в PHP коде:</p>
+
+<pre><code class="language-php">$output</code></pre>
+
+<p>Это то, что в языке PHP называется переменной. WordPress использует в коде тысячи переменных. Если вы хотите узнать больше о программировании, то вам нужно знать всё про переменные.</p>
+
+<p>Переменная — это то, что вы можете создать (объявить) и использовать в PHP-коде вот так:</p>
+
+<pre><code class="language-php">add_action( 'genesis_after_header', 'using_variables' );
+
+function using_variables() {
+    $text = "Hello World";
+    echo $text;
+}</code></pre>
+
+<p>Это пример использования переменных в WordPress. </p>
+
+<p>Суть простая — переменную можно считать неким ящиком в котором что-либо хранится.</p>
+
+<h2>Имена переменных</h2>
+
+<p>Когда Вы создаете переменную, Вы всегда начинаете со знака доллара <strong>$</strong>, а затем создаете описательное имя для переменной, подобное этому:</p>
+
+<pre><code class="language-php">$My_Name</code></pre>
+
+<p>После того, как вы создали переменную, вы можете присвоить ей значение следующим образом:</p>
+
+<pre><code>$My_Name = "Brad";</code></pre>
+
+<p>Теперь, когда у переменной появилось значение, вы можете вывести или распечатать значение для вашей переменной таким образом:</p>
+
+<pre><code>$My_Name = "Brad";
+echo $My_Name;</code></pre>
+
+<h2>Имена переменных с учетом регистра</h2>
+
+<p>Этот код не будет работать:</p>
+
+<pre><code class="language-php">add_action( 'genesis_after_header', 'case_sensitive_variable' );
+
+function case_sensitive_variable() {
+    $My_Name = "Brad";
+    echo $my_name;
+}</code></pre>
+
+<p>И этот не будет:</p>
+
+<pre><code class="language-php">add_action( 'genesis_after_header', 'uppercase_lowercase_variables' );
+
+function uppercase_lowercase_variables() {
+    $My_Name = "Brad";
+    echo $MY_NAME;
+}</code></pre>
+
+<h2>Числа в именах</h2>
+
+<p>Использование чисел в переменных возможно. Рассмотрим это на паре примеров.</p>
+
+<p>Это не сработает:</p>
+
+<pre><code class="language-php">add_action( 'genesis_after_header', 'case_sensitive_variable' );
+
+function case_sensitive_variable() {
+    $1my_name = "Brad";
+    echo $1my_name;
+}</code></pre>
+
+<p>Этот код работает:</p>
+
+<pre><code class="language-php">add_action( 'genesis_after_header', 'numbers_in_variables' );
+
+function numbers_in_variables() {
+    $my1_name = "Brad";
+    echo $my1_name;
+}</code></pre>
+
+<p>Еще раз повторим — переменные всегда должны начинаться со знака доллара <code>$</code>, за которым следует символ или подчеркивание.</p>
+
+<div class="attention-yellow"><strong>Важно</strong>! Использование чисел в именовании переменных не рекомендуется.</div>
+
+<h2>Вывод переменных</h2>
+
+<p>Теперь мы можем подключить приведенный выше код и вывести значение переменной в пользовательской функции (в файле функций темы) следующим образом:</p>
+
+<pre><code class="language-php">add_action( 'genesis_after_header', 'using_variables' );
+
+function using_variables() {
+    $My_Name = "Brad";
+    echo $My_Name;
+}</code></pre>
+
+<p>Или мы можем обернуть код открывающими и закрывающими тегами PHP и использовать код в файле шаблона следующим образом:</p>
+
+<pre><code class="language-php">&lt;?php 
+    $My_Name = "Brad";
+    echo $My_Name;
+?&gt;</code></pre>
+
+<p>Вышеупомянутая переменная работает только в внутри той функции, которая определена, что означает, что вы не можете взять переменную <code>$My_Name</code> и использовать ее в другой функции, например:</p>
+
+<pre><code class="language-php">add_action( 'genesis_before_header', 'using_variables_in_other_functions');
+
+function using_variables_in_other_functions() {
+    echo $My_Name;
+}</code></pre>
+
+<p>Единственный способ использовать переменную в другой функции — изначально объявить ее вне функции (в вашем файле функций):</p>
+
+<pre><code class="language-php">$My_Name = "Brad";
+// дальше идут функции, где будет использоваться переменная</code></pre>
+
+<p>Вам нужно будет использовать ключевое слово <code>global</code> следующим образом:</p>
+
+<pre><code class="language-php">add_action( 'genesis_after_header', 'using_variables' );
+
+function using_variables() {
+    global $My_Name;
+    echo $My_Name;
+}</code></pre>
+
+<div class="attention-blue"><strong>Справка</strong>. Лучше использовать соответствующие функции API, когда они доступны, вместо непосредственного изменения <a href="https://codex.wordpress.org/Global_Variables" target="_blank" rel="noreferrer noopener">глобальных переменных</a>.</div>
+
+<h2>Переменные в Genesis</h2>
+
+<p>Для примера рассмотрим использование PHP переменных в Genesis — фреймворке от StudioPress.</p>
+
+<p>Следующий код включает 2 переменные с именами <code>$link</code> и <code>$output</code>:</p>
+
+<pre><code class="language-php">add_action( 'genesis_after_header','variable_output' );
+
+function variable_output() {	
+    $link = esc_url( 'http://example.com' );  
+    $output = sprintf( '&lt;a href="%s"&gt;' . __( 'Your link text here' ) . '&lt;/a&gt;',  $link  ); 	
+    echo $output;
+}</code></pre>
+
+<p>Следующий код включает в себя 1 переменную с именем <code>$link</code>, которая равна постоянной ссылке на статью:</p>
+
+<pre><code class="language-php">add_action( 'genesis_after_header','variable_output' );
+
+function variable_output() {	
+    $link = esc_url( get_permalink() );
+    printf( '&lt;a href="%s"&gt;' . __( 'Link text' ) . '&lt;/a&gt;',  $link  ); 
+}</code>
+</pre>
+
+<p>В приведенном выше коде для вывода форматированной строки используется <a href="https://www.php.net/manual/en/function.printf.php" target="_blank" rel="noreferrer noopener">printf</a>.</p>
+
+<p>Этот фрагмент кода позволяет вам изменить значение по умолчанию для исходной переменной, уже объявленной в Genesis, через файл функций дочерних тем, используя функцию фильтра.</p>
+
+<pre><code class="language-php">//* изменить текст заголовка комментария в комментариях
+add_filter( 'genesis_title_comments', 'sp_genesis_title_comments' );
+function sp_genesis_title_comments() {
+	$title = '&lt;h3&gt;Обсуждение&lt;/h3&gt;';
+	return $title;
+}</code></pre>
+
+<p>Понимание того, как работают переменные, упростит понимание того, как читать и писать пользовательские функции фильтра для изменения значения по умолчанию для переменной, уже включенной в Genesis или WordPress.</p>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<div class="mb-3 mb-mb-4 d-flex gap-3">
+				<div>
+					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
+				</span>
+				</div>
+				<div>
+					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
+					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
+				</div>
+			</div> 
+		</div>
+		<div class="col-12 col-md-5">
+			<span class="text-muted">Опубликовано 12 января 2023 в 23:51</span><br>Теги: PHP
+		</div>
+	</div>
+</div>
+
+<!-- ------------ -->
+<!-- START FOOTER -->
+<!-- ------------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-4 my-auto">
+				<span class="fw-500 text-muted">SergeiErmilov</span>
+			</div>
+			<div class="col-12 col-md-4 text-center my-auto">
+				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
+			</div>
+			<div class="col-12 col-md-4 my-auto text-end">
+				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/prism.js"></script>	
+
+  </body>
+</html>
