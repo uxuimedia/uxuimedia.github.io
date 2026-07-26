@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="icon" type="image/png" href="../../assets/icons/favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/svg+xml" href="../../assets/icons/favicon.svg" />
+	<link rel="shortcut icon" href="../../assets/icons/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png" />
+	<meta name="apple-mobile-web-app-title" content="MyWebSite" />
+	<link rel="manifest" href="../../assets/icons/site.webmanifest" />
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+    <title>Ковертер Px в Em &ndash; UXUI.media</title>
+  </head>
+<body id="top">
+
+<!-- ---------- --> 
+<!--   HEADER   -->
+<!-- ---------- -->
+<div class="container">
+	<div class="row py-3">
+		<div class="col-12 text-center">
+			<h1 class="mb-1 h4 fw-bold">
+				Ковертер PX в EM (CSS)
+			</h1>
+			<p class="small text-muted mb-1">
+				Демо конвертера перевода PX в EM и обратно
+			</p>
+			<p class="mb-1"><a href="https://github.com/uxuimedia/px-to-em-converter">Репозиторий</a></p>
+		</div>
+	</div>
+</div>
+<!-- ---------- --> 
+<!-- END HEADER -->
+<!-- ---------- -->
+    
+<div class="container mb-5">
+	<div class="maxwidth">
+		<div class="row my-4">
+			<div class="col-sm-8 offset-sm-2 col-xs-12">				
+				<div class="container-px-em">    
+					<div class="basefont">
+						<p>basefont:</p><input type="text" class="chosen" value="16" placeholder="16">px</div>
+						<div class="px-em">
+						<div class="px"><input type="text" class="input px-input" placeholder="0" />
+							<div class="text">px</div>
+						</div>
+						<div class="em"><input type="text" class="input em-input" placeholder="0" />
+							<div class="text">em</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+   
+<script>
+var px = document.querySelector(".px-input");
+var em = document.querySelector(".em-input");
+var bf = document.querySelector(".chosen");
+var pxValue = px.value;
+var basefont = bf.value;
+px.addEventListener("keyup", function() {
+  basefont = bf.value;
+  pxValue = px.value;
+  calculatePXtoEM(pxValue, basefont);
+});
+
+em.addEventListener("keyup", function() {
+  basefont = bf.value;
+  emValue = em.value;
+  calculateEMtoPX(emValue, basefont);
+});
+
+function calculatePXtoEM(givenPx, basefont) {
+  console.log(givenPx);
+  if (basefont === "") {
+    basefont = 16;
+  }
+  var returnEm = givenPx / basefont;
+  em.value = returnEm;
+}
+
+function calculateEMtoPX(givenEm, basefont) {
+  console.log(givenEm);
+  if (basefont === "") {
+    basefont = 16;
+  }
+  var returnPx = givenEm * basefont;
+  px.value = returnPx;
+}
+</script>
+
+<!-- ----- ------ -->
+<!-- START FOOTER -->
+<!-- ----- ------ -->
+<footer class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<script>document.write(new Date().getFullYear());</script> &copy; <b>uxuimedia.github.io</b>. Все права защищены
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- --- ----- ------ -->
+<!-- END START FOOTER -->
+<!-- --- ----- ------ -->
+
+<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/app.js"></script>
+
+  </body>
+</html>
