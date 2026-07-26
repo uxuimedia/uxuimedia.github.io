@@ -18,79 +18,63 @@
 	<link rel="stylesheet" href="../../assets/css/prism.css">
 	<link rel="stylesheet" href="../../assets/css/style.css">
 
-    <title>GitHub для начинающих &#8212; SergeiErmilov</title>
+    <title>GitHub для начинающих &ndash; UXUI.media</title>
   </head>
-<body class="position-relative">
-	<!-- Yandex.Metrika counter -->
-	<script type="text/javascript">
-		(function(m,e,t,r,i,k,a){
-			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-			m[i].l=1*new Date();
-			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104047655', 'ym');
+<body id="top">
+	<!-- ---------- -->
+	<!--   HEADER   -->
+	<!-- ---------- -->
+	<header class="navbar-section">
+		<nav class="navbar navbar-expand-lg navbar-light bg-white custom-navbar border-bottom">
+			<div class="container-fluid">
+				<a class="navbar-brand d-flex gap-1 align-items-center" href="../../">
+					<img src="../../assets/svg/uxui-logo.svg" alt="UXUI Media" title="UXUI Media" width="85"
+						height="35">
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-		ym(104047655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-	</script>
-	<noscript><div><img src="https://mc.yandex.ru/watch/104047655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-	<!-- /Yandex.Metrika counter -->  
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mx-lg-auto mt-3 mt-lg-0 mb-3 mb-lg-0">
 
-<!-- navbar section -->
-<section class="navbar-section">
-	<nav class="navbar navbar-expand-lg navbar-light bg-white">
-		<div class="container">
-			<a class="navbar-brand d-flex gap-3 align-items-center" href="../../">
-				<img src="../../assets/images/sergei-150.png" alt="" width="80" height="80" class="d-inline-block align-middle">
-				<div class="logo-block"><span class="fw-bold">Фронтенд</span><br><span class="small-font">Сергей Ермилов</span></div>
-			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ms-0 ms-md-5 mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link" href="../../about/">О сайте</a>
+						</li>
 
-					<li class="nav-item">
-						<a class="nav-link" title="GitHub" target="_blank" href="https://github.com/uzabila"><img src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="mx-3" style="margin-top:-5px"></a>
-					</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../../services/">Услуги</a>
+						</li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="../../about/">Обо мне</a>
-					</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../../portfolio/">Кейсы</a>
+						</li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="../../services/">Услуги</a>
-					</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../../docs/">Доки</a>
+						</li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="../../portfolio/">Портфолио</a>
-					</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../../contacts/">Контакты</a>
+						</li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="../../docs/">Доки</a>
-					</li>
+					</ul>
+					<div class="d-flex gap-2 flex-row mb-3 mb-lg-0">
+						<a href="en/" class="dark-link">English</a>
+						<a class="nav-link" title="GitHub" href="https://github.com/uxuimedia"><img
+								src="../../assets/images/gh.svg" alt="GitHub" width="32" height="32" class="ms-3 me-1"
+								style="margin-top:-5px"> GitHub</a>
+					</div>
 
-					<li class="nav-item">
-						<a class="nav-link" href="../../terms/">Термины</a>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link" href="../../tools/">Инструменты</a>
-					</li>
-					
-					<li class="nav-item">
-						<a class="nav-link" href="../../book/">Книга</a>
-					</li>
-		
-					<li class="nav-item">
-						<a class="nav-link" href="../../contacts/">Контакты</a>
-					</li>
+				</div>
 			</div>
-		</div>
-	</nav>
-</section>
-<!-- ---------- --> 
-<!-- END HEADER -->
-<!-- ---------- -->
+		</nav>
+	</header>
+	<!-- ---------- -->
+	<!-- END HEADER -->
+	<!-- ---------- -->
 
 <div class="container-fluid">
 	<div class="row mb-3 mb-md-4 mb-lg-5">
@@ -173,7 +157,7 @@
 		</div>
 		<div class="col-12 col-lg-9	single-content-column">
 			<p><a href="../" class="link-secondary">Доки</a></p>
-			<h1 class="fw-600">GitHub для начинающих</h1>
+			<h1 class="fw-700">GitHub для начинающих</h1>
 
 <p>В большинстве компаний и на любых курсах по разработке необходимо работать в системе контроля версий Git. Часто, программист отправляет свои задания на проверку и получает обновления в этой системе.</p>
 
@@ -1977,47 +1961,61 @@ fatal: Not a git repository (or any of the parent directories): .git</code></pre
 <p>Делаем <strong>pull</strong> из основного репозитория. И теперь сможем работать и вносить изменения на локальной машине.</p>
 
 
-		</div>
-	</div>
-</div>
-<div class="container">
-	<div class="row">
+	<div class="row pt-3 border-top mt-5">
 		<div class="col-12 col-md-7">
 			<div class="mb-3 mb-mb-4 d-flex gap-3">
 				<div>
 					<img alt="Сергей Ермилов" src="../../assets/images/sergei-450.png" height="68" width="68">
 				</span>
 				</div>
-				<div>
+				<div class="small">
 					<a href="../../about/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Сергей Ермилов</a><br>
 					<span>Дизайнер, верстальщик, фронтенд-разработчик, PHP и WordPress энтузиаст, главный редактор сайта</span>
 				</div>
 			</div> 
 		</div>
-		<div class="col-12 col-md-5">
+		<div class="col-12 col-md-5 small">
 			<span class="text-muted">Опубликовано 3 января 2023 в 23:56</span><br>Теги: Git
+		</div>
+	</div>
+
 		</div>
 	</div>
 </div>
 
-<!-- ------------ -->
-<!-- START FOOTER -->
-<!-- ------------ -->
-<footer class="py-5">
-	<div class="container">
-		<div class="row">
-			<div class="col-12 col-md-4 my-auto">
-				<span class="fw-500 text-muted">SergeiErmilov</span>
-			</div>
-			<div class="col-12 col-md-4 text-center my-auto">
-				<img src="../../assets/images/sergei-150.png" alt="Sergei Ermilov" width="80" height="80">
-			</div>
-			<div class="col-12 col-md-4 my-auto text-end">
-				<span class="fw-500 text-muted">&copy; 2008-<script>document.write(new Date().getFullYear())</script></span>
+	<!-- ----- ------ -->
+	<!-- START FOOTER -->
+	<!-- ----- ------ -->
+	<div class="container-fluid">
+		<div class="row py-3 py-md-4 py-lg-5">
+			<div class="col-12">
+				<a href="#top" class="text-secondary text-decoration-none" style="scroll-behavior: smooth">&uarr;
+					Наверх</a>
 			</div>
 		</div>
 	</div>
-</footer>
+	<footer class="py-4 border-top">
+		<div class="container-fluid">
+			<div class="row gy-4">
+				<div class="col-12 col-lg-2">
+					<img src="../../assets/svg/uxui-logo.svg" alt="UXUI Media" title="UXUI Media" width="85"
+						height="35">
+				</div>
+				<div class="col-12 col-lg-10">
+					<p>
+						<script>document.write(new Date().getFullYear());</script> &copy; <b>UXUI.media</b>
+						(uxuimedia.github.io). Все права защищены
+					</p>
+					<p>При полном или частичном использовании материалов ссылка на uxui.media обязательна (в интернете —
+						гиперссылка). Использование текстов и переводов в коммерческих целях запрещено. Исключительные
+						права на весь контент принадлежат владельцу этого сайта - Сергею Ермилову</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- --- ----- ------ -->
+	<!-- END START FOOTER -->
+	<!-- --- ----- ------ -->
 
 	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
 	<script src="../../assets/js/app.js"></script>

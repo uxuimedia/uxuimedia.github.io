@@ -1052,6 +1052,21 @@ a.premium-image-hotspots-tooltips-link {
     padding: 0;
 }
 
+.single-content-column h2,
+article h2{
+    position: relative;
+}
+
+.single-content-column h2:after,
+article h2:after {
+    margin-top: 10px;
+    content: '';
+    background: var(--dark-blue);
+    width: 140px;
+    height: 5px;
+    display: block;
+}
+
 /*
  * MEDIA
  */
